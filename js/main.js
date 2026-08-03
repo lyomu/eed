@@ -367,24 +367,29 @@
     });
   }
 
-  /* ---------- Hero entrance ----------
-     Adds .hero-ready once the frame is painted, then .hero-settled after the
-     settle finishes so parallax can track scroll without easing behind it. */
+  /* ---------- Image header entrance ----------
+     Applies to every .on-image block — the homepage hero and each inner page
+     header. Adds .hero-ready once the frame is painted, then .hero-settled
+     after the settle finishes so parallax can track scroll without easing
+     behind it. */
   function initHero() {
-    var hero = document.querySelector('.hero--image');
-    if (!hero) return;
+    var blocks = document.querySelectorAll('.on-image');
+    if (!blocks.length) return;
 
-    function ready() {
-      hero.classList.add('hero-ready');
-      var settle = parseFloat(
-        getComputedStyle(document.documentElement).getPropertyValue('--dur-settle')
-      ) || 900;
-      window.setTimeout(function () { hero.classList.add('hero-settled'); }, settle + 40);
+    var settle = parseFloat(
+      getComputedStyle(document.documentElement).getPropertyValue('--dur-settle')
+    ) || 900;
+
+    function ready(el) {
+      el.classList.add('hero-ready');
+      window.setTimeout(function () { el.classList.add('hero-settled'); }, settle + 40);
     }
 
-    if (prefersReduced()) { hero.classList.add('hero-ready', 'hero-settled'); return; }
-    window.requestAnimationFrame(function () {
-      window.requestAnimationFrame(ready);
+    Array.prototype.forEach.call(blocks, function (el) {
+      if (prefersReduced()) { el.classList.add('hero-ready', 'hero-settled'); return; }
+      window.requestAnimationFrame(function () {
+        window.requestAnimationFrame(function () { ready(el); });
+      });
     });
   }
 

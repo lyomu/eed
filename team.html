@@ -25,7 +25,8 @@
     <ul class="nav-list">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About Us</a></li>
-      <li><a href="team.html">Our Team</a></li>
+      <li><a href="what-we-do.html">What We Do</a></li>
+      <li><a href="team.html" class="active">Our Team</a></li>
       <li><a href="portfolio.html">Research Portfolio</a></li>
       <li><a href="news.html">Blogs</a></li>
       <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
@@ -36,10 +37,18 @@
 <main>
 
   <!-- PAGE HEAD -->
-  <section class="page-head" data-rule data-reveal>
+  <section class="page-head page-head--image on-image">
+    <!-- Decorative. The navy gradient beneath carries the text contrast, so
+         a missing or slow image never affects legibility. Removes itself if
+         the file is absent rather than showing a broken-image icon. -->
+    <img class="hero-bg" src="assets/hero/hero-team.jpg" alt=""
+         fetchpriority="high" onerror="this.remove()">
     <div class="container">
-      <h1>The people behind the research</h1>
-      <p class="lead">A multidisciplinary collective of researchers, scientists, and strategists dedicated to advancing sustainable ecological solutions and rigorous academic inquiry.</p>
+      <div class="hero-enter">
+        <span class="hero-kicker">Our People</span>
+        <h1>The people behind the research</h1>
+        <p class="lead">A multidisciplinary collective of researchers, scientists, and strategists dedicated to advancing sustainable ecological solutions and rigorous academic inquiry.</p>
+      </div>
     </div>
   </section>
 
@@ -56,7 +65,6 @@
             <span class="initials">IG</span>
             <span class="card-veil" aria-hidden="true"><span class="card-cta">View profile &rarr;</span></span>
           </div>
-          <span class="card-index" aria-hidden="true">01</span>
           <span class="name">Dr. Ida Githu</span>
           <span class="role">Managing Director</span>
         </button>
@@ -69,7 +77,6 @@
             <span class="initials">EO</span>
             <span class="card-veil" aria-hidden="true"><span class="card-cta">View profile &rarr;</span></span>
           </div>
-          <span class="card-index" aria-hidden="true">02</span>
           <span class="name">Elmah Odhiambo</span>
           <span class="role">Research Coordinator</span>
         </button>
@@ -82,7 +89,6 @@
             <span class="initials">WM</span>
             <span class="card-veil" aria-hidden="true"><span class="card-cta">View profile &rarr;</span></span>
           </div>
-          <span class="card-index" aria-hidden="true">03</span>
           <span class="name">Dr. Winnie Musivo</span>
           <span class="role">Director (Partnerships and Strategy)</span>
         </button>
@@ -95,7 +101,6 @@
             <span class="initials">AO</span>
             <span class="card-veil" aria-hidden="true"><span class="card-cta">View profile &rarr;</span></span>
           </div>
-          <span class="card-index" aria-hidden="true">04</span>
           <span class="name">Dr. Abigael Okoko</span>
           <span class="role">Research Fellow</span>
         </button>
@@ -108,7 +113,6 @@
             <span class="initials">CM</span>
             <span class="card-veil" aria-hidden="true"><span class="card-cta">View profile &rarr;</span></span>
           </div>
-          <span class="card-index" aria-hidden="true">05</span>
           <span class="name">Dr. Cheikh Mbodji</span>
           <span class="role">Research Fellow</span>
         </button>
@@ -120,7 +124,6 @@
             <span class="initials">CN</span>
             <span class="card-veil" aria-hidden="true"><span class="card-cta">View profile &rarr;</span></span>
           </div>
-          <span class="card-index" aria-hidden="true">06</span>
           <span class="name">Carl Ngaira</span>
           <span class="role">Executive Assistant</span>
         </button>

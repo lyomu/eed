@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What We Do — EED Research Institute</title>
+<meta name="description" content="Discover the research initiatives, programs, and evidence-based solutions led by EED Research Institute.">
+<link rel="icon" href="assets/logo/eri-logo-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400..700&family=Outfit:wght@100..600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="nav-bar">
+    <a href="index.html" class="brand">
+      <img src="assets/logo/eri-logo-mark.png" alt="EED Research Institute">
+    </a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="what-we-do.html" class="active">What We Do</a></li>
+      <li><a href="team.html">Our Team</a></li>
+      <li><a href="portfolio.html">Research Portfolio</a></li>
+      <li><a href="news.html">Blogs</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+  <!-- PAGE HEAD -->
+  <section class="page-head page-head--image on-image">
+    <!-- Decorative. The navy gradient beneath carries the text contrast, so
+         a missing or slow image never affects legibility. Removes itself if
+         the file is absent rather than showing a broken-image icon. -->
+    <img class="hero-bg" src="assets/hero/hero-home.jpg" alt=""
+         fetchpriority="high" onerror="this.remove()">
+    <div class="container">
+      <div class="hero-enter">
+        <span class="hero-kicker">What We Do</span>
+        <h1>What We Do</h1>
+        <p class="lead">Advancing evidence-based solutions across WASH, energy, climate change, and agriculture.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLANK CONTENT CONTAINER -->
+  <section class="section on-paper">
+    <div class="container" data-reveal>
+      <!-- Content will be added here -->
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/logo/eri-logo-full.png" alt="EED Research Institute">
+        <p>EED Research Institute is committed to advancing scientific inquiry to address the global challenges in the fields of WASH, energy, climate change and agriculture.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="what-we-do.html">What We Do</a></li>
+          <li><a href="team.html">Our Team</a></li>
+          <li><a href="portfolio.html">Our Publications</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Our Pillars</h3>
+        <ul>
+          <li><a href="about.html#thematic-areas">WASH</a></li>
+          <li><a href="about.html#thematic-areas">Energy</a></li>
+          <li><a href="about.html#thematic-areas">Climate</a></li>
+          <li><a href="about.html#thematic-areas">Agriculture</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Information</h3>
+        <ul>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="#">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-links">
+        <a href="#">Terms And Conditions</a>
+        <a href="#">Privacy Policy</a>
+        <span>&copy; 2026 EED Research Institute. All rights reserved.</span>
+      </div>
+      <button id="back-to-top">Back to top &uarr;</button>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="js/main.js"></script>
+</body>
+</html>

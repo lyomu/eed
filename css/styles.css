@@ -239,10 +239,9 @@ p{ margin:0 0 1em; }
 .nav-list{
   display:flex;
   align-items:center;
-  flex:1;
-  justify-content:space-between;
-  margin-left:clamp(32px, 5vw, 104px);
-  gap:clamp(20px, 2.2vw, 40px);
+  justify-content:flex-end;
+  margin-left:auto;
+  gap:clamp(20px, 2.5vw, 36px);
 }
 .nav-list a{
   font-size:.875rem;
@@ -352,12 +351,17 @@ p{ margin:0 0 1em; }
 }
 .hero-strip span:first-child{ border-left:0; padding-left:0; }
 
-/* ---------- Hero: full-bleed image variant ----------
-   Inverts the hero to dark. The navy gradient underneath is not a decoration:
-   it is the contrast guarantee. Text legibility must never depend on a
-   photograph having loaded, so the gradient carries AA on its own and the
-   image only ever sits on top of it. */
-.hero--image{
+/* ==========================================================================
+   .on-image — shared dark image treatment
+   Used by the homepage hero and by every inner page header, so all six pages
+   read as one system rather than six separate designs.
+
+   The navy gradient underneath is not decoration: it is the contrast
+   guarantee. Text legibility must never depend on a photograph having loaded,
+   so the gradient carries AA on its own and the image only ever sits on top
+   of it. Every .hero-bg also self-removes on error.
+   ========================================================================== */
+.on-image{
   position:relative;
   isolation:isolate;
   overflow:hidden;
@@ -366,7 +370,7 @@ p{ margin:0 0 1em; }
     radial-gradient(120% 100% at 12% 0%, var(--navy-800) 0%, transparent 60%),
     linear-gradient(160deg, var(--navy-950) 0%, var(--navy-900) 45%, var(--green-900) 130%);
 }
-.hero--image .hero-bg{
+.on-image .hero-bg{
   position:absolute;
   inset:0;
   width:100%;
@@ -381,13 +385,13 @@ p{ margin:0 0 1em; }
    Decorative and non-looping.
    --py carries the parallax offset so JS never writes a full transform and
    therefore cannot clobber the scale. */
-.js .hero--image .hero-bg{ transform:translate3d(0,var(--py,0px),0) scale(1.04); }
-.js .hero--image.hero-ready .hero-bg{ transform:translate3d(0,var(--py,0px),0) scale(1); }
+.js .on-image .hero-bg{ transform:translate3d(0,var(--py,0px),0) scale(1.04); }
+.js .on-image.hero-ready .hero-bg{ transform:translate3d(0,var(--py,0px),0) scale(1); }
 /* Once the settle has finished, drop the transition so parallax tracks scroll
    directly instead of easing behind it. */
-.hero--image.hero-settled .hero-bg{ transition:none; }
+.on-image.hero-settled .hero-bg{ transition:none; }
 /* Scrim: keeps the headline readable over the busiest part of any photo. */
-.hero--image::after{
+.on-image::after{
   content:"";
   position:absolute;
   inset:0;
@@ -398,15 +402,63 @@ p{ margin:0 0 1em; }
     rgba(10,16,32,.72) 45%,
     rgba(10,16,32,.55) 100%);
 }
-.hero--image .container{ position:relative; z-index:1; }
+.on-image .container{ position:relative; z-index:1; }
 
-.hero--image h1{ color:#fff; }
+.on-image h1{ color:#fff; }
 /* Outfit at weight 100 is a hairline; over a photograph it disappears.
    Lifting to 300 here only — the global --fw-body stays as it is. */
-.hero--image .lead{
+.on-image .lead{
   color:rgba(255,255,255,.86);
   font-weight:300;
 }
+.on-image .btn-outline{
+  border-color:rgba(255,255,255,.4);
+  color:#fff;
+}
+.on-image .btn-outline:hover{
+  border-color:#fff;
+  background:rgba(255,255,255,.08);
+}
+
+/* Kicker: a small tracked label above the headline. Gives the inner page
+   headers a second typographic level, which they previously lacked. */
+.hero-kicker{
+  display:inline-block;
+  font-family:var(--font-label);
+  font-size:var(--fs-mono);
+  font-weight:600;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--gold-400);
+  margin-bottom:20px;
+  padding-bottom:12px;
+  position:relative;
+}
+.hero-kicker::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  height:1px;
+  background:var(--gold-400);
+  opacity:.5;
+  transform-origin:left center;
+  transition:transform var(--dur-rule) var(--ease-out);
+}
+.js .hero-kicker::after{ transform:scaleX(0); }
+.js .hero-ready .hero-kicker::after{ transform:scaleX(1); }
+
+/* ---------- Inner page header on an image ----------
+   Deliberately shorter than the homepage hero so the hierarchy between
+   landing page and inner page stays legible. */
+.page-head--image{
+  padding:clamp(88px, 13vh, 136px) 0 clamp(64px, 9vh, 96px);
+}
+.page-head--image h1{ max-width:24ch; }
+.page-head--image .lead{ max-width:58ch; }
+
+/* ---------- Hero-specific (homepage only) ---------- */
 .hero--image .hero-meta{ border-left-color:var(--rule-dark); }
 .hero--image .hero-meta-item{ border-bottom-color:var(--rule-dark); }
 .hero--image .hero-meta-value{ color:#fff; }
@@ -415,14 +467,6 @@ p{ margin:0 0 1em; }
 .hero--image .hero-strip span{
   color:rgba(255,255,255,.66);
   border-left-color:var(--rule-dark);
-}
-.hero--image .btn-outline{
-  border-color:rgba(255,255,255,.4);
-  color:#fff;
-}
-.hero--image .btn-outline:hover{
-  border-color:#fff;
-  background:rgba(255,255,255,.08);
 }
 
 /* Hero entrance: headline, lead, CTA arrive in sequence rather than at once. */
