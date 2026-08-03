@@ -37,10 +37,18 @@
 <main>
 
   <!-- PAGE HEAD -->
-  <section class="page-head" data-rule data-reveal>
+  <section class="page-head page-head--image on-image">
+    <!-- Decorative. The navy gradient beneath carries the text contrast, so
+         a missing or slow image never affects legibility. Removes itself if
+         the file is absent rather than showing a broken-image icon. -->
+    <img class="hero-bg" src="assets/hero/hero-news.jpg" alt=""
+         fetchpriority="high" onerror="this.remove()">
     <div class="container">
-      <h1>Perspectives from the field</h1>
-      <p class="lead">Research commentary, policy analysis, and field notes from our researchers across WASH, energy, climate, and agriculture.</p>
+      <div class="hero-enter">
+        <span class="hero-kicker">Insights</span>
+        <h1>Perspectives from the field</h1>
+        <p class="lead">Research commentary, policy analysis, and field notes from our researchers across WASH, energy, climate, and agriculture.</p>
+      </div>
     </div>
   </section>
 
