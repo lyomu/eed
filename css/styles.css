@@ -1026,6 +1026,12 @@ p{ margin:0 0 1em; }
    its own spacing rather than inheriting a paragraph gap. */
 .thematic-item .body .card-link{ margin-top:18px; }
 
+/* The 240px title column suits one-word thematic names ("WASH", "Energy").
+   The organizational competencies have far longer titles, which wrap to four
+   lines at that width, so this section gets a wider column. */
+#how-we-work .thematic-item{ grid-template-columns:64px 320px 1fr; }
+#how-we-work .thematic-item h3{ font-size:1.3rem; }
+
 /* ---------- About: timeline (inside impact band) ---------- */
 .timeline{
   display:grid;
