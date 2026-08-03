@@ -67,16 +67,23 @@
   <section class="section on-paper">
     <div class="container">
       <!-- data-linkedin / data-scholar hold each member's public profile URL.
-           An empty value simply hides that icon in the modal, so members
-           without a listed profile degrade cleanly. Fill these in as the
-           URLs are confirmed. data-member-id is the deep link: team.html#id
-           opens that member's profile, and the share button copies it. -->
+           PLACEHOLDERS: every card currently points at the bare platform
+           home page, not at a person. Swap each one for the real profile URL
+           as it is confirmed — grep for "linkedin.com/" and "scholar.google.com/"
+           to find the ones still outstanding.
+
+           An empty value hides that icon instead, so a member with no listed
+           profile degrades cleanly once the placeholders are replaced.
+
+           data-member-id is the deep link: team.html#id opens that member's
+           profile, and the share button copies it. -->
       <div class="team-grid" data-reveal-stagger>
 
         <button class="team-card" data-member data-member-id="ida-githu"
                 data-initials="IG" data-name="Dr. Ida Githu" data-role="Managing Director"
                 data-photo="assets/team/ida-githu.jpg" data-bio-id="bio-ida-githu"
-                data-linkedin="" data-scholar="">
+                data-linkedin="https://www.linkedin.com/"
+                data-scholar="https://scholar.google.com/">
           <div class="photo-block ratio-3x4">
             <img src="assets/team/ida-githu.jpg" alt="Dr. Ida Githu" loading="lazy" onerror="this.remove()">
             <span class="initials">IG</span>
@@ -89,7 +96,8 @@
         <button class="team-card" data-member data-member-id="elmah-odhiambo"
                 data-initials="EO" data-name="Elmah Odhiambo" data-role="Research Coordinator"
                 data-photo="assets/team/elmah-odhiambo.jpg" data-bio-id="bio-elmah-odhiambo"
-                data-linkedin="" data-scholar="">
+                data-linkedin="https://www.linkedin.com/"
+                data-scholar="https://scholar.google.com/">
           <div class="photo-block ratio-3x4">
             <img src="assets/team/elmah-odhiambo.jpg" alt="Elmah Odhiambo" loading="lazy" onerror="this.remove()">
             <span class="initials">EO</span>
@@ -103,7 +111,8 @@
         <button class="team-card" data-member data-member-id="winnie-musivo"
                 data-initials="WM" data-name="Dr. Winnie Musivo" data-role="Director (Partnerships and Strategy)"
                 data-bio-id="bio-winnie-musivo"
-                data-linkedin="" data-scholar="">
+                data-linkedin="https://www.linkedin.com/"
+                data-scholar="https://scholar.google.com/">
           <div class="photo-block ratio-3x4">
             <span class="initials">WM</span>
             <span class="card-veil" aria-hidden="true"><span class="card-cta">View profile &rarr;</span></span>
@@ -115,7 +124,8 @@
         <button class="team-card" data-member data-member-id="abigael-okoko"
                 data-initials="AO" data-name="Dr. Abigael Okoko" data-role="Research Fellow"
                 data-photo="assets/team/abigael-okoko.jpg" data-bio-id="bio-abigael-okoko"
-                data-linkedin="" data-scholar="">
+                data-linkedin="https://www.linkedin.com/"
+                data-scholar="https://scholar.google.com/">
           <div class="photo-block ratio-3x4">
             <img src="assets/team/abigael-okoko.jpg" alt="Dr. Abigael Okoko" loading="lazy" onerror="this.remove()">
             <span class="initials">AO</span>
@@ -128,7 +138,8 @@
         <button class="team-card" data-member data-member-id="cheikh-mbodji"
                 data-initials="CM" data-name="Dr. Cheikh Mbodji" data-role="Research Fellow"
                 data-photo="assets/team/cheikh-mbodji.jpg" data-bio-id="bio-cheikh-mbodji"
-                data-linkedin="" data-scholar="">
+                data-linkedin="https://www.linkedin.com/"
+                data-scholar="https://scholar.google.com/">
           <div class="photo-block ratio-3x4">
             <img src="assets/team/cheikh-mbodji.jpg" alt="Dr. Cheikh Mbodji" loading="lazy" onerror="this.remove()">
             <span class="initials">CM</span>
@@ -141,7 +152,8 @@
         <!-- No portrait supplied yet: the initials block below is the fallback. -->
         <button class="team-card" data-member data-member-id="carl-ngaira"
                 data-initials="CN" data-name="Carl Ngaira" data-role="Executive Assistant"
-                data-linkedin="" data-scholar="">
+                data-linkedin="https://www.linkedin.com/"
+                data-scholar="https://scholar.google.com/">
           <div class="photo-block ratio-3x4">
             <span class="initials">CN</span>
             <span class="card-veil" aria-hidden="true"><span class="card-cta">View profile &rarr;</span></span>
