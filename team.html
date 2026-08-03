@@ -25,7 +25,18 @@
     <ul class="nav-list">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About Us</a></li>
-      <li><a href="what-we-do.html">What We Do</a></li>
+      <li class="has-sub">
+        <a href="what-we-do.html">What We Do</a>
+        <button class="nav-sub-toggle" aria-expanded="false" aria-controls="sub-wwd" aria-label="Show research pillars">
+          <svg viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+        <ul class="nav-sub" id="sub-wwd">
+          <li><a href="wash.html">WASH</a></li>
+          <li><a href="energy.html">Energy</a></li>
+          <li><a href="climate.html">Climate</a></li>
+          <li><a href="agriculture.html">Agriculture</a></li>
+        </ul>
+      </li>
       <li><a href="team.html" class="active">Our Team</a></li>
       <li><a href="portfolio.html">Research Portfolio</a></li>
       <li><a href="news.html">Blogs</a></li>
@@ -221,7 +232,8 @@
       <div class="footer-col">
         <h3>Quick Links</h3>
         <ul>
-          <li><a href="about.html">What We Do</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="what-we-do.html">What We Do</a></li>
           <li><a href="team.html">Our Team</a></li>
           <li><a href="portfolio.html">Our Publications</a></li>
           <li><a href="contact.html">Contact Us</a></li>
@@ -230,10 +242,10 @@
       <div class="footer-col">
         <h3>Our Pillars</h3>
         <ul>
-          <li><a href="about.html#thematic-areas">WASH</a></li>
-          <li><a href="about.html#thematic-areas">Energy</a></li>
-          <li><a href="about.html#thematic-areas">Climate</a></li>
-          <li><a href="about.html#thematic-areas">Agriculture</a></li>
+          <li><a href="wash.html">WASH</a></li>
+          <li><a href="energy.html">Energy</a></li>
+          <li><a href="climate.html">Climate</a></li>
+          <li><a href="agriculture.html">Agriculture</a></li>
         </ul>
       </div>
       <div class="footer-col">

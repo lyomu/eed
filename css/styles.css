@@ -47,7 +47,7 @@
 
   /* Body weight is a single dial: Outfit Thin (100) as specified. Raise to
      200/300 here if the running copy reads too faint on light backgrounds. */
-  --fw-body:100;
+  --fw-body:400;
 
   --fs-display:clamp(2.8rem, 6vw, 4.6rem);
   --fs-h1:clamp(2.2rem, 4vw, 3.2rem);
@@ -83,7 +83,7 @@
 }
 
 /* ---------- Reset ---------- */
-*,*::before,*::after{ box-sizing:border-box; }
+*,*::before,*::after{ box-sizing:border-box; letter-spacing:normal; text-transform:none; }
 html{ scroll-behavior:smooth; }
 body{
   margin:0;
@@ -104,7 +104,6 @@ h1,h2,h3,h4{
   font-family:var(--font-display);
   font-weight:600;
   line-height:1.14;
-  letter-spacing:-.015em;
   margin:0 0 .5em;
 }
 h1{ font-size:var(--fs-h1); }
@@ -172,8 +171,6 @@ p{ margin:0 0 1em; }
   font-family:var(--font-body);
   font-size:.8125rem;
   font-weight:600;
-  letter-spacing:.06em;
-  text-transform:uppercase;
   border-radius:var(--radius-sm);
   border:1px solid transparent;
   transition:background .2s ease,color .2s ease,border-color .2s ease;
@@ -199,8 +196,6 @@ p{ margin:0 0 1em; }
   font-family:var(--font-body);
   font-size:.8125rem;
   font-weight:600;
-  letter-spacing:.06em;
-  text-transform:uppercase;
   color:var(--green-700);
   display:inline-flex;
   align-items:center;
@@ -261,8 +256,6 @@ p{ margin:0 0 1em; }
   border-radius:var(--radius-sm);
   font-size:.75rem;
   font-weight:600;
-  letter-spacing:.08em;
-  text-transform:uppercase;
 }
 .nav-list a.nav-cta:hover{ background:var(--green-800); color:#fff; }
 .nav-list a.nav-cta.active{ border-bottom-color:transparent; }
@@ -287,6 +280,122 @@ p{ margin:0 0 1em; }
   transition:transform .2s ease,opacity .2s ease;
 }
 
+/* ---------- Nav submenu (research pillars under What We Do) ----------
+   The parent stays a real link and the disclosure is a separate button, so
+   "What We Do" is always reachable in one click and the panel is independently
+   operable by keyboard. A toggle-only parent would strand the parent page. */
+.has-sub{
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:4px;
+}
+.nav-sub-toggle{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:22px;
+  height:22px;
+  padding:0;
+  background:none;
+  border:0;
+  color:var(--ink-soft);
+  transition:color var(--dur-micro) ease,transform var(--dur-micro) ease;
+}
+.nav-sub-toggle svg{ width:9px; height:9px; display:block; }
+.has-sub:hover .nav-sub-toggle,
+.nav-sub-toggle:hover{ color:var(--ink); }
+.nav-sub-toggle[aria-expanded="true"]{ transform:rotate(180deg); color:var(--ink); }
+
+.nav-sub{
+  position:absolute;
+  top:100%;
+  left:-18px;
+  margin-top:14px;
+  min-width:238px;
+  display:flex;
+  flex-direction:column;
+  gap:0;
+  padding:10px 0;
+  background:var(--paper-raised);
+  border:1px solid var(--rule);
+  border-radius:var(--radius-md);
+  box-shadow:0 18px 44px -18px rgba(10,16,32,.28);
+  /* Hidden by opacity/visibility rather than display so the panel can animate
+     and so its links leave the tab order while closed. */
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(-6px);
+  transition:opacity var(--dur-exit) var(--ease-in),
+             transform var(--dur-exit) var(--ease-in),
+             visibility var(--dur-exit) step-end;
+}
+.has-sub.open .nav-sub,
+.has-sub:hover .nav-sub,
+.has-sub:focus-within .nav-sub{
+  opacity:1;
+  visibility:visible;
+  transform:none;
+  transition:opacity var(--dur-enter) var(--ease-out),
+             transform var(--dur-enter) var(--ease-out),
+             visibility 0s;
+}
+/* Bridges the 14px gap so the pointer can travel from parent to panel
+   without the hover state dropping out mid-move. */
+.nav-sub::before{
+  content:"";
+  position:absolute;
+  top:-14px;
+  left:0;
+  right:0;
+  height:14px;
+}
+.nav-list .nav-sub a{
+  display:block;
+  padding:9px 22px;
+  border-bottom:0;
+  font-size:.85rem;
+  color:var(--ink-soft);
+  border-left:2px solid transparent;
+  transition:color var(--dur-micro) ease,
+             background var(--dur-micro) ease,
+             border-color var(--dur-micro) ease;
+}
+.nav-list .nav-sub a:hover{
+  color:var(--ink);
+  background:var(--paper-sunk);
+  border-left-color:var(--green-700);
+}
+.nav-list .nav-sub a.active{
+  color:var(--ink);
+  border-bottom:0;
+  border-left-color:var(--green-700);
+}
+/* Parent marker when a child page is open. Distinct from .active so the
+   current page keeps sole ownership of aria-current. */
+.nav-list a.active-parent{ color:var(--ink); border-bottom-color:var(--rule-strong); }
+
+/* ---------- Breadcrumb ----------
+   These pillar pages sit three levels deep (Home > What We Do > WASH), which
+   is where breadcrumbs start earning their place. Sits on the dark hero. */
+.breadcrumb{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:10px;
+  margin-bottom:26px;
+  font-family:var(--font-label);
+  font-size:var(--fs-mono);
+}
+.breadcrumb a{
+  color:rgba(255,255,255,.62);
+  border-bottom:1px solid transparent;
+  transition:color var(--dur-micro) ease,border-color var(--dur-micro) ease;
+}
+.breadcrumb a:hover{ color:#fff; border-bottom-color:rgba(255,255,255,.5); }
+.breadcrumb .sep{ color:rgba(255,255,255,.34); }
+.breadcrumb [aria-current="page"]{ color:var(--gold-400); }
+
 /* ---------- Hero (homepage) ---------- */
 .hero{
   padding:110px 0 0;
@@ -301,7 +410,6 @@ p{ margin:0 0 1em; }
 }
 .hero h1{
   font-size:var(--fs-display);
-  letter-spacing:-.025em;
   margin:18px 0 24px;
   max-width:16ch;
 }
@@ -329,8 +437,6 @@ p{ margin:0 0 1em; }
 .hero-meta-key{
   font-family:var(--font-label);
   font-size:.6875rem;
-  letter-spacing:.14em;
-  text-transform:uppercase;
   color:var(--ink-faint);
 }
 
@@ -343,8 +449,6 @@ p{ margin:0 0 1em; }
 .hero-strip span{
   font-family:var(--font-label);
   font-size:var(--fs-mono);
-  letter-spacing:.14em;
-  text-transform:uppercase;
   color:var(--ink-faint);
   padding:18px 0 18px 20px;
   border-left:1px solid var(--rule);
@@ -427,8 +531,6 @@ p{ margin:0 0 1em; }
   font-family:var(--font-label);
   font-size:var(--fs-mono);
   font-weight:600;
-  letter-spacing:.18em;
-  text-transform:uppercase;
   color:var(--gold-400);
   margin-bottom:20px;
   padding-bottom:12px;
@@ -545,8 +647,6 @@ p{ margin:0 0 1em; }
   z-index:1;
   font-family:var(--font-label);
   font-size:var(--fs-mono);
-  letter-spacing:.14em;
-  text-transform:uppercase;
   color:rgba(255,255,255,.72);
   padding:18px 20px;
 }
@@ -583,8 +683,6 @@ p{ margin:0 0 1em; }
 .stat-label{
   font-family:var(--font-label);
   font-size:var(--fs-mono);
-  letter-spacing:.14em;
-  text-transform:uppercase;
   color:rgba(255,255,255,.66);
 }
 
@@ -603,7 +701,6 @@ p{ margin:0 0 1em; }
 .index-row .num{
   font-family:var(--font-label);
   font-size:var(--fs-mono);
-  letter-spacing:.1em;
   color:var(--gold-600);
 }
 .index-row :is(h2,h3){ margin:0 0 6px; }
@@ -616,8 +713,6 @@ p{ margin:0 0 1em; }
 .index-row .meta{
   font-family:var(--font-label);
   font-size:var(--fs-mono);
-  letter-spacing:.1em;
-  text-transform:uppercase;
   color:var(--ink-faint);
 }
 .index-row .actions{ justify-self:end; }
@@ -630,8 +725,6 @@ p{ margin:0 0 1em; }
   display:inline-block;
   font-family:var(--font-label);
   font-size:.6875rem;
-  letter-spacing:.12em;
-  text-transform:uppercase;
   color:var(--green-800);
   background:var(--green-100);
   border-radius:var(--radius-sm);
@@ -670,8 +763,6 @@ p{ margin:0 0 1em; }
 .article-row .article-meta{
   font-family:var(--font-label);
   font-size:var(--fs-mono);
-  letter-spacing:.12em;
-  text-transform:uppercase;
   color:var(--ink-faint);
   line-height:2;
 }
@@ -687,8 +778,6 @@ p{ margin:0 0 1em; }
 .article-row .read-time{
   font-family:var(--font-label);
   font-size:var(--fs-mono);
-  letter-spacing:.12em;
-  text-transform:uppercase;
   color:var(--ink-faint);
   justify-self:end;
 }
@@ -720,8 +809,6 @@ p{ margin:0 0 1em; }
 .filter-tab{
   font-family:var(--font-label);
   font-size:var(--fs-mono);
-  letter-spacing:.12em;
-  text-transform:uppercase;
   padding:9px 16px;
   background:transparent;
   border:1px solid var(--rule-strong);
@@ -751,8 +838,6 @@ p{ margin:0 0 1em; }
 .filter-search input::placeholder{
   font-family:var(--font-label);
   font-size:var(--fs-mono);
-  letter-spacing:.12em;
-  text-transform:uppercase;
   color:var(--ink-faint);
 }
 .filter-search input:focus{ outline:none; border-color:var(--green-700); }
@@ -764,8 +849,6 @@ p{ margin:0 0 1em; }
   color:var(--ink-faint);
   font-family:var(--font-label);
   font-size:var(--fs-mono);
-  letter-spacing:.14em;
-  text-transform:uppercase;
 }
 .list-actions{ padding:44px 0; text-align:center; }
 
@@ -782,8 +865,6 @@ p{ margin:0 0 1em; }
   display:block;
   font-family:var(--font-label);
   font-size:var(--fs-mono);
-  letter-spacing:.12em;
-  text-transform:uppercase;
   color:var(--ink-faint);
   margin-bottom:8px;
 }
@@ -810,8 +891,6 @@ p{ margin:0 0 1em; }
   margin:16px 0 0;
   font-family:var(--font-label);
   font-size:var(--fs-mono);
-  letter-spacing:.1em;
-  text-transform:uppercase;
   color:var(--green-700);
   min-height:1em;
 }
@@ -846,7 +925,6 @@ p{ margin:0 0 1em; }
   font-family:var(--font-body);
   font-size:1rem;
   font-weight:600;
-  letter-spacing:0;
   color:#fff;
   margin-bottom:18px;
 }
@@ -871,8 +949,6 @@ p{ margin:0 0 1em; }
   flex-wrap:wrap;
   font-family:var(--font-label);
   font-size:.6875rem;
-  letter-spacing:.1em;
-  text-transform:uppercase;
   color:rgba(255,255,255,.5);
 }
 .footer-bottom-links a:hover{ color:#fff; }
@@ -883,8 +959,6 @@ p{ margin:0 0 1em; }
   color:rgba(255,255,255,.72);
   font-family:var(--font-label);
   font-size:.6875rem;
-  letter-spacing:.1em;
-  text-transform:uppercase;
   padding:9px 16px;
   transition:border-color .2s ease,color .2s ease;
 }
@@ -923,7 +997,6 @@ p{ margin:0 0 1em; }
 .thematic-item .num{
   font-family:var(--font-label);
   font-size:var(--fs-mono);
-  letter-spacing:.1em;
   color:var(--gold-600);
 }
 .thematic-item h3{ margin:0; font-size:1.6rem; }
@@ -944,7 +1017,6 @@ p{ margin:0 0 1em; }
 .timeline-item .year{
   font-family:var(--font-label);
   font-size:var(--fs-mono);
-  letter-spacing:.14em;
   color:var(--gold-400);
   display:block;
   margin-bottom:14px;
@@ -1012,8 +1084,6 @@ p{ margin:0 0 1em; }
   font-family:var(--font-label);
   font-size:var(--fs-mono);
   font-weight:600;
-  letter-spacing:.12em;
-  text-transform:uppercase;
   color:#fff;
   transform:translateY(8px);
   transition:transform var(--dur-enter) var(--ease-out);
@@ -1036,7 +1106,6 @@ p{ margin:0 0 1em; }
   font-family:var(--font-label);
   font-size:var(--fs-mono);
   font-weight:600;
-  letter-spacing:.16em;
   color:var(--gold-600);
   margin-bottom:10px;
   padding-bottom:10px;
@@ -1073,7 +1142,6 @@ p{ margin:0 0 1em; }
   font-size:1.2rem;
   font-weight:600;
   line-height:1.2;
-  letter-spacing:-.015em;
   color:var(--ink);
   margin:0 0 6px;
   padding-bottom:8px;
@@ -1085,8 +1153,6 @@ p{ margin:0 0 1em; }
 .team-card .role{
   font-family:var(--font-label);
   font-size:var(--fs-mono);
-  letter-spacing:.12em;
-  text-transform:uppercase;
   color:var(--gold-600);
   display:block;
 }
@@ -1151,8 +1217,6 @@ p{ margin:0 0 1em; }
 .modal-body .role{
   font-family:var(--font-label);
   font-size:var(--fs-mono);
-  letter-spacing:.12em;
-  text-transform:uppercase;
   color:var(--gold-600);
   display:block;
   margin:0;
@@ -1203,8 +1267,6 @@ p{ margin:0 0 1em; }
   flex-wrap:wrap;
   font-family:var(--font-label);
   font-size:var(--fs-mono);
-  letter-spacing:.12em;
-  text-transform:uppercase;
   color:var(--ink-faint);
 }
 .post-layout{
@@ -1224,8 +1286,6 @@ p{ margin:0 0 1em; }
 .post-share .share-label{
   font-family:var(--font-label);
   font-size:.625rem;
-  letter-spacing:.14em;
-  text-transform:uppercase;
   color:var(--ink-faint);
   writing-mode:vertical-rl;
   margin-bottom:8px;
@@ -1267,7 +1327,6 @@ p{ margin:0 0 1em; }
   font-family:var(--font-display);
   font-size:1.2rem;
   font-weight:500;
-  letter-spacing:-.01em;
   color:var(--ink);
   margin-bottom:18px;
 }
@@ -1358,8 +1417,6 @@ p{ margin:0 0 1em; }
   padding:12px 20px;
   font-family:var(--font-label);
   font-size:var(--fs-mono);
-  letter-spacing:.12em;
-  text-transform:uppercase;
   color:var(--ink);
 }
 .map-block a:hover{ border-color:var(--green-700); color:var(--green-700); }
@@ -1402,8 +1459,6 @@ p{ margin:0 0 1em; }
   border-radius:var(--radius-sm);
   font-family:var(--font-label);
   font-size:var(--fs-mono);
-  letter-spacing:.12em;
-  text-transform:uppercase;
   opacity:0;
   pointer-events:none;
   transition:opacity .25s ease,transform .25s ease;
@@ -1604,8 +1659,6 @@ p{ margin:0 0 1em; }
 .profile-links a{
   font-family:var(--font-label);
   font-size:var(--fs-mono);
-  letter-spacing:.1em;
-  text-transform:uppercase;
   padding:8px 14px;
   border:1px solid var(--rule-strong);
   border-radius:var(--radius-sm);
@@ -1654,8 +1707,6 @@ p{ margin:0 0 1em; }
   font-family:var(--font-display);
   font-weight:600;
   font-size:.82em;
-  text-transform:uppercase;
-  letter-spacing:.08em;
   color:var(--ink);
   padding-right:.15em;
 }
@@ -1672,7 +1723,6 @@ p{ margin:0 0 1em; }
   font-size:clamp(1.3rem, 2.2vw, 1.65rem);
   font-weight:500;
   line-height:1.34;
-  letter-spacing:-.015em;
   color:var(--ink);
 }
 .pull-quote::before{
@@ -1696,8 +1746,6 @@ p{ margin:0 0 1em; }
   font-family:var(--font-label);
   font-size:var(--fs-mono);
   font-style:normal;
-  letter-spacing:.12em;
-  text-transform:uppercase;
   color:var(--ink-faint);
 }
 
@@ -1714,8 +1762,6 @@ p{ margin:0 0 1em; }
 .callout h3{
   font-family:var(--font-label);
   font-size:var(--fs-mono);
-  letter-spacing:.14em;
-  text-transform:uppercase;
   color:var(--ink-faint);
   margin-bottom:14px;
 }
@@ -1745,7 +1791,6 @@ p{ margin:0 0 1em; }
   font-family:var(--font-label);
   font-size:var(--fs-mono);
   line-height:1.5;
-  letter-spacing:.04em;
   color:var(--ink-faint);
   padding-left:14px;
   border-left:2px solid var(--rule-strong);
@@ -1771,8 +1816,6 @@ p{ margin:0 0 1em; }
   font-family:var(--font-label);
   font-size:var(--fs-mono);
   font-weight:600;
-  letter-spacing:.14em;
-  text-transform:uppercase;
   color:var(--ink-faint);
   margin-bottom:18px;
 }
@@ -1807,8 +1850,6 @@ p{ margin:0 0 1em; }
   border-top:1px solid var(--rule);
   font-family:var(--font-label);
   font-size:var(--fs-mono);
-  letter-spacing:.12em;
-  text-transform:uppercase;
   color:var(--ink-faint);
 }
 
@@ -1919,6 +1960,49 @@ p{ margin:0 0 1em; }
   .nav-list a.active{ color:var(--green-700); border-bottom:0; }
   .nav-list li:has(.nav-cta){ border-top:0; padding-top:16px; }
   .nav-list a.nav-cta{ text-align:center; }
+
+  /* Submenu becomes an inline accordion — a floating panel inside an already
+     floating mobile menu would be unusable. */
+  .has-sub{ display:block; position:static; }
+  .has-sub > a{ display:inline-block; width:auto; }
+  .nav-sub-toggle{
+    position:absolute;
+    right:var(--gutter);
+    /* 44px tap target, per the touch-target minimum. */
+    width:44px;
+    height:44px;
+    margin-top:-6px;
+  }
+  .nav-sub{
+    position:static;
+    margin:0 0 10px;
+    padding:0 0 0 16px;
+    min-width:0;
+    background:none;
+    border:0;
+    border-left:1px solid var(--rule);
+    border-radius:0;
+    box-shadow:none;
+    transform:none;
+    /* Collapse fully so the closed accordion takes no vertical space. On
+       mobile the panel is in flow, so opacity alone would leave a gap. */
+    display:none;
+  }
+  /* No hover bridge needed once the panel is in normal flow. */
+  .nav-sub::before{ display:none; }
+  /* Hover must not open it on touch, and neither must :focus-within — merely
+     tabbing to the parent link would expand the accordion and shift the
+     layout under the user. Only the explicit toggle opens it here. */
+  .has-sub:hover .nav-sub,
+  .has-sub:focus-within .nav-sub{ display:none; }
+  .has-sub.open .nav-sub{
+    display:block;
+    opacity:1;
+    visibility:visible;
+    transform:none;
+  }
+  .nav-list .nav-sub a{ padding:12px 0 12px 8px; border-left:2px solid transparent; }
+  .nav-list .nav-sub li{ border-top:0; }
 }
 
 @media (max-width:640px){

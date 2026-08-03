@@ -25,7 +25,18 @@
     <ul class="nav-list">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About Us</a></li>
-      <li><a href="what-we-do.html" class="active">What We Do</a></li>
+      <li class="has-sub">
+        <a href="what-we-do.html" class="active">What We Do</a>
+        <button class="nav-sub-toggle" aria-expanded="false" aria-controls="sub-wwd" aria-label="Show research pillars">
+          <svg viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+        <ul class="nav-sub" id="sub-wwd">
+          <li><a href="wash.html">WASH</a></li>
+          <li><a href="energy.html">Energy</a></li>
+          <li><a href="climate.html">Climate</a></li>
+          <li><a href="agriculture.html">Agriculture</a></li>
+        </ul>
+      </li>
       <li><a href="team.html">Our Team</a></li>
       <li><a href="portfolio.html">Research Portfolio</a></li>
       <li><a href="news.html">Blogs</a></li>
@@ -45,17 +56,67 @@
          fetchpriority="high" onerror="this.remove()">
     <div class="container">
       <div class="hero-enter">
-        <span class="hero-kicker">What We Do</span>
+        <span class="hero-kicker">Our Work</span>
         <h1>What We Do</h1>
         <p class="lead">Advancing evidence-based solutions across WASH, energy, climate change, and agriculture.</p>
       </div>
     </div>
   </section>
 
-  <!-- BLANK CONTENT CONTAINER -->
+  <!-- RESEARCH PILLARS -->
   <section class="section on-paper">
-    <div class="container" data-reveal>
-      <!-- Content will be added here -->
+    <div class="container">
+      <div class="section-head" data-rule data-reveal>
+        <h2>Four research pillars</h2>
+        <p class="lead">Our work is organised around four thematic areas. They are deliberately interconnected &mdash; water security is an energy question, energy access is a climate question, and both determine whether agriculture is viable.</p>
+      </div>
+      <div class="index-list" data-reveal-stagger>
+        <div class="index-row pillar-row">
+          <span class="num">01</span>
+          <div>
+            <h3><a href="wash.html">WASH</a></h3>
+            <p>Water security, safely managed sanitation and hygiene behaviour &mdash; and the governance arrangements that decide whether services still work years after they are built.</p>
+          </div>
+          <div class="actions"><a href="wash.html" class="card-link">Explore &rarr;</a></div>
+        </div>
+        <div class="index-row pillar-row">
+          <span class="num">02</span>
+          <div>
+            <h3><a href="energy.html">Energy</a></h3>
+            <p>Clean cooking transitions, energy access and mini-grids, energy and climate finance, and the productive use of energy in enterprise.</p>
+          </div>
+          <div class="actions"><a href="energy.html" class="card-link">Explore &rarr;</a></div>
+        </div>
+        <div class="index-row pillar-row">
+          <span class="num">03</span>
+          <div>
+            <h3><a href="climate.html">Climate</a></h3>
+            <p>Adaptation and resilience in water, energy and food systems, climate finance, carbon markets and removals, and the alignment of climate with development policy.</p>
+          </div>
+          <div class="actions"><a href="climate.html" class="card-link">Explore &rarr;</a></div>
+        </div>
+        <div class="index-row pillar-row">
+          <span class="num">04</span>
+          <div>
+            <h3><a href="agriculture.html">Agriculture</a></h3>
+            <p>Smallholder productivity under climate risk, irrigation and water for agriculture, land use, and the food systems and value chains that turn yield into income.</p>
+          </div>
+          <div class="actions"><a href="agriculture.html" class="card-link">Explore &rarr;</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-tight on-paper">
+    <div class="container">
+      <div class="cta-band" data-reveal>
+        <div>
+          <h2>Commission research with us</h2>
+          <p>We work with governments, funders, utilities, investors and academic partners across all four pillars.</p>
+        </div>
+        <a href="contact.html" class="btn btn-primary">Start a conversation</a>
+      </div>
     </div>
   </section>
 
@@ -81,10 +142,10 @@
       <div class="footer-col">
         <h3>Our Pillars</h3>
         <ul>
-          <li><a href="about.html#thematic-areas">WASH</a></li>
-          <li><a href="about.html#thematic-areas">Energy</a></li>
-          <li><a href="about.html#thematic-areas">Climate</a></li>
-          <li><a href="about.html#thematic-areas">Agriculture</a></li>
+          <li><a href="wash.html">WASH</a></li>
+          <li><a href="energy.html">Energy</a></li>
+          <li><a href="climate.html">Climate</a></li>
+          <li><a href="agriculture.html">Agriculture</a></li>
         </ul>
       </div>
       <div class="footer-col">

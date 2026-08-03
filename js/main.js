@@ -22,6 +22,51 @@
     });
   }
 
+  /* ---------- Nav submenu ----------
+     CSS already handles pointer hover and :focus-within, so this layer only
+     adds what CSS cannot: an explicit toggle, Escape, outside-click, and
+     leaving-by-tab. Without JS the menu still opens on hover and on focus. */
+  function initNavSubmenu() {
+    var parents = document.querySelectorAll('.has-sub');
+    if (!parents.length) return;
+
+    function close(parent) {
+      parent.classList.remove('open');
+      var t = parent.querySelector('.nav-sub-toggle');
+      if (t) t.setAttribute('aria-expanded', 'false');
+    }
+
+    Array.prototype.forEach.call(parents, function (parent) {
+      var toggle = parent.querySelector('.nav-sub-toggle');
+      if (!toggle) return;
+
+      toggle.addEventListener('click', function (e) {
+        e.preventDefault();
+        var open = parent.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(open));
+      });
+
+      /* Tabbing out of the group closes it. relatedTarget is the element
+         gaining focus; null means focus left the document entirely. */
+      parent.addEventListener('focusout', function (e) {
+        if (e.relatedTarget && parent.contains(e.relatedTarget)) return;
+        close(parent);
+      });
+
+      parent.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape') return;
+        close(parent);
+        toggle.focus();
+      });
+    });
+
+    document.addEventListener('click', function (e) {
+      Array.prototype.forEach.call(parents, function (parent) {
+        if (!parent.contains(e.target)) close(parent);
+      });
+    });
+  }
+
   function initActiveNav() {
     var current = window.location.pathname.split('/').pop() || 'index.html';
     var links = document.querySelectorAll('.nav-list a');
@@ -30,6 +75,15 @@
       link.classList.add('active');
       link.setAttribute('aria-current', 'page');
     });
+
+    /* A pillar page marks "What We Do" as the active parent. Deliberately a
+       different class from .active, and no aria-current — that belongs to the
+       current page's own link only, and there must never be two. */
+    var openSub = document.querySelector('.nav-sub a.active');
+    if (!openSub) return;
+    var parentLink = openSub.closest('.has-sub');
+    parentLink = parentLink && parentLink.querySelector(':scope > a');
+    if (parentLink) parentLink.classList.add('active-parent');
   }
 
   function initBackToTop() {
@@ -448,6 +502,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     initNavToggle();
+    initNavSubmenu();
     initActiveNav();
     initBackToTop();
     initSmoothScroll();
