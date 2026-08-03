@@ -62,6 +62,9 @@
   --radius-md:4px;
   --maxw:1280px;
   --gutter:32px;
+  /* Single source for the header height: the mobile dropdown is positioned
+     from it, so the two must never drift apart. */
+  --nav-h:84px;
 
   /* ---------- Motion ----------
      One rhythm for the whole site: every transition below pulls from these
@@ -222,17 +225,24 @@ p{ margin:0 0 1em; }
   max-width:var(--maxw);
   margin:0 auto;
   padding:0 var(--gutter);
-  height:76px;
+  height:var(--nav-h);
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:24px;
 }
 .brand img{ height:38px; width:auto; }
+/* Distributed nav: the list claims the space left of the brand and spreads its
+   items across it, rather than bunching them against the right edge. The gap
+   is the floor, so items never collide on mid-width screens where
+   space-between has little room to work with. */
 .nav-list{
   display:flex;
   align-items:center;
-  gap:30px;
+  flex:1;
+  justify-content:space-between;
+  margin-left:clamp(32px, 5vw, 104px);
+  gap:clamp(20px, 2.2vw, 40px);
 }
 .nav-list a{
   font-size:.875rem;
@@ -928,7 +938,71 @@ p{ margin:0 0 1em; }
      stop lining up. Sizing each card to its own content removes the slack. */
   align-self:start;
 }
-.team-card .photo-block{ margin-bottom:16px; }
+.team-card .photo-block{ margin-bottom:18px; }
+
+/* Hover/focus veil carrying the affordance. Without it the cards give no hint
+   that they open anything — the whole card is a button, but nothing says so. */
+.card-veil{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  display:flex;
+  align-items:flex-end;
+  padding:18px 20px;
+  background:linear-gradient(to top,
+    rgba(10,16,32,.86) 0%, rgba(10,16,32,.45) 45%, rgba(10,16,32,0) 100%);
+  opacity:0;
+  transition:opacity var(--dur-enter) var(--ease-out);
+}
+.card-cta{
+  font-family:var(--font-label);
+  font-size:var(--fs-mono);
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#fff;
+  transform:translateY(8px);
+  transition:transform var(--dur-enter) var(--ease-out);
+}
+.team-card:hover .card-veil,
+.team-card:focus-visible .card-veil{ opacity:1; }
+.team-card:hover .card-cta,
+.team-card:focus-visible .card-cta{ transform:none; }
+
+/* Lift. Transform only, so neighbouring cards never reflow. */
+.team-card{
+  transition:transform var(--dur-enter) var(--ease-out);
+}
+.team-card:hover{ transform:translateY(-6px); }
+.team-card:active{ transform:translateY(-2px); }
+
+/* Editorial index, matching the 01/02/03 language used in .index-row. */
+.card-index{
+  display:block;
+  font-family:var(--font-label);
+  font-size:var(--fs-mono);
+  font-weight:600;
+  letter-spacing:.16em;
+  color:var(--gold-600);
+  margin-bottom:10px;
+  padding-bottom:10px;
+  position:relative;
+}
+.card-index::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  height:1px;
+  background:var(--rule-strong);
+  transform-origin:left center;
+  transition:transform var(--dur-rule) var(--ease-out);
+}
+/* Zero-state under .js only, so the rule is simply present without JS. */
+.js .card-index::after{ transform:scaleX(0); }
+.js [data-reveal-stagger].in-view .card-index::after{ transform:scaleX(1); }
+.team-card:hover .card-index::after{ background:var(--green-700); }
 .photo-block .initials{
   position:absolute;
   inset:0;
@@ -978,18 +1052,48 @@ p{ margin:0 0 1em; }
 .modal-panel{
   background:var(--paper-raised);
   border-radius:var(--radius-md);
-  max-width:900px;
+  max-width:940px;
   width:100%;
   max-height:88vh;
-  overflow:auto;
+  /* The panel itself does not scroll — the bio does. That keeps the portrait
+     and the name/role header in place while long biographies scroll. */
+  overflow:hidden;
   display:grid;
-  grid-template-columns:300px 1fr;
+  grid-template-columns:300px minmax(0, 1fr);
+  /* minmax(0,1fr) is what makes the bio scroll rather than get clipped.
+     Without it the single grid row sizes to its content, grows past the
+     panel's max-height, and overflow:hidden silently cuts the end of long
+     biographies off with no way to reach them. Bounding the row gives the
+     body a definite height so its min-height:0 / overflow-y:auto chain can
+     take effect. Short profiles still shrink to fit. */
+  grid-template-rows:minmax(0, 1fr);
   position:relative;
 }
-.modal-photo{ position:relative; }
-.modal-photo .photo-block{ height:100%; border-radius:0; }
-.modal-body{ padding:44px 44px 44px 40px; }
-.modal-body h3{ font-size:1.9rem; margin:10px 0 8px; }
+.modal-photo{ position:relative; overflow:hidden; }
+/* No aspect-ratio here on purpose. The column width is fixed and the height
+   comes from the panel, so an aspect-ratio would resolve the *width* from that
+   height (a 780px-tall panel yielded a 583px-wide image) and spill across the
+   text column. Width and height are both explicit instead. */
+.modal-photo .photo-block{
+  width:100%;
+  height:100%;
+  aspect-ratio:auto;
+  border-radius:0;
+}
+.modal-body{
+  padding:44px 44px 40px 40px;
+  display:flex;
+  flex-direction:column;
+  min-height:0;   /* lets the bio child actually shrink and scroll */
+}
+.modal-head{
+  flex:0 0 auto;
+  padding-right:52px;   /* clear of the close button */
+  padding-bottom:20px;
+  margin-bottom:22px;
+  border-bottom:1px solid var(--rule);
+}
+.modal-body h3{ font-size:1.9rem; margin:0 0 10px; }
 .modal-body .role{
   font-family:var(--font-label);
   font-size:var(--fs-mono);
@@ -997,9 +1101,26 @@ p{ margin:0 0 1em; }
   text-transform:uppercase;
   color:var(--gold-600);
   display:block;
-  margin-bottom:22px;
+  margin:0;
 }
+.modal-bio{
+  flex:1 1 auto;
+  min-height:0;
+  overflow-y:auto;
+  padding-right:16px;
+  /* Fade the copy out at the scroll boundary so it reads as continuing. */
+  mask-image:linear-gradient(to bottom, transparent 0, #000 12px,
+                             #000 calc(100% - 16px), transparent 100%);
+}
+.modal-bio:focus-visible{ outline:2px solid var(--green-700); outline-offset:2px; }
 .modal-body p{ color:var(--ink); font-size:var(--fs-sm); }
+.modal-body p:last-child{ margin-bottom:0; }
+/* Empty state: members without a biography yet (the header still reads). */
+.modal-bio:empty::before{
+  content:"Full biography coming soon.";
+  color:var(--ink-faint);
+  font-size:var(--fs-sm);
+}
 .modal-close{
   position:absolute;
   top:16px;
@@ -1699,8 +1820,13 @@ p{ margin:0 0 1em; }
   .post-share{ position:static; flex-direction:row; align-items:center; }
   .post-share .share-label{ writing-mode:horizontal-tb; margin:0 6px 0 0; }
   .post-sidebar{ position:static; }
-  .modal-panel{ grid-template-columns:1fr; }
-  .modal-photo .photo-block{ aspect-ratio:16/9; height:auto; }
+  /* Single column: the portrait becomes a banner and the whole panel scrolls
+     again, since there is no longer a side column to hold in place. */
+  /* Stacked: rows size to content again and the panel scrolls as a whole. */
+  .modal-panel{ grid-template-columns:1fr; grid-template-rows:auto; overflow-y:auto; }
+  .modal-photo .photo-block{ aspect-ratio:16/9; height:auto; width:100%; }
+  .modal-body{ min-height:auto; }
+  .modal-bio{ overflow:visible; mask-image:none; padding-right:0; }
   .footer-top{ grid-template-columns:1fr 1fr; gap:40px; }
 }
 
@@ -1708,18 +1834,32 @@ p{ margin:0 0 1em; }
   .nav-toggle{ display:flex; }
   .nav-list{
     position:absolute;
-    top:76px;
+    top:var(--nav-h);
     left:0;
     right:0;
     background:var(--paper);
     border-bottom:1px solid var(--rule);
     flex-direction:column;
     align-items:stretch;
+    flex:none;
+    margin-left:0;
     gap:0;
     padding:8px var(--gutter) 20px;
-    display:none;
+    /* Stays display:flex so the open/close transition has something to
+       animate — you cannot transition out of display:none. Visibility and
+       opacity do the hiding (see the .js rules in the Motion section), which
+       also keeps the links out of the tab order while closed. */
+    display:flex;
   }
-  .nav-list.open{ display:flex; }
+  /* Without JS there is no toggle to press, so show the list inline instead of
+     leaving it permanently hidden behind a dead button. */
+  html:not(.js) .nav-list{
+    position:static;
+    opacity:1;
+    visibility:visible;
+    transform:none;
+  }
+  html:not(.js) .nav-toggle{ display:none; }
   .nav-list li{ border-top:1px solid var(--rule); }
   .nav-list a{ display:block; padding:15px 0; border-bottom:0; }
   .nav-list a.active{ color:var(--green-700); border-bottom:0; }

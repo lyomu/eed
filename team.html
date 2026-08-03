@@ -54,7 +54,9 @@
           <div class="photo-block ratio-3x4">
             <img src="assets/team/ida-githu.jpg" alt="Dr. Ida Githu" loading="lazy" onerror="this.remove()">
             <span class="initials">IG</span>
+            <span class="card-veil" aria-hidden="true"><span class="card-cta">View profile &rarr;</span></span>
           </div>
+          <span class="card-index" aria-hidden="true">01</span>
           <span class="name">Dr. Ida Githu</span>
           <span class="role">Managing Director</span>
         </button>
@@ -65,7 +67,9 @@
           <div class="photo-block ratio-3x4">
             <img src="assets/team/elmah-odhiambo.jpg" alt="Elmah Odhiambo" loading="lazy" onerror="this.remove()">
             <span class="initials">EO</span>
+            <span class="card-veil" aria-hidden="true"><span class="card-cta">View profile &rarr;</span></span>
           </div>
+          <span class="card-index" aria-hidden="true">02</span>
           <span class="name">Elmah Odhiambo</span>
           <span class="role">Research Coordinator</span>
         </button>
@@ -76,7 +80,9 @@
                 data-bio-id="bio-winnie-musivo">
           <div class="photo-block ratio-3x4">
             <span class="initials">WM</span>
+            <span class="card-veil" aria-hidden="true"><span class="card-cta">View profile &rarr;</span></span>
           </div>
+          <span class="card-index" aria-hidden="true">03</span>
           <span class="name">Dr. Winnie Musivo</span>
           <span class="role">Director (Partnerships and Strategy)</span>
         </button>
@@ -87,7 +93,9 @@
           <div class="photo-block ratio-3x4">
             <img src="assets/team/abigael-okoko.jpg" alt="Dr. Abigael Okoko" loading="lazy" onerror="this.remove()">
             <span class="initials">AO</span>
+            <span class="card-veil" aria-hidden="true"><span class="card-cta">View profile &rarr;</span></span>
           </div>
+          <span class="card-index" aria-hidden="true">04</span>
           <span class="name">Dr. Abigael Okoko</span>
           <span class="role">Research Fellow</span>
         </button>
@@ -98,7 +106,9 @@
           <div class="photo-block ratio-3x4">
             <img src="assets/team/cheikh-mbodji.jpg" alt="Dr. Cheikh Mbodji" loading="lazy" onerror="this.remove()">
             <span class="initials">CM</span>
+            <span class="card-veil" aria-hidden="true"><span class="card-cta">View profile &rarr;</span></span>
           </div>
+          <span class="card-index" aria-hidden="true">05</span>
           <span class="name">Dr. Cheikh Mbodji</span>
           <span class="role">Research Fellow</span>
         </button>
@@ -108,7 +118,9 @@
                 data-initials="CN" data-name="Carl Ngaira" data-role="Executive Assistant">
           <div class="photo-block ratio-3x4">
             <span class="initials">CN</span>
+            <span class="card-veil" aria-hidden="true"><span class="card-cta">View profile &rarr;</span></span>
           </div>
+          <span class="card-index" aria-hidden="true">06</span>
           <span class="name">Carl Ngaira</span>
           <span class="role">Executive Assistant</span>
         </button>
@@ -184,9 +196,14 @@
       </div>
     </div>
     <div class="modal-body">
-      <h3 id="modal-name" data-modal-name></h3>
-      <span class="role" data-modal-role></span>
-      <div data-modal-bio></div>
+      <!-- Header stays put; only the biography scrolls. -->
+      <div class="modal-head">
+        <h3 id="modal-name" data-modal-name></h3>
+        <span class="role" data-modal-role></span>
+      </div>
+      <!-- tabindex makes the scroll region reachable by keyboard, so a long
+           biography can be read without a mouse. -->
+      <div class="modal-bio" data-modal-bio tabindex="0"></div>
     </div>
   </div>
 </div>
