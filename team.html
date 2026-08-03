@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400..700&family=Outfit:wght@100..600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
+<script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 
@@ -35,7 +36,7 @@
 <main>
 
   <!-- PAGE HEAD -->
-  <section class="page-head">
+  <section class="page-head" data-rule data-reveal>
     <div class="container">
       <h1>The people behind the research</h1>
       <p class="lead">A multidisciplinary collective of researchers, scientists, and strategists dedicated to advancing sustainable ecological solutions and rigorous academic inquiry.</p>
@@ -45,75 +46,115 @@
   <!-- TEAM GRID -->
   <section class="section on-paper">
     <div class="container">
-      <div class="team-grid" data-reveal>
+      <div class="team-grid" data-reveal-stagger>
 
         <button class="team-card" data-member
-                data-initials="ID" data-name="Dr. Ida Githu" data-role="Managing Director"
-                data-bio="Ida Githu is a researcher and policy specialist whose work sits at the intersection of water, sanitation, and hygiene, with over a decade of experience translating research into actionable policy across East Africa.">
-          <div class="photo-block ratio-3x4"><span class="initials">ID</span></div>
+                data-initials="IG" data-name="Dr. Ida Githu" data-role="Managing Director"
+                data-photo="assets/team/ida-githu.jpg" data-bio-id="bio-ida-githu">
+          <div class="photo-block ratio-3x4">
+            <img src="assets/team/ida-githu.jpg" alt="Dr. Ida Githu" loading="lazy" onerror="this.remove()">
+            <span class="initials">IG</span>
+          </div>
           <span class="name">Dr. Ida Githu</span>
           <span class="role">Managing Director</span>
         </button>
 
         <button class="team-card" data-member
                 data-initials="EO" data-name="Elmah Odhiambo" data-role="Research Coordinator"
-                data-bio="Elmah Odhiambo is a multidisciplinary researcher and environmental governance scholar whose work spans WASH, climate adaptation, and institutional strengthening for public-sector partners.">
-          <div class="photo-block ratio-3x4"><span class="initials">EO</span></div>
+                data-photo="assets/team/elmah-odhiambo.jpg" data-bio-id="bio-elmah-odhiambo">
+          <div class="photo-block ratio-3x4">
+            <img src="assets/team/elmah-odhiambo.jpg" alt="Elmah Odhiambo" loading="lazy" onerror="this.remove()">
+            <span class="initials">EO</span>
+          </div>
           <span class="name">Elmah Odhiambo</span>
           <span class="role">Research Coordinator</span>
         </button>
 
+        <!-- No portrait supplied yet: the initials block below is the fallback. -->
         <button class="team-card" data-member
-                data-initials="MB" data-name="Murefu Barasa" data-role="Director"
-                data-bio="Full biography coming soon.">
-          <div class="photo-block ratio-3x4"><span class="initials">MB</span></div>
-          <span class="name">Murefu Barasa</span>
-          <span class="role">Director</span>
-        </button>
-
-        <button class="team-card" data-member
-                data-initials="WM" data-name="Winnie Musivo" data-role="Director"
-                data-bio="Full biography coming soon.">
-          <div class="photo-block ratio-3x4"><span class="initials">WM</span></div>
-          <span class="name">Winnie Musivo</span>
-          <span class="role">Director</span>
+                data-initials="WM" data-name="Dr. Winnie Musivo" data-role="Director (Partnerships and Strategy)"
+                data-bio-id="bio-winnie-musivo">
+          <div class="photo-block ratio-3x4">
+            <span class="initials">WM</span>
+          </div>
+          <span class="name">Dr. Winnie Musivo</span>
+          <span class="role">Director (Partnerships and Strategy)</span>
         </button>
 
         <button class="team-card" data-member
                 data-initials="AO" data-name="Dr. Abigael Okoko" data-role="Research Fellow"
-                data-bio="Dr. Abigael Okoko is an Environmental Planning and Management professional with over a decade of experience in sustainability research and program design.">
-          <div class="photo-block ratio-3x4"><span class="initials">AO</span></div>
+                data-photo="assets/team/abigael-okoko.jpg" data-bio-id="bio-abigael-okoko">
+          <div class="photo-block ratio-3x4">
+            <img src="assets/team/abigael-okoko.jpg" alt="Dr. Abigael Okoko" loading="lazy" onerror="this.remove()">
+            <span class="initials">AO</span>
+          </div>
           <span class="name">Dr. Abigael Okoko</span>
           <span class="role">Research Fellow</span>
         </button>
 
         <button class="team-card" data-member
-                data-initials="CM" data-name="Cheikh Mbodji" data-role="Research Fellow"
-                data-bio="Full biography coming soon.">
-          <div class="photo-block ratio-3x4"><span class="initials">CM</span></div>
-          <span class="name">Cheikh Mbodji</span>
+                data-initials="CM" data-name="Dr. Cheikh Mbodji" data-role="Research Fellow"
+                data-photo="assets/team/cheikh-mbodji.jpg" data-bio-id="bio-cheikh-mbodji">
+          <div class="photo-block ratio-3x4">
+            <img src="assets/team/cheikh-mbodji.jpg" alt="Dr. Cheikh Mbodji" loading="lazy" onerror="this.remove()">
+            <span class="initials">CM</span>
+          </div>
+          <span class="name">Dr. Cheikh Mbodji</span>
           <span class="role">Research Fellow</span>
         </button>
 
+        <!-- No portrait supplied yet: the initials block below is the fallback. -->
         <button class="team-card" data-member
-                data-initials="CN" data-name="Carl Ngaira" data-role="Senior Associate"
-                data-bio="Carl is a Senior Associate at EED Advisory with a particular interest in renewable energy financing. He currently manages the Kawisafi Technical Assistance Facility (TAF), a US$5 million grant facility supporting off-grid energy ecosystems, and leads a CCG-funded project developing frameworks for sub-national energy plan aggregation. He holds a BSc in Business Management and an MSc in Renewable Energy, Enterprise and Management from Newcastle University (UK).">
-          <div class="photo-block ratio-3x4"><span class="initials">CN</span></div>
+                data-initials="CN" data-name="Carl Ngaira" data-role="Executive Assistant">
+          <div class="photo-block ratio-3x4">
+            <span class="initials">CN</span>
+          </div>
           <span class="name">Carl Ngaira</span>
-          <span class="role">Senior Associate</span>
-        </button>
-
-        <button class="team-card" data-member
-                data-initials="CA" data-name="Catherine Abisaki" data-role="Finance Manager"
-                data-bio="Full biography coming soon.">
-          <div class="photo-block ratio-3x4"><span class="initials">CA</span></div>
-          <span class="name">Catherine Abisaki</span>
-          <span class="role">Finance Manager</span>
+          <span class="role">Executive Assistant</span>
         </button>
 
       </div>
     </div>
   </section>
+
+  <!-- Biographies live in templates rather than data- attributes so they can
+       carry multiple paragraphs. initTeamModal clones the matching template
+       by data-bio-id when a card is opened. -->
+  <template id="bio-ida-githu">
+    <p>Ida Githu is a researcher and policy specialist whose work bridges the critical fields of water, sanitation, and hygiene (WASH), energy access, and climate change adaptation across sub-Saharan Africa.</p>
+    <p>Her research is distinguished by its empirical grounding. Her extensive fieldwork spans Kenya, Somalia, Uganda, Nigeria, and Ghana, employing household surveys, water point assessments, and mixed-methods evaluations of WASH and energy programs.</p>
+    <p>At EED Research Institute, Ida provides intellectual leadership for the organization's research portfolio at the WASH, energy, and climate nexus. She oversees the strategic design and execution of multi-country research programs, ensuring that evidence directly informs policy dialogue. Her thematic interests include climate-resilient water systems, green technology transfer and intellectual property frameworks in Africa, and the design of policy instruments that advance equitable, inclusive development outcomes. Through her work, she remains committed to translating rigorous data into governance solutions that serve the most vulnerable communities.</p>
+    <p>She holds a Doctor of International Affairs from Johns Hopkins University, where her dissertation examined the determinants of successful community-managed piped water supplies in rural Kenya. She also earned a Master of International Public Policy from Johns Hopkins, an MSc in Water Science, Policy, and Management from the University of Oxford, and dual undergraduate degrees in Chemical Engineering and Chemistry from North Carolina State University and Meredith College, respectively.</p>
+  </template>
+
+  <template id="bio-elmah-odhiambo">
+    <p>Elmah Odhiambo is a multidisciplinary researcher and environmental governance scholar whose work spans WASH, policy and governance, the circular economy, disasters, and sustainable development. His career is defined by a commitment to bridging evidence-based research and practical advisory to address complex environmental and development challenges across Africa.</p>
+    <p>At ERI, Elmah coordinates research from conceptualization to completion, leading projects that generate actionable insights at the WASH, energy, and climate nexus. His research portfolio includes peer-reviewed publications on plastic waste management, circular economy governance, and policy issues &mdash; with notable work examining Kenya's e-waste sector and the country's plastic carrier bags ban. His scholarship is distinguished by its direct policy relevance and its grounding in real-world governance challenges.</p>
+    <p>In addition to his research role, he serves as an Adjunct Lecturer at the Cooperative University of Kenya, where he teaches courses on disaster risk reduction, ecosystem management and conservation, energy resource management, and sustainable development.</p>
+    <p>He holds an MSc in Environmental Governance from the University of Nairobi, Kenya. Elmah is also a certified Environmental Management Systems (EMS) Auditor.</p>
+  </template>
+
+  <template id="bio-winnie-musivo">
+    <p>Winnie Musivo is a lead researcher in development, climate, and energy finance in the Global South, studying public and private capital needs, flows, and use; the governance of energy transitions; and the socio-economic impacts of climate and energy interventions. At EED Research Institute, she leads research on the future of energy systems and technologies for industrialisation and development outcomes, markets and investments in emerging economies, and data-led climate transition pathways.</p>
+    <p>In her leadership role as the Director of Partnerships and Strategy at ERI, she fosters partnerships and institutional growth to expand ERI's reach and impact. She steers ERI's coordination with EED Advisory and its network of academic, research, and funding partners, sets fundraising strategy, and builds the collaborations that connect rigorous research to the resources and platforms it needs to shape policy and influence.</p>
+    <p>Winnie also holds a Postdoctoral Research position at the University of Oxford's Institute for Innovation, Science and Society (InSIS), conducting research on geothermal energy and Carbon Dioxide Removal (CDR) and producing academic and policy outputs.</p>
+    <p>Earlier in her career, Winnie was a Senior Consultant for portfolio and impact reporting at KawiSafi Ventures, a US$67 million clean energy fund. As a Senior Associate at EED Advisory, she led energy and climate finance research for clients including the IFC, WRI, the Energy for Growth Hub, AfDB, and AECF's SIDA-funded REACT SSA Fund. Her research and advisory work spans Kenya, Rwanda, Uganda, Mozambique, and Nigeria, with further reform-focused engagements across 14 countries in Sub-Saharan Africa.</p>
+    <p>She holds a PhD in Development, Climate and Energy Finance from the University of Sheffield, where she developed a mathematical methodology for evaluating sustainable investments. She has an MSc in Environmental Change and International Development from the University of Sheffield, and a BSc in Geospatial Engineering from the University of Nairobi.</p>
+  </template>
+
+  <template id="bio-abigael-okoko">
+    <p>Abigael Okoko is an Environmental Planning and Management professional with over a decade of experience bridging research, policy, and practice to expand energy access and clean cooking solutions across East Africa. Her work is distinguished by a commitment to designing evidence-based energy transitions that are both sustainable and people-centered.</p>
+    <p>As a Research Fellow at ERI, she leads major research initiatives on energy access and low-carbon transitions, overseeing projects that generate rigorous evidence to guide national and regional energy policy. Prior to joining ERI, she spearheaded the energy domain at the Nuvoni Centre for Innovation Research, where she coordinated field studies on mini-grids and electric cooking in off-grid communities. Her work at Nuvoni produced actionable insights that continue to influence energy programming across East Africa.</p>
+    <p>Abigael is also a seasoned academic and capacity builder. She lectured at Masinde Muliro University of Science and Technology (MMUST) and Great Lakes University of Kisumu (GLUK), where she taught and mentored students in environmental planning, energy policy, and sustainable development. Her peer-reviewed research on biomass energy value chains and carbon footprints has been published in reputable journals and continues to inform clean cooking policy and practice.</p>
+    <p>Abigael holds a PhD in Environmental Planning from the University of Nairobi, Kenya, where she developed a strong foundation in the policy and planning frameworks that shape energy access and environmental sustainability. This academic grounding informs her applied research and her ability to translate complex technical evidence into actionable policy recommendations.</p>
+  </template>
+
+  <template id="bio-cheikh-mbodji">
+    <p>Cheikh is an accomplished renewable energy researcher with extensive experience spanning West and East Africa as well as Europe. His work has taken him to Senegal, Burkina Faso, Mali, C&ocirc;te d'Ivoire, Togo, Gambia, Rwanda, Kenya, Burundi, Germany, and Austria &mdash; a geographic breadth that reflects his deep commitment to advancing sustainable energy transitions across diverse contexts.</p>
+    <p>His research is distinguished by its policy relevance and its grounding in real-world market dynamics. Cheikh has published numerous articles in leading scientific journals, including Elsevier and Springer, and has contributed influential knowledge products such as the state-of-the-market report on PUE technologies in Burkina Faso. His scholarship combines technical depth with actionable insights for policymakers and practitioners.</p>
+    <p>Cheikh brings a unique ability to navigate complex stakeholder environments, working effectively with governments, private sector actors, development partners, and local communities. His deep understanding of policy frameworks, market dynamics, and data-driven insights enables him to develop actionable strategies that drive impact and foster sustainable energy transitions. With a passion for distributed renewable energy and inclusive energy solutions, he remains committed to advancing energy access as a cornerstone of equitable, climate-resilient development across Africa and beyond.</p>
+    <p>He holds a PhD in Bioenergy, alongside advanced degrees in Renewable Energies and Applied Physics from Gaston Berger University. This combination of scientific rigor and applied research expertise enables him to bridge the gap between technical innovation and practical implementation. He has spearheaded impactful initiatives, including productive use of energy (PUE) market development, energy sector audits, and green financing mechanisms for organizations such as USAID, Deloitte, IFC, and AECF.</p>
+  </template>
 
   <!-- CTA -->
   <section class="section-tight on-paper">
@@ -135,12 +176,17 @@
   <div class="modal-panel">
     <button class="modal-close" aria-label="Close">&times;</button>
     <div class="modal-photo">
-      <div class="photo-block ratio-3x4"><span class="initials" data-modal-initials></span></div>
+      <div class="photo-block ratio-3x4">
+        <!-- src and hidden are set per member by initTeamModal; when a member
+             has no portrait the image stays hidden and the initials show. -->
+        <img data-modal-photo alt="" hidden>
+        <span class="initials" data-modal-initials></span>
+      </div>
     </div>
     <div class="modal-body">
       <h3 id="modal-name" data-modal-name></h3>
       <span class="role" data-modal-role></span>
-      <p data-modal-bio></p>
+      <div data-modal-bio></div>
     </div>
   </div>
 </div>

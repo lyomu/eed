@@ -62,6 +62,21 @@
   --radius-md:4px;
   --maxw:1280px;
   --gutter:32px;
+
+  /* ---------- Motion ----------
+     One rhythm for the whole site: every transition below pulls from these
+     tokens rather than hardcoding a duration, so the timing feel stays
+     consistent and is tunable from one place.
+     --dur-exit is ~62% of --dur-enter: exits should feel quicker than
+     entrances, otherwise dismissing something feels laggy. */
+  --dur-micro:180ms;   /* hover, focus, press */
+  --dur-enter:420ms;   /* reveals, modal in */
+  --dur-exit:260ms;    /* modal out, nav close */
+  --dur-rule:520ms;    /* hairline rules drawing themselves in */
+  --dur-settle:900ms;  /* one-shot hero image settle */
+  --ease-out:cubic-bezier(.16,.84,.44,1);
+  --ease-in:cubic-bezier(.55,0,.85,.35);
+  --stagger:55ms;
 }
 
 /* ---------- Reset ---------- */
@@ -195,9 +210,13 @@ p{ margin:0 0 1em; }
 .site-header{
   position:sticky;
   top:0;
-  z-index:200;
+  z-index:200;   /* below .modal (400) so the scrim always covers the nav */
   background:var(--paper);
-  border-bottom:1px solid var(--rule);
+  /* Transparent at rest; .is-stuck adds the hairline once scrolled. */
+  border-bottom:1px solid transparent;
+  transition:border-color var(--dur-micro) ease,
+             background var(--dur-micro) ease,
+             box-shadow var(--dur-micro) ease;
 }
 .nav-bar{
   max-width:var(--maxw);
@@ -322,6 +341,94 @@ p{ margin:0 0 1em; }
   border-left:1px solid var(--rule);
 }
 .hero-strip span:first-child{ border-left:0; padding-left:0; }
+
+/* ---------- Hero: full-bleed image variant ----------
+   Inverts the hero to dark. The navy gradient underneath is not a decoration:
+   it is the contrast guarantee. Text legibility must never depend on a
+   photograph having loaded, so the gradient carries AA on its own and the
+   image only ever sits on top of it. */
+.hero--image{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  border-bottom:0;
+  background:
+    radial-gradient(120% 100% at 12% 0%, var(--navy-800) 0%, transparent 60%),
+    linear-gradient(160deg, var(--navy-950) 0%, var(--navy-900) 45%, var(--green-900) 130%);
+}
+.hero--image .hero-bg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 35%;
+  z-index:-2;
+  opacity:.55;
+  transition:transform var(--dur-settle) var(--ease-out);
+}
+/* One-shot settle: the frame eases out of a slight over-scale on load.
+   Decorative and non-looping.
+   --py carries the parallax offset so JS never writes a full transform and
+   therefore cannot clobber the scale. */
+.js .hero--image .hero-bg{ transform:translate3d(0,var(--py,0px),0) scale(1.04); }
+.js .hero--image.hero-ready .hero-bg{ transform:translate3d(0,var(--py,0px),0) scale(1); }
+/* Once the settle has finished, drop the transition so parallax tracks scroll
+   directly instead of easing behind it. */
+.hero--image.hero-settled .hero-bg{ transition:none; }
+/* Scrim: keeps the headline readable over the busiest part of any photo. */
+.hero--image::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:linear-gradient(
+    100deg,
+    rgba(10,16,32,.86) 0%,
+    rgba(10,16,32,.72) 45%,
+    rgba(10,16,32,.55) 100%);
+}
+.hero--image .container{ position:relative; z-index:1; }
+
+.hero--image h1{ color:#fff; }
+/* Outfit at weight 100 is a hairline; over a photograph it disappears.
+   Lifting to 300 here only — the global --fw-body stays as it is. */
+.hero--image .lead{
+  color:rgba(255,255,255,.86);
+  font-weight:300;
+}
+.hero--image .hero-meta{ border-left-color:var(--rule-dark); }
+.hero--image .hero-meta-item{ border-bottom-color:var(--rule-dark); }
+.hero--image .hero-meta-value{ color:#fff; }
+.hero--image .hero-meta-key{ color:rgba(255,255,255,.66); }
+.hero--image .hero-strip{ border-top-color:var(--rule-dark); }
+.hero--image .hero-strip span{
+  color:rgba(255,255,255,.66);
+  border-left-color:var(--rule-dark);
+}
+.hero--image .btn-outline{
+  border-color:rgba(255,255,255,.4);
+  color:#fff;
+}
+.hero--image .btn-outline:hover{
+  border-color:#fff;
+  background:rgba(255,255,255,.08);
+}
+
+/* Hero entrance: headline, lead, CTA arrive in sequence rather than at once. */
+.js .hero-enter > *,
+.js .hero--image .hero-meta{
+  opacity:0;
+  transform:translateY(18px);
+  transition:opacity var(--dur-enter) var(--ease-out),
+             transform var(--dur-enter) var(--ease-out);
+}
+.js .hero-ready .hero-enter > *,
+.js .hero--image.hero-ready .hero-meta{ opacity:1; transform:none; }
+.js .hero-ready .hero-enter > *:nth-child(1){ transition-delay:80ms; }
+.js .hero-ready .hero-enter > *:nth-child(2){ transition-delay:calc(80ms + var(--stagger)); }
+.js .hero-ready .hero-enter > *:nth-child(3){ transition-delay:calc(80ms + var(--stagger) * 2); }
+.js .hero--image .hero-meta{ transition-delay:calc(80ms + var(--stagger) * 3); }
 
 /* ---------- Page title block (inner pages) ---------- */
 .page-head{
@@ -803,8 +910,10 @@ p{ margin:0 0 1em; }
 /* ---------- Team ---------- */
 .team-grid{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:36px 32px;
+  /* Three across: the roster is six people, so this fills two even rows
+     rather than leaving a ragged 4 + 2. */
+  grid-template-columns:repeat(3,1fr);
+  gap:40px 32px;
 }
 .team-card{
   text-align:left;
@@ -813,6 +922,11 @@ p{ margin:0 0 1em; }
   padding:0;
   display:block;
   width:100%;
+  /* Without this the cards stretch to the tallest in their row, and Chrome
+     vertically centres <button> content inside the extra space — so once a
+     role label wraps to two lines (narrow columns) the portraits in that row
+     stop lining up. Sizing each card to its own content removes the slack. */
+  align-self:start;
 }
 .team-card .photo-block{ margin-bottom:16px; }
 .photo-block .initials{
@@ -1122,21 +1236,422 @@ p{ margin:0 0 1em; }
 }
 .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
 
-/* ---------- Motion ---------- */
-[data-reveal]{
-  opacity:0;
-  transform:translateY(12px);
-  transition:opacity .6s ease,transform .6s ease;
-}
-[data-reveal].in-view{ opacity:1; transform:none; }
+/* ==========================================================================
+   Motion
+   Transform + opacity only — never width/height/top/left, which force layout.
+   Everything here is additive to the reduced-motion block at the bottom of
+   this section, which is the single opt-out for the whole system.
+   ========================================================================== */
 
+/* Every hidden-by-default state below is scoped to .js, which an inline
+   snippet in <head> sets before first paint. Without JS the page renders
+   fully visible rather than blank — the animation is enhancement, never a
+   precondition for reading the content. */
+
+/* Block-level reveal: the whole element fades up as one unit. */
+.js [data-reveal]{
+  opacity:0;
+  transform:translateY(16px);
+  transition:opacity var(--dur-enter) var(--ease-out),
+             transform var(--dur-enter) var(--ease-out);
+}
+.js [data-reveal].in-view{ opacity:1; transform:none; }
+
+/* Staggered reveal: children arrive in sequence instead of together.
+   JS sets --i per child (see initReveal); the delay maths stays in CSS. */
+.js [data-reveal-stagger] > *{
+  opacity:0;
+  transform:translateY(16px);
+  transition:opacity var(--dur-enter) var(--ease-out),
+             transform var(--dur-enter) var(--ease-out);
+  transition-delay:calc(var(--i, 0) * var(--stagger));
+}
+.js [data-reveal-stagger].in-view > *{ opacity:1; transform:none; }
+
+/* The signature motif: hairline rules draw themselves left-to-right.
+   This site is built out of 1px rules, so animating the rules themselves
+   reads as the page composing rather than parts flying in. */
+[data-rule]{
+  position:relative;
+}
+/* Bottom-anchored by default, because the site's existing dividers
+   (.section-head, .page-head) are bottom borders. Those static borders are
+   made transparent below so the drawn line replaces them rather than
+   doubling up. */
+[data-rule]::before{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  height:1px;
+  background:var(--rule);
+  transform-origin:left center;
+  transition:transform var(--dur-rule) var(--ease-out);
+}
+[data-rule="top"]::before{ top:0; bottom:auto; }
+.section-head[data-rule],
+.page-head[data-rule]{ border-bottom-color:transparent; }
+.js [data-rule]::before{ transform:scaleX(0); }
+.js [data-rule].in-view::before{ transform:scaleX(1); }
+[data-rule].on-dark::before{ background:var(--rule-dark); }
+
+/* Count-up figures: tabular numerals stop the digits changing width as they
+   tick, which would otherwise jitter the layout mid-animation. */
+[data-count]{
+  font-variant-numeric:tabular-nums;
+  font-feature-settings:"tnum" 1;
+}
+
+/* ---------- Micro-interactions ---------- */
+
+/* Press feedback. Scale only, so surrounding content never shifts. */
+.btn:active,
+.filter-tab:active,
+#back-to-top:active{ transform:scale(.98); }
+.btn,
+.filter-tab,
+#back-to-top{ transition:background var(--dur-micro) ease,
+                         color var(--dur-micro) ease,
+                         border-color var(--dur-micro) ease,
+                         transform var(--dur-micro) var(--ease-out); }
+
+/* Article + index rows: the title leads the eye rightward on hover, on top of
+   the existing background tint. */
+.article-row h3 a,
+.index-row .title{
+  display:inline-block;
+  transition:transform var(--dur-micro) var(--ease-out);
+}
+.article-row:hover h3 a,
+.index-row:hover .title{ transform:translateX(4px); }
+
+/* ---------- Sticky header ----------
+   The header gains a hairline and a translucent backdrop once the page has
+   scrolled, so it separates from content without being a heavy bar at rest. */
+.site-header.is-stuck{
+  border-bottom-color:var(--rule);
+  background:rgba(250,249,246,.88);
+  box-shadow:0 1px 12px rgba(20,26,23,.04);
+}
+@supports (backdrop-filter:blur(8px)){
+  .site-header.is-stuck{ backdrop-filter:blur(10px) saturate(1.4); }
+}
+
+/* Mobile nav: slides down instead of snapping into place. The collapsed state
+   keeps visibility:hidden so the links stay out of the tab order when shut. */
+@media (max-width:900px){
+  .js .nav-list{
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-8px);
+    transition:opacity var(--dur-exit) var(--ease-in),
+               transform var(--dur-exit) var(--ease-in),
+               visibility var(--dur-exit);
+  }
+  .js .nav-list.open{
+    opacity:1;
+    visibility:visible;
+    transform:none;
+    transition:opacity var(--dur-enter) var(--ease-out),
+               transform var(--dur-enter) var(--ease-out),
+               visibility 0s;
+  }
+}
+
+/* ---------- Team portraits ---------- */
+.photo-block img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  /* Head-and-shoulders framing: anchor to the top so a tall crop never
+     slices the face off. */
+  object-position:center top;
+  z-index:0;
+  transition:transform var(--dur-enter) var(--ease-out);
+}
+/* The decorative scanline overlay reads as a rendering fault across a face,
+   so it is suppressed wherever a real photograph is present.
+   :not([hidden]) matters for the shared modal, whose <img> stays in the DOM
+   and is hidden for members without a portrait — the initials must still
+   show through in that case. */
+.photo-block:has(img:not([hidden]))::after{ display:none; }
+.photo-block:has(img:not([hidden])) .initials{ display:none; }
+.team-card:hover .photo-block img{ transform:scale(1.04); }
+
+/* Modal photo sits in a fixed-height panel column, not an aspect box. */
+.modal-photo img{ object-position:center top; }
+
+/* ---------- Modal motion ----------
+   Scale + fade so opening reads as the card expanding rather than a layer
+   appearing. Note the separate .is-visible class: .open flips display from
+   none to flex, and you cannot transition out of display:none, so JS adds
+   .open first and .is-visible on the next frame to give the transition a
+   start value to animate from. */
+.modal-panel{
+  transition:opacity var(--dur-enter) var(--ease-out),
+             transform var(--dur-enter) var(--ease-out);
+}
+.js .modal{
+  opacity:0;
+  transition:opacity var(--dur-enter) ease;
+}
+.js .modal-panel{
+  opacity:0;
+  transform:translateY(12px) scale(.96);
+}
+.js .modal.is-visible{ opacity:1; }
+.js .modal.is-visible .modal-panel{ opacity:1; transform:none; }
+/* Exit: faster than the entrance, and eased in rather than out. */
+.js .modal.closing{
+  opacity:0;
+  transition-duration:var(--dur-exit);
+}
+.js .modal.closing .modal-panel{
+  opacity:0;
+  transform:translateY(6px) scale(.98);
+  transition-duration:var(--dur-exit);
+  transition-timing-function:var(--ease-in);
+}
+
+/* Profile links row inside the modal. Markup ships ready; links are added
+   once real Google Scholar / LinkedIn URLs are supplied. */
+.profile-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:24px;
+  padding-top:20px;
+  border-top:1px solid var(--rule);
+}
+.profile-links a{
+  font-family:var(--font-label);
+  font-size:var(--fs-mono);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  padding:8px 14px;
+  border:1px solid var(--rule-strong);
+  border-radius:var(--radius-sm);
+  color:var(--ink-soft);
+  transition:border-color var(--dur-micro) ease,color var(--dur-micro) ease;
+}
+.profile-links a:hover{ border-color:var(--green-700); color:var(--green-700); }
+
+/* ==========================================================================
+   Long-form article: editorial devices
+   ========================================================================== */
+
+/* Reading progress. Scroll position is information, not decoration — this is
+   the one persistent scroll-linked element on the site. Driven by a scaleX
+   transform so it never triggers layout. */
+.read-progress{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:2px;
+  z-index:500;
+  background:var(--green-700);
+  transform:scaleX(var(--progress, 0));
+  transform-origin:left center;
+  /* No transition: it must track the scrollbar exactly, and easing it would
+     make the bar lag the content. */
+}
+
+/* Long-form reading surface.
+   The global --fw-body is 100 as specified, which holds up fine for short
+   marketing copy. Across ~1,900 words of running text it does not: Outfit's
+   hairline strokes at 16px on the off-white paper drop well below comfortable
+   reading contrast. Raised to 300 for article bodies only — every other page
+   keeps the thin setting. Set this back to inherit if you want 100 here too. */
+.post-body{ font-weight:300; }
+.post-body .lead{ font-weight:300; }
+
+/* Editorial opener: the first few words set in tracked uppercase display type.
+   Chosen over a drop cap deliberately — a drop cap depends on the first letter
+   having a distinctive shape, and in a geometric sans a capital "I" or "l"
+   renders as a bare vertical stroke that reads as a rule rather than a letter.
+   This device works whatever the article opens with, and echoes the uppercase
+   micro-labels used elsewhere on the site. */
+.post-body .lead-opener{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:.82em;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--ink);
+  padding-right:.15em;
+}
+
+/* Pull quote. The green rule draws itself in with the section reveal.
+   The static border from `.post-body blockquote` is removed here, otherwise it
+   and the animated ::before bar render as two parallel green lines. */
+.post-body blockquote.pull-quote{ border-left:0; }
+.pull-quote{
+  margin:44px 0;
+  padding:0 0 0 28px;
+  position:relative;
+  font-family:var(--font-display);
+  font-size:clamp(1.3rem, 2.2vw, 1.65rem);
+  font-weight:500;
+  line-height:1.34;
+  letter-spacing:-.015em;
+  color:var(--ink);
+}
+.pull-quote::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:3px;
+  background:var(--green-700);
+  transform-origin:top center;
+  transition:transform var(--dur-rule) var(--ease-out);
+}
+/* Zero-state scoped to .js so the bar is simply present without JS. */
+.js .pull-quote::before{ transform:scaleY(0); }
+.js .pull-quote.in-view::before,
+.js [data-reveal].in-view .pull-quote::before{ transform:scaleY(1); }
+.pull-quote cite{
+  display:block;
+  margin-top:14px;
+  font-family:var(--font-label);
+  font-size:var(--fs-mono);
+  font-style:normal;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--ink-faint);
+}
+
+/* Callout: policy/framework asides lifted out of the running text. Distinct
+   from the pull quote — bordered box rather than a ruled quotation. */
+.callout{
+  margin:36px 0;
+  padding:28px 30px;
+  background:var(--paper-sunk);
+  border:1px solid var(--rule);
+  border-left:3px solid var(--gold-500);
+  border-radius:var(--radius-sm);
+}
+.callout h3{
+  font-family:var(--font-label);
+  font-size:var(--fs-mono);
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--ink-faint);
+  margin-bottom:14px;
+}
+.callout p{
+  font-size:var(--fs-sm);
+  color:var(--ink-soft);
+  margin-bottom:.8em;
+}
+.callout p:last-child{ margin-bottom:0; }
+.callout strong{ color:var(--ink); font-weight:600; }
+
+/* Figures. The .photo-block placeholder keeps empty slots looking deliberate
+   until the exported PNGs land. */
+.post-figure{
+  margin:40px 0;
+}
+.post-figure .photo-block{ margin-bottom:14px; }
+.post-figure img{
+  display:block;
+  width:100%;
+  height:auto;
+  border:1px solid var(--rule);
+  border-radius:var(--radius-sm);
+  margin-bottom:14px;
+}
+.post-figure figcaption{
+  font-family:var(--font-label);
+  font-size:var(--fs-mono);
+  line-height:1.5;
+  letter-spacing:.04em;
+  color:var(--ink-faint);
+  padding-left:14px;
+  border-left:2px solid var(--rule-strong);
+}
+
+/* Footnote markers and the reference list they point at. */
+.post-body sup a{
+  font-family:var(--font-label);
+  font-size:.62em;
+  font-weight:600;
+  color:var(--green-700);
+  padding:0 1px;
+  vertical-align:super;
+  line-height:0;
+}
+.post-body sup a:hover{ text-decoration:underline; }
+.post-refs{
+  margin-top:56px;
+  padding-top:28px;
+  border-top:1px solid var(--rule);
+}
+.post-refs h2{
+  font-family:var(--font-label);
+  font-size:var(--fs-mono);
+  font-weight:600;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--ink-faint);
+  margin-bottom:18px;
+}
+.post-refs ol{
+  list-style:decimal;
+  padding-left:22px;
+  margin:0;
+}
+.post-refs li{
+  font-size:.8rem;
+  line-height:1.6;
+  color:var(--ink-faint);
+  margin-bottom:10px;
+  overflow-wrap:anywhere;
+}
+.post-refs a{ color:var(--green-700); }
+.post-refs a:hover{ text-decoration:underline; }
+/* Anchor jumps land clear of the sticky header. */
+.post-refs li:target{
+  background:var(--green-100);
+  outline:2px solid var(--green-700);
+  outline-offset:3px;
+  border-radius:2px;
+}
+.post-body h2,
+.post-refs li{ scroll-margin-top:96px; }
+
+/* Author sign-off line. */
+.post-signoff{
+  margin-top:40px;
+  padding-top:22px;
+  border-top:1px solid var(--rule);
+  font-family:var(--font-label);
+  font-size:var(--fs-mono);
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--ink-faint);
+}
+
+/* ---------- Reduced motion ----------
+   Single opt-out for everything above. JS effects (count-up, parallax,
+   progress bar) check matchMedia separately and jump to final state. */
 @media (prefers-reduced-motion:reduce){
   html{ scroll-behavior:auto; }
   *,*::before,*::after{
     animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
     transition-duration:.01ms !important;
+    transition-delay:0ms !important;
   }
-  [data-reveal]{ opacity:1; transform:none; }
+  [data-reveal],
+  [data-reveal-stagger] > *{ opacity:1; transform:none; }
+  [data-rule]::before{ transform:scaleX(1); }
+  .hero-bg{ transform:none !important; }
 }
 
 /* ==========================================================================
