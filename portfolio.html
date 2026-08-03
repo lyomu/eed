@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research Portfolio — EED Research Institute</title>
+<meta name="description" content="An archive of applied research, systemic analyses, and policy interventions across WASH, energy, climate, and agriculture.">
+<link rel="icon" href="assets/logo/eri-logo-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="nav-bar">
+    <a href="index.html" class="brand">
+      <img src="assets/logo/eri-logo-mark.png" alt="EED Research Institute">
+    </a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="team.html">Our Team</a></li>
+      <li><a href="portfolio.html">Research Portfolio</a></li>
+      <li><a href="news.html">Blogs</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+  <!-- PAGE HEAD -->
+  <section class="page-head">
+    <div class="container">
+      <h1>An index of our applied research</h1>
+      <p class="lead">Systemic analyses and policy interventions across key thematic areas, designed to foster ecological stewardship and intellectual rigor.</p>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO INDEX -->
+  <section class="section-tight on-paper" data-filter-root="portfolio">
+    <div class="container">
+
+      <div class="filter-bar">
+        <div class="filter-tabs">
+          <button class="filter-tab active" data-filter="all">All Projects</button>
+          <button class="filter-tab" data-filter="energy">Energy</button>
+          <button class="filter-tab" data-filter="wash">WASH</button>
+          <button class="filter-tab" data-filter="climate">Climate</button>
+        </div>
+        <div class="filter-search">
+          <label class="visually-hidden" for="portfolio-search">Search portfolio</label>
+          <input type="search" id="portfolio-search" data-filter-search placeholder="Search portfolio">
+        </div>
+      </div>
+
+      <div class="index-list">
+
+        <article class="index-row" data-category="energy">
+          <span class="num">01</span>
+          <div>
+            <h2>Decentralized Microgrid Optimization</h2>
+            <p>Analyzing the socio-economic impacts of deploying adaptive microgrid architectures in rural communities to enhance grid resilience and energy access.</p>
+          </div>
+          <div>
+            <span class="meta">Ministry of Energy</span><br>
+            <span class="tag">Energy</span>
+          </div>
+          <div class="actions"><a href="#" class="card-link">Read More &rarr;</a></div>
+        </article>
+
+        <article class="index-row" data-category="wash">
+          <span class="num">02</span>
+          <div>
+            <h2>Urban Aquifer Recharge Systems</h2>
+            <p>Evaluating scalable methodologies for artificial groundwater recharge using treated municipal wastewater to mitigate urban water scarcity scenarios.</p>
+          </div>
+          <div>
+            <span class="meta">Global Water Partnership</span><br>
+            <span class="tag">WASH</span>
+          </div>
+          <div class="actions"><a href="#" class="card-link">Read More &rarr;</a></div>
+        </article>
+
+        <article class="index-row" data-category="climate">
+          <span class="num">03</span>
+          <div>
+            <h2>Carbon Sequestration Metrics</h2>
+            <p>Developing standardized protocols for measuring and verifying carbon capture rates in afforestation projects across semi-arid sub-Saharan regions.</p>
+          </div>
+          <div>
+            <span class="meta">UN Environment Programme</span><br>
+            <span class="tag">Climate</span>
+          </div>
+          <div class="actions"><a href="#" class="card-link">Read More &rarr;</a></div>
+        </article>
+
+        <article class="index-row" data-category="energy">
+          <span class="num">04</span>
+          <div>
+            <h2>Biomass Conversion Efficiency</h2>
+            <p>A comparative lifecycle assessment of advanced pyrolysis techniques for agricultural waste conversion into sustainable biochar and syngas.</p>
+          </div>
+          <div>
+            <span class="meta">Nordic Development Fund</span><br>
+            <span class="tag">Energy</span>
+          </div>
+          <div class="actions"><a href="#" class="card-link">Read More &rarr;</a></div>
+        </article>
+
+        <article class="index-row" data-category="wash">
+          <span class="num">05</span>
+          <div>
+            <h2>Sanitation Value Chains</h2>
+            <p>Mapping the economic viability and public health outcomes of decentralized fecal sludge management enterprises in high-density informal settlements.</p>
+          </div>
+          <div>
+            <span class="meta">World Bank Group</span><br>
+            <span class="tag">WASH</span>
+          </div>
+          <div class="actions"><a href="#" class="card-link">Read More &rarr;</a></div>
+        </article>
+
+        <article class="index-row" data-category="climate">
+          <span class="num">06</span>
+          <div>
+            <h2>Coastal Erosion Mitigation</h2>
+            <p>Investigating the effectiveness of nature-based solutions, specifically mangrove restoration, against escalating storm surges and sea-level rise.</p>
+          </div>
+          <div>
+            <span class="meta">Coastal Conservancy</span><br>
+            <span class="tag">Climate</span>
+          </div>
+          <div class="actions"><a href="#" class="card-link">Read More &rarr;</a></div>
+        </article>
+
+      </div>
+
+      <p class="empty-state hidden">No projects match your search.</p>
+
+      <div class="list-actions">
+        <button class="btn btn-outline" id="load-more">Load More Projects</button>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/logo/eri-logo-full.png" alt="EED Research Institute">
+        <p>EED Research Institute is committed to advancing scientific inquiry to address the global challenges in the fields of WASH, energy, climate change and agriculture.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="about.html">What We Do</a></li>
+          <li><a href="team.html">Our Team</a></li>
+          <li><a href="portfolio.html">Our Publications</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Our Pillars</h3>
+        <ul>
+          <li><a href="about.html#thematic-areas">WASH</a></li>
+          <li><a href="about.html#thematic-areas">Energy</a></li>
+          <li><a href="about.html#thematic-areas">Climate</a></li>
+          <li><a href="about.html#thematic-areas">Agriculture</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Information</h3>
+        <ul>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="#">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-links">
+        <a href="#">Terms And Conditions</a>
+        <a href="#">Privacy Policy</a>
+        <span>&copy; 2026 EED Research Institute. All rights reserved.</span>
+      </div>
+      <button id="back-to-top">Back to top &uarr;</button>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="js/main.js"></script>
+</body>
+</html>
