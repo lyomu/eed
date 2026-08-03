@@ -1220,14 +1220,16 @@ p{ margin:0 0 1em; }
 .modal-panel{
   background:var(--paper-raised);
   border-radius:var(--radius-md);
-  max-width:940px;
+  max-width:1120px;
   width:100%;
   max-height:88vh;
   /* The panel itself does not scroll — the bio does. That keeps the portrait
      and the name/role header in place while long biographies scroll. */
   overflow:hidden;
   display:grid;
-  grid-template-columns:300px minmax(0, 1fr);
+  /* The portrait column widens with the panel so the biography's line length
+     stays readable rather than stretching with every extra pixel. */
+  grid-template-columns:360px minmax(0, 1fr);
   /* minmax(0,1fr) is what makes the bio scroll rather than get clipped.
      Without it the single grid row sizes to its content, grows past the
      panel's max-height, and overflow:hidden silently cuts the end of long
@@ -1281,8 +1283,8 @@ p{ margin:0 0 1em; }
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  width:38px;
-  height:38px;
+  width:33px;
+  height:33px;
   padding:0;
   border:1px solid var(--rule-strong);
   border-radius:var(--radius-sm);
@@ -1293,10 +1295,11 @@ p{ margin:0 0 1em; }
              color var(--dur-micro) ease,
              background var(--dur-micro) ease;
 }
-.profile-link svg{ width:18px; height:18px; display:block; }
-/* The mortarboard is a wide, shallow shape, so an 18px box renders it visually
-   smaller than the other two. Widening it evens out the optical weight. */
-.profile-link--scholar svg{ width:22px; }
+.profile-link svg{ width:15px; height:15px; display:block; }
+/* The mortarboard is a wide, shallow shape, so a square box renders it
+   visually smaller than the other two. Widening it evens out the optical
+   weight. */
+.profile-link--scholar svg{ width:18px; }
 .profile-link:hover{
   border-color:var(--green-700);
   color:var(--green-700);
