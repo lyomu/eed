@@ -661,8 +661,13 @@ p{ margin:0 0 1em; }
   z-index:1;
   font-family:var(--font-label);
   font-size:var(--fs-mono);
-  color:rgba(255,255,255,.72);
+  color:rgba(255,255,255,.86);
   padding:18px 20px;
+}
+.photo-block:has(img:not([hidden])) .mark{
+  text-shadow:0 1px 3px rgba(0,0,0,0.7);
+  background:linear-gradient(to top, rgba(10,16,32,.75) 0%, transparent 100%);
+  width:100%;
 }
 .ratio-4x3{ aspect-ratio:4/3; }
 .ratio-16x10{ aspect-ratio:16/10; }
