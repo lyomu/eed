@@ -66,11 +66,17 @@
   <!-- TEAM GRID -->
   <section class="section on-paper">
     <div class="container">
+      <!-- data-linkedin / data-scholar hold each member's public profile URL.
+           An empty value simply hides that icon in the modal, so members
+           without a listed profile degrade cleanly. Fill these in as the
+           URLs are confirmed. data-member-id is the deep link: team.html#id
+           opens that member's profile, and the share button copies it. -->
       <div class="team-grid" data-reveal-stagger>
 
-        <button class="team-card" data-member
+        <button class="team-card" data-member data-member-id="ida-githu"
                 data-initials="IG" data-name="Dr. Ida Githu" data-role="Managing Director"
-                data-photo="assets/team/ida-githu.jpg" data-bio-id="bio-ida-githu">
+                data-photo="assets/team/ida-githu.jpg" data-bio-id="bio-ida-githu"
+                data-linkedin="" data-scholar="">
           <div class="photo-block ratio-3x4">
             <img src="assets/team/ida-githu.jpg" alt="Dr. Ida Githu" loading="lazy" onerror="this.remove()">
             <span class="initials">IG</span>
@@ -80,9 +86,10 @@
           <span class="role">Managing Director</span>
         </button>
 
-        <button class="team-card" data-member
+        <button class="team-card" data-member data-member-id="elmah-odhiambo"
                 data-initials="EO" data-name="Elmah Odhiambo" data-role="Research Coordinator"
-                data-photo="assets/team/elmah-odhiambo.jpg" data-bio-id="bio-elmah-odhiambo">
+                data-photo="assets/team/elmah-odhiambo.jpg" data-bio-id="bio-elmah-odhiambo"
+                data-linkedin="" data-scholar="">
           <div class="photo-block ratio-3x4">
             <img src="assets/team/elmah-odhiambo.jpg" alt="Elmah Odhiambo" loading="lazy" onerror="this.remove()">
             <span class="initials">EO</span>
@@ -93,9 +100,10 @@
         </button>
 
         <!-- No portrait supplied yet: the initials block below is the fallback. -->
-        <button class="team-card" data-member
+        <button class="team-card" data-member data-member-id="winnie-musivo"
                 data-initials="WM" data-name="Dr. Winnie Musivo" data-role="Director (Partnerships and Strategy)"
-                data-bio-id="bio-winnie-musivo">
+                data-bio-id="bio-winnie-musivo"
+                data-linkedin="" data-scholar="">
           <div class="photo-block ratio-3x4">
             <span class="initials">WM</span>
             <span class="card-veil" aria-hidden="true"><span class="card-cta">View profile &rarr;</span></span>
@@ -104,9 +112,10 @@
           <span class="role">Director (Partnerships and Strategy)</span>
         </button>
 
-        <button class="team-card" data-member
+        <button class="team-card" data-member data-member-id="abigael-okoko"
                 data-initials="AO" data-name="Dr. Abigael Okoko" data-role="Research Fellow"
-                data-photo="assets/team/abigael-okoko.jpg" data-bio-id="bio-abigael-okoko">
+                data-photo="assets/team/abigael-okoko.jpg" data-bio-id="bio-abigael-okoko"
+                data-linkedin="" data-scholar="">
           <div class="photo-block ratio-3x4">
             <img src="assets/team/abigael-okoko.jpg" alt="Dr. Abigael Okoko" loading="lazy" onerror="this.remove()">
             <span class="initials">AO</span>
@@ -116,9 +125,10 @@
           <span class="role">Research Fellow</span>
         </button>
 
-        <button class="team-card" data-member
+        <button class="team-card" data-member data-member-id="cheikh-mbodji"
                 data-initials="CM" data-name="Dr. Cheikh Mbodji" data-role="Research Fellow"
-                data-photo="assets/team/cheikh-mbodji.jpg" data-bio-id="bio-cheikh-mbodji">
+                data-photo="assets/team/cheikh-mbodji.jpg" data-bio-id="bio-cheikh-mbodji"
+                data-linkedin="" data-scholar="">
           <div class="photo-block ratio-3x4">
             <img src="assets/team/cheikh-mbodji.jpg" alt="Dr. Cheikh Mbodji" loading="lazy" onerror="this.remove()">
             <span class="initials">CM</span>
@@ -129,8 +139,9 @@
         </button>
 
         <!-- No portrait supplied yet: the initials block below is the fallback. -->
-        <button class="team-card" data-member
-                data-initials="CN" data-name="Carl Ngaira" data-role="Executive Assistant">
+        <button class="team-card" data-member data-member-id="carl-ngaira"
+                data-initials="CN" data-name="Carl Ngaira" data-role="Executive Assistant"
+                data-linkedin="" data-scholar="">
           <div class="photo-block ratio-3x4">
             <span class="initials">CN</span>
             <span class="card-veil" aria-hidden="true"><span class="card-cta">View profile &rarr;</span></span>
@@ -214,6 +225,48 @@
       <div class="modal-head">
         <h3 id="modal-name" data-modal-name></h3>
         <span class="role" data-modal-role></span>
+        <!-- The two profile links are hidden unless the open member has a URL
+             for them; share is always available. -->
+        <div class="profile-links">
+          <a class="profile-link" data-modal-linkedin href="#"
+             target="_blank" rel="noopener noreferrer" hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.65h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.86V21h-4V9Z"/>
+            </svg>
+            <span class="visually-hidden" data-modal-linkedin-label>LinkedIn profile</span>
+          </a>
+
+          <a class="profile-link profile-link--scholar" data-modal-scholar href="#"
+             target="_blank" rel="noopener noreferrer" hidden>
+            <!-- viewBox is cropped to the artwork so the cap renders at the
+                 same visual weight as the other two icons. -->
+            <svg viewBox="0.6 2.2 22.8 17" aria-hidden="true" focusable="false"
+                 fill="none" stroke="currentColor" stroke-width="1.7"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3.4 1.8 8.6 12 13.8l10.2-5.2L12 3.4Z"/>
+              <path d="M5.6 10.8v4.1c0 1.9 2.87 3.4 6.4 3.4s6.4-1.5 6.4-3.4v-4.1"/>
+              <path d="M21.4 9.2v5"/>
+            </svg>
+            <span class="visually-hidden" data-modal-scholar-label>Google Scholar profile</span>
+          </a>
+
+          <button type="button" class="profile-link" data-modal-share>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"
+                 fill="none" stroke="currentColor" stroke-width="1.7"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="18" cy="5.2" r="2.6"/>
+              <circle cx="6" cy="12" r="2.6"/>
+              <circle cx="18" cy="18.8" r="2.6"/>
+              <path d="M8.3 10.7 15.7 6.5m-7.4 6.8 7.4 4.2"/>
+            </svg>
+            <span class="visually-hidden" data-modal-share-label>Share this profile</span>
+          </button>
+
+          <!-- Announces the copy result to screen readers and, via CSS, shows
+               the same confirmation visually. -->
+          <span class="profile-share-status" data-modal-share-status
+                role="status" aria-live="polite"></span>
+        </div>
       </div>
       <!-- tabindex makes the scroll region reachable by keyboard, so a long
            biography can be read without a mouse. -->

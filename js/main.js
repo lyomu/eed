@@ -149,8 +149,98 @@
     var initialsEl = modal.querySelector('[data-modal-initials]');
     var photoEl = modal.querySelector('[data-modal-photo]');
     var closeBtn = modal.querySelector('.modal-close');
+    var linkedinEl = modal.querySelector('[data-modal-linkedin]');
+    var scholarEl = modal.querySelector('[data-modal-scholar]');
+    var shareEl = modal.querySelector('[data-modal-share]');
+    var shareLabelEl = modal.querySelector('[data-modal-share-label]');
+    var linkedinLabelEl = modal.querySelector('[data-modal-linkedin-label]');
+    var scholarLabelEl = modal.querySelector('[data-modal-scholar-label]');
+    var shareStatusEl = modal.querySelector('[data-modal-share-status]');
     var lastTrigger = null;
     var closeTimer = null;
+    var statusTimer = null;
+    var shareUrl = '';
+    var shareName = '';
+
+    /* Show a profile link only when that member has a URL for it, and name the
+       member in the accessible label so the icons are not six identical
+       "LinkedIn" links to a screen reader. */
+    function setProfileLink(el, labelEl, url, label, name) {
+      if (!el) return;
+      if (url) {
+        el.href = url;
+        el.hidden = false;
+        el.setAttribute('aria-label', label + ' — ' + name);
+        if (labelEl) labelEl.textContent = label + ' — ' + name;
+      } else {
+        el.hidden = true;
+        el.removeAttribute('href');
+      }
+    }
+
+    function setShareStatus(message) {
+      if (!shareStatusEl) return;
+      window.clearTimeout(statusTimer);
+      shareStatusEl.textContent = message;
+      shareStatusEl.classList.toggle('is-shown', !!message);
+      if (message) {
+        statusTimer = window.setTimeout(function () {
+          shareStatusEl.textContent = '';
+          shareStatusEl.classList.remove('is-shown');
+        }, 2600);
+      }
+    }
+
+    /* Deep link to the open member: team.html#member-id. The page reads this
+       on load, so a shared link lands on the profile itself. */
+    function profileUrl(trigger) {
+      var id = trigger.getAttribute('data-member-id');
+      var base = window.location.origin + window.location.pathname;
+      return id ? base + '#' + id : base;
+    }
+
+    function copyToClipboard(text) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        return navigator.clipboard.writeText(text);
+      }
+      /* execCommand fallback for browsers without the async clipboard API
+         (and for pages served over plain http, where it is unavailable). */
+      return new Promise(function (resolve, reject) {
+        var field = document.createElement('textarea');
+        field.value = text;
+        field.setAttribute('readonly', '');
+        field.style.position = 'fixed';
+        field.style.opacity = '0';
+        document.body.appendChild(field);
+        field.select();
+        var ok = false;
+        try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
+        document.body.removeChild(field);
+        ok ? resolve() : reject();
+      });
+    }
+
+    if (shareEl) {
+      shareEl.addEventListener('click', function () {
+        if (!shareUrl) return;
+
+        /* Native share sheet where it exists (mostly mobile); copy elsewhere. */
+        if (navigator.share) {
+          navigator.share({
+            title: shareName,
+            text: shareName + ' — EED Research Institute',
+            url: shareUrl
+          }).catch(function () { /* dismissed by the user; nothing to report */ });
+          return;
+        }
+
+        copyToClipboard(shareUrl).then(function () {
+          setShareStatus('Link copied');
+        }, function () {
+          setShareStatus('Press Ctrl+C to copy');
+        });
+      });
+    }
 
     /* A portrait that fails to load must fall back to the initials block
        rather than showing a broken image. */
@@ -176,6 +266,18 @@
           photoEl.hidden = true;
           photoEl.removeAttribute('src');
         }
+      }
+
+      shareName = trigger.getAttribute('data-name') || '';
+      shareUrl = profileUrl(trigger);
+      setShareStatus('');
+      setProfileLink(linkedinEl, linkedinLabelEl,
+                     trigger.getAttribute('data-linkedin'), 'LinkedIn', shareName);
+      setProfileLink(scholarEl, scholarLabelEl,
+                     trigger.getAttribute('data-scholar'), 'Google Scholar', shareName);
+      if (shareEl) {
+        shareEl.setAttribute('aria-label', 'Share ' + shareName + "'s profile");
+        if (shareLabelEl) shareLabelEl.textContent = 'Share ' + shareName + "'s profile";
       }
 
       if (bioEl) {
@@ -234,6 +336,17 @@
     Array.prototype.forEach.call(triggers, function (trigger) {
       trigger.addEventListener('click', function () { open(trigger); });
     });
+
+    /* A shared link (team.html#member-id) opens that profile straight away. */
+    function openFromHash() {
+      var id = window.location.hash.replace('#', '');
+      /* Slugs only — anything else could break the selector below. */
+      if (!id || !/^[a-z0-9-]+$/i.test(id)) return;
+      var target = document.querySelector('[data-member-id="' + id + '"]');
+      if (target) open(target);
+    }
+    openFromHash();
+    window.addEventListener('hashchange', openFromHash);
 
     if (closeBtn) closeBtn.addEventListener('click', close);
     modal.addEventListener('click', function (e) {

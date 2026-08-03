@@ -1252,6 +1252,51 @@ p{ margin:0 0 1em; }
   display:block;
   margin:0;
 }
+/* Profile links (LinkedIn / Google Scholar / share) sit in the fixed header
+   so they stay reachable while a long biography scrolls. */
+.profile-links{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:18px;
+}
+.profile-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:38px;
+  height:38px;
+  padding:0;
+  border:1px solid var(--rule-strong);
+  border-radius:var(--radius-sm);
+  background:transparent;
+  color:var(--ink-soft);
+  cursor:pointer;
+  transition:border-color var(--dur-micro) ease,
+             color var(--dur-micro) ease,
+             background var(--dur-micro) ease;
+}
+.profile-link svg{ width:18px; height:18px; display:block; }
+/* The mortarboard is a wide, shallow shape, so an 18px box renders it visually
+   smaller than the other two. Widening it evens out the optical weight. */
+.profile-link--scholar svg{ width:22px; }
+.profile-link:hover{
+  border-color:var(--green-700);
+  color:var(--green-700);
+  background:rgba(12,119,67,.06);
+}
+.profile-link[hidden]{ display:none; }
+/* Confirmation after a copy. Empty by default, so it takes no space until
+   the share button writes into it. */
+.profile-share-status{
+  font-family:var(--font-label);
+  font-size:var(--fs-mono);
+  color:var(--green-700);
+  opacity:0;
+  transition:opacity var(--dur-micro) ease;
+}
+.profile-share-status.is-shown{ opacity:1; }
+
 .modal-bio{
   flex:1 1 auto;
   min-height:0;
@@ -1676,27 +1721,6 @@ p{ margin:0 0 1em; }
   transition-duration:var(--dur-exit);
   transition-timing-function:var(--ease-in);
 }
-
-/* Profile links row inside the modal. Markup ships ready; links are added
-   once real Google Scholar / LinkedIn URLs are supplied. */
-.profile-links{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top:24px;
-  padding-top:20px;
-  border-top:1px solid var(--rule);
-}
-.profile-links a{
-  font-family:var(--font-label);
-  font-size:var(--fs-mono);
-  padding:8px 14px;
-  border:1px solid var(--rule-strong);
-  border-radius:var(--radius-sm);
-  color:var(--ink-soft);
-  transition:border-color var(--dur-micro) ease,color var(--dur-micro) ease;
-}
-.profile-links a:hover{ border-color:var(--green-700); color:var(--green-700); }
 
 /* ==========================================================================
    Long-form article: editorial devices
