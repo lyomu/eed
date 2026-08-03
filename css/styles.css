@@ -705,6 +705,23 @@ p{ margin:0 0 1em; }
   color:rgba(255,255,255,.66);
 }
 
+/* ---------- Breaker: full-bleed image band between sections ----------
+   Layers on .on-image, which supplies the gradient, scrim and photo
+   behaviour. Only the band's proportions and headline scale live here. */
+.breaker{ padding:104px 0; }
+.breaker h2{
+  color:#fff;
+  font-size:clamp(1.8rem,3.4vw,2.9rem);
+  line-height:1.16;
+  /* Holds the headline to three or so lines rather than one long ruler
+     across a 1400px container. */
+  max-width:22ch;
+  margin:0;
+}
+/* The books sit low in this frame; bias the crop down so they are not cut
+   off by the short band. */
+.breaker .hero-bg{ object-position:center 62%; }
+
 /* ---------- Ruled index rows (pillars, portfolio, insights) ---------- */
 .index-list{ border-top:1px solid var(--rule); }
 .index-row{
@@ -1958,6 +1975,8 @@ p{ margin:0 0 1em; }
   .stats-grid{ grid-template-columns:1fr; }
   .stat{ border-left:0; border-top:1px solid var(--rule-dark); padding:26px 0; }
   .stat:first-child{ border-top:0; padding-top:0; }
+  .breaker{ padding:76px 0; }
+  .breaker h2{ max-width:none; }
   .mv-grid{ grid-template-columns:1fr; }
   .mv-cell{ padding:38px 0; }
   .mv-cell + .mv-cell{ padding:38px 0; border-left:0; border-top:1px solid var(--rule); }
