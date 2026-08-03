@@ -394,7 +394,10 @@ p{ margin:0 0 1em; }
 }
 .breadcrumb a:hover{ color:#fff; border-bottom-color:rgba(255,255,255,.5); }
 .breadcrumb .sep{ color:rgba(255,255,255,.34); }
-.breadcrumb [aria-current="page"]{ color:var(--gold-400); }
+/* The trailing item is plain text, not a link, and deliberately carries no
+   aria-current — that belongs to the nav link pointing at this page, and two
+   aria-current="page" in one document is a defect. */
+.breadcrumb .current{ color:var(--gold-400); }
 
 /* ---------- Hero (homepage) ---------- */
 .hero{
@@ -696,6 +699,9 @@ p{ margin:0 0 1em; }
   padding:30px 0;
   border-bottom:1px solid var(--rule);
   transition:background .2s ease;
+}
+.index-row:not(:has(.num)){
+  grid-template-columns:1fr 200px 160px;
 }
 .index-row:hover{ background:var(--paper-raised); }
 .index-row .num{
@@ -1005,6 +1011,9 @@ p{ margin:0 0 1em; }
   color:var(--ink);
   font-size:var(--fs-sm);
 }
+/* .thematic-item p carries margin:0, so the link into the pillar page needs
+   its own spacing rather than inheriting a paragraph gap. */
+.thematic-item .body .card-link{ margin-top:18px; }
 
 /* ---------- About: timeline (inside impact band) ---------- */
 .timeline{
@@ -1875,6 +1884,7 @@ p{ margin:0 0 1em; }
    ========================================================================== */
 @media (max-width:1200px){
   .index-row{ grid-template-columns:52px 1fr 170px 140px; gap:24px; }
+  .index-row:not(:has(.num)){ grid-template-columns:1fr 170px 140px; }
   .post-layout{ grid-template-columns:48px 1fr 280px; gap:40px; }
 }
 
