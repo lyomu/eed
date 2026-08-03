@@ -37,11 +37,17 @@
   --rule-strong:#C8C5BA;
   --rule-dark:rgba(255,255,255,.14);
 
-  /* Single family: Outfit. Roles kept as separate tokens so weight/tracking
-     decisions stay centralised even though they resolve to one face. */
-  --font-display:'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* Two families: DM Sans carries titles and uppercase micro-labels, where
+     weight and tight tracking do the work. Outfit Thin carries running body
+     copy. Roles stay separate tokens so weight/tracking decisions remain
+     centralised. */
+  --font-display:'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-body:'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-label:'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-label:'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Body weight is a single dial: Outfit Thin (100) as specified. Raise to
+     200/300 here if the running copy reads too faint on light backgrounds. */
+  --fw-body:100;
 
   --fs-display:clamp(2.8rem, 6vw, 4.6rem);
   --fs-h1:clamp(2.2rem, 4vw, 3.2rem);
@@ -64,6 +70,7 @@ html{ scroll-behavior:smooth; }
 body{
   margin:0;
   font-family:var(--font-body);
+  font-weight:var(--fw-body);
   font-size:var(--fs-body);
   color:var(--ink);
   background:var(--paper);
