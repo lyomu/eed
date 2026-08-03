@@ -46,10 +46,13 @@
         toggle.setAttribute('aria-expanded', String(open));
       });
 
-      /* Tabbing out of the group closes it. relatedTarget is the element
-         gaining focus; null means focus left the document entirely. */
+      /* Tabbing out of the group closes it. A null relatedTarget means focus
+         left the document altogether — switching windows, or moving to browser
+         chrome — which must NOT collapse the menu, so only act when we can see
+         a real destination outside the group. */
       parent.addEventListener('focusout', function (e) {
-        if (e.relatedTarget && parent.contains(e.relatedTarget)) return;
+        if (!e.relatedTarget) return;
+        if (parent.contains(e.relatedTarget)) return;
         close(parent);
       });
 
