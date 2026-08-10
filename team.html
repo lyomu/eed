@@ -225,64 +225,60 @@
 <div class="modal" id="team-modal" role="dialog" aria-modal="true" aria-labelledby="modal-name">
   <div class="modal-panel">
     <button class="modal-close" aria-label="Close">&times;</button>
-    <div class="modal-photo">
-      <div class="photo-block ratio-1x1">
-        <!-- src and hidden are set per member by initTeamModal; when a member
-             has no portrait the image stays hidden and the initials show. -->
-        <img data-modal-photo alt="" hidden>
-        <span class="initials" data-modal-initials></span>
-      </div>
-    </div>
     <div class="modal-body">
-      <!-- Header stays put; only the biography scrolls. -->
+      <!-- Header with circular photo avatar and member details -->
       <div class="modal-head">
-        <h3 id="modal-name" data-modal-name></h3>
-        <span class="role" data-modal-role></span>
-        <!-- The two profile links are hidden unless the open member has a URL
-             for them; share is always available. -->
-        <div class="profile-links">
-          <a class="profile-link" data-modal-linkedin href="#"
-             target="_blank" rel="noopener noreferrer" hidden>
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.65h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.86V21h-4V9Z"/>
-            </svg>
-            <span class="visually-hidden" data-modal-linkedin-label>LinkedIn profile</span>
-          </a>
+        <div class="modal-photo">
+          <div class="photo-block ratio-1x1">
+            <!-- src and hidden are set per member by initTeamModal; when a member
+                 has no portrait the image stays hidden and the initials show. -->
+            <img data-modal-photo alt="" hidden>
+            <span class="initials" data-modal-initials></span>
+          </div>
+        </div>
+        <div class="modal-info">
+          <h3 id="modal-name" data-modal-name></h3>
+          <span class="role" data-modal-role></span>
+          <!-- Profile links (LinkedIn / Google Scholar / share) -->
+          <div class="profile-links">
+            <a class="profile-link" data-modal-linkedin href="#"
+               target="_blank" rel="noopener noreferrer" hidden>
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.65h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.86V21h-4V9Z"/>
+              </svg>
+              <span class="visually-hidden" data-modal-linkedin-label>LinkedIn profile</span>
+            </a>
 
-          <a class="profile-link profile-link--scholar" data-modal-scholar href="#"
-             target="_blank" rel="noopener noreferrer" hidden>
-            <!-- viewBox is cropped to the artwork so the cap renders at the
-                 same visual weight as the other two icons. -->
-            <svg viewBox="0.6 2.2 22.8 17" aria-hidden="true" focusable="false"
-                 fill="none" stroke="currentColor" stroke-width="1.7"
-                 stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 3.4 1.8 8.6 12 13.8l10.2-5.2L12 3.4Z"/>
-              <path d="M5.6 10.8v4.1c0 1.9 2.87 3.4 6.4 3.4s6.4-1.5 6.4-3.4v-4.1"/>
-              <path d="M21.4 9.2v5"/>
-            </svg>
-            <span class="visually-hidden" data-modal-scholar-label>Google Scholar profile</span>
-          </a>
+            <a class="profile-link profile-link--scholar" data-modal-scholar href="#"
+               target="_blank" rel="noopener noreferrer" hidden>
+              <svg viewBox="0.6 2.2 22.8 17" aria-hidden="true" focusable="false"
+                   fill="none" stroke="currentColor" stroke-width="1.7"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3.4 1.8 8.6 12 13.8l10.2-5.2L12 3.4Z"/>
+                <path d="M5.6 10.8v4.1c0 1.9 2.87 3.4 6.4 3.4s6.4-1.5 6.4-3.4v-4.1"/>
+                <path d="M21.4 9.2v5"/>
+              </svg>
+              <span class="visually-hidden" data-modal-scholar-label>Google Scholar profile</span>
+            </a>
 
-          <button type="button" class="profile-link" data-modal-share>
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"
-                 fill="none" stroke="currentColor" stroke-width="1.7"
-                 stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="18" cy="5.2" r="2.6"/>
-              <circle cx="6" cy="12" r="2.6"/>
-              <circle cx="18" cy="18.8" r="2.6"/>
-              <path d="M8.3 10.7 15.7 6.5m-7.4 6.8 7.4 4.2"/>
-            </svg>
-            <span class="visually-hidden" data-modal-share-label>Share this profile</span>
-          </button>
+            <button type="button" class="profile-link" data-modal-share>
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"
+                   fill="none" stroke="currentColor" stroke-width="1.7"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="18" cy="5.2" r="2.6"/>
+                <circle cx="6" cy="12" r="2.6"/>
+                <circle cx="18" cy="18.8" r="2.6"/>
+                <path d="M8.3 10.7 15.7 6.5m-7.4 6.8 7.4 4.2"/>
+              </svg>
+              <span class="visually-hidden" data-modal-share-label>Share this profile</span>
+            </button>
 
-          <!-- Announces the copy result to screen readers and, via CSS, shows
-               the same confirmation visually. -->
-          <span class="profile-share-status" data-modal-share-status
-                role="status" aria-live="polite"></span>
+            <span class="profile-share-status" data-modal-share-status
+                  role="status" aria-live="polite"></span>
+          </div>
         </div>
       </div>
-      <!-- tabindex makes the scroll region reachable by keyboard, so a long
-           biography can be read without a mouse. -->
+      <!-- Biography text scrolls underneath the header line -->
       <div class="modal-bio" data-modal-bio tabindex="0"></div>
     </div>
   </div>
