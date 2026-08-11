@@ -2149,3 +2149,248 @@ p{ margin:0 0 1em; }
   .nav-list a{ padding:12px 0; }
   .card-link{ padding:6px 0; }
 }
+
+/* ---------- Artistic Pillars & Fieldwork Redesign ---------- */
+.artistic-fieldwork-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.fieldwork-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  display: block;
+  text-decoration: none;
+  background: var(--navy-900);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+.fieldwork-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(10, 16, 32, 0.25);
+}
+.fieldwork-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.fieldwork-card:hover img {
+  transform: scale(1.08);
+}
+.fieldwork-card .card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10, 16, 32, 0.92) 0%, rgba(10, 16, 32, 0.3) 50%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px;
+  color: #fff;
+  transition: background 0.3s ease;
+}
+.fieldwork-card .pillar-tag {
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-400);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+.fieldwork-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: #fff;
+  margin: 0;
+  font-weight: 600;
+}
+
+/* ---------- Four Pillars Artistic Section ---------- */
+.artistic-pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  margin-top: 16px;
+}
+.artistic-pillar-card {
+  position: relative;
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+.artistic-pillar-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--green-700);
+  box-shadow: 0 16px 36px rgba(12, 119, 67, 0.12);
+}
+.artistic-pillar-media {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+.artistic-pillar-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.artistic-pillar-card:hover .artistic-pillar-media img {
+  transform: scale(1.06);
+}
+.artistic-pillar-media .media-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: rgba(10, 16, 32, 0.85);
+  backdrop-filter: blur(8px);
+  color: var(--gold-400);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 20px;
+  letter-spacing: 0.05em;
+}
+.artistic-pillar-media .stat-chip {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  background: var(--green-700);
+  color: #fff;
+  font-family: var(--font-label);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.artistic-pillar-body {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.artistic-pillar-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.artistic-pillar-num {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--gold-500);
+  opacity: 0.9;
+}
+.artistic-pillar-head h3 {
+  font-size: 1.4rem;
+  margin: 0;
+  color: var(--ink);
+}
+.artistic-pillar-body p {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+.artistic-pillar-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-label);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--green-700);
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.artistic-pillar-link:hover {
+  color: var(--green-800);
+  transform: translateX(4px);
+}
+
+/* ---------- How We Work Section Redesign ---------- */
+.artistic-work-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  margin-top: 24px;
+}
+.work-card {
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--green-700);
+  border-radius: 12px;
+  padding: 32px;
+  position: relative;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+}
+.work-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--green-600);
+  border-left-color: var(--gold-500);
+  box-shadow: 0 16px 32px rgba(10, 16, 32, 0.08);
+}
+.work-card-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.work-card-num {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--green-100);
+  color: var(--green-700);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.work-card:hover .work-card-num {
+  background: var(--gold-500);
+  color: #fff;
+}
+.work-card-head h3 {
+  font-size: 1.2rem;
+  margin: 0;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.work-card p {
+  color: var(--ink-soft);
+  font-size: 0.94rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .artistic-fieldwork-grid,
+  .artistic-pillar-grid,
+  .artistic-work-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .artistic-fieldwork-grid,
+  .artistic-pillar-grid,
+  .artistic-work-grid {
+    grid-template-columns: 1fr;
+  }
+}
