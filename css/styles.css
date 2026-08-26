@@ -2319,6 +2319,142 @@ p{ margin:0 0 1em; }
   transform: translateX(4px);
 }
 
+/* ---------- Pillar Accordion (expanding image panels) ---------- */
+.pillar-accordion {
+  display: flex;
+  gap: 8px;
+  height: clamp(440px, 58vh, 620px);
+  margin-top: 16px;
+  border-radius: 20px;
+}
+.pillar-panel-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.pillar-panel {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 84px;
+  display: flex;
+  align-items: flex-end;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  background-size: cover;
+  background-position: center;
+  isolation: isolate;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  transition: flex 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pillar-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(6, 12, 26, 0.88) 0%, rgba(6, 12, 26, 0.45) 38%, rgba(6, 12, 26, 0.15) 62%, rgba(6, 12, 26, 0.35) 100%);
+  z-index: 0;
+  transition: background 0.5s ease;
+}
+.pillar-panel-input:checked + .pillar-panel {
+  flex: 4.2 1 0;
+}
+.pillar-accordion:hover .pillar-panel:hover {
+  flex: 4.2 1 0;
+}
+.pillar-panel-tab {
+  position: relative;
+  z-index: 1;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+  color: #fff;
+  padding: 22px 0;
+  margin: 24px 0 24px 20px;
+  white-space: nowrap;
+  transition: opacity 0.35s ease;
+}
+.pillar-panel-input:checked + .pillar-panel .pillar-panel-tab,
+.pillar-accordion:hover .pillar-panel:hover .pillar-panel-tab {
+  opacity: 0;
+}
+.pillar-panel-detail {
+  position: relative;
+  z-index: 1;
+  padding: 0 12px 32px;
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: opacity 0.35s ease 0.1s, max-width 0.6s cubic-bezier(0.16, 1, 0.3, 1), padding 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pillar-panel-input:checked + .pillar-panel .pillar-panel-detail,
+.pillar-accordion:hover .pillar-panel:hover .pillar-panel-detail {
+  max-width: 480px;
+  opacity: 1;
+  padding: 0 32px 36px;
+}
+.pillar-panel-detail h3 {
+  font-size: 1.5rem;
+  color: #fff;
+  margin: 0 0 12px;
+}
+.pillar-panel-detail p {
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 18px;
+}
+.pillar-panel-detail .artistic-pillar-link {
+  color: #fff;
+}
+.pillar-panel-detail .artistic-pillar-link:hover {
+  color: var(--gold-400);
+}
+.pillar-panel-input:focus-visible + .pillar-panel {
+  outline: 2px solid var(--gold-500);
+  outline-offset: 3px;
+}
+
+@media (max-width: 780px) {
+  .pillar-accordion {
+    flex-direction: column;
+    height: auto;
+  }
+  .pillar-panel {
+    min-height: 84px;
+    align-items: flex-end;
+  }
+  .pillar-panel-input:checked + .pillar-panel {
+    flex: none;
+    min-height: 320px;
+  }
+  .pillar-accordion:hover .pillar-panel:hover {
+    flex: none;
+  }
+  .pillar-panel-tab {
+    writing-mode: horizontal-tb;
+    transform: none;
+    margin: 0 0 0 24px;
+    padding: 0;
+  }
+  .pillar-panel-input:checked + .pillar-panel .pillar-panel-tab {
+    opacity: 0;
+    position: absolute;
+  }
+  .pillar-panel-detail {
+    max-width: none;
+  }
+  .pillar-panel-input:checked + .pillar-panel .pillar-panel-detail {
+    max-width: none;
+    padding: 0 24px 28px;
+  }
+}
+
 /* ---------- How We Work Section Redesign ---------- */
 .artistic-work-grid {
   display: grid;
@@ -2329,7 +2465,6 @@ p{ margin:0 0 1em; }
 .work-card {
   background: var(--paper-raised);
   border: 1px solid var(--rule);
-  border-left: 4px solid var(--green-700);
   border-radius: 12px;
   padding: 32px;
   position: relative;
@@ -2339,7 +2474,6 @@ p{ margin:0 0 1em; }
 .work-card:hover {
   transform: translateY(-6px);
   border-color: var(--green-600);
-  border-left-color: var(--gold-500);
   box-shadow: 0 16px 32px rgba(10, 16, 32, 0.08);
 }
 .work-card-head {
