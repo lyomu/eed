@@ -1,0 +1,139 @@
+{
+  "id": "blog_post",
+  "label": "Blog Post",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "title": {
+        "type": "StructuredText",
+        "config": { "label": "Title", "single": "heading1" }
+      },
+      "excerpt": {
+        "type": "StructuredText",
+        "config": { "label": "Excerpt", "single": "paragraph" }
+      },
+      "category": {
+        "type": "Select",
+        "config": {
+          "label": "Category label",
+          "placeholder": "e.g. Energy Policy, WASH Security"
+        }
+      },
+      "category_filter": {
+        "type": "Select",
+        "config": {
+          "label": "Category filter",
+          "options": ["energy", "wash", "climate", "agriculture"]
+        }
+      },
+      "date": {
+        "type": "Date",
+        "config": { "label": "Publish date" }
+      },
+      "read_time": {
+        "type": "Text",
+        "config": { "label": "Read time", "placeholder": "e.g. 8 min read" }
+      },
+      "author_name": {
+        "type": "Text",
+        "config": { "label": "Author name" }
+      },
+      "author_role": {
+        "type": "Text",
+        "config": { "label": "Author role" }
+      },
+      "featured": {
+        "type": "Boolean",
+        "config": { "label": "Featured on /news", "default_value": false }
+      },
+      "hero_image": {
+        "type": "Image",
+        "config": { "label": "Hero / lead image" }
+      },
+      "key_takeaways": {
+        "type": "Group",
+        "config": {
+          "label": "Key Takeaways",
+          "fields": {
+            "text": { "type": "Text", "config": { "label": "Takeaway" } }
+          }
+        }
+      },
+      "sidebar_stats": {
+        "type": "Group",
+        "config": {
+          "label": "Sidebar stat cards",
+          "fields": {
+            "title": { "type": "Text", "config": { "label": "Stat title" } },
+            "value": { "type": "Text", "config": { "label": "Stat value" } },
+            "body": { "type": "Text", "config": { "label": "Stat description" } }
+          }
+        }
+      },
+      "body": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "labels": {},
+          "choices": {
+            "text_block": {
+              "type": "Slice",
+              "fieldset": "Text",
+              "description": "Paragraph or heading copy",
+              "non-repeat": {
+                "style": {
+                  "type": "Select",
+                  "config": { "label": "Style", "options": ["paragraph", "heading"] }
+                },
+                "content": { "type": "StructuredText", "config": { "label": "Content", "single": "paragraph,heading2" } }
+              },
+              "repeat": {}
+            },
+            "blockquote": {
+              "type": "Slice",
+              "fieldset": "Blockquote",
+              "description": "Pull quote",
+              "non-repeat": {
+                "text": { "type": "Text", "config": { "label": "Quote" } }
+              },
+              "repeat": {}
+            },
+            "callout": {
+              "type": "Slice",
+              "fieldset": "Callout",
+              "description": "Boxed comparison / highlighted aside",
+              "non-repeat": {
+                "title": { "type": "Text", "config": { "label": "Title" } }
+              },
+              "repeat": {
+                "term": { "type": "Text", "config": { "label": "Bold lead-in term (optional)" } },
+                "text": { "type": "Text", "config": { "label": "Text" } }
+              }
+            },
+            "figure": {
+              "type": "Slice",
+              "fieldset": "Figure",
+              "description": "Image with caption",
+              "non-repeat": {
+                "image": { "type": "Image", "config": { "label": "Image" } },
+                "caption": { "type": "Text", "config": { "label": "Caption" } }
+              },
+              "repeat": {}
+            }
+          }
+        }
+      },
+      "references": {
+        "type": "Group",
+        "config": {
+          "label": "References",
+          "fields": {
+            "text": { "type": "Text", "config": { "label": "Citation text" } },
+            "url": { "type": "Link", "config": { "label": "Source URL" } }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "id": "research_publication",
+  "label": "Research Publication",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "title": {
+        "type": "StructuredText",
+        "config": { "label": "Title", "single": "heading1" }
+      },
+      "description": {
+        "type": "StructuredText",
+        "config": { "label": "Description", "single": "paragraph" }
+      },
+      "funder": {
+        "type": "Text",
+        "config": { "label": "Funder / client" }
+      },
+      "category": {
+        "type": "Select",
+        "config": {
+          "label": "Category filter",
+          "options": ["energy", "wash", "climate", "agriculture"]
+        }
+      },
+      "tag": {
+        "type": "Text",
+        "config": { "label": "Display tag", "placeholder": "e.g. Energy" }
+      },
+      "publication_date": {
+        "type": "Date",
+        "config": { "label": "Publication date" }
+      },
+      "document": {
+        "type": "Link",
+        "config": { "label": "PDF / external document link", "select": "media" }
+      },
+      "body": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Body",
+          "multi": "paragraph,heading2,strong,em,hyperlink"
+        }
+      }
+    }
+  }
+}
