@@ -5,6 +5,10 @@
   "status": true,
   "json": {
     "Main": {
+      "uid": {
+        "type": "UID",
+        "config": { "label": "URL slug" }
+      },
       "title": {
         "type": "StructuredText",
         "config": { "label": "Title", "single": "heading1" }
@@ -77,6 +81,25 @@
         "config": {
           "labels": {},
           "choices": {
+            "lead": {
+              "type": "Slice",
+              "fieldset": "Lead paragraph",
+              "description": "Opening paragraph, with an optional bolded opener phrase",
+              "non-repeat": {
+                "opener": { "type": "Text", "config": { "label": "Bolded opener (optional)" } },
+                "text": { "type": "StructuredText", "config": { "label": "Text", "single": "paragraph" } }
+              },
+              "repeat": {}
+            },
+            "signoff": {
+              "type": "Slice",
+              "fieldset": "Sign-off",
+              "description": "Closing line",
+              "non-repeat": {
+                "text": { "type": "StructuredText", "config": { "label": "Text", "single": "paragraph" } }
+              },
+              "repeat": {}
+            },
             "text_block": {
               "type": "Slice",
               "fieldset": "Text",

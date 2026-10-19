@@ -5,6 +5,10 @@
   "status": true,
   "json": {
     "Main": {
+      "uid": {
+        "type": "UID",
+        "config": { "label": "URL slug" }
+      },
       "title": {
         "type": "StructuredText",
         "config": { "label": "Title", "single": "heading1" }
