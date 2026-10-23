@@ -1,0 +1,54 @@
+# DigitalOcean App Platform spec for the EED site.
+#
+# Create:  doctl apps create --spec .do/app.yaml
+# Update:  doctl apps update <APP_ID> --spec .do/app.yaml
+#
+# Before applying, replace REPLACE_WITH_WEBHOOK_SECRET below with the value you
+# set on the Prismic publication webhook. Do not commit the real secret: once
+# the app exists, DigitalOcean stores it encrypted and `doctl apps spec get`
+# returns it as EV[1:...]. Rotate it with:
+#   doctl apps update <APP_ID> --spec - <<< "$(filled spec)"
+name: eed
+region: fra
+
+services:
+  - name: web
+    environment_slug: node-js
+    instance_size_slug: apps-s-1vcpu-1gb
+    instance_count: 1
+    http_port: 8080
+
+    github:
+      repo: lyomu/eed
+      branch: main
+      deploy_on_push: true
+
+    source_dir: nextjs-app
+    build_command: npm run build
+    run_command: npm run start
+
+    health_check:
+      http_path: /
+      initial_delay_seconds: 20
+      period_seconds: 10
+      failure_threshold: 5
+
+    envs:
+      # Inlined into the client bundle at build time, so it must be present for
+      # the build as well as the run.
+      - key: NEXT_PUBLIC_PRISMIC_ENVIRONMENT
+        value: eri-website-repo
+        scope: RUN_AND_BUILD_TIME
+
+      # Checked by app/api/revalidate/route.ts against the webhook payload.
+      - key: PRISMIC_WEBHOOK_SECRET
+        value: REPLACE_WITH_WEBHOOK_SECRET
+        scope: RUN_TIME
+        type: SECRET
+
+      # Only needed if the Prismic Content API is switched from public to
+      # private. lib/prismicio.ts passes it through when set.
+      # - key: PRISMIC_ACCESS_TOKEN
+      #   value: REPLACE_WITH_ACCESS_TOKEN
+      #   scope: RUN_AND_BUILD_TIME
+      #   type: SECRET
