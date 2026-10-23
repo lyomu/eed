@@ -2,8 +2,8 @@
 
 Pixel-parity port of the static site in `../` (the original `.html`/`css`/`js`/`assets`
 files, left untouched as reference). App Router + TypeScript, single global
-stylesheet ported from `css/styles.css`, and a mock content layer standing in
-for Prismic until a real repo is connected.
+stylesheet ported from `css/styles.css`, and a Prismic content adapter with
+mock content when no repository is configured.
 
 ## Development
 
@@ -24,35 +24,35 @@ npm run dev
 - `lib/` — nav config, team roster, pillar copy, count-up logic, form
   validation, and the CMS layer (`cms.ts` + `mock-content.ts`).
 - `customtypes/` — Prismic custom type JSON schemas (`blog_post`,
-  `research_publication`), documented but not pushed to any repo.
+  `research_publication`). The `blog_post` type is configured in Prismic.
 
-## Connecting a real Prismic repo
+## Prismic content
 
-The site currently runs entirely on `lib/mock-content.ts` — 8 blog posts and
-6 research publications shaped exactly like the eventual Prismic response
-(see `lib/blog-types.ts`). Nothing calls Prismic yet.
+The app is connected to `eri-website-repo` through the ignored `.env.local`.
+All eight existing news articles were migrated and published in the Prismic
+`blog_post` type. News indexes and detail pages read from the public Content
+API. The six portfolio publications still use `lib/mock-content.ts` because
+the Prismic `research_publication` collection has no published documents.
+Keep that file until the publications have also been migrated and verified.
+Content refreshes within about one minute after publication; a configured
+webhook can invalidate the cache immediately.
 
-To go live:
+For another environment, set `NEXT_PUBLIC_PRISMIC_ENVIRONMENT=eri-website-repo`
+(see `.env.local.example`). A Content API token is needed only if repository
+visibility changes to private. The blog category filter uses `energy`,
+`wash`, `climate`, or `agriculture`.
 
-1. Create a Prismic repository and install the client:
-   ```bash
-   npm install @prismicio/client @prismicio/next
-   ```
-2. Add the repo name to `.env.local`:
-   ```
-   NEXT_PUBLIC_PRISMIC_ENVIRONMENT=your-repo-name
-   ```
-3. Push the two custom types in `customtypes/` (via Slice Machine or the
-   Prismic custom-type builder) — `blog_post` and `research_publication`.
-   Populate at least the 8 posts / 6 publications currently in
-   `mock-content.ts` so the site doesn't regress content-wise.
-4. Rewrite the four functions in `lib/cms.ts` (`getBlogPosts`,
-   `getBlogPost`, `getPublications`, `getPublication`) to query the Prismic
-   client instead of `mock-content.ts`. Keep the return types
-   (`lib/blog-types.ts`) unchanged — every page, `FilterBar`, and
-   `PostBody` depends only on those shapes, not on where the data comes
-   from.
-5. Delete `lib/mock-content.ts` once the swap is verified.
+1. The `EED local development` preview is registered in Prismic with domain
+   `http://localhost:3000` and route `/api/preview`. Add the production site
+   domain after deployment. The app maps blog posts to `/news/:uid` and
+   publications to `/portfolio/:uid`.
+2. Set `PRISMIC_WEBHOOK_SECRET` in the app and the same secret on a Prismic
+   webhook. Point it to `https://<your-site>/api/revalidate` for publication
+   and unpublication events. This refreshes cached Prismic content.
+3. Run `npm run build` with the repository configured and inspect `/news`
+   and its detail pages. `scripts/migrate-news.mjs` is the repeatable migration
+   source; `--apply` requires a temporary `PRISMIC_WRITE_TOKEN` and stages
+   documents for publication in Prismic.
 
 ## Known gaps carried over from the original site
 

@@ -5,6 +5,8 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import MotionEffects from '@/components/MotionEffects';
 import { ToastProvider } from '@/components/ToastProvider';
+import { PrismicPreview } from '@prismicio/next';
+import { repositoryName } from '@/lib/prismicio';
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
@@ -50,6 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Footer />
         </ToastProvider>
         <MotionEffects />
+        {repositoryName && <PrismicPreview repositoryName={repositoryName} />}
       </body>
     </html>
   );

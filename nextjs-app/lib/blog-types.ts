@@ -6,7 +6,7 @@ export type PostBlock =
   | { type: 'heading'; text: string }
   | { type: 'blockquote'; text: string }
   | { type: 'callout'; title: string; paragraphs: { term?: string; text: string }[] }
-  | { type: 'figure'; caption: string; markLabel: string }
+  | { type: 'figure'; caption: string; markLabel: string; imageUrl?: string; imageAlt?: string }
   | { type: 'signoff'; text: string };
 
 export type Reference = { id: number; text: string; url?: string; urlLabel?: string };
@@ -22,6 +22,8 @@ export type BlogPostSummary = {
   readTime: string;
   excerpt: string;
   featured?: boolean;
+  imageUrl?: string;
+  imageAlt?: string;
 };
 
 export type BlogPost = BlogPostSummary & {
@@ -41,6 +43,7 @@ export type PublicationSummary = {
   funder: string;
   category: PillarCategory;
   tag: string;
+  documentUrl?: string;
 };
 
 export type Publication = PublicationSummary & {

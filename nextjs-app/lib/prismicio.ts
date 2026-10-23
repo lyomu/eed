@@ -10,7 +10,17 @@ export function createClient(config: prismic.ClientConfig = {}) {
     );
   }
 
-  const client = prismic.createClient(repositoryName, config);
+  const client = prismic.createClient(repositoryName, {
+    accessToken: process.env.PRISMIC_ACCESS_TOKEN || undefined,
+    routes: [
+      { type: 'blog_post', path: '/news/:uid' },
+      { type: 'research_publication', path: '/portfolio/:uid' },
+    ],
+    fetchOptions: {
+      next: { tags: ['prismic'], revalidate: 60 },
+    },
+    ...config,
+  });
 
   enableAutoPreviews({ client });
 

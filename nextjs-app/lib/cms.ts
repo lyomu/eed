@@ -11,11 +11,9 @@ import type {
 } from './blog-types';
 
 /**
- * Content fetch layer. Backed by Prismic when NEXT_PUBLIC_PRISMIC_ENVIRONMENT
- * is set (see customtypes/ for the pushed schemas); falls back to
- * lib/mock-content.ts otherwise so the site still builds/runs without a
- * Prismic repo connected. Every caller (pages, FilterBar, etc.) depends only
- * on these signatures and the types in lib/blog-types.ts.
+ * Content fetch layer. News uses Prismic when a repository is configured.
+ * Publications retain their local content until that collection is populated
+ * in Prismic. Every caller depends only on these signatures and blog-types.
  */
 
 const usePrismic = Boolean(repositoryName);
@@ -50,6 +48,7 @@ export async function getPublications(): Promise<PublicationSummary[]> {
   const docs = await client.getAllByType('research_publication', {
     orderings: [{ field: 'my.research_publication.publication_date', direction: 'desc' }],
   });
+  if (docs.length === 0) return PUBLICATIONS.map(({ body: _body, ...summary }) => summary);
   return docs.map(toPublicationSummary);
 }
 
@@ -57,6 +56,10 @@ export async function getPublication(slug: string): Promise<Publication | null> 
   if (!usePrismic) return PUBLICATIONS.find((pub) => pub.slug === slug) ?? null;
 
   const client = createClient();
+  const published = await client.getByType('research_publication', { pageSize: 1 });
+  if (published.results.length === 0) {
+    return PUBLICATIONS.find((publication) => publication.slug === slug) ?? null;
+  }
   try {
     const doc = await client.getByUID('research_publication', slug);
     return toPublication(doc);
@@ -86,10 +89,11 @@ function asText(field: prismic.RichTextField): string {
 
 function formatDate(isoDate: string | null): string {
   if (!isoDate) return '';
-  return new Date(isoDate).toLocaleDateString('en-US', {
+  return new Date(`${isoDate}T00:00:00Z`).toLocaleDateString('en-US', {
     month: 'long',
     day: 'numeric',
     year: 'numeric',
+    timeZone: 'UTC',
   });
 }
 
@@ -105,6 +109,8 @@ function toSummary(doc: any): BlogPostSummary {
     readTime: data.read_time ?? '',
     excerpt: asText(data.excerpt),
     featured: Boolean(data.featured),
+    imageUrl: data.hero_image?.url || undefined,
+    imageAlt: data.hero_image?.alt || asText(data.title),
   };
 }
 
@@ -115,8 +121,8 @@ function toBlogPost(doc: any): BlogPost {
     ...toSummary(doc),
     author: data.author_name ?? '',
     authorRole: data.author_role ?? '',
-    leadImageLabel: data.hero_image?.alt || asText(data.title),
-    body: (data.body ?? []).map(toPostBlock).filter(Boolean) as PostBlock[],
+    leadImageLabel: data.lead_image_label || data.hero_image?.alt || asText(data.title),
+    body: toBody(data.body ?? []),
     keyTakeaways: (data.key_takeaways ?? [])
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .map((item: any) => item.text)
@@ -132,6 +138,34 @@ function toBlogPost(doc: any): BlogPost {
         url: item.url?.url,
       })),
   };
+}
+
+// Existing repositories may use either a Rich Text body or the legacy Slice Zone.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function toBody(nodes: any[]): PostBlock[] {
+  if (nodes.length > 0 && 'slice_type' in nodes[0]) {
+    return nodes.map(toPostBlock).filter((block): block is PostBlock => block !== null);
+  }
+
+  return nodes.flatMap((node, index): PostBlock[] => {
+    const text = node.text ?? '';
+    if (node.type === 'heading2' || node.type === 'heading3') {
+      return [{ type: 'heading', text }];
+    }
+    if (node.type === 'paragraph' && text) {
+      return [{ type: index === 0 ? 'lead' : 'paragraph', text }];
+    }
+    if (node.type === 'image') {
+      return [{
+        type: 'figure',
+        caption: node.alt ?? '',
+        markLabel: node.alt ?? '',
+        imageUrl: node.url,
+        imageAlt: node.alt ?? '',
+      }];
+    }
+    return [];
+  });
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -152,6 +186,8 @@ function toPostBlock(slice: any): PostBlock | null {
         type: 'figure',
         caption: slice.primary.caption ?? '',
         markLabel: slice.primary.image?.alt || slice.primary.caption || '',
+        imageUrl: slice.primary.image?.url || undefined,
+        imageAlt: slice.primary.image?.alt || slice.primary.caption || '',
       };
     case 'callout':
       return {
@@ -182,6 +218,7 @@ function toPublicationSummary(doc: any): PublicationSummary {
     funder: data.funder ?? '',
     category: (data.category ?? 'energy') as PillarCategory,
     tag: data.tag ?? '',
+    documentUrl: prismic.asLink(data.document) || undefined,
   };
 }
 

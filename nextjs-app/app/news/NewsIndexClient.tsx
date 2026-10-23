@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import FilterBar, { useFilterState } from '@/components/FilterBar';
 import type { BlogPostSummary } from '@/lib/blog-types';
 
@@ -25,27 +26,38 @@ export default function NewsIndexClient({ posts }: { posts: BlogPostSummary[] })
 
   return (
     <>
-      <section className="on-paper">
-        <div className="container">
-          <article className="featured-article" data-reveal>
-            <Link href={`/news/${featured.slug}`} className="photo-block ratio-16x10">
-              <span className="mark">{featured.category}</span>
-            </Link>
-            <div>
-              <span className="meta-line">
-                Featured &middot; {featured.category} &middot; {featured.date}
-              </span>
-              <h2>
-                <Link href={`/news/${featured.slug}`}>{featured.title}</Link>
-              </h2>
-              <p>{featured.excerpt}</p>
-              <Link href={`/news/${featured.slug}`} className="card-link">
-                Read Full Report &rarr;
+      {featured && (
+        <section className="on-paper">
+          <div className="container">
+            <article className="featured-article" data-reveal>
+              <Link href={`/news/${featured.slug}`} className="photo-block ratio-16x10">
+                {featured.imageUrl && (
+                  <Image
+                    src={featured.imageUrl}
+                    alt={featured.imageAlt ?? ''}
+                    fill
+                    unoptimized
+                    sizes="(max-width: 800px) 100vw, 800px"
+                  />
+                )}
+                <span className="mark">{featured.category}</span>
               </Link>
-            </div>
-          </article>
-        </div>
-      </section>
+              <div>
+                <span className="meta-line">
+                  Featured &middot; {featured.category} &middot; {featured.date}
+                </span>
+                <h2>
+                  <Link href={`/news/${featured.slug}`}>{featured.title}</Link>
+                </h2>
+                <p>{featured.excerpt}</p>
+                <Link href={`/news/${featured.slug}`} className="card-link">
+                  Read Full Report &rarr;
+                </Link>
+              </div>
+            </article>
+          </div>
+        </section>
+      )}
 
       <section className="section-tight on-paper" data-filter-root="news">
         <div className="container">
@@ -78,14 +90,9 @@ export default function NewsIndexClient({ posts }: { posts: BlogPostSummary[] })
             ))}
           </div>
 
-          <p className={`empty-state${filtered.length ? ' hidden' : ''}`}>No insights match your search.</p>
-
-          <div className="pagination">
-            <span className="current">1</span>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">&rsaquo;</a>
-          </div>
+          <p className={`empty-state${filtered.length ? ' hidden' : ''}`}>
+            {posts.length ? 'No insights match your search.' : 'No insights have been published yet.'}
+          </p>
         </div>
       </section>
     </>

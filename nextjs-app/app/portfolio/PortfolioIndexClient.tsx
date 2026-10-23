@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import FilterBar, { useFilterState } from '@/components/FilterBar';
 import type { PublicationSummary } from '@/lib/blog-types';
@@ -14,8 +13,6 @@ const TABS = [
 ];
 
 export default function PortfolioIndexClient({ publications }: { publications: PublicationSummary[] }) {
-  const [loadMoreDone, setLoadMoreDone] = useState(false);
-
   const items = publications.map((pub) => ({
     ...pub,
     searchText: `${pub.title} ${pub.description} ${pub.funder} ${pub.tag}`,
@@ -58,18 +55,10 @@ export default function PortfolioIndexClient({ publications }: { publications: P
           ))}
         </div>
 
-        <p className={`empty-state${filtered.length ? ' hidden' : ''}`}>No projects match your search.</p>
+        <p className={`empty-state${filtered.length ? ' hidden' : ''}`}>
+          {publications.length ? 'No projects match your search.' : 'No publications have been published yet.'}
+        </p>
 
-        <div className="list-actions">
-          <button
-            className="btn btn-outline"
-            id="load-more"
-            disabled={loadMoreDone}
-            onClick={() => setLoadMoreDone(true)}
-          >
-            {loadMoreDone ? 'All projects shown' : 'Load More Projects'}
-          </button>
-        </div>
       </div>
     </section>
   );

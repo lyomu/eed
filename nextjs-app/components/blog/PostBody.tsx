@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import type { PostBlock } from '@/lib/blog-types';
+import Image from 'next/image';
 
 function renderWithCitations(text: string): ReactNode {
   const parts = text.split(/\{\{cite:(\d+)\}\}/g);
@@ -54,6 +55,7 @@ export default function PostBody({ body }: { body: PostBlock[] }) {
             return (
               <figure className="post-figure" data-reveal key={i}>
                 <div className="photo-block ratio-16x10">
+                  {block.imageUrl && <Image src={block.imageUrl} alt={block.imageAlt ?? ''} fill unoptimized sizes="(max-width: 800px) 100vw, 800px" />}
                   <span className="mark">{block.markLabel}</span>
                 </div>
                 <figcaption>{block.caption}</figcaption>

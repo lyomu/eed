@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { BLOG_POSTS } from '@/lib/mock-content';
-import { getBlogPost } from '@/lib/cms';
+import { getBlogPost, getBlogPosts } from '@/lib/cms';
+import Image from 'next/image';
 import PostBody from '@/components/blog/PostBody';
 
 export async function generateStaticParams() {
-  return BLOG_POSTS.map((post) => ({ slug: post.slug }));
+  return (await getBlogPosts()).map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({
@@ -45,6 +45,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       <div className="container">
         <div className="photo-block ratio-16x9 post-lead-image">
+          {post.imageUrl && <Image src={post.imageUrl} alt={post.imageAlt ?? ''} fill unoptimized sizes="(max-width: 1200px) 100vw, 1200px" />}
           <span className="mark">{post.leadImageLabel}</span>
         </div>
       </div>

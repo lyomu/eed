@@ -1,11 +1,10 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { PUBLICATIONS } from '@/lib/mock-content';
-import { getPublication } from '@/lib/cms';
+import { getPublication, getPublications } from '@/lib/cms';
 
 export async function generateStaticParams() {
-  return PUBLICATIONS.map((pub) => ({ slug: pub.slug }));
+  return (await getPublications()).map((pub) => ({ slug: pub.slug }));
 }
 
 export async function generateMetadata({
@@ -56,6 +55,11 @@ export default async function PublicationPage({ params }: { params: Promise<{ sl
                   </li>
                 </ul>
               </div>
+              {pub.documentUrl && (
+                <a href={pub.documentUrl} className="card-link" target="_blank" rel="noopener noreferrer">
+                  View publication &rarr;
+                </a>
+              )}
               <Link href="/portfolio" className="card-link">
                 &larr; Back to Research Portfolio
               </Link>
