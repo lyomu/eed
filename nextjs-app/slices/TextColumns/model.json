@@ -1,0 +1,46 @@
+{
+  "id": "text_columns",
+  "type": "SharedSlice",
+  "name": "TextColumns",
+  "description": "Introduction and two text columns",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "version": "initial",
+      "description": "Introduction and two text columns",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Section heading",
+            "single": "heading1,heading2"
+          }
+        },
+        "intro": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Introduction",
+            "multi": "paragraph,heading2,heading3,strong,em,hyperlink,list-item,o-list-item"
+          }
+        },
+        "left_body": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Left column",
+            "multi": "paragraph,heading2,heading3,strong,em,hyperlink,list-item,o-list-item"
+          }
+        },
+        "right_body": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Right column",
+            "multi": "paragraph,heading2,heading3,strong,em,hyperlink,list-item,o-list-item"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

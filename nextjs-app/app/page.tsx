@@ -1,8 +1,17 @@
 import Link from 'next/link';
 import InquiryForm from '@/components/forms/InquiryForm';
 import FallbackImage from '@/components/FallbackImage';
+import SitePage from '@/components/SitePage';
+import { getPageMetadata, getSitePage } from '@/lib/site-content';
 
-export default function HomePage() {
+export const generateMetadata = () => getPageMetadata('home', {
+  title: 'EED Research Institute — Advancing Evidence-Based Sustainability',
+  description: 'EED Research Institute advances research in WASH, energy, climate change, and agriculture.',
+});
+
+export default async function HomePage() {
+  const page = await getSitePage('home');
+  if (page) return <SitePage doc={page} />;
   return (
     <>
       <section className="hero hero--image on-image">

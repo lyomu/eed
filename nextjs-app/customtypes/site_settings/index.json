@@ -1,0 +1,151 @@
+{
+  "id": "site_settings",
+  "label": "Site Settings",
+  "format": "custom",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "header_logo": {
+        "type": "Image",
+        "config": {
+          "label": "Header logo",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "footer_logo": {
+        "type": "Image",
+        "config": {
+          "label": "Footer logo",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "navigation": {
+        "type": "Group",
+        "config": {
+          "label": "Main navigation",
+          "fields": {
+            "label": {
+              "type": "Text",
+              "config": {
+                "label": "Label"
+              }
+            },
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Destination"
+              }
+            }
+          }
+        }
+      },
+      "pillar_navigation": {
+        "type": "Group",
+        "config": {
+          "label": "Pillar submenu",
+          "fields": {
+            "label": {
+              "type": "Text",
+              "config": {
+                "label": "Label"
+              }
+            },
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Destination"
+              }
+            }
+          }
+        }
+      },
+      "cta_label": {
+        "type": "Text",
+        "config": {
+          "label": "Header button label"
+        }
+      },
+      "cta_link": {
+        "type": "Link",
+        "config": {
+          "label": "Header button destination"
+        }
+      },
+      "footer_description": {
+        "type": "Text",
+        "config": {
+          "label": "Footer description"
+        }
+      },
+      "footer_quick_links": {
+        "type": "Group",
+        "config": {
+          "label": "Footer quick links",
+          "fields": {
+            "label": {
+              "type": "Text",
+              "config": {
+                "label": "Label"
+              }
+            },
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Destination"
+              }
+            }
+          }
+        }
+      },
+      "footer_information": {
+        "type": "Group",
+        "config": {
+          "label": "Footer information links",
+          "fields": {
+            "label": {
+              "type": "Text",
+              "config": {
+                "label": "Label"
+              }
+            },
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Destination"
+              }
+            }
+          }
+        }
+      },
+      "footer_legal": {
+        "type": "Group",
+        "config": {
+          "label": "Footer legal links",
+          "fields": {
+            "label": {
+              "type": "Text",
+              "config": {
+                "label": "Label"
+              }
+            },
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Destination"
+              }
+            }
+          }
+        }
+      },
+      "copyright": {
+        "type": "Text",
+        "config": {
+          "label": "Copyright line"
+        }
+      }
+    }
+  }
+}

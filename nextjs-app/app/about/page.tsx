@@ -1,14 +1,20 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import FallbackImage from '@/components/FallbackImage';
+import SitePage from '@/components/SitePage';
+import { getPageMetadata, getSitePage } from '@/lib/site-content';
 
-export const metadata: Metadata = {
+const fallbackMetadata: Metadata = {
   title: 'About Us — EED Research Institute',
   description:
     'EED Research Institute is dedicated to pioneering ecological breakthroughs that inform policy and empower communities across the globe.',
 };
 
-export default function AboutPage() {
+export const generateMetadata = () => getPageMetadata('about', fallbackMetadata);
+
+export default async function AboutPage() {
+  const page = await getSitePage('about');
+  if (page) return <SitePage doc={page} />;
   return (
     <>
       <section className="page-head page-head--image on-image">

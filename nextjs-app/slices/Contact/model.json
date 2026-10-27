@@ -1,0 +1,56 @@
+{
+  "id": "contact",
+  "type": "SharedSlice",
+  "name": "Contact",
+  "description": "Contact form beside editable office details",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "version": "initial",
+      "description": "Contact form beside editable office details",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Form heading",
+            "single": "heading1,heading2"
+          }
+        },
+        "office_heading": {
+          "type": "Text",
+          "config": {
+            "label": "Office heading"
+          }
+        },
+        "body": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Office introduction",
+            "multi": "paragraph,heading2,heading3,strong,em,hyperlink,list-item,o-list-item"
+          }
+        },
+        "address": {
+          "type": "Text",
+          "config": {
+            "label": "Address"
+          }
+        },
+        "phone": {
+          "type": "Text",
+          "config": {
+            "label": "Telephone"
+          }
+        },
+        "email": {
+          "type": "Text",
+          "config": {
+            "label": "Email"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

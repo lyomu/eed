@@ -1,0 +1,17 @@
+{
+  "id": "news_list",
+  "type": "SharedSlice",
+  "name": "NewsList",
+  "description": "Current Prismic blog posts with filters",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "version": "initial",
+      "description": "Current Prismic blog posts with filters",
+      "imageUrl": "",
+      "primary": {},
+      "items": {}
+    }
+  ]
+}

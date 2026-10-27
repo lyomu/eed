@@ -1,0 +1,58 @@
+{
+  "id": "text_image",
+  "type": "SharedSlice",
+  "name": "TextImage",
+  "description": "Image beside formatted copy",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "version": "initial",
+      "description": "Image beside formatted copy",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Heading",
+            "single": "heading1,heading2"
+          }
+        },
+        "body": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Body",
+            "multi": "paragraph,heading2,heading3,strong,em,hyperlink,list-item,o-list-item"
+          }
+        },
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "image_label": {
+          "type": "Text",
+          "config": {
+            "label": "Image label"
+          }
+        },
+        "button_label": {
+          "type": "Text",
+          "config": {
+            "label": "Button label"
+          }
+        },
+        "button_link": {
+          "type": "Link",
+          "config": {
+            "label": "Button destination"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

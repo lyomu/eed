@@ -1,14 +1,20 @@
 import type { Metadata } from 'next';
 import ContactForm from '@/components/forms/ContactForm';
 import FallbackImage from '@/components/FallbackImage';
+import SitePage from '@/components/SitePage';
+import { getPageMetadata, getSitePage } from '@/lib/site-content';
 
-export const metadata: Metadata = {
+const fallbackMetadata: Metadata = {
   title: 'Contact Us — EED Research Institute',
   description:
     'Collaborate with EED Research Institute. Reach our East Africa hub in Nairobi, Kenya, or submit a research inquiry.',
 };
 
-export default function ContactPage() {
+export const generateMetadata = () => getPageMetadata('contact', fallbackMetadata);
+
+export default async function ContactPage() {
+  const page = await getSitePage('contact');
+  if (page) return <SitePage doc={page} />;
   return (
     <>
       <section className="page-head page-head--image on-image">

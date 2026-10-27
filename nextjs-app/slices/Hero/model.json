@@ -1,0 +1,99 @@
+{
+  "id": "hero",
+  "type": "SharedSlice",
+  "name": "Hero",
+  "description": "Page title, lead copy, image, and optional button",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "version": "initial",
+      "description": "Page title, lead copy, image, and optional button",
+      "imageUrl": "",
+      "primary": {
+        "eyebrow": {
+          "type": "Text",
+          "config": {
+            "label": "Eyebrow"
+          }
+        },
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Page title",
+            "single": "heading1,heading2"
+          }
+        },
+        "body": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Lead copy",
+            "multi": "paragraph,heading2,heading3,strong,em,hyperlink,list-item,o-list-item"
+          }
+        },
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Background image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "home_style": {
+          "type": "Boolean",
+          "config": {
+            "label": "Use large home hero",
+            "default_value": false
+          }
+        },
+        "button_label": {
+          "type": "Text",
+          "config": {
+            "label": "Button label"
+          }
+        },
+        "button_link": {
+          "type": "Link",
+          "config": {
+            "label": "Button destination"
+          }
+        },
+        "metrics": {
+          "type": "Group",
+          "config": {
+            "label": "Hero metrics",
+            "fields": {
+              "value": {
+                "type": "Text",
+                "config": {
+                  "label": "Value"
+                }
+              },
+              "label": {
+                "type": "Text",
+                "config": {
+                  "label": "Label"
+                }
+              }
+            }
+          }
+        },
+        "tags": {
+          "type": "Group",
+          "config": {
+            "label": "Hero topic strip",
+            "fields": {
+              "label": {
+                "type": "Text",
+                "config": {
+                  "label": "Topic"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

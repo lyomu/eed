@@ -10,7 +10,7 @@ type Phase = 'closed' | 'open' | 'visible' | 'closing';
 const SLUG_RE = /^[a-z0-9-]+$/i;
 const SHARE_STATUS_MS = 2600;
 
-export default function TeamSection() {
+export default function TeamSection({ members = TEAM_MEMBERS }: { members?: TeamMember[] }) {
   const pathname = usePathname();
   const [phase, setPhase] = useState<Phase>('closed');
   const [activeMember, setActiveMember] = useState<TeamMember | null>(null);
@@ -72,14 +72,13 @@ export default function TeamSection() {
     function openFromHash() {
       const raw = window.location.hash.slice(1);
       if (!raw || !SLUG_RE.test(raw)) return;
-      const member = TEAM_MEMBERS.find((m) => m.id === raw);
+      const member = members.find((m) => m.id === raw);
       if (member) openMember(member);
     }
     openFromHash();
     window.addEventListener('hashchange', openFromHash);
     return () => window.removeEventListener('hashchange', openFromHash);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [members, openMember]);
 
   // Escape closes; focus trap while open.
   useEffect(() => {
@@ -178,7 +177,7 @@ export default function TeamSection() {
       <section className="section on-paper">
         <div className="container">
           <div className="team-grid" data-reveal-stagger>
-            {TEAM_MEMBERS.map((member) => (
+            {members.map((member) => (
               <button
                 key={member.id}
                 className="team-card"

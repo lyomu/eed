@@ -2,13 +2,19 @@ import type { Metadata } from 'next';
 import { getBlogPosts } from '@/lib/cms';
 import NewsIndexClient from './NewsIndexClient';
 import FallbackImage from '@/components/FallbackImage';
+import SitePage from '@/components/SitePage';
+import { getPageMetadata, getSitePage } from '@/lib/site-content';
 
-export const metadata: Metadata = {
+const fallbackMetadata: Metadata = {
   title: 'News & Insights — EED Research Institute',
   description: 'Research commentary, policy analysis, and field perspectives from the EED Research Institute.',
 };
 
+export const generateMetadata = () => getPageMetadata('news', fallbackMetadata);
+
 export default async function NewsPage() {
+  const page = await getSitePage('news');
+  if (page) return <SitePage doc={page} />;
   const posts = await getBlogPosts();
 
   return (

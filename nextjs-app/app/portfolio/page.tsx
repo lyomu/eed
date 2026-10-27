@@ -2,14 +2,20 @@ import type { Metadata } from 'next';
 import { getPublications } from '@/lib/cms';
 import PortfolioIndexClient from './PortfolioIndexClient';
 import FallbackImage from '@/components/FallbackImage';
+import SitePage from '@/components/SitePage';
+import { getPageMetadata, getSitePage } from '@/lib/site-content';
 
-export const metadata: Metadata = {
+const fallbackMetadata: Metadata = {
   title: 'Research Portfolio — EED Research Institute',
   description:
     'An archive of applied research, systemic analyses, and policy interventions across WASH, energy, climate, and agriculture.',
 };
 
+export const generateMetadata = () => getPageMetadata('portfolio', fallbackMetadata);
+
 export default async function PortfolioPage() {
+  const page = await getSitePage('portfolio');
+  if (page) return <SitePage doc={page} />;
   const publications = await getPublications();
 
   return (

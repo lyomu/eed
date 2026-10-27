@@ -37,6 +37,47 @@ Keep that file until the publications have also been migrated and verified.
 Content refreshes within about one minute after publication; a configured
 webhook can invalidate the cache immediately.
 
+### Editing the rest of the website
+
+The `site_page` page type controls the home, about, what-we-do, team, contact,
+news, portfolio, and four pillar landing pages. Editors can reorder and edit
+their sections in Prismic. The model includes heroes, text and image, columns,
+card grids, lists, statistics, image statements, calls to action, team profiles,
+forms, live news and publication lists, and the specialized about/pillar layouts.
+The `site_settings` singleton controls logos, navigation, and footer content.
+Page SEO title and description are editable on each `site_page` document.
+Blog posts and publications keep their existing Prismic types.
+
+| Route | `site_page` UID |
+| --- | --- |
+| `/` | `home` |
+| `/about` | `about` |
+| `/what-we-do` | `what-we-do` |
+| `/what-we-do/wash` | `wash` |
+| `/what-we-do/energy` | `energy` |
+| `/what-we-do/climate` | `climate` |
+| `/what-we-do/agriculture` | `agriculture` |
+| `/team` | `team` |
+| `/contact` | `contact` |
+| `/news` | `news` |
+| `/portfolio` | `portfolio` |
+
+The current JSX stays visible for any route without a published page with
+sections. A published page replaces the entire route, so build and preview
+all its sections before publishing. On news and portfolio pages, include the
+corresponding list section to retain the live index. On the team page, include
+the Team section and enter each person's profile. Publishing `site_settings`
+updates shared site chrome; empty settings fields use code defaults.
+
+The models are in `customtypes/` and `slices/`. To enable them in
+`eri-website-repo`, sign in with `npx prismic login`, then run `npx prismic push`
+after committing model changes. The Prismic CLI requires model history in Git
+before pushing. Create and publish the `site_settings` document and each
+`site_page` document in Prismic. The site reads published content within about
+one minute; preview uses `/api/preview`. Run
+`node scripts/generate-site-models.mjs` to regenerate the model JSON after
+changing field definitions in that script.
+
 For another environment, set `NEXT_PUBLIC_PRISMIC_ENVIRONMENT=eri-website-repo`
 (see `.env.local.example`). A Content API token is needed only if repository
 visibility changes to private. The blog category filter uses `energy`,

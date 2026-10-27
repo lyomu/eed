@@ -1,0 +1,45 @@
+{
+  "id": "stats",
+  "type": "SharedSlice",
+  "name": "Stats",
+  "description": "Impact band with any number of statistics",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "version": "initial",
+      "description": "Impact band with any number of statistics",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Optional heading",
+            "single": "heading1,heading2"
+          }
+        },
+        "entries": {
+          "type": "Group",
+          "config": {
+            "label": "Entries",
+            "fields": {
+              "value": {
+                "type": "Text",
+                "config": {
+                  "label": "Value"
+                }
+              },
+              "label": {
+                "type": "Text",
+                "config": {
+                  "label": "Label"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

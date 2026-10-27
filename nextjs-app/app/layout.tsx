@@ -6,7 +6,10 @@ import Footer from '@/components/layout/Footer';
 import MotionEffects from '@/components/MotionEffects';
 import { ToastProvider } from '@/components/ToastProvider';
 import { PrismicPreview } from '@prismicio/next';
-import { repositoryName } from '@/lib/prismicio';
+import { linkResolver, repositoryName } from '@/lib/prismicio';
+import * as prismic from '@prismicio/client';
+import { getSiteSettings } from '@/lib/site-content';
+import type { NavLink } from '@/lib/nav';
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
@@ -31,7 +34,22 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const settings = await getSiteSettings();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const data: any = settings?.data || {};
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const destination = (field: any) => field?.link_type === 'Document' && field?.type === 'site_page'
+    ? linkResolver(field) : prismic.asLink(field);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const links = (items: any[]): NavLink[] => items.filter((item) => item.label && destination(item.link))
+    .map((item) => ({ label: item.label, href: destination(item.link)! }));
+  const navLinks = links(data.navigation || []);
+  const pillarLinks = links(data.pillar_navigation || []);
+  const quickLinks = links(data.footer_quick_links || []);
+  const infoLinks = links(data.footer_information || []);
+  const legalLinks = links(data.footer_legal || []);
+  const ctaHref = destination(data.cta_link);
   return (
     <html lang="en" className={`${dmSans.variable} ${outfit.variable}`}>
       <head>
@@ -47,9 +65,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <ToastProvider>
-          <Header />
+          <Header
+            logo={data.header_logo?.url || undefined}
+            links={navLinks.length ? navLinks : undefined}
+            pillars={pillarLinks.length ? pillarLinks : undefined}
+            cta={data.cta_label && ctaHref ? { label: data.cta_label, href: ctaHref } : undefined}
+          />
           <main>{children}</main>
-          <Footer />
+          <Footer
+            logo={data.footer_logo?.url || undefined}
+            description={data.footer_description || undefined}
+            quickLinks={quickLinks.length ? quickLinks : undefined}
+            pillars={pillarLinks.length ? pillarLinks : undefined}
+            infoLinks={infoLinks.length ? infoLinks : undefined}
+            legalLinks={legalLinks.length ? legalLinks : undefined}
+            copyright={data.copyright || undefined}
+          />
         </ToastProvider>
         <MotionEffects />
         {repositoryName && <PrismicPreview repositoryName={repositoryName} />}

@@ -1,0 +1,79 @@
+{
+  "id": "pillar_cards",
+  "type": "SharedSlice",
+  "name": "PillarCards",
+  "description": "About page illustrated pillar cards",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "version": "initial",
+      "description": "About page illustrated pillar cards",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Section heading",
+            "single": "heading1,heading2"
+          }
+        },
+        "intro": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Introduction",
+            "multi": "paragraph,heading2,heading3,strong,em,hyperlink,list-item,o-list-item"
+          }
+        },
+        "entries": {
+          "type": "Group",
+          "config": {
+            "label": "Entries",
+            "fields": {
+              "title": {
+                "type": "Text",
+                "config": {
+                  "label": "Title"
+                }
+              },
+              "badge": {
+                "type": "Text",
+                "config": {
+                  "label": "Image badge"
+                }
+              },
+              "stat": {
+                "type": "Text",
+                "config": {
+                  "label": "Statistic chip"
+                }
+              },
+              "image": {
+                "type": "Image",
+                "config": {
+                  "label": "Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "body": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Description",
+                  "multi": "paragraph,heading2,heading3,strong,em,hyperlink,list-item,o-list-item"
+                }
+              },
+              "destination": {
+                "type": "Link",
+                "config": {
+                  "label": "Destination"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

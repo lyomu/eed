@@ -3,9 +3,11 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState, type FocusEvent, type KeyboardEvent } from 'react';
-import { NAV_CTA, NAV_LINKS, PILLAR_LINKS, isActive, isActiveParent } from '@/lib/nav';
+import { NAV_CTA, NAV_LINKS, PILLAR_LINKS, isActive, isActiveParent, type NavLink } from '@/lib/nav';
 
-export default function Header() {
+export default function Header({ logo = '/assets/logo/eri-logo-mark.png', links = NAV_LINKS, pillars = PILLAR_LINKS, cta = NAV_CTA }: {
+  logo?: string; links?: NavLink[]; pillars?: NavLink[]; cta?: NavLink;
+}) {
   const pathname = usePathname();
   const [navOpen, setNavOpen] = useState(false);
   const [subOpen, setSubOpen] = useState(false);
@@ -54,7 +56,7 @@ export default function Header() {
     <header className="site-header">
       <div className="nav-bar">
         <Link href="/" className="brand">
-          <img src="/assets/logo/eri-logo-mark.png" alt="EED Research Institute" />
+          <img src={logo} alt="EED Research Institute" />
         </Link>
         <button
           className="nav-toggle"
@@ -67,7 +69,7 @@ export default function Header() {
           <span></span>
         </button>
         <ul className={`nav-list${navOpen ? ' open' : ''}`}>
-          {NAV_LINKS.map((link) => {
+          {links.map((link) => {
             if (link.href === '/what-we-do') {
               return (
                 <li
@@ -105,7 +107,7 @@ export default function Header() {
                     </svg>
                   </button>
                   <ul className="nav-sub" id="sub-wwd">
-                    {PILLAR_LINKS.map((pillar) => (
+                    {pillars.map((pillar) => (
                       <li key={pillar.href}>
                         <Link
                           href={pillar.href}
@@ -135,11 +137,11 @@ export default function Header() {
           })}
           <li>
             <Link
-              href={NAV_CTA.href}
-              className={`nav-cta${isActive(pathname, NAV_CTA.href) ? ' active' : ''}`}
-              aria-current={isActive(pathname, NAV_CTA.href) ? 'page' : undefined}
+              href={cta.href}
+              className={`nav-cta${isActive(pathname, cta.href) ? ' active' : ''}`}
+              aria-current={isActive(pathname, cta.href) ? 'page' : undefined}
             >
-              {NAV_CTA.label}
+              {cta.label}
             </Link>
           </li>
         </ul>

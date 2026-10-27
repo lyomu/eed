@@ -1,0 +1,17 @@
+{
+  "id": "publication_list",
+  "type": "SharedSlice",
+  "name": "PublicationList",
+  "description": "Current Prismic publications with filters",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "version": "initial",
+      "description": "Current Prismic publications with filters",
+      "imageUrl": "",
+      "primary": {},
+      "items": {}
+    }
+  ]
+}
