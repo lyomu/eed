@@ -1,38 +1,75 @@
 {
+  "format": "custom",
   "id": "blog_post",
-  "label": "Blog Post",
-  "repeatable": true,
-  "status": true,
   "json": {
     "Main": {
       "uid": {
-        "type": "UID",
         "config": {
-          "label": "URL slug"
-        }
+          "label": "UID"
+        },
+        "type": "UID"
       },
       "title": {
-        "type": "StructuredText",
         "config": {
+          "allowTargetBlank": true,
           "label": "Title",
+          "placeholder": "",
           "single": "heading1"
-        }
+        },
+        "type": "StructuredText"
       },
       "excerpt": {
-        "type": "StructuredText",
         "config": {
+          "allowTargetBlank": true,
           "label": "Excerpt",
+          "placeholder": "",
           "single": "paragraph"
-        }
+        },
+        "type": "StructuredText"
       },
       "category": {
-        "type": "Text",
         "config": {
-          "label": "Category"
-        }
+          "label": "Category",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "read_time": {
+        "config": {
+          "label": "Read time",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "author_name": {
+        "config": {
+          "label": "Author name",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "author_role": {
+        "config": {
+          "label": "Author role",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "lead_image_label": {
+        "config": {
+          "label": "Lead image label",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "date": {
+        "config": {
+          "label": "Publish date",
+          "placeholder": ""
+        },
+        "type": "Date"
       },
       "category_filter": {
-        "type": "Select",
         "config": {
           "label": "Category filter",
           "options": [
@@ -40,120 +77,113 @@
             "wash",
             "climate",
             "agriculture"
-          ]
-        }
-      },
-      "date": {
-        "type": "Date",
-        "config": {
-          "label": "Publish date"
-        }
-      },
-      "read_time": {
-        "type": "Text",
-        "config": {
-          "label": "Read time",
-          "placeholder": "e.g. 8 min read"
-        }
-      },
-      "author_name": {
-        "type": "Text",
-        "config": {
-          "label": "Author name"
-        }
-      },
-      "author_role": {
-        "type": "Text",
-        "config": {
-          "label": "Author role"
-        }
-      },
-      "featured": {
-        "type": "Boolean",
-        "config": {
-          "label": "Featured on /news",
-          "default_value": false
-        }
+          ],
+          "placeholder": ""
+        },
+        "type": "Select"
       },
       "hero_image": {
-        "type": "Image",
         "config": {
-          "label": "Hero / lead image"
-        }
+          "constraint": {},
+          "label": "Hero image",
+          "thumbnails": []
+        },
+        "type": "Image"
       },
-      "key_takeaways": {
-        "type": "Group",
+      "featured": {
         "config": {
-          "label": "Key Takeaways",
-          "fields": {
-            "text": {
-              "type": "Text",
-              "config": {
-                "label": "Takeaway"
-              }
-            }
-          }
-        }
-      },
-      "sidebar_stats": {
-        "type": "Group",
-        "config": {
-          "label": "Sidebar stat cards",
-          "fields": {
-            "title": {
-              "type": "Text",
-              "config": {
-                "label": "Stat title"
-              }
-            },
-            "value": {
-              "type": "Text",
-              "config": {
-                "label": "Stat value"
-              }
-            },
-            "body": {
-              "type": "Text",
-              "config": {
-                "label": "Stat description"
-              }
-            }
-          }
-        }
+          "default_value": false,
+          "label": "Featured",
+          "placeholder_false": "false",
+          "placeholder_true": "true"
+        },
+        "type": "Boolean"
       },
       "body": {
-        "type": "StructuredText",
         "config": {
+          "allowTargetBlank": true,
           "label": "Body",
-          "multi": "paragraph,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,list-item,o-list-item,preformatted"
-        }
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+          "placeholder": ""
+        },
+        "type": "StructuredText"
       },
-      "references": {
-        "type": "Group",
+      "key_takeaways": {
         "config": {
-          "label": "References",
           "fields": {
             "text": {
-              "type": "Text",
               "config": {
-                "label": "Citation text"
-              }
+                "label": "Text",
+                "placeholder": ""
+              },
+              "type": "Text"
+            }
+          },
+          "label": "Key Takeaways",
+          "repeat": true
+        },
+        "type": "Group"
+      },
+      "sidebar_stats": {
+        "config": {
+          "fields": {
+            "title": {
+              "config": {
+                "label": "Title",
+                "placeholder": ""
+              },
+              "type": "Text"
+            },
+            "value": {
+              "config": {
+                "label": "Value",
+                "placeholder": ""
+              },
+              "type": "Text"
+            },
+            "body": {
+              "config": {
+                "label": "Description",
+                "placeholder": ""
+              },
+              "type": "Text"
+            }
+          },
+          "label": "Sidebar stats",
+          "repeat": true
+        },
+        "type": "Group"
+      },
+      "references": {
+        "config": {
+          "fields": {
+            "text": {
+              "config": {
+                "label": "Citation text",
+                "placeholder": ""
+              },
+              "type": "Text"
             },
             "url": {
-              "type": "Link",
               "config": {
-                "label": "Source URL"
-              }
+                "allowTargetBlank": true,
+                "allowText": true,
+                "label": "Source URL",
+                "placeholder": "",
+                "repeat": false,
+                "select": null
+              },
+              "type": "Link"
             }
-          }
-        }
-      },
-      "lead_image_label": {
-        "type": "Text",
-        "config": {
-          "label": "Lead image label"
-        }
+          },
+          "label": "References",
+          "repeat": true
+        },
+        "type": "Group"
       }
     }
-  }
+  },
+  "label": "Blog Post",
+  "repeatable": true,
+  "status": true
 }

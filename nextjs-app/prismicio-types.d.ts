@@ -51,7 +51,7 @@ type ContentRelationshipFieldWithData<
  */
 export interface BlogPostDocumentDataKeyTakeawaysItem {
 	/**
-	 * Takeaway field in *Blog Post → Key Takeaways*
+	 * Text field in *Blog Post → Key Takeaways*
 	 *
 	 * - **Field Type**: Text
 	 * - **Placeholder**: *None*
@@ -62,11 +62,11 @@ export interface BlogPostDocumentDataKeyTakeawaysItem {
 }
 
 /**
- * Item in *Blog Post → Sidebar stat cards*
+ * Item in *Blog Post → Sidebar stats*
  */
 export interface BlogPostDocumentDataSidebarStatsItem {
 	/**
-	 * Stat title field in *Blog Post → Sidebar stat cards*
+	 * Title field in *Blog Post → Sidebar stats*
 	 *
 	 * - **Field Type**: Text
 	 * - **Placeholder**: *None*
@@ -76,7 +76,7 @@ export interface BlogPostDocumentDataSidebarStatsItem {
 	title: prismic.KeyTextField;
 	
 	/**
-	 * Stat value field in *Blog Post → Sidebar stat cards*
+	 * Value field in *Blog Post → Sidebar stats*
 	 *
 	 * - **Field Type**: Text
 	 * - **Placeholder**: *None*
@@ -86,7 +86,7 @@ export interface BlogPostDocumentDataSidebarStatsItem {
 	value: prismic.KeyTextField;
 	
 	/**
-	 * Stat description field in *Blog Post → Sidebar stat cards*
+	 * Description field in *Blog Post → Sidebar stats*
 	 *
 	 * - **Field Type**: Text
 	 * - **Placeholder**: *None*
@@ -159,32 +159,10 @@ interface BlogPostDocumentData {
 	category: prismic.KeyTextField;
 	
 	/**
-	 * Category filter field in *Blog Post*
-	 *
-	 * - **Field Type**: Select
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: blog_post.category_filter
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/fields/select
-	 */
-	category_filter: prismic.SelectField<"energy" | "wash" | "climate" | "agriculture">;
-	
-	/**
-	 * Publish date field in *Blog Post*
-	 *
-	 * - **Field Type**: Date
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: blog_post.date
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/fields/date
-	 */
-	date: prismic.DateField;
-	
-	/**
 	 * Read time field in *Blog Post*
 	 *
 	 * - **Field Type**: Text
-	 * - **Placeholder**: e.g. 8 min read
+	 * - **Placeholder**: *None*
 	 * - **API ID Path**: blog_post.read_time
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/fields/text
@@ -214,19 +192,40 @@ interface BlogPostDocumentData {
 	author_role: prismic.KeyTextField;
 	
 	/**
-	 * Featured on /news field in *Blog Post*
+	 * Lead image label field in *Blog Post*
 	 *
-	 * - **Field Type**: Boolean
+	 * - **Field Type**: Text
 	 * - **Placeholder**: *None*
-	 * - **Default Value**: false
-	 * - **API ID Path**: blog_post.featured
+	 * - **API ID Path**: blog_post.lead_image_label
 	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/fields/boolean
+	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
-	featured: prismic.BooleanField;
+	lead_image_label: prismic.KeyTextField;
 	
 	/**
-	 * Hero / lead image field in *Blog Post*
+	 * Publish date field in *Blog Post*
+	 *
+	 * - **Field Type**: Date
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blog_post.date
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/date
+	 */
+	date: prismic.DateField;
+	
+	/**
+	 * Category filter field in *Blog Post*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blog_post.category_filter
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	category_filter: prismic.SelectField<"energy" | "wash" | "climate" | "agriculture">;
+	
+	/**
+	 * Hero image field in *Blog Post*
 	 *
 	 * - **Field Type**: Image
 	 * - **Placeholder**: *None*
@@ -237,26 +236,16 @@ interface BlogPostDocumentData {
 	hero_image: prismic.ImageField<never>;
 	
 	/**
-	 * Key Takeaways field in *Blog Post*
+	 * Featured field in *Blog Post*
 	 *
-	 * - **Field Type**: Group
+	 * - **Field Type**: Boolean
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: blog_post.key_takeaways[]
+	 * - **Default Value**: false
+	 * - **API ID Path**: blog_post.featured
 	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 * - **Documentation**: https://prismic.io/docs/fields/boolean
 	 */
-	key_takeaways: prismic.GroupField<Simplify<BlogPostDocumentDataKeyTakeawaysItem>>;
-	
-	/**
-	 * Sidebar stat cards field in *Blog Post*
-	 *
-	 * - **Field Type**: Group
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: blog_post.sidebar_stats[]
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
-	 */
-	sidebar_stats: prismic.GroupField<Simplify<BlogPostDocumentDataSidebarStatsItem>>;
+	featured: prismic.BooleanField;
 	
 	/**
 	 * Body field in *Blog Post*
@@ -270,6 +259,28 @@ interface BlogPostDocumentData {
 	body: prismic.RichTextField;
 	
 	/**
+	 * Key Takeaways field in *Blog Post*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blog_post.key_takeaways[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	key_takeaways: prismic.GroupField<Simplify<BlogPostDocumentDataKeyTakeawaysItem>>;
+	
+	/**
+	 * Sidebar stats field in *Blog Post*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blog_post.sidebar_stats[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	sidebar_stats: prismic.GroupField<Simplify<BlogPostDocumentDataSidebarStatsItem>>;
+	
+	/**
 	 * References field in *Blog Post*
 	 *
 	 * - **Field Type**: Group
@@ -279,17 +290,6 @@ interface BlogPostDocumentData {
 	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
 	 */
 	references: prismic.GroupField<Simplify<BlogPostDocumentDataReferencesItem>>;
-	
-	/**
-	 * Lead image label field in *Blog Post*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: blog_post.lead_image_label
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/fields/text
-	 */
-	lead_image_label: prismic.KeyTextField;
 }
 
 /**
