@@ -791,217 +791,6 @@ type CallToActionSliceVariation = CallToActionSliceDefault
 export type CallToActionSlice = prismic.SharedSlice<"call_to_action", CallToActionSliceVariation>;
 
 /**
- * Primary content in *CallToAction → Default → Primary*
- */
-export interface CallToActionSliceDefaultPrimary {
-	/**
-	 * Heading field in *CallToAction → Default → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: call_to_action.default.primary.heading
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	heading: prismic.RichTextField;
-	
-	/**
-	 * Body field in *CallToAction → Default → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: call_to_action.default.primary.body
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	body: prismic.RichTextField;
-	
-	/**
-	 * Button label field in *CallToAction → Default → Primary*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: call_to_action.default.primary.button_label
-	 * - **Documentation**: https://prismic.io/docs/fields/text
-	 */
-	button_label: prismic.KeyTextField;
-	
-	/**
-	 * Button destination field in *CallToAction → Default → Primary*
-	 *
-	 * - **Field Type**: Link
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: call_to_action.default.primary.button_link
-	 * - **Documentation**: https://prismic.io/docs/fields/link
-	 */
-	button_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
-}
-
-/**
- * Default variation for CallToAction Slice
- *
- * - **API ID**: `default`
- * - **Description**: Heading, copy, and a button
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type CallToActionSliceDefault = prismic.SharedSliceVariation<"default", Simplify<CallToActionSliceDefaultPrimary>, never>;
-
-/**
- * Slice variation for *CallToAction*
- */
-type CallToActionSliceVariation = CallToActionSliceDefault
-
-/**
- * CallToAction Shared Slice
- *
- * - **API ID**: `call_to_action`
- * - **Description**: Heading, copy, and a button
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type CallToActionSlice = prismic.SharedSlice<"call_to_action", CallToActionSliceVariation>;
-
-/**
- * Item in *CardGrid → Default → Primary → Entries*
- */
-export interface CardGridSliceDefaultPrimaryEntriesItem {
-	/**
-	 * Card heading field in *CardGrid → Default → Primary → Entries*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: card_grid.default.primary.entries[].title
-	 * - **Documentation**: https://prismic.io/docs/fields/text
-	 */
-	title: prismic.KeyTextField;
-	
-	/**
-	 * Card body field in *CardGrid → Default → Primary → Entries*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: card_grid.default.primary.entries[].body
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	body: prismic.RichTextField;
-	
-	/**
-	 * Card image field in *CardGrid → Default → Primary → Entries*
-	 *
-	 * - **Field Type**: Image
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: card_grid.default.primary.entries[].image
-	 * - **Documentation**: https://prismic.io/docs/fields/image
-	 */
-	image: prismic.ImageField<never>;
-	
-	/**
-	 * Image label field in *CardGrid → Default → Primary → Entries*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: card_grid.default.primary.entries[].label
-	 * - **Documentation**: https://prismic.io/docs/fields/text
-	 */
-	label: prismic.KeyTextField;
-	
-	/**
-	 * Button label field in *CardGrid → Default → Primary → Entries*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: card_grid.default.primary.entries[].button_label
-	 * - **Documentation**: https://prismic.io/docs/fields/text
-	 */
-	button_label: prismic.KeyTextField;
-	
-	/**
-	 * Button destination field in *CardGrid → Default → Primary → Entries*
-	 *
-	 * - **Field Type**: Link
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: card_grid.default.primary.entries[].button_link
-	 * - **Documentation**: https://prismic.io/docs/fields/link
-	 */
-	button_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
-}
-
-/**
- * Primary content in *CardGrid → Default → Primary*
- */
-export interface CardGridSliceDefaultPrimary {
-	/**
-	 * Section heading field in *CardGrid → Default → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: card_grid.default.primary.heading
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	heading: prismic.RichTextField;
-	
-	/**
-	 * Introduction field in *CardGrid → Default → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: card_grid.default.primary.intro
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	intro: prismic.RichTextField;
-	
-	/**
-	 * Columns field in *CardGrid → Default → Primary*
-	 *
-	 * - **Field Type**: Select
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: card_grid.default.primary.columns
-	 * - **Documentation**: https://prismic.io/docs/fields/select
-	 */
-	columns: prismic.SelectField<"two" | "three">;
-	
-	/**
-	 * Background field in *CardGrid → Default → Primary*
-	 *
-	 * - **Field Type**: Select
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: card_grid.default.primary.background
-	 * - **Documentation**: https://prismic.io/docs/fields/select
-	 */
-	background: prismic.SelectField<"paper" | "sunk">;
-	
-	/**
-	 * Entries field in *CardGrid → Default → Primary*
-	 *
-	 * - **Field Type**: Group
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: card_grid.default.primary.entries[]
-	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
-	 */
-	entries: prismic.GroupField<Simplify<CardGridSliceDefaultPrimaryEntriesItem>>;
-}
-
-/**
- * Default variation for CardGrid Slice
- *
- * - **API ID**: `default`
- * - **Description**: Two or three column cards with optional images and links
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type CardGridSliceDefault = prismic.SharedSliceVariation<"default", Simplify<CardGridSliceDefaultPrimary>, never>;
-
-/**
- * Slice variation for *CardGrid*
- */
-type CardGridSliceVariation = CardGridSliceDefault
-
-/**
- * CardGrid Shared Slice
- *
- * - **API ID**: `card_grid`
- * - **Description**: Two or three column cards with optional images and links
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type CardGridSlice = prismic.SharedSlice<"card_grid", CardGridSliceVariation>;
-
-/**
  * Item in *Card Grid → Default → Primary → Entries*
  */
 export interface CardGridSliceDefaultPrimaryEntriesItem {
@@ -1485,99 +1274,6 @@ type ImageLinkGridSliceVariation = ImageLinkGridSliceDefault
 export type ImageLinkGridSlice = prismic.SharedSlice<"image_link_grid", ImageLinkGridSliceVariation>;
 
 /**
- * Item in *ImageLinkGrid → Default → Primary → Entries*
- */
-export interface ImageLinkGridSliceDefaultPrimaryEntriesItem {
-	/**
-	 * Title field in *ImageLinkGrid → Default → Primary → Entries*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: image_link_grid.default.primary.entries[].title
-	 * - **Documentation**: https://prismic.io/docs/fields/text
-	 */
-	title: prismic.KeyTextField;
-	
-	/**
-	 * Image field in *ImageLinkGrid → Default → Primary → Entries*
-	 *
-	 * - **Field Type**: Image
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: image_link_grid.default.primary.entries[].image
-	 * - **Documentation**: https://prismic.io/docs/fields/image
-	 */
-	image: prismic.ImageField<never>;
-	
-	/**
-	 * Destination field in *ImageLinkGrid → Default → Primary → Entries*
-	 *
-	 * - **Field Type**: Link
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: image_link_grid.default.primary.entries[].destination
-	 * - **Documentation**: https://prismic.io/docs/fields/link
-	 */
-	destination: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
-}
-
-/**
- * Primary content in *ImageLinkGrid → Default → Primary*
- */
-export interface ImageLinkGridSliceDefaultPrimary {
-	/**
-	 * Section heading field in *ImageLinkGrid → Default → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: image_link_grid.default.primary.heading
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	heading: prismic.RichTextField;
-	
-	/**
-	 * Introduction field in *ImageLinkGrid → Default → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: image_link_grid.default.primary.intro
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	intro: prismic.RichTextField;
-	
-	/**
-	 * Entries field in *ImageLinkGrid → Default → Primary*
-	 *
-	 * - **Field Type**: Group
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: image_link_grid.default.primary.entries[]
-	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
-	 */
-	entries: prismic.GroupField<Simplify<ImageLinkGridSliceDefaultPrimaryEntriesItem>>;
-}
-
-/**
- * Default variation for ImageLinkGrid Slice
- *
- * - **API ID**: `default`
- * - **Description**: About page fieldwork image links
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type ImageLinkGridSliceDefault = prismic.SharedSliceVariation<"default", Simplify<ImageLinkGridSliceDefaultPrimary>, never>;
-
-/**
- * Slice variation for *ImageLinkGrid*
- */
-type ImageLinkGridSliceVariation = ImageLinkGridSliceDefault
-
-/**
- * ImageLinkGrid Shared Slice
- *
- * - **API ID**: `image_link_grid`
- * - **Description**: About page fieldwork image links
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type ImageLinkGridSlice = prismic.SharedSlice<"image_link_grid", ImageLinkGridSliceVariation>;
-
-/**
  * Primary content in *Inquiry → Default → Primary*
  */
 export interface InquirySliceDefaultPrimary {
@@ -1729,109 +1425,6 @@ type LinkListSliceVariation = LinkListSliceDefault
 export type LinkListSlice = prismic.SharedSlice<"link_list", LinkListSliceVariation>;
 
 /**
- * Item in *LinkList → Default → Primary → Entries*
- */
-export interface LinkListSliceDefaultPrimaryEntriesItem {
-	/**
-	 * Row title field in *LinkList → Default → Primary → Entries*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: link_list.default.primary.entries[].title
-	 * - **Documentation**: https://prismic.io/docs/fields/text
-	 */
-	title: prismic.KeyTextField;
-	
-	/**
-	 * Row body field in *LinkList → Default → Primary → Entries*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: link_list.default.primary.entries[].body
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	body: prismic.RichTextField;
-	
-	/**
-	 * Button label field in *LinkList → Default → Primary → Entries*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: link_list.default.primary.entries[].button_label
-	 * - **Documentation**: https://prismic.io/docs/fields/text
-	 */
-	button_label: prismic.KeyTextField;
-	
-	/**
-	 * Button destination field in *LinkList → Default → Primary → Entries*
-	 *
-	 * - **Field Type**: Link
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: link_list.default.primary.entries[].button_link
-	 * - **Documentation**: https://prismic.io/docs/fields/link
-	 */
-	button_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
-}
-
-/**
- * Primary content in *LinkList → Default → Primary*
- */
-export interface LinkListSliceDefaultPrimary {
-	/**
-	 * Section heading field in *LinkList → Default → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: link_list.default.primary.heading
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	heading: prismic.RichTextField;
-	
-	/**
-	 * Introduction field in *LinkList → Default → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: link_list.default.primary.intro
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	intro: prismic.RichTextField;
-	
-	/**
-	 * Entries field in *LinkList → Default → Primary*
-	 *
-	 * - **Field Type**: Group
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: link_list.default.primary.entries[]
-	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
-	 */
-	entries: prismic.GroupField<Simplify<LinkListSliceDefaultPrimaryEntriesItem>>;
-}
-
-/**
- * Default variation for LinkList Slice
- *
- * - **API ID**: `default`
- * - **Description**: Pillars, focus areas, or other linked rows
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type LinkListSliceDefault = prismic.SharedSliceVariation<"default", Simplify<LinkListSliceDefaultPrimary>, never>;
-
-/**
- * Slice variation for *LinkList*
- */
-type LinkListSliceVariation = LinkListSliceDefault
-
-/**
- * LinkList Shared Slice
- *
- * - **API ID**: `link_list`
- * - **Description**: Pillars, focus areas, or other linked rows
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type LinkListSlice = prismic.SharedSlice<"link_list", LinkListSliceVariation>;
-
-/**
  * Default variation for News List Slice
  *
  * - **API ID**: `default`
@@ -1850,29 +1443,6 @@ type NewsListSliceVariation = NewsListSliceDefault
  *
  * - **API ID**: `news_list`
  * - **Description**: *None*
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type NewsListSlice = prismic.SharedSlice<"news_list", NewsListSliceVariation>;
-
-/**
- * Default variation for NewsList Slice
- *
- * - **API ID**: `default`
- * - **Description**: Current Prismic blog posts with filters
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type NewsListSliceDefault = prismic.SharedSliceVariation<"default", Record<string, never>, never>;
-
-/**
- * Slice variation for *NewsList*
- */
-type NewsListSliceVariation = NewsListSliceDefault
-
-/**
- * NewsList Shared Slice
- *
- * - **API ID**: `news_list`
- * - **Description**: Current Prismic blog posts with filters
  * - **Documentation**: https://prismic.io/docs/slices
  */
 export type NewsListSlice = prismic.SharedSlice<"news_list", NewsListSliceVariation>;
@@ -1976,109 +1546,6 @@ type PillarAccordionSliceVariation = PillarAccordionSliceDefault
  *
  * - **API ID**: `pillar_accordion`
  * - **Description**: *None*
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type PillarAccordionSlice = prismic.SharedSlice<"pillar_accordion", PillarAccordionSliceVariation>;
-
-/**
- * Item in *PillarAccordion → Default → Primary → Entries*
- */
-export interface PillarAccordionSliceDefaultPrimaryEntriesItem {
-	/**
-	 * Pillar title field in *PillarAccordion → Default → Primary → Entries*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: pillar_accordion.default.primary.entries[].title
-	 * - **Documentation**: https://prismic.io/docs/fields/text
-	 */
-	title: prismic.KeyTextField;
-	
-	/**
-	 * Description field in *PillarAccordion → Default → Primary → Entries*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: pillar_accordion.default.primary.entries[].body
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	body: prismic.RichTextField;
-	
-	/**
-	 * Background image field in *PillarAccordion → Default → Primary → Entries*
-	 *
-	 * - **Field Type**: Image
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: pillar_accordion.default.primary.entries[].image
-	 * - **Documentation**: https://prismic.io/docs/fields/image
-	 */
-	image: prismic.ImageField<never>;
-	
-	/**
-	 * Destination field in *PillarAccordion → Default → Primary → Entries*
-	 *
-	 * - **Field Type**: Link
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: pillar_accordion.default.primary.entries[].destination
-	 * - **Documentation**: https://prismic.io/docs/fields/link
-	 */
-	destination: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
-}
-
-/**
- * Primary content in *PillarAccordion → Default → Primary*
- */
-export interface PillarAccordionSliceDefaultPrimary {
-	/**
-	 * Section heading field in *PillarAccordion → Default → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: pillar_accordion.default.primary.heading
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	heading: prismic.RichTextField;
-	
-	/**
-	 * Introduction field in *PillarAccordion → Default → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: pillar_accordion.default.primary.intro
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	intro: prismic.RichTextField;
-	
-	/**
-	 * Entries field in *PillarAccordion → Default → Primary*
-	 *
-	 * - **Field Type**: Group
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: pillar_accordion.default.primary.entries[]
-	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
-	 */
-	entries: prismic.GroupField<Simplify<PillarAccordionSliceDefaultPrimaryEntriesItem>>;
-}
-
-/**
- * Default variation for PillarAccordion Slice
- *
- * - **API ID**: `default`
- * - **Description**: Expandable research pillar panels
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type PillarAccordionSliceDefault = prismic.SharedSliceVariation<"default", Simplify<PillarAccordionSliceDefaultPrimary>, never>;
-
-/**
- * Slice variation for *PillarAccordion*
- */
-type PillarAccordionSliceVariation = PillarAccordionSliceDefault
-
-/**
- * PillarAccordion Shared Slice
- *
- * - **API ID**: `pillar_accordion`
- * - **Description**: Expandable research pillar panels
  * - **Documentation**: https://prismic.io/docs/slices
  */
 export type PillarAccordionSlice = prismic.SharedSlice<"pillar_accordion", PillarAccordionSliceVariation>;
@@ -2205,152 +1672,6 @@ type PillarCardsSliceVariation = PillarCardsSliceDefault
  * - **Documentation**: https://prismic.io/docs/slices
  */
 export type PillarCardsSlice = prismic.SharedSlice<"pillar_cards", PillarCardsSliceVariation>;
-
-/**
- * Item in *PillarCards → Default → Primary → Entries*
- */
-export interface PillarCardsSliceDefaultPrimaryEntriesItem {
-	/**
-	 * Title field in *PillarCards → Default → Primary → Entries*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: pillar_cards.default.primary.entries[].title
-	 * - **Documentation**: https://prismic.io/docs/fields/text
-	 */
-	title: prismic.KeyTextField;
-	
-	/**
-	 * Image badge field in *PillarCards → Default → Primary → Entries*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: pillar_cards.default.primary.entries[].badge
-	 * - **Documentation**: https://prismic.io/docs/fields/text
-	 */
-	badge: prismic.KeyTextField;
-	
-	/**
-	 * Statistic chip field in *PillarCards → Default → Primary → Entries*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: pillar_cards.default.primary.entries[].stat
-	 * - **Documentation**: https://prismic.io/docs/fields/text
-	 */
-	stat: prismic.KeyTextField;
-	
-	/**
-	 * Image field in *PillarCards → Default → Primary → Entries*
-	 *
-	 * - **Field Type**: Image
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: pillar_cards.default.primary.entries[].image
-	 * - **Documentation**: https://prismic.io/docs/fields/image
-	 */
-	image: prismic.ImageField<never>;
-	
-	/**
-	 * Description field in *PillarCards → Default → Primary → Entries*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: pillar_cards.default.primary.entries[].body
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	body: prismic.RichTextField;
-	
-	/**
-	 * Destination field in *PillarCards → Default → Primary → Entries*
-	 *
-	 * - **Field Type**: Link
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: pillar_cards.default.primary.entries[].destination
-	 * - **Documentation**: https://prismic.io/docs/fields/link
-	 */
-	destination: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
-}
-
-/**
- * Primary content in *PillarCards → Default → Primary*
- */
-export interface PillarCardsSliceDefaultPrimary {
-	/**
-	 * Section heading field in *PillarCards → Default → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: pillar_cards.default.primary.heading
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	heading: prismic.RichTextField;
-	
-	/**
-	 * Introduction field in *PillarCards → Default → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: pillar_cards.default.primary.intro
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	intro: prismic.RichTextField;
-	
-	/**
-	 * Entries field in *PillarCards → Default → Primary*
-	 *
-	 * - **Field Type**: Group
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: pillar_cards.default.primary.entries[]
-	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
-	 */
-	entries: prismic.GroupField<Simplify<PillarCardsSliceDefaultPrimaryEntriesItem>>;
-}
-
-/**
- * Default variation for PillarCards Slice
- *
- * - **API ID**: `default`
- * - **Description**: About page illustrated pillar cards
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type PillarCardsSliceDefault = prismic.SharedSliceVariation<"default", Simplify<PillarCardsSliceDefaultPrimary>, never>;
-
-/**
- * Slice variation for *PillarCards*
- */
-type PillarCardsSliceVariation = PillarCardsSliceDefault
-
-/**
- * PillarCards Shared Slice
- *
- * - **API ID**: `pillar_cards`
- * - **Description**: About page illustrated pillar cards
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type PillarCardsSlice = prismic.SharedSlice<"pillar_cards", PillarCardsSliceVariation>;
-
-/**
- * Default variation for PublicationList Slice
- *
- * - **API ID**: `default`
- * - **Description**: Current Prismic publications with filters
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type PublicationListSliceDefault = prismic.SharedSliceVariation<"default", Record<string, never>, never>;
-
-/**
- * Slice variation for *PublicationList*
- */
-type PublicationListSliceVariation = PublicationListSliceDefault
-
-/**
- * PublicationList Shared Slice
- *
- * - **API ID**: `publication_list`
- * - **Description**: Current Prismic publications with filters
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type PublicationListSlice = prismic.SharedSlice<"publication_list", PublicationListSliceVariation>;
 
 /**
  * Default variation for Publication List Slice
@@ -2620,74 +1941,6 @@ type TeamSliceVariation = TeamSliceDefault
 export type TeamSlice = prismic.SharedSlice<"team", TeamSliceVariation>;
 
 /**
- * Primary content in *TextColumns → Default → Primary*
- */
-export interface TextColumnsSliceDefaultPrimary {
-	/**
-	 * Section heading field in *TextColumns → Default → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: text_columns.default.primary.heading
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	heading: prismic.RichTextField;
-	
-	/**
-	 * Introduction field in *TextColumns → Default → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: text_columns.default.primary.intro
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	intro: prismic.RichTextField;
-	
-	/**
-	 * Left column field in *TextColumns → Default → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: text_columns.default.primary.left_body
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	left_body: prismic.RichTextField;
-	
-	/**
-	 * Right column field in *TextColumns → Default → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: text_columns.default.primary.right_body
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	right_body: prismic.RichTextField;
-}
-
-/**
- * Default variation for TextColumns Slice
- *
- * - **API ID**: `default`
- * - **Description**: Introduction and two text columns
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type TextColumnsSliceDefault = prismic.SharedSliceVariation<"default", Simplify<TextColumnsSliceDefaultPrimary>, never>;
-
-/**
- * Slice variation for *TextColumns*
- */
-type TextColumnsSliceVariation = TextColumnsSliceDefault
-
-/**
- * TextColumns Shared Slice
- *
- * - **API ID**: `text_columns`
- * - **Description**: Introduction and two text columns
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type TextColumnsSlice = prismic.SharedSlice<"text_columns", TextColumnsSliceVariation>;
-
-/**
  * Primary content in *Text Columns → Default → Primary*
  */
 export interface TextColumnsSliceDefaultPrimary {
@@ -2839,94 +2092,6 @@ type TextImageSliceVariation = TextImageSliceDefault
  *
  * - **API ID**: `text_image`
  * - **Description**: *None*
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type TextImageSlice = prismic.SharedSlice<"text_image", TextImageSliceVariation>;
-
-/**
- * Primary content in *TextImage → Default → Primary*
- */
-export interface TextImageSliceDefaultPrimary {
-	/**
-	 * Heading field in *TextImage → Default → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: text_image.default.primary.heading
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	heading: prismic.RichTextField;
-	
-	/**
-	 * Body field in *TextImage → Default → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: text_image.default.primary.body
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	body: prismic.RichTextField;
-	
-	/**
-	 * Image field in *TextImage → Default → Primary*
-	 *
-	 * - **Field Type**: Image
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: text_image.default.primary.image
-	 * - **Documentation**: https://prismic.io/docs/fields/image
-	 */
-	image: prismic.ImageField<never>;
-	
-	/**
-	 * Image label field in *TextImage → Default → Primary*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: text_image.default.primary.image_label
-	 * - **Documentation**: https://prismic.io/docs/fields/text
-	 */
-	image_label: prismic.KeyTextField;
-	
-	/**
-	 * Button label field in *TextImage → Default → Primary*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: text_image.default.primary.button_label
-	 * - **Documentation**: https://prismic.io/docs/fields/text
-	 */
-	button_label: prismic.KeyTextField;
-	
-	/**
-	 * Button destination field in *TextImage → Default → Primary*
-	 *
-	 * - **Field Type**: Link
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: text_image.default.primary.button_link
-	 * - **Documentation**: https://prismic.io/docs/fields/link
-	 */
-	button_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
-}
-
-/**
- * Default variation for TextImage Slice
- *
- * - **API ID**: `default`
- * - **Description**: Image beside formatted copy
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type TextImageSliceDefault = prismic.SharedSliceVariation<"default", Simplify<TextImageSliceDefaultPrimary>, never>;
-
-/**
- * Slice variation for *TextImage*
- */
-type TextImageSliceVariation = TextImageSliceDefault
-
-/**
- * TextImage Shared Slice
- *
- * - **API ID**: `text_image`
- * - **Description**: Image beside formatted copy
  * - **Documentation**: https://prismic.io/docs/slices
  */
 export type TextImageSlice = prismic.SharedSlice<"text_image", TextImageSliceVariation>;
@@ -3097,89 +2262,6 @@ type WorkCardsSliceVariation = WorkCardsSliceDefault
  */
 export type WorkCardsSlice = prismic.SharedSlice<"work_cards", WorkCardsSliceVariation>;
 
-/**
- * Item in *WorkCards → Default → Primary → Entries*
- */
-export interface WorkCardsSliceDefaultPrimaryEntriesItem {
-	/**
-	 * Title field in *WorkCards → Default → Primary → Entries*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: work_cards.default.primary.entries[].title
-	 * - **Documentation**: https://prismic.io/docs/fields/text
-	 */
-	title: prismic.KeyTextField;
-	
-	/**
-	 * Description field in *WorkCards → Default → Primary → Entries*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: work_cards.default.primary.entries[].body
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	body: prismic.RichTextField;
-}
-
-/**
- * Primary content in *WorkCards → Default → Primary*
- */
-export interface WorkCardsSliceDefaultPrimary {
-	/**
-	 * Section heading field in *WorkCards → Default → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: work_cards.default.primary.heading
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	heading: prismic.RichTextField;
-	
-	/**
-	 * Introduction field in *WorkCards → Default → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: work_cards.default.primary.intro
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	intro: prismic.RichTextField;
-	
-	/**
-	 * Entries field in *WorkCards → Default → Primary*
-	 *
-	 * - **Field Type**: Group
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: work_cards.default.primary.entries[]
-	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
-	 */
-	entries: prismic.GroupField<Simplify<WorkCardsSliceDefaultPrimaryEntriesItem>>;
-}
-
-/**
- * Default variation for WorkCards Slice
- *
- * - **API ID**: `default`
- * - **Description**: Numbered capability cards
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type WorkCardsSliceDefault = prismic.SharedSliceVariation<"default", Simplify<WorkCardsSliceDefaultPrimary>, never>;
-
-/**
- * Slice variation for *WorkCards*
- */
-type WorkCardsSliceVariation = WorkCardsSliceDefault
-
-/**
- * WorkCards Shared Slice
- *
- * - **API ID**: `work_cards`
- * - **Description**: Numbered capability cards
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type WorkCardsSlice = prismic.SharedSlice<"work_cards", WorkCardsSliceVariation>;
-
 declare module "@prismicio/client" {
 	interface CreateClient {
 		(repositoryNameOrEndpoint: string, options?: prismic.ClientConfig): prismic.Client<AllDocumentTypes>;
@@ -3217,15 +2299,6 @@ declare module "@prismicio/client" {
 			CallToActionSliceDefaultPrimary,
 			CallToActionSliceVariation,
 			CallToActionSliceDefault,
-			CallToActionSlice,
-			CallToActionSliceDefaultPrimary,
-			CallToActionSliceVariation,
-			CallToActionSliceDefault,
-			CardGridSlice,
-			CardGridSliceDefaultPrimaryEntriesItem,
-			CardGridSliceDefaultPrimary,
-			CardGridSliceVariation,
-			CardGridSliceDefault,
 			CardGridSlice,
 			CardGridSliceDefaultPrimaryEntriesItem,
 			CardGridSliceDefaultPrimary,
@@ -3246,11 +2319,6 @@ declare module "@prismicio/client" {
 			ImageLinkGridSliceDefaultPrimary,
 			ImageLinkGridSliceVariation,
 			ImageLinkGridSliceDefault,
-			ImageLinkGridSlice,
-			ImageLinkGridSliceDefaultPrimaryEntriesItem,
-			ImageLinkGridSliceDefaultPrimary,
-			ImageLinkGridSliceVariation,
-			ImageLinkGridSliceDefault,
 			InquirySlice,
 			InquirySliceDefaultPrimary,
 			InquirySliceVariation,
@@ -3260,22 +2328,9 @@ declare module "@prismicio/client" {
 			LinkListSliceDefaultPrimary,
 			LinkListSliceVariation,
 			LinkListSliceDefault,
-			LinkListSlice,
-			LinkListSliceDefaultPrimaryEntriesItem,
-			LinkListSliceDefaultPrimary,
-			LinkListSliceVariation,
-			LinkListSliceDefault,
 			NewsListSlice,
 			NewsListSliceVariation,
 			NewsListSliceDefault,
-			NewsListSlice,
-			NewsListSliceVariation,
-			NewsListSliceDefault,
-			PillarAccordionSlice,
-			PillarAccordionSliceDefaultPrimaryEntriesItem,
-			PillarAccordionSliceDefaultPrimary,
-			PillarAccordionSliceVariation,
-			PillarAccordionSliceDefault,
 			PillarAccordionSlice,
 			PillarAccordionSliceDefaultPrimaryEntriesItem,
 			PillarAccordionSliceDefaultPrimary,
@@ -3286,14 +2341,6 @@ declare module "@prismicio/client" {
 			PillarCardsSliceDefaultPrimary,
 			PillarCardsSliceVariation,
 			PillarCardsSliceDefault,
-			PillarCardsSlice,
-			PillarCardsSliceDefaultPrimaryEntriesItem,
-			PillarCardsSliceDefaultPrimary,
-			PillarCardsSliceVariation,
-			PillarCardsSliceDefault,
-			PublicationListSlice,
-			PublicationListSliceVariation,
-			PublicationListSliceDefault,
 			PublicationListSlice,
 			PublicationListSliceVariation,
 			PublicationListSliceDefault,
@@ -3315,14 +2362,6 @@ declare module "@prismicio/client" {
 			TextColumnsSliceDefaultPrimary,
 			TextColumnsSliceVariation,
 			TextColumnsSliceDefault,
-			TextColumnsSlice,
-			TextColumnsSliceDefaultPrimary,
-			TextColumnsSliceVariation,
-			TextColumnsSliceDefault,
-			TextImageSlice,
-			TextImageSliceDefaultPrimary,
-			TextImageSliceVariation,
-			TextImageSliceDefault,
 			TextImageSlice,
 			TextImageSliceDefaultPrimary,
 			TextImageSliceVariation,
@@ -3332,11 +2371,6 @@ declare module "@prismicio/client" {
 			TimelineSliceDefaultPrimary,
 			TimelineSliceVariation,
 			TimelineSliceDefault,
-			WorkCardsSlice,
-			WorkCardsSliceDefaultPrimaryEntriesItem,
-			WorkCardsSliceDefaultPrimary,
-			WorkCardsSliceVariation,
-			WorkCardsSliceDefault,
 			WorkCardsSlice,
 			WorkCardsSliceDefaultPrimaryEntriesItem,
 			WorkCardsSliceDefaultPrimary,

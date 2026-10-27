@@ -1,14 +1,14 @@
 {
   "id": "pillar_cards",
   "type": "SharedSlice",
-  "name": "PillarCards",
-  "description": "About page illustrated pillar cards",
+  "name": "Pillar Cards",
   "variations": [
     {
       "id": "default",
       "name": "Default",
-      "version": "initial",
+      "version": "",
       "description": "About page illustrated pillar cards",
+      "docURL": "",
       "imageUrl": "",
       "primary": {
         "heading": {
@@ -73,8 +73,7 @@
             }
           }
         }
-      },
-      "items": {}
+      }
     }
   ]
 }

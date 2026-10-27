@@ -1,14 +1,14 @@
 {
   "id": "text_image",
   "type": "SharedSlice",
-  "name": "TextImage",
-  "description": "Image beside formatted copy",
+  "name": "Text Image",
   "variations": [
     {
       "id": "default",
       "name": "Default",
-      "version": "initial",
+      "version": "",
       "description": "Image beside formatted copy",
+      "docURL": "",
       "imageUrl": "",
       "primary": {
         "heading": {
@@ -51,8 +51,7 @@
             "label": "Button destination"
           }
         }
-      },
-      "items": {}
+      }
     }
   ]
 }

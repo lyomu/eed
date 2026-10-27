@@ -1,14 +1,14 @@
 {
   "id": "pillar_accordion",
   "type": "SharedSlice",
-  "name": "PillarAccordion",
-  "description": "Expandable research pillar panels",
+  "name": "Pillar Accordion",
   "variations": [
     {
       "id": "default",
       "name": "Default",
-      "version": "initial",
+      "version": "",
       "description": "Expandable research pillar panels",
+      "docURL": "",
       "imageUrl": "",
       "primary": {
         "heading": {
@@ -61,8 +61,7 @@
             }
           }
         }
-      },
-      "items": {}
+      }
     }
   ]
 }

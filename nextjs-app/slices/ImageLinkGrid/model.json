@@ -1,14 +1,14 @@
 {
   "id": "image_link_grid",
   "type": "SharedSlice",
-  "name": "ImageLinkGrid",
-  "description": "About page fieldwork image links",
+  "name": "Image Link Grid",
   "variations": [
     {
       "id": "default",
       "name": "Default",
-      "version": "initial",
+      "version": "",
       "description": "About page fieldwork image links",
+      "docURL": "",
       "imageUrl": "",
       "primary": {
         "heading": {
@@ -54,8 +54,7 @@
             }
           }
         }
-      },
-      "items": {}
+      }
     }
   ]
 }

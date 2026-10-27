@@ -1,14 +1,14 @@
 {
   "id": "call_to_action",
   "type": "SharedSlice",
-  "name": "CallToAction",
-  "description": "Heading, copy, and a button",
+  "name": "Call To Action",
   "variations": [
     {
       "id": "default",
       "name": "Default",
-      "version": "initial",
+      "version": "",
       "description": "Heading, copy, and a button",
+      "docURL": "",
       "imageUrl": "",
       "primary": {
         "heading": {
@@ -37,8 +37,7 @@
             "label": "Button destination"
           }
         }
-      },
-      "items": {}
+      }
     }
   ]
 }

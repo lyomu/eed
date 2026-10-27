@@ -123,7 +123,7 @@ for (const model of [sitePage, siteSettings]) {
 }
 
 for (const model of Object.values(choices)) {
-  const dir = `slices/${model.name}`;
+  const dir = `slices/${model.name.replace(/\W+/g, '')}`;
   mkdirSync(dir, { recursive: true });
   writeFileSync(`${dir}/model.json`, `${JSON.stringify(model, null, 2)}\n`);
 }

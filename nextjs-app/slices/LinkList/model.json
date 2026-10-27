@@ -1,14 +1,14 @@
 {
   "id": "link_list",
   "type": "SharedSlice",
-  "name": "LinkList",
-  "description": "Pillars, focus areas, or other linked rows",
+  "name": "Link List",
   "variations": [
     {
       "id": "default",
       "name": "Default",
-      "version": "initial",
+      "version": "",
       "description": "Pillars, focus areas, or other linked rows",
+      "docURL": "",
       "imageUrl": "",
       "primary": {
         "heading": {
@@ -59,8 +59,7 @@
             }
           }
         }
-      },
-      "items": {}
+      }
     }
   ]
 }

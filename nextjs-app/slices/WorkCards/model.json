@@ -1,14 +1,14 @@
 {
   "id": "work_cards",
   "type": "SharedSlice",
-  "name": "WorkCards",
-  "description": "Numbered capability cards",
+  "name": "Work Cards",
   "variations": [
     {
       "id": "default",
       "name": "Default",
-      "version": "initial",
+      "version": "",
       "description": "Numbered capability cards",
+      "docURL": "",
       "imageUrl": "",
       "primary": {
         "heading": {
@@ -47,8 +47,7 @@
             }
           }
         }
-      },
-      "items": {}
+      }
     }
   ]
 }

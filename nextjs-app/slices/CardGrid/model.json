@@ -1,14 +1,14 @@
 {
   "id": "card_grid",
   "type": "SharedSlice",
-  "name": "CardGrid",
-  "description": "Two or three column cards with optional images and links",
+  "name": "Card Grid",
   "variations": [
     {
       "id": "default",
       "name": "Default",
-      "version": "initial",
+      "version": "",
       "description": "Two or three column cards with optional images and links",
+      "docURL": "",
       "imageUrl": "",
       "primary": {
         "heading": {
@@ -93,8 +93,7 @@
             }
           }
         }
-      },
-      "items": {}
+      }
     }
   ]
 }

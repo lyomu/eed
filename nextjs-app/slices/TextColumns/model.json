@@ -1,14 +1,14 @@
 {
   "id": "text_columns",
   "type": "SharedSlice",
-  "name": "TextColumns",
-  "description": "Introduction and two text columns",
+  "name": "Text Columns",
   "variations": [
     {
       "id": "default",
       "name": "Default",
-      "version": "initial",
+      "version": "",
       "description": "Introduction and two text columns",
+      "docURL": "",
       "imageUrl": "",
       "primary": {
         "heading": {
@@ -39,8 +39,7 @@
             "multi": "paragraph,heading2,heading3,strong,em,hyperlink,list-item,o-list-item"
           }
         }
-      },
-      "items": {}
+      }
     }
   ]
 }
