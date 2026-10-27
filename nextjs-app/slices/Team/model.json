@@ -2,13 +2,13 @@
   "id": "team",
   "type": "SharedSlice",
   "name": "Team",
-  "description": "Editable team cards and biographies",
   "variations": [
     {
       "id": "default",
       "name": "Default",
-      "version": "initial",
+      "version": "",
       "description": "Editable team cards and biographies",
+      "docURL": "",
       "imageUrl": "",
       "primary": {
         "entries": {
@@ -71,8 +71,7 @@
             }
           }
         }
-      },
-      "items": {}
+      }
     }
   ]
 }

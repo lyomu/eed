@@ -10,12 +10,11 @@ const group = (label, fields) => ({ type: 'Group', config: { label, repeat: true
 const slice = (name, description, _icon, primary, items = {}) => {
   const id = name.toLowerCase().replace(/[^a-z0-9]+/g, '_');
   return {
-    id, type: 'SharedSlice', name: name.replace(/\W+/g, ''), description,
+    id, type: 'SharedSlice', name,
     variations: [{
-      id: 'default', name: 'Default', version: 'initial', description,
+      id: 'default', name: 'Default', version: '', description, docURL: '',
       imageUrl: '', primary: Object.keys(items).length
         ? { ...primary, entries: group('Entries', items) } : primary,
-      items: {},
     }],
   };
 };
@@ -88,7 +87,7 @@ const choices = {
 
 for (const [id, model] of Object.entries(choices)) {
   model.id = id;
-  model.name = id.split('_').map((word) => word[0].toUpperCase() + word.slice(1)).join('');
+  model.name = id.split('_').map((word) => word[0].toUpperCase() + word.slice(1)).join(' ');
 }
 
 const sitePage = {

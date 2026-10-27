@@ -2,13 +2,13 @@
   "id": "hero",
   "type": "SharedSlice",
   "name": "Hero",
-  "description": "Page title, lead copy, image, and optional button",
   "variations": [
     {
       "id": "default",
       "name": "Default",
-      "version": "initial",
+      "version": "",
       "description": "Page title, lead copy, image, and optional button",
+      "docURL": "",
       "imageUrl": "",
       "primary": {
         "eyebrow": {
@@ -94,8 +94,7 @@
             }
           }
         }
-      },
-      "items": {}
+      }
     }
   ]
 }

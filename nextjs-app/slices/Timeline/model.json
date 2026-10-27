@@ -2,13 +2,13 @@
   "id": "timeline",
   "type": "SharedSlice",
   "name": "Timeline",
-  "description": "Institute milestones",
   "variations": [
     {
       "id": "default",
       "name": "Default",
-      "version": "initial",
+      "version": "",
       "description": "Institute milestones",
+      "docURL": "",
       "imageUrl": "",
       "primary": {
         "heading": {
@@ -46,8 +46,7 @@
             }
           }
         }
-      },
-      "items": {}
+      }
     }
   ]
 }

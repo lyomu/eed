@@ -2,13 +2,13 @@
   "id": "quote",
   "type": "SharedSlice",
   "name": "Quote",
-  "description": "Full-width statement on an image",
   "variations": [
     {
       "id": "default",
       "name": "Default",
-      "version": "initial",
+      "version": "",
       "description": "Full-width statement on an image",
+      "docURL": "",
       "imageUrl": "",
       "primary": {
         "heading": {
@@ -26,8 +26,7 @@
             "thumbnails": []
           }
         }
-      },
-      "items": {}
+      }
     }
   ]
 }

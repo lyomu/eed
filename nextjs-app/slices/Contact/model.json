@@ -2,13 +2,13 @@
   "id": "contact",
   "type": "SharedSlice",
   "name": "Contact",
-  "description": "Contact form beside editable office details",
   "variations": [
     {
       "id": "default",
       "name": "Default",
-      "version": "initial",
+      "version": "",
       "description": "Contact form beside editable office details",
+      "docURL": "",
       "imageUrl": "",
       "primary": {
         "heading": {
@@ -49,8 +49,7 @@
             "label": "Email"
           }
         }
-      },
-      "items": {}
+      }
     }
   ]
 }

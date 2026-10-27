@@ -2,13 +2,13 @@
   "id": "stats",
   "type": "SharedSlice",
   "name": "Stats",
-  "description": "Impact band with any number of statistics",
   "variations": [
     {
       "id": "default",
       "name": "Default",
-      "version": "initial",
+      "version": "",
       "description": "Impact band with any number of statistics",
+      "docURL": "",
       "imageUrl": "",
       "primary": {
         "heading": {
@@ -39,8 +39,7 @@
             }
           }
         }
-      },
-      "items": {}
+      }
     }
   ]
 }
