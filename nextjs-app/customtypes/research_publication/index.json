@@ -1,6 +1,7 @@
 {
   "id": "research_publication",
   "label": "Research Publication",
+  "format": "custom",
   "repeatable": true,
   "status": true,
   "json": {
