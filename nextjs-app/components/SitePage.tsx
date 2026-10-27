@@ -59,7 +59,7 @@ export default async function SitePage({ doc }: { doc: Content }) {
     switch (slice.slice_type) {
       case 'hero':
         return <section key={key} className={`${p.home_style ? 'hero hero--image' : 'page-head page-head--image'} on-image`}>
-          <FallbackImage className="hero-bg" src={imageUrl(p.image, '/assets/hero/hero-home.jpg')} alt="" fetchPriority={index === 0 ? 'high' : undefined} />
+          {(p.image?.url || p.home_style) && <FallbackImage className="hero-bg" src={imageUrl(p.image, '/assets/hero/hero-home.jpg')} alt="" fetchPriority={index === 0 ? 'high' : undefined} />}
           <div className="container"><div className={p.home_style ? 'hero-grid' : undefined}><div className="hero-enter">
             {p.eyebrow && <span className="hero-kicker">{p.eyebrow}</span>}
             <h1>{value(p.heading)}</h1>
