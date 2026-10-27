@@ -22,6 +22,7 @@
           "type": "Group",
           "config": {
             "label": "Entries",
+            "repeat": true,
             "fields": {
               "value": {
                 "type": "Text",

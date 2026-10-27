@@ -15,6 +15,7 @@
           "type": "Group",
           "config": {
             "label": "Entries",
+            "repeat": true,
             "fields": {
               "id": {
                 "type": "Text",

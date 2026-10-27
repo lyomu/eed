@@ -49,6 +49,7 @@
           "type": "Group",
           "config": {
             "label": "Entries",
+            "repeat": true,
             "fields": {
               "title": {
                 "type": "Text",

@@ -6,7 +6,7 @@ const heading = (label) => ({ type: 'StructuredText', config: { label, single: '
 const image = (label) => ({ type: 'Image', config: { label, constraint: {}, thumbnails: [] } });
 const link = (label) => ({ type: 'Link', config: { label } });
 const select = (label, options) => ({ type: 'Select', config: { label, options } });
-const group = (label, fields) => ({ type: 'Group', config: { label, fields } });
+const group = (label, fields) => ({ type: 'Group', config: { label, repeat: true, fields } });
 const slice = (name, description, _icon, primary, items = {}) => {
   const id = name.toLowerCase().replace(/[^a-z0-9]+/g, '_');
   return {

@@ -26,6 +26,7 @@
         "type": "Group",
         "config": {
           "label": "Main navigation",
+          "repeat": true,
           "fields": {
             "label": {
               "type": "Text",
@@ -46,6 +47,7 @@
         "type": "Group",
         "config": {
           "label": "Pillar submenu",
+          "repeat": true,
           "fields": {
             "label": {
               "type": "Text",
@@ -84,6 +86,7 @@
         "type": "Group",
         "config": {
           "label": "Footer quick links",
+          "repeat": true,
           "fields": {
             "label": {
               "type": "Text",
@@ -104,6 +107,7 @@
         "type": "Group",
         "config": {
           "label": "Footer information links",
+          "repeat": true,
           "fields": {
             "label": {
               "type": "Text",
@@ -124,6 +128,7 @@
         "type": "Group",
         "config": {
           "label": "Footer legal links",
+          "repeat": true,
           "fields": {
             "label": {
               "type": "Text",
