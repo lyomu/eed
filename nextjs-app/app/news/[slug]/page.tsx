@@ -45,7 +45,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       <div className="container">
         <div className="photo-block ratio-16x9 post-lead-image">
-          {post.imageUrl && <Image src={post.imageUrl} alt={post.imageAlt ?? ''} fill unoptimized sizes="(max-width: 1200px) 100vw, 1200px" />}
+          {post.imageUrl && <Image src={post.imageUrl} alt={post.imageAlt ?? ''} fill unoptimized loading="eager" fetchPriority="high" sizes="(max-width: 1200px) 100vw, 1200px" />}
           <span className="mark">{post.leadImageLabel}</span>
         </div>
       </div>
