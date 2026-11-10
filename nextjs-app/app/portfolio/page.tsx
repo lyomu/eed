@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { getPublications } from '@/lib/cms';
 import PortfolioIndexClient from './PortfolioIndexClient';
-import FallbackImage from '@/components/FallbackImage';
+import HeroImage from '@/components/HeroImage';
 import SitePage from '@/components/SitePage';
 import { getPageMetadata, getSitePage } from '@/lib/site-content';
 
@@ -21,12 +21,7 @@ export default async function PortfolioPage() {
   return (
     <>
       <section className="page-head page-head--image on-image">
-        <FallbackImage
-          className="hero-bg"
-          src="/assets/hero/hero-portfolio-wind.jpg"
-          alt=""
-          fetchPriority="high"
-        />
+        <HeroImage src="/assets/hero/hero-portfolio-wind.jpg" />
         <div className="container">
           <div className="hero-enter">
             <h1>An index of our applied research</h1>

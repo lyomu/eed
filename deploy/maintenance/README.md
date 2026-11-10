@@ -8,18 +8,28 @@ Requests get **HTTP 503** with a `Retry-After`, which is the correct status for
 a temporary outage — search engines hold the existing index rather than
 dropping the pages.
 
+## SSH access
+
+The commands below use an SSH alias, `eed-droplet`, so no server details live
+in this public repository. Define it once in your own `~/.ssh/config` with the
+values from the maintainer:
+
+    Host eed-droplet
+      HostName <droplet IP address>
+      User <admin user>
+      IdentityFile <path to your private key>
+
 ## Turn maintenance ON
 
-    ssh -i ~/.ssh/id_ed25519_eed_droplet root@164.92.142.118 \
+    ssh eed-droplet \
       'mv /etc/apache2/eed-maintenance-off/maintenance.conf /etc/apache2/eed-maintenance/ && apache2ctl configtest && systemctl reload apache2'
 
 ## Turn maintenance OFF (restore the site)
 
-    ssh -i ~/.ssh/id_ed25519_eed_droplet root@164.92.142.118 \
+    ssh eed-droplet \
       'mv /etc/apache2/eed-maintenance/maintenance.conf /etc/apache2/eed-maintenance-off/ && apache2ctl configtest && systemctl reload apache2'
 
-`reload` is graceful — it does not drop the other sites on the shared box
-(eedadvisory.com, dev.eedadvisory.com, WordPress).
+`reload` is graceful — it does not drop the other sites on the shared server.
 
 ## Files on the droplet
 
@@ -37,6 +47,6 @@ Both eedresearch.com vhosts (`:80` and `:443`) carry one line,
 
 Edit `index.html` here, commit, then re-copy it up:
 
-    scp -i ~/.ssh/id_ed25519_eed_droplet index.html logo.png root@164.92.142.118:/var/www/maintenance/
+    scp index.html logo.png eed-droplet:/var/www/maintenance/
 
 No Apache reload needed for a content-only change.

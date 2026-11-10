@@ -1,17 +1,12 @@
 import Link from 'next/link';
 import type { PillarContent } from '@/lib/pillars-data';
-import FallbackImage from '@/components/FallbackImage';
+import HeroImage from '@/components/HeroImage';
 
 export default function PillarPageContent({ content }: { content: PillarContent }) {
   return (
     <>
       <section className="page-head page-head--image on-image">
-        <FallbackImage
-          className="hero-bg"
-          src={content.heroImage}
-          alt=""
-          fetchPriority="high"
-        />
+        <HeroImage src={content.heroImage} />
         <div className="container">
           <nav className="breadcrumb" aria-label="Breadcrumb">
             <Link href="/">Home</Link>
