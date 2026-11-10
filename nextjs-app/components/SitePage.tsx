@@ -166,7 +166,7 @@ export default async function SitePage({ doc }: { doc: Content }) {
           <div className="artistic-pillar-grid" data-reveal-stagger>{items.map((item, i) => <div className="artistic-pillar-card" key={i}>
             <div className="artistic-pillar-media"><FallbackImage src={imageUrl(item.image)} alt={item.image?.alt || item.title || ''} loading="lazy" />
               {item.badge && <span className="media-badge">{item.badge}</span>}{item.stat && <span className="stat-chip">{item.stat}</span>}</div>
-            <div className="artistic-pillar-body"><div className="artistic-pillar-head"><h3>{item.title}</h3><span className="artistic-pillar-num">{String(i + 1).padStart(2, '0')}</span></div>
+            <div className="artistic-pillar-body"><div className="artistic-pillar-head"><h3>{item.title}</h3></div>
               <Rich field={item.body} /><Link href={href(item.destination)} className="artistic-pillar-link">Explore Pillar →</Link></div>
           </div>)}</div>
         </div></section>;

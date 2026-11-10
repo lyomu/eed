@@ -93,7 +93,6 @@ export default async function AboutPage() {
               <div className="artistic-pillar-body">
                 <div className="artistic-pillar-head">
                   <h3>Water &amp; Sanitation</h3>
-                  <span className="artistic-pillar-num">01</span>
                 </div>
                 <p>
                   According to the 2026 UN SDG 6 Synthesis Report, over 961 million people gained
@@ -116,7 +115,6 @@ export default async function AboutPage() {
               <div className="artistic-pillar-body">
                 <div className="artistic-pillar-head">
                   <h3>Clean Energy</h3>
-                  <span className="artistic-pillar-num">02</span>
                 </div>
                 <p>
                   Targeting universal energy access (SDG 7), addressing the 900 million gap in
@@ -138,7 +136,6 @@ export default async function AboutPage() {
               <div className="artistic-pillar-body">
                 <div className="artistic-pillar-head">
                   <h3>Climate Resilience</h3>
-                  <span className="artistic-pillar-num">03</span>
                 </div>
                 <p>
                   Tracking climate variability impacts across vulnerable landscapes, evaluating
@@ -160,7 +157,6 @@ export default async function AboutPage() {
               <div className="artistic-pillar-body">
                 <div className="artistic-pillar-head">
                   <h3>Agriculture &amp; Food</h3>
-                  <span className="artistic-pillar-num">04</span>
                 </div>
                 <p>
                   Empowering sub-Saharan Africa&rsquo;s 33 million smallholders where 60% of the
