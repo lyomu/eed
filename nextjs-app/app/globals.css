@@ -532,45 +532,6 @@ p{ margin:0 0 1em; }
   background:rgba(255,255,255,.08);
 }
 
-/* Kicker: a small tracked label above the headline. Gives the inner page
-   headers a second typographic level, which they previously lacked. */
-.hero-kicker{
-  display:inline-block;
-  font-family:var(--font-label);
-  font-size:var(--fs-mono);
-  font-weight:600;
-  color:var(--gold-400);
-  margin-bottom:20px;
-  padding-bottom:12px;
-  padding-left:14px;
-  position:relative;
-}
-/* Brand line: short green accent bar, the "green as main colour" counterpart
-   to the gold underline below. */
-.hero-kicker::before{
-  content:"";
-  position:absolute;
-  left:0;
-  top:2px;
-  bottom:14px;
-  width:3px;
-  background:var(--green-600);
-}
-.hero-kicker::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:0;
-  width:100%;
-  height:1px;
-  background:var(--gold-400);
-  opacity:.5;
-  transform-origin:left center;
-  transition:transform var(--dur-rule) var(--ease-out);
-}
-.js .hero-kicker::after{ transform:scaleX(0); }
-.js .hero-ready .hero-kicker::after{ transform:scaleX(1); }
-
 /* ---------- Inner page header on an image ----------
    Full-width photo banner, tall enough that the image and headline
    dominate the first screen before scrolling (sized against the Oxford
@@ -620,7 +581,6 @@ p{ margin:0 0 1em; }
   max-width:60ch;
   text-shadow:0 1px 12px rgba(0,0,0,.55);
 }
-.page-head--image .hero-kicker,
 .page-head--image .hero-tagline{ text-shadow:0 1px 8px rgba(0,0,0,.55); }
 
 /* Pillar positioning statement, sitting between the headline and the lead.

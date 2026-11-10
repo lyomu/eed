@@ -82,7 +82,6 @@ export default async function SitePage({ doc }: { doc: Content }) {
           {p.home_style && <HeroSlideshow slides={heroSlides(p.slides)} />}
           {!p.home_style && p.image?.url && <FallbackImage className="hero-bg" src={imageUrl(p.image, '/assets/hero/hero-home.jpg')} alt="" fetchPriority={index === 0 ? 'high' : undefined} />}
           <div className="container"><div className={p.home_style ? 'hero-grid' : undefined}><div className="hero-enter">
-            {p.eyebrow && <span className="hero-kicker">{p.eyebrow}</span>}
             <h1>{value(p.heading)}</h1>
             <div className="lead"><Rich field={p.body} /></div>
             <Action label={p.button_label} destination={p.button_link} />

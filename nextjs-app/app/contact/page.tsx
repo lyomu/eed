@@ -26,7 +26,6 @@ export default async function ContactPage() {
         />
         <div className="container">
           <div className="hero-enter">
-            <span className="hero-kicker">Get In Touch</span>
             <h1>Let&rsquo;s build the evidence base together</h1>
             <p className="lead">
               We welcome collaboration with academic institutions, government agencies, and

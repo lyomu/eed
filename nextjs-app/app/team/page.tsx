@@ -27,7 +27,6 @@ export default async function TeamPage() {
         />
         <div className="container">
           <div className="hero-enter">
-            <span className="hero-kicker">Our People</span>
             <h1>The people behind the research</h1>
             <p className="lead">
               A multidisciplinary collective of researchers, scientists, and strategists dedicated

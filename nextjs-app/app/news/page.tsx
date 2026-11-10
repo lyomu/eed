@@ -28,7 +28,6 @@ export default async function NewsPage() {
         />
         <div className="container">
           <div className="hero-enter">
-            <span className="hero-kicker">Insights</span>
             <h1>Perspectives from the field</h1>
             <p className="lead">
               Research commentary, policy analysis, and field notes from our researchers across

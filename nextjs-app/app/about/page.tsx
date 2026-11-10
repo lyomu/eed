@@ -26,7 +26,6 @@ export default async function AboutPage() {
         />
         <div className="container">
           <div className="hero-enter">
-            <span className="hero-kicker">The Institute</span>
             <h1>Bridging Science and Sustainability.</h1>
             <p className="lead">
               The EED Research Institute is dedicated to pioneering ecological breakthroughs that

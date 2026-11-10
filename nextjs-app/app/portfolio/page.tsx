@@ -29,7 +29,6 @@ export default async function PortfolioPage() {
         />
         <div className="container">
           <div className="hero-enter">
-            <span className="hero-kicker">Research Portfolio</span>
             <h1>An index of our applied research</h1>
             <p className="lead">
               Systemic analyses and policy interventions across key thematic areas, designed to
