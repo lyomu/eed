@@ -35,6 +35,14 @@ function href(field: Content, fallback = '#'): string {
  */
 const DEFAULT_HERO_IMAGES: Record<string, string> = {
   news: '/assets/hero/hero-news.jpg',
+};
+
+/**
+ * Banner images that replace whatever is set in Prismic. The team page's
+ * Prismic image (a group photo) has been retired in favour of a landscape
+ * without people; remove the entry here to hand control back to Prismic.
+ */
+const HERO_IMAGE_OVERRIDES: Record<string, string> = {
   team: '/assets/hero/hero-team-landscape.jpg',
 };
 
@@ -89,7 +97,10 @@ export default async function SitePage({ doc }: { doc: Content }) {
       case 'hero':
         return <section key={key} className={`${p.home_style ? 'hero hero--image' : 'page-head page-head--image'} on-image`}>
           {p.home_style && <HeroSlideshow slides={heroSlides(p.slides)} />}
-          {!p.home_style && (p.image?.url || DEFAULT_HERO_IMAGES[doc.uid]) && <FallbackImage className="hero-bg" src={imageUrl(p.image, DEFAULT_HERO_IMAGES[doc.uid])} alt="" fetchPriority={index === 0 ? 'high' : undefined} />}
+          {!p.home_style && (() => {
+            const src = HERO_IMAGE_OVERRIDES[doc.uid] || imageUrl(p.image, DEFAULT_HERO_IMAGES[doc.uid]);
+            return src ? <FallbackImage className="hero-bg" src={src} alt="" fetchPriority={index === 0 ? 'high' : undefined} /> : null;
+          })()}
           <div className="container"><div className={p.home_style ? 'hero-grid' : undefined}><div className="hero-enter">
             <h1>{value(p.heading)}</h1>
             <div className="lead"><Rich field={p.body} /></div>
