@@ -319,7 +319,7 @@ interface ResearchPublicationDocumentData {
 	title: prismic.RichTextField;
 	
 	/**
-	 * Description field in *Research Publication*
+	 * Abstract / brief field in *Research Publication*
 	 *
 	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: *None*
@@ -328,20 +328,9 @@ interface ResearchPublicationDocumentData {
 	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
 	description: prismic.RichTextField;
-	
+
 	/**
-	 * Funder / client field in *Research Publication*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: research_publication.funder
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/fields/text
-	 */
-	funder: prismic.KeyTextField;
-	
-	/**
-	 * Category filter field in *Research Publication*
+	 * Research area field in *Research Publication*
 	 *
 	 * - **Field Type**: Select
 	 * - **Placeholder**: *None*
@@ -349,21 +338,43 @@ interface ResearchPublicationDocumentData {
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/fields/select
 	 */
-	category: prismic.SelectField<"energy" | "wash" | "climate" | "agriculture">;
-	
+	category: prismic.SelectField<"energy" | "wash" | "climate" | "agriculture" | "circular_economy">;
+
 	/**
-	 * Display tag field in *Research Publication*
+	 * Type field in *Research Publication*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: research_publication.publication_type
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	publication_type: prismic.SelectField<"Research paper" | "Case study" | "Evaluation study" | "Dataset" | "Report" | "Policy brief" | "Blog post">;
+
+	/**
+	 * Published by / outlet field in *Research Publication*
 	 *
 	 * - **Field Type**: Text
-	 * - **Placeholder**: e.g. Energy
-	 * - **API ID Path**: research_publication.tag
+	 * - **Placeholder**: e.g. ODI, ScienceDirect
+	 * - **API ID Path**: research_publication.publisher
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
-	tag: prismic.KeyTextField;
-	
+	publisher: prismic.KeyTextField;
+
 	/**
-	 * Publication date field in *Research Publication*
+	 * Link to published source field in *Research Publication*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: research_publication.document
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	document: prismic.LinkField;
+
+	/**
+	 * Publication date (optional, newest first) field in *Research Publication*
 	 *
 	 * - **Field Type**: Date
 	 * - **Placeholder**: *None*
@@ -372,28 +383,6 @@ interface ResearchPublicationDocumentData {
 	 * - **Documentation**: https://prismic.io/docs/fields/date
 	 */
 	publication_date: prismic.DateField;
-	
-	/**
-	 * PDF / external document link field in *Research Publication*
-	 *
-	 * - **Field Type**: Link to Media
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: research_publication.document
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/fields/link-to-media
-	 */
-	document: prismic.LinkToMediaField<prismic.FieldState, never>;
-	
-	/**
-	 * Body field in *Research Publication*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: research_publication.body
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	body: prismic.RichTextField;
 }
 
 /**
