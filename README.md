@@ -85,6 +85,7 @@ Run these from `nextjs-app/`.
 | `node scripts/migrate-news.mjs` | Dry run: prints the blog posts it would import into Prismic. Add `--apply` to stage them. |
 | `node scripts/migrate-publications.mjs` | Dry run for the research portfolio entries. Add `--apply` to stage them. |
 | `node scripts/migrate-site-content.mjs` | Dry run for the editable page content and site settings. Add `--apply` to stage them. |
+| `node scripts/optimize-hero-images.mjs` | Writes responsive WebP copies of the banner photos. Run it after adding or replacing one. |
 
 With `--apply`, the migration scripts need `PRISMIC_WRITE_TOKEN`. They stage
 documents as a Prismic migration release, which must then be reviewed and
@@ -185,6 +186,14 @@ Banner and hero images live in [`public/assets/hero/`](nextjs-app/public/assets/
 They are 2560px wide; keep new ones at least that wide so they stay sharp on
 large screens.
 
+After adding or replacing a banner photo, run
+`node scripts/optimize-hero-images.mjs`. It writes WebP copies at 1280, 1920
+and 2560px beside each JPEG, and
+[`components/HeroImage.tsx`](nextjs-app/components/HeroImage.tsx) serves the
+size that fits the screen and preloads the first banner on each page.
+Banners uploaded to Prismic are resized by Prismic's CDN, so they need no
+extra step.
+
 Banner images are chosen in this order, set in
 [`components/SitePage.tsx`](nextjs-app/components/SitePage.tsx):
 
@@ -214,6 +223,7 @@ Photo credits (all from Pexels under the [Pexels licence](https://www.pexels.com
 | `hero-climate.jpg` | [Cracked dry earth during drought](https://www.pexels.com/photo/cracked-dry-earth-during-severe-drought-36767372/) |
 | `hero-home-wind.jpg` | [Wind turbines over farmland](https://www.pexels.com/photo/9022671/), Rockwell Branding Agency |
 | `hero-home-solar.jpg` | Wind turbines and solar panels. This one is AI-generated; check its licence and consider replacing it with a real photo. |
+| `assets/blog/clean-cooking-charcoal-stove.jpg` | [Outdoor Cooking Pot on Rustic Charcoal Stove](https://www.pexels.com/photo/outdoor-cooking-pot-on-rustic-charcoal-stove-32796453/), Wedson msoni. Lead image for the Sierra Leone clean cooking article. |
 
 ## Deployment
 
