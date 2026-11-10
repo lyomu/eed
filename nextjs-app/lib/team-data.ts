@@ -92,6 +92,13 @@ export const TEAM_MEMBERS: TeamMember[] = [
     role: 'Executive Assistant',
     photo: '/assets/team/carl-ngaira.jpg?v=grey',
     linkedin: 'https://www.linkedin.com/in/carl-ngaira-56b76215b/',
-    // No bio yet — matches the original site, which has no <template> for him.
+    bio: [
+      'Carl Ngaira is a development finance and enterprise support professional with over five years of experience supporting businesses, investors, development partners, and funders across Sub-Saharan Africa and Asia. His work sits at the intersection of finance, energy, climate, enterprise development, and technical assistance, with a particular focus on helping high-growth businesses strengthen their models, become investment-ready, access finance, and scale their impact.',
+      'Carl currently works at EED Advisory, where he has progressed from Graduate Analyst to Senior Associate and serves as Project Manager across several major development and investment initiatives. He manages the US$5 million KawiSafi Technical Assistance Facility, supporting productive-use-of-energy and e-mobility ventures across the off-grid ecosystem. In this role, he leads stakeholder engagement, proposal review, due diligence, investment pipeline development, and grant management, and has overseen more than US$4.5 million in disbursements supporting interventions focused on consumer protection and gender.',
+      'Carl also manages programmes supported by the Charles Mott Foundation, where he has delivered technical assistance to local organisations across Kenya, Uganda, and Tanzania to strengthen grant readiness and access to finance. Through these programmes, he has supported 14 of 20 organisations to secure a combined US$531,000 in financing and managed the deployment of 20 fellows across the three countries.',
+      'His broader experience spans investment readiness, financial analysis, due diligence, technical assistance design, market assessments, and transaction support. He has supported a US$30 million SME off-grid financing pipeline across 22 TDB member states, and conducted due diligence on renewable energy companies across Africa and Southeast Asia.',
+      'Carl has also worked across climate finance and carbon markets, including leading the strategic design of a US$450,000 carbon-market accelerator pilot for the Carbon Access Lab. His experience extends beyond energy into water, sanitation, and climate-resilient infrastructure, including market analysis, financial feasibility assessments, and business model development.',
+      'He holds an MSc in Renewable Energy, Enterprise & Management from Newcastle University, where he graduated with Merit, and a BSc in Business Management. Carl combines commercial thinking, analytical rigour, project leadership, and stakeholder management to translate complex development challenges into practical, financeable, and high-impact solutions.',
+    ],
   },
 ];
