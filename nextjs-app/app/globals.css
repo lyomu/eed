@@ -831,7 +831,7 @@ p{ margin:0 0 1em; }
   grid-template-columns:64px 1fr 200px 160px;
   gap:32px;
   align-items:center;
-  padding:30px 0;
+  padding:30px clamp(20px, 3vw, 40px);   /* side padding keeps content off the hover tint edges */
   border-bottom:1px solid var(--rule);
   transition:background .2s ease;
 }
@@ -2310,7 +2310,7 @@ main > .page-head.page-head--image:first-child{
   .index-row{
     grid-template-columns:1fr;
     gap:12px;
-    padding:26px 0;
+    padding:26px 20px;
   }
   .index-row .actions{ justify-self:start; }
   .pillar-row{ grid-template-columns:1fr; }
