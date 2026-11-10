@@ -944,7 +944,7 @@ p{ margin:0 0 1em; }
   display:grid;
   grid-template-columns:180px 1fr 140px;
   gap:40px;
-  padding:32px 0;
+  padding:32px clamp(20px, 3vw, 40px);
   border-bottom:1px solid var(--rule);
   align-items:start;
   transition:background .2s ease;
@@ -2314,7 +2314,7 @@ main > .page-head.page-head--image:first-child{
   }
   .index-row .actions{ justify-self:start; }
   .pillar-row{ grid-template-columns:1fr; }
-  .article-row{ grid-template-columns:1fr; gap:12px; padding:26px 0; }
+  .article-row{ grid-template-columns:1fr; gap:12px; padding:26px 20px; }
   .article-row .article-meta{ line-height:1.7; }
   .article-row .article-meta .cat{ display:inline; }
   .article-row .read-time{ justify-self:start; }
