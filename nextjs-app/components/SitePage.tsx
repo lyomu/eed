@@ -45,6 +45,7 @@ const DEFAULT_HERO_IMAGES: Record<string, string> = {
 const HERO_IMAGE_OVERRIDES: Record<string, string> = {
   team: '/assets/hero/hero-team-solar.jpg',
   portfolio: '/assets/hero/hero-portfolio-wind.jpg',
+  about: '/assets/hero/hero-about-river.jpg',
 };
 
 function imageUrl(field: Content, fallback = ''): string {

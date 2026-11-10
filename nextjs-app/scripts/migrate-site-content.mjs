@@ -134,7 +134,7 @@ const about = {
   metaTitle: 'About Us — EED Research Institute',
   metaDescription: 'EED Research Institute pioneers ecological breakthroughs that inform policy and empower communities.',
   slices: [
-    hero({ eyebrow: 'The Institute', heading: 'Bridging Science and Sustainability.', body: 'The EED Research Institute is dedicated to pioneering ecological breakthroughs that inform policy and empower communities across the globe.', image: '/assets/hero/hero-about.jpg' }),
+    hero({ eyebrow: 'The Institute', heading: 'Bridging Science and Sustainability.', body: 'The EED Research Institute is dedicated to pioneering ecological breakthroughs that inform policy and empower communities across the globe.', image: '/assets/hero/hero-about-river.jpg' }),
     slice('image_link_grid', {
       heading: title('Fieldwork across East and Sub-Saharan Africa'),
       intro: rich('Applied research grounded in the communities and institutions our findings are meant to serve.'),

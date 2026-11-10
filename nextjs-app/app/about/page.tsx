@@ -20,7 +20,7 @@ export default async function AboutPage() {
       <section className="page-head page-head--image on-image">
         <FallbackImage
           className="hero-bg"
-          src="/assets/hero/hero-about.jpg"
+          src="/assets/hero/hero-about-river.jpg"
           alt=""
           fetchPriority="high"
         />
