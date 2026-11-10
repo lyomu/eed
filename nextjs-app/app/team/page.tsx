@@ -21,7 +21,7 @@ export default async function TeamPage() {
       <section className="page-head page-head--image on-image">
         <FallbackImage
           className="hero-bg"
-          src="/assets/hero/hero-team-landscape.jpg"
+          src="/assets/hero/hero-team-solar.jpg"
           alt=""
           fetchPriority="high"
         />
