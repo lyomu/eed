@@ -23,7 +23,7 @@ export default async function PortfolioPage() {
       <section className="page-head page-head--image on-image">
         <FallbackImage
           className="hero-bg"
-          src="/assets/hero/hero-portfolio.jpg"
+          src="/assets/hero/hero-portfolio-wind.jpg"
           alt=""
           fetchPriority="high"
         />

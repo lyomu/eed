@@ -270,7 +270,7 @@ const portfolio = {
   metaTitle: 'Research Portfolio — EED Research Institute',
   metaDescription: 'An archive of applied research and policy interventions across WASH, energy, climate, and agriculture.',
   slices: [
-    hero({ eyebrow: 'Research Portfolio', heading: 'An index of our applied research', body: 'Systemic analyses and policy interventions across key thematic areas, designed to foster ecological stewardship and intellectual rigor.', image: '/assets/hero/hero-portfolio.jpg' }),
+    hero({ eyebrow: 'Research Portfolio', heading: 'An index of our applied research', body: 'Systemic analyses and policy interventions across key thematic areas, designed to foster ecological stewardship and intellectual rigor.', image: '/assets/hero/hero-portfolio-wind.jpg' }),
     slice('publication_list'),
   ],
 };
