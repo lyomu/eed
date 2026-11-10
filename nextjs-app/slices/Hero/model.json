@@ -93,6 +93,23 @@
               }
             }
           }
+        },
+        "slides": {
+          "type": "Group",
+          "config": {
+            "label": "Home hero slideshow",
+            "repeat": true,
+            "fields": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "label": "Slide image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              }
+            }
+          }
         }
       }
     }

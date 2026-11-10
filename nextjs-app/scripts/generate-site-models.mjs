@@ -28,6 +28,7 @@ const choices = {
     image: image('Background image'), home_style: { type: 'Boolean', config: { label: 'Use large home hero', default_value: false } }, ...button,
     metrics: group('Hero metrics', { value: text('Value'), label: text('Label') }),
     tags: group('Hero topic strip', { label: text('Topic') }),
+    slides: group('Home hero slideshow', { image: image('Slide image') }),
   }),
   text_image: slice('Text and image', 'Image beside formatted copy', 'view_agenda', {
     heading: heading('Heading'), body: rich('Body'), image: image('Image'), image_label: text('Image label'), ...button,

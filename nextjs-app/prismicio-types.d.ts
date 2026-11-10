@@ -1062,6 +1062,21 @@ export interface HeroSliceDefaultPrimaryTagsItem {
 }
 
 /**
+ * Item in *Hero → Default → Primary → Home hero slideshow*
+ */
+export interface HeroSliceDefaultPrimarySlidesItem {
+	/**
+	 * Slide image field in *Hero → Default → Primary → Home hero slideshow*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero.default.primary.slides[].image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>;
+}
+
+/**
  * Primary content in *Hero → Default → Primary*
  */
 export interface HeroSliceDefaultPrimary {
@@ -1155,6 +1170,16 @@ export interface HeroSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
 	 */
 	tags: prismic.GroupField<Simplify<HeroSliceDefaultPrimaryTagsItem>>;
+
+	/**
+	 * Home hero slideshow field in *Hero → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero.default.primary.slides[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	slides: prismic.GroupField<Simplify<HeroSliceDefaultPrimarySlidesItem>>;
 }
 
 /**
@@ -2311,6 +2336,7 @@ declare module "@prismicio/client" {
 			HeroSlice,
 			HeroSliceDefaultPrimaryMetricsItem,
 			HeroSliceDefaultPrimaryTagsItem,
+			HeroSliceDefaultPrimarySlidesItem,
 			HeroSliceDefaultPrimary,
 			HeroSliceVariation,
 			HeroSliceDefault,
