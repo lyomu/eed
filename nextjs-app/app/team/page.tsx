@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import TeamSection from '@/components/team/TeamSection';
-import FallbackImage from '@/components/FallbackImage';
+import HeroImage from '@/components/HeroImage';
 import SitePage from '@/components/SitePage';
 import { getPageMetadata, getSitePage } from '@/lib/site-content';
 
@@ -19,12 +19,7 @@ export default async function TeamPage() {
   return (
     <>
       <section className="page-head page-head--image on-image">
-        <FallbackImage
-          className="hero-bg"
-          src="/assets/hero/hero-team-solar.jpg"
-          alt=""
-          fetchPriority="high"
-        />
+        <HeroImage src="/assets/hero/hero-team-solar.jpg" />
         <div className="container">
           <div className="hero-enter">
             <h1>The people behind the research</h1>
