@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import InquiryForm from '@/components/forms/InquiryForm';
 import FallbackImage from '@/components/FallbackImage';
+import HeroSlideshow from '@/components/HeroSlideshow';
 import SitePage from '@/components/SitePage';
 import { getPageMetadata, getSitePage } from '@/lib/site-content';
 
@@ -15,12 +16,7 @@ export default async function HomePage() {
   return (
     <>
       <section className="hero hero--image on-image">
-        <FallbackImage
-          className="hero-bg"
-          src="/assets/hero/hero-home.jpg"
-          alt=""
-          fetchPriority="high"
-        />
+        <HeroSlideshow />
         <div className="container">
           <div className="hero-grid">
             <div className="hero-enter">

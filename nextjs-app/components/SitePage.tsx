@@ -2,6 +2,7 @@ import * as prismic from '@prismicio/client';
 import { PrismicRichText } from '@prismicio/react';
 import Link from 'next/link';
 import FallbackImage from '@/components/FallbackImage';
+import HeroSlideshow from '@/components/HeroSlideshow';
 import ContactForm from '@/components/forms/ContactForm';
 import InquiryForm from '@/components/forms/InquiryForm';
 import TeamSection from '@/components/team/TeamSection';
@@ -32,6 +33,25 @@ function imageUrl(field: Content, fallback = ''): string {
   return field?.url || fallback;
 }
 
+/**
+ * Slides for the home hero from the Prismic "Home hero slideshow" group.
+ * Prismic serves images through imgix, so editors can upload full-size
+ * originals and we request a 2560px-wide version. Falls back to the bundled
+ * defaults when no slide images are set.
+ */
+function heroSlides(items: Content[] | undefined) {
+  const slides = (items || [])
+    .map((item) => item?.image)
+    .filter((img) => img?.url)
+    .map((img) => {
+      const url = new URL(img.url);
+      url.searchParams.set('w', '2560');
+      url.searchParams.set('q', '80');
+      return { src: url.toString(), position: 'center' };
+    });
+  return slides.length ? slides : undefined;
+}
+
 function Rich({ field }: { field: Content }) {
   return Array.isArray(field) && field.length ? <PrismicRichText field={field as prismic.RichTextField} /> : null;
 }
@@ -59,7 +79,8 @@ export default async function SitePage({ doc }: { doc: Content }) {
     switch (slice.slice_type) {
       case 'hero':
         return <section key={key} className={`${p.home_style ? 'hero hero--image' : 'page-head page-head--image'} on-image`}>
-          {(p.image?.url || p.home_style) && <FallbackImage className="hero-bg" src={imageUrl(p.image, '/assets/hero/hero-home.jpg')} alt="" fetchPriority={index === 0 ? 'high' : undefined} />}
+          {p.home_style && <HeroSlideshow slides={heroSlides(p.slides)} />}
+          {!p.home_style && p.image?.url && <FallbackImage className="hero-bg" src={imageUrl(p.image, '/assets/hero/hero-home.jpg')} alt="" fetchPriority={index === 0 ? 'high' : undefined} />}
           <div className="container"><div className={p.home_style ? 'hero-grid' : undefined}><div className="hero-enter">
             {p.eyebrow && <span className="hero-kicker">{p.eyebrow}</span>}
             <h1>{value(p.heading)}</h1>

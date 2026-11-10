@@ -475,8 +475,8 @@ p{ margin:0 0 1em; }
   overflow:hidden;
   border-bottom:0;
   background:
-    radial-gradient(120% 100% at 12% 0%, var(--navy-800) 0%, transparent 60%),
-    linear-gradient(160deg, var(--navy-950) 0%, var(--navy-900) 45%, var(--green-900) 130%);
+    radial-gradient(120% 100% at 12% 0%, var(--green-800) 0%, transparent 60%),
+    linear-gradient(160deg, var(--green-900) 0%, var(--navy-900) 55%, var(--navy-950) 130%);
 }
 .on-image .hero-bg{
   position:absolute;
@@ -486,7 +486,7 @@ p{ margin:0 0 1em; }
   object-fit:cover;
   object-position:center 35%;
   z-index:-2;
-  opacity:.55;
+  opacity:1;
   transition:transform var(--dur-settle) var(--ease-out);
 }
 /* One-shot settle: the frame eases out of a slight over-scale on load.
@@ -498,7 +498,10 @@ p{ margin:0 0 1em; }
 /* Once the settle has finished, drop the transition so parallax tracks scroll
    directly instead of easing behind it. */
 .on-image.hero-settled .hero-bg{ transition:none; }
-/* Scrim: keeps the headline readable over the busiest part of any photo. */
+/* Scrim: keeps the headline readable without dulling the photo. Concentrated
+   behind the text column only (left ~60%) and fading to nothing past that,
+   rather than a flat wash over the whole image. Tinted with brand green
+   rather than navy so the "accent, not a filter" reads as intentional. */
 .on-image::after{
   content:"";
   position:absolute;
@@ -506,9 +509,10 @@ p{ margin:0 0 1em; }
   z-index:-1;
   background:linear-gradient(
     100deg,
-    rgba(10,16,32,.86) 0%,
-    rgba(10,16,32,.72) 45%,
-    rgba(10,16,32,.55) 100%);
+    rgba(6,51,33,.72) 0%,
+    rgba(6,51,33,.46) 30%,
+    rgba(6,51,33,.16) 52%,
+    rgba(6,51,33,0) 68%);
 }
 .on-image .container{ position:relative; z-index:1; }
 
@@ -538,7 +542,19 @@ p{ margin:0 0 1em; }
   color:var(--gold-400);
   margin-bottom:20px;
   padding-bottom:12px;
+  padding-left:14px;
   position:relative;
+}
+/* Brand line: short green accent bar, the "green as main colour" counterpart
+   to the gold underline below. */
+.hero-kicker::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:2px;
+  bottom:14px;
+  width:3px;
+  background:var(--green-600);
 }
 .hero-kicker::after{
   content:"";
@@ -556,10 +572,20 @@ p{ margin:0 0 1em; }
 .js .hero-ready .hero-kicker::after{ transform:scaleX(1); }
 
 /* ---------- Inner page header on an image ----------
-   Deliberately shorter than the homepage hero so the hierarchy between
-   landing page and inner page stays legible. */
-.page-head--image{
-  padding:clamp(88px, 13vh, 136px) 0 clamp(64px, 9vh, 96px);
+   Full-width photo banner, tall enough that the image and headline
+   dominate the first screen before scrolling (sized against the Oxford
+   Net Zero reference in the Oct 2026 design brief). Content sits at the
+   foot of the frame so the photo itself carries the top of the banner.
+   `.page-head.page-head--image` (two classes) is used specifically to
+   out-specificity the later `.page-head{ padding; border-bottom }` rule
+   below — a plain `.page-head--image{}` block was previously losing that
+   cascade fight, which is why these banners rendered short and bordered. */
+.page-head.page-head--image{
+  display:flex;
+  align-items:flex-end;
+  min-height:min(82vh, 720px);
+  padding:clamp(96px, 15vh, 160px) 0 clamp(72px, 9vh, 112px);
+  border-bottom:0;
 }
 .page-head--image h1{ max-width:24ch; }
 .page-head--image .lead{ max-width:58ch; }
@@ -576,14 +602,95 @@ p{ margin:0 0 1em; }
 }
 
 /* ---------- Hero-specific (homepage only) ---------- */
-.hero--image .hero-meta{ border-left-color:var(--rule-dark); }
-.hero--image .hero-meta-item{ border-bottom-color:var(--rule-dark); }
-.hero--image .hero-meta-value{ color:#fff; }
-.hero--image .hero-meta-key{ color:rgba(255,255,255,.66); }
-.hero--image .hero-strip{ border-top-color:var(--rule-dark); }
+/* Fill the first screen below the sticky nav; the headline block sits at the
+   foot of the frame and the strip pins to the bottom edge. */
+.hero--image{
+  display:flex;
+  flex-direction:column;
+  min-height:calc(100svh - var(--nav-h));
+  padding-top:clamp(64px, 10vh, 110px);
+}
+.hero--image > .container:first-of-type{
+  flex:1;
+  display:flex;
+  align-items:center;   /* sits mid-frame, not on the floor */
+  width:100%;
+}
+.hero--image .hero-grid{ padding-bottom:0; align-items:center; }
+/* Scale the copy down to the restrained proportions of zero.ox.ac.uk. */
+.hero--image h1{
+  font-size:clamp(2rem, 3.4vw, 3.25rem);
+  line-height:1.15;
+  max-width:22ch;
+  margin:0 0 20px;
+}
+.hero--image .lead{
+  font-size:clamp(1rem, 1.1vw, 1.125rem);
+  line-height:1.65;
+  max-width:60ch;
+  margin-bottom:28px;
+}
+.hero--image .hero-meta-value{ font-size:1.5rem; }
+.hero--image > .container:last-of-type{ width:100%; margin-bottom:clamp(20px, 4vh, 40px); }
+.hero--image .hero-grid{ width:100%; }
+
+/* Legibility: a bottom-left scrim darkens only where the copy sits, so the
+   photo stays bright across the top and right. Text shadows add a second,
+   local guarantee. */
+.hero--image::after{
+  background:
+    linear-gradient(0deg, rgba(4,32,21,.82) 0%, rgba(4,32,21,.5) 26%, rgba(4,32,21,0) 55%),
+    linear-gradient(100deg, rgba(4,32,21,.7) 0%, rgba(4,32,21,.4) 34%, rgba(4,32,21,0) 62%);
+}
+.hero--image h1{ text-shadow:0 2px 18px rgba(0,0,0,.45); }
+.hero--image .lead{
+  color:#fff;
+  font-weight:400;
+  text-shadow:0 1px 12px rgba(0,0,0,.55);
+}
+.hero--image .hero-meta{ border-left-color:rgba(255,255,255,.4); }
+.hero--image .hero-meta-item{ border-bottom-color:rgba(255,255,255,.28); }
+.hero--image .hero-meta-value{ color:#fff; text-shadow:0 1px 12px rgba(0,0,0,.5); }
+.hero--image .hero-meta-key{
+  color:#fff;
+  opacity:.92;
+  text-shadow:0 1px 8px rgba(0,0,0,.6);
+}
+.hero--image .hero-strip{ border-top-color:rgba(255,255,255,.4); }
 .hero--image .hero-strip span{
-  color:rgba(255,255,255,.66);
-  border-left-color:var(--rule-dark);
+  color:#fff;
+  font-weight:500;
+  text-shadow:0 1px 8px rgba(0,0,0,.6);
+  border-left-color:rgba(255,255,255,.28);
+}
+
+/* Living background: a slow, endless drift and push-in on the photo. Uses the
+   individual `scale` / `translate` properties so it composes with the
+   transform that carries the parallax offset and the load-in settle. */
+@keyframes hero-drift{
+  0%   { scale:1.06; translate:-1.2% 0.6%; }
+  50%  { scale:1.16; translate:1.2% -0.8%; }
+  100% { scale:1.06; translate:-1.2% 0.6%; }
+}
+.hero--image .hero-bg{
+  animation:hero-drift 32s ease-in-out infinite;
+  will-change:scale, translate;
+}
+@media (prefers-reduced-motion:reduce){
+  .hero--image .hero-bg{ animation:none; }
+}
+
+/* Slideshow: slides stack and cross-fade. The opacity transition is restated
+   with higher specificity so .hero-settled (which drops the transform
+   transition for parallax) can't remove the fade. */
+.on-image .hero-bg.hero-slide{ opacity:0; }
+.on-image .hero-bg.hero-slide.is-active{ opacity:1; }
+.on-image .hero-bg.hero-slide,
+.on-image.hero-settled .hero-bg.hero-slide{
+  transition:opacity 1.6s var(--ease-out);
+}
+.on-image:not(.hero-settled) .hero-bg.hero-slide{
+  transition:opacity 1.6s var(--ease-out), transform var(--dur-settle) var(--ease-out);
 }
 
 /* Hero entrance: headline, lead, CTA arrive in sequence rather than at once. */
