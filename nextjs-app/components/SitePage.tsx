@@ -35,6 +35,10 @@ function href(field: Content, fallback = '#'): string {
  */
 const DEFAULT_HERO_IMAGES: Record<string, string> = {
   news: '/assets/hero/hero-news.jpg',
+  wash: '/assets/hero/hero-wash.jpg',
+  energy: '/assets/hero/hero-energy.jpg',
+  climate: '/assets/hero/hero-climate.jpg',
+  agriculture: '/assets/hero/hero-agriculture.jpg',
 };
 
 /**
