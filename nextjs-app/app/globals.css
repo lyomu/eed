@@ -590,6 +590,39 @@ p{ margin:0 0 1em; }
 .page-head--image h1{ max-width:24ch; }
 .page-head--image .lead{ max-width:58ch; }
 
+/* Inner banners get the same treatment as the home hero: fill the first
+   screen, keep the copy legible with a scrim behind it and text shadows,
+   and use the same restrained type scale. */
+.page-head.page-head--image{
+  min-height:calc(100svh - var(--nav-h));
+  align-items:center;
+}
+/* The banner is a flex row, so without this the container shrinks to its
+   content and its auto margins push the copy towards the middle. */
+.page-head--image > .container{ width:100%; }
+.page-head--image::after{
+  background:
+    linear-gradient(0deg, rgba(4,32,21,.78) 0%, rgba(4,32,21,.45) 30%, rgba(4,32,21,0) 60%),
+    linear-gradient(100deg, rgba(4,32,21,.72) 0%, rgba(4,32,21,.42) 36%, rgba(4,32,21,0) 64%);
+}
+.page-head--image h1{
+  font-size:clamp(2rem, 3.4vw, 3.25rem);
+  line-height:1.15;
+  max-width:22ch;
+  margin:0 0 20px;
+  text-shadow:0 2px 18px rgba(0,0,0,.45);
+}
+.page-head--image .lead{
+  color:#fff;
+  font-weight:400;
+  font-size:clamp(1rem, 1.1vw, 1.125rem);
+  line-height:1.65;
+  max-width:60ch;
+  text-shadow:0 1px 12px rgba(0,0,0,.55);
+}
+.page-head--image .hero-kicker,
+.page-head--image .hero-tagline{ text-shadow:0 1px 8px rgba(0,0,0,.55); }
+
 /* Pillar positioning statement, sitting between the headline and the lead.
    Italic and gold so it reads as a stated position rather than body copy. */
 .hero-tagline{
