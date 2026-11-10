@@ -23,13 +23,12 @@ export default async function PortfolioPage() {
       <section className="page-head page-head--image on-image">
         <FallbackImage
           className="hero-bg"
-          src="/assets/hero/hero-portfolio.jpg"
+          src="/assets/hero/hero-portfolio-wind.jpg"
           alt=""
           fetchPriority="high"
         />
         <div className="container">
           <div className="hero-enter">
-            <span className="hero-kicker">Research Portfolio</span>
             <h1>An index of our applied research</h1>
             <p className="lead">
               Systemic analyses and policy interventions across key thematic areas, designed to

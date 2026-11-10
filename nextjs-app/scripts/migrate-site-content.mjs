@@ -134,7 +134,7 @@ const about = {
   metaTitle: 'About Us — EED Research Institute',
   metaDescription: 'EED Research Institute pioneers ecological breakthroughs that inform policy and empower communities.',
   slices: [
-    hero({ eyebrow: 'The Institute', heading: 'Bridging Science and Sustainability.', body: 'The EED Research Institute is dedicated to pioneering ecological breakthroughs that inform policy and empower communities across the globe.', image: '/assets/hero/hero-about.jpg' }),
+    hero({ eyebrow: 'The Institute', heading: 'Bridging Science and Sustainability.', body: 'The EED Research Institute is dedicated to pioneering ecological breakthroughs that inform policy and empower communities across the globe.', image: '/assets/hero/hero-about-river.jpg' }),
     slice('image_link_grid', {
       heading: title('Fieldwork across East and Sub-Saharan Africa'),
       intro: rich('Applied research grounded in the communities and institutions our findings are meant to serve.'),
@@ -228,7 +228,7 @@ const team = {
   metaTitle: 'Our Team — EED Research Institute',
   metaDescription: 'Meet the multidisciplinary team behind EED Research Institute.',
   slices: [
-    hero({ eyebrow: 'Our People', heading: 'The people behind the research', body: 'A multidisciplinary collective of researchers, scientists, and strategists dedicated to advancing sustainable ecological solutions and rigorous academic inquiry.', image: '/assets/hero/hero-team.jpg' }),
+    hero({ eyebrow: 'Our People', heading: 'The people behind the research', body: 'A multidisciplinary collective of researchers, scientists, and strategists dedicated to advancing sustainable ecological solutions and rigorous academic inquiry.', image: '/assets/hero/hero-team-solar.jpg' }),
     slice('team', {
       entries: TEAM_MEMBERS.map((member) => ({
         id: member.id, name: member.name, initials: member.initials, role: member.role,
@@ -270,7 +270,7 @@ const portfolio = {
   metaTitle: 'Research Portfolio — EED Research Institute',
   metaDescription: 'An archive of applied research and policy interventions across WASH, energy, climate, and agriculture.',
   slices: [
-    hero({ eyebrow: 'Research Portfolio', heading: 'An index of our applied research', body: 'Systemic analyses and policy interventions across key thematic areas, designed to foster ecological stewardship and intellectual rigor.', image: '/assets/hero/hero-portfolio.jpg' }),
+    hero({ eyebrow: 'Research Portfolio', heading: 'An index of our applied research', body: 'Systemic analyses and policy interventions across key thematic areas, designed to foster ecological stewardship and intellectual rigor.', image: '/assets/hero/hero-portfolio-wind.jpg' }),
     slice('publication_list'),
   ],
 };

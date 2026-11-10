@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import InquiryForm from '@/components/forms/InquiryForm';
 import FallbackImage from '@/components/FallbackImage';
+import HeroSlideshow from '@/components/HeroSlideshow';
 import SitePage from '@/components/SitePage';
+import { getBlogPosts } from '@/lib/cms';
 import { getPageMetadata, getSitePage } from '@/lib/site-content';
 
 export const generateMetadata = () => getPageMetadata('home', {
@@ -12,15 +14,11 @@ export const generateMetadata = () => getPageMetadata('home', {
 export default async function HomePage() {
   const page = await getSitePage('home');
   if (page) return <SitePage doc={page} />;
+  const latestPosts = (await getBlogPosts()).slice(0, 3);
   return (
     <>
       <section className="hero hero--image on-image">
-        <FallbackImage
-          className="hero-bg"
-          src="/assets/hero/hero-home.jpg"
-          alt=""
-          fetchPriority="high"
-        />
+        <HeroSlideshow />
         <div className="container">
           <div className="hero-grid">
             <div className="hero-enter">
@@ -225,54 +223,21 @@ export default async function HomePage() {
             <p className="lead">Perspectives from our researchers on the ground.</p>
           </div>
           <div className="article-list" data-reveal-stagger>
-            <article className="article-row">
-              <div className="article-meta">
-                <span className="cat">Energy Policy</span>
-                <span>Oct 12, 2025</span>
-              </div>
-              <div>
-                <h3>
-                  <Link href="/news/future-of-solar-energy-east-africa">
-                    The Future of Solar Energy in East Africa
-                  </Link>
-                </h3>
-                <p>
-                  How policy shifts are enabling a new era of energy independence across the Rift
-                  Valley.
-                </p>
-              </div>
-              <span className="read-time">8 min read</span>
-            </article>
-            <article className="article-row">
-              <div className="article-meta">
-                <span className="cat">WASH Security</span>
-                <span>Sep 28, 2025</span>
-              </div>
-              <div>
-                <h3>
-                  <Link href="/news/wash-governance-in-arid-zones">WASH Governance in Arid Zones</Link>
-                </h3>
-                <p>
-                  Exploring community-led management models for sustainable water security.
-                </p>
-              </div>
-              <span className="read-time">10 min read</span>
-            </article>
-            <article className="article-row">
-              <div className="article-meta">
-                <span className="cat">Climate Finance</span>
-                <span>Sep 09, 2025</span>
-              </div>
-              <div>
-                <h3>
-                  <Link href="/news/climate-finance-closing-the-gap">
-                    Climate Finance: Closing the Gap
-                  </Link>
-                </h3>
-                <p>Bridging the funding divide for localized adaptation projects in the Global South.</p>
-              </div>
-              <span className="read-time">12 min read</span>
-            </article>
+            {latestPosts.map((post) => (
+              <article className="article-row" key={post.slug}>
+                <div className="article-meta">
+                  <span className="cat">{post.category}</span>
+                  <span>{post.date}</span>
+                </div>
+                <div>
+                  <h3>
+                    <Link href={`/news/${post.slug}`}>{post.title}</Link>
+                  </h3>
+                  <p>{post.excerpt}</p>
+                </div>
+                <span className="read-time">{post.readTime}</span>
+              </article>
+            ))}
           </div>
           <div className="list-actions">
             <Link href="/news" className="btn btn-outline">

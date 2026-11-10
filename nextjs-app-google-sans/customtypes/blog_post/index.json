@@ -1,0 +1,189 @@
+{
+  "format": "custom",
+  "id": "blog_post",
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "title": {
+        "config": {
+          "allowTargetBlank": true,
+          "label": "Title",
+          "placeholder": "",
+          "single": "heading1"
+        },
+        "type": "StructuredText"
+      },
+      "excerpt": {
+        "config": {
+          "allowTargetBlank": true,
+          "label": "Excerpt",
+          "placeholder": "",
+          "single": "paragraph"
+        },
+        "type": "StructuredText"
+      },
+      "category": {
+        "config": {
+          "label": "Category",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "read_time": {
+        "config": {
+          "label": "Read time",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "author_name": {
+        "config": {
+          "label": "Author name",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "author_role": {
+        "config": {
+          "label": "Author role",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "lead_image_label": {
+        "config": {
+          "label": "Lead image label",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "date": {
+        "config": {
+          "label": "Publish date",
+          "placeholder": ""
+        },
+        "type": "Date"
+      },
+      "category_filter": {
+        "config": {
+          "label": "Category filter",
+          "options": [
+            "energy",
+            "wash",
+            "climate",
+            "agriculture"
+          ],
+          "placeholder": ""
+        },
+        "type": "Select"
+      },
+      "hero_image": {
+        "config": {
+          "constraint": {},
+          "label": "Hero image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      },
+      "featured": {
+        "config": {
+          "default_value": false,
+          "label": "Featured",
+          "placeholder_false": "false",
+          "placeholder_true": "true"
+        },
+        "type": "Boolean"
+      },
+      "body": {
+        "config": {
+          "allowTargetBlank": true,
+          "label": "Body",
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+          "placeholder": ""
+        },
+        "type": "StructuredText"
+      },
+      "key_takeaways": {
+        "config": {
+          "fields": {
+            "text": {
+              "config": {
+                "label": "Text",
+                "placeholder": ""
+              },
+              "type": "Text"
+            }
+          },
+          "label": "Key Takeaways",
+          "repeat": true
+        },
+        "type": "Group"
+      },
+      "sidebar_stats": {
+        "config": {
+          "fields": {
+            "title": {
+              "config": {
+                "label": "Title",
+                "placeholder": ""
+              },
+              "type": "Text"
+            },
+            "value": {
+              "config": {
+                "label": "Value",
+                "placeholder": ""
+              },
+              "type": "Text"
+            },
+            "body": {
+              "config": {
+                "label": "Description",
+                "placeholder": ""
+              },
+              "type": "Text"
+            }
+          },
+          "label": "Sidebar stats",
+          "repeat": true
+        },
+        "type": "Group"
+      },
+      "references": {
+        "config": {
+          "fields": {
+            "text": {
+              "config": {
+                "label": "Citation text",
+                "placeholder": ""
+              },
+              "type": "Text"
+            },
+            "url": {
+              "config": {
+                "allowTargetBlank": true,
+                "allowText": true,
+                "label": "Source URL",
+                "placeholder": "",
+                "repeat": false,
+                "select": null
+              },
+              "type": "Link"
+            }
+          },
+          "label": "References",
+          "repeat": true
+        },
+        "type": "Group"
+      }
+    }
+  },
+  "label": "Blog Post",
+  "repeatable": true,
+  "status": true
+}

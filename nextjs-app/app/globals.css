@@ -242,7 +242,7 @@ p{ margin:0 0 1em; }
 .nav-list a{
   font-size:.875rem;
   font-weight:500;
-  color:var(--ink-soft);
+  color:var(--ink);
   padding:6px 0;
   border-bottom:2px solid transparent;
   transition:color .2s ease,border-color .2s ease;
@@ -300,7 +300,7 @@ p{ margin:0 0 1em; }
   padding:0;
   background:none;
   border:0;
-  color:var(--ink-soft);
+  color:var(--ink);
   transition:color var(--dur-micro) ease,transform var(--dur-micro) ease;
 }
 .nav-sub-toggle svg{ width:9px; height:9px; display:block; }
@@ -356,7 +356,7 @@ p{ margin:0 0 1em; }
   padding:9px 22px;
   border-bottom:0;
   font-size:.85rem;
-  color:var(--ink-soft);
+  color:var(--ink);
   border-left:2px solid transparent;
   transition:color var(--dur-micro) ease,
              background var(--dur-micro) ease,
@@ -475,8 +475,8 @@ p{ margin:0 0 1em; }
   overflow:hidden;
   border-bottom:0;
   background:
-    radial-gradient(120% 100% at 12% 0%, var(--navy-800) 0%, transparent 60%),
-    linear-gradient(160deg, var(--navy-950) 0%, var(--navy-900) 45%, var(--green-900) 130%);
+    radial-gradient(120% 100% at 12% 0%, var(--green-800) 0%, transparent 60%),
+    linear-gradient(160deg, var(--green-900) 0%, var(--navy-900) 55%, var(--navy-950) 130%);
 }
 .on-image .hero-bg{
   position:absolute;
@@ -486,7 +486,7 @@ p{ margin:0 0 1em; }
   object-fit:cover;
   object-position:center 35%;
   z-index:-2;
-  opacity:.55;
+  opacity:1;
   transition:transform var(--dur-settle) var(--ease-out);
 }
 /* One-shot settle: the frame eases out of a slight over-scale on load.
@@ -498,7 +498,10 @@ p{ margin:0 0 1em; }
 /* Once the settle has finished, drop the transition so parallax tracks scroll
    directly instead of easing behind it. */
 .on-image.hero-settled .hero-bg{ transition:none; }
-/* Scrim: keeps the headline readable over the busiest part of any photo. */
+/* Scrim: keeps the headline readable without dulling the photo. Concentrated
+   behind the text column only (left ~60%) and fading to nothing past that,
+   rather than a flat wash over the whole image. Tinted with brand green
+   rather than navy so the "accent, not a filter" reads as intentional. */
 .on-image::after{
   content:"";
   position:absolute;
@@ -506,9 +509,10 @@ p{ margin:0 0 1em; }
   z-index:-1;
   background:linear-gradient(
     100deg,
-    rgba(10,16,32,.86) 0%,
-    rgba(10,16,32,.72) 45%,
-    rgba(10,16,32,.55) 100%);
+    rgba(6,51,33,.72) 0%,
+    rgba(6,51,33,.46) 30%,
+    rgba(6,51,33,.16) 52%,
+    rgba(6,51,33,0) 68%);
 }
 .on-image .container{ position:relative; z-index:1; }
 
@@ -528,41 +532,57 @@ p{ margin:0 0 1em; }
   background:rgba(255,255,255,.08);
 }
 
-/* Kicker: a small tracked label above the headline. Gives the inner page
-   headers a second typographic level, which they previously lacked. */
-.hero-kicker{
-  display:inline-block;
-  font-family:var(--font-label);
-  font-size:var(--fs-mono);
-  font-weight:600;
-  color:var(--gold-400);
-  margin-bottom:20px;
-  padding-bottom:12px;
-  position:relative;
-}
-.hero-kicker::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:0;
-  width:100%;
-  height:1px;
-  background:var(--gold-400);
-  opacity:.5;
-  transform-origin:left center;
-  transition:transform var(--dur-rule) var(--ease-out);
-}
-.js .hero-kicker::after{ transform:scaleX(0); }
-.js .hero-ready .hero-kicker::after{ transform:scaleX(1); }
-
 /* ---------- Inner page header on an image ----------
-   Deliberately shorter than the homepage hero so the hierarchy between
-   landing page and inner page stays legible. */
-.page-head--image{
-  padding:clamp(88px, 13vh, 136px) 0 clamp(64px, 9vh, 96px);
+   Full-width photo banner, tall enough that the image and headline
+   dominate the first screen before scrolling (sized against the Oxford
+   Net Zero reference in the Oct 2026 design brief). Content sits at the
+   foot of the frame so the photo itself carries the top of the banner.
+   `.page-head.page-head--image` (two classes) is used specifically to
+   out-specificity the later `.page-head{ padding; border-bottom }` rule
+   below — a plain `.page-head--image{}` block was previously losing that
+   cascade fight, which is why these banners rendered short and bordered. */
+.page-head.page-head--image{
+  display:flex;
+  align-items:flex-end;
+  min-height:min(82vh, 720px);
+  padding:clamp(96px, 15vh, 160px) 0 clamp(72px, 9vh, 112px);
+  border-bottom:0;
 }
 .page-head--image h1{ max-width:24ch; }
 .page-head--image .lead{ max-width:58ch; }
+
+/* Inner banners share the home hero's legibility treatment (scrim, text
+   shadows, restrained type) but stay shorter than the full screen, so the
+   page content starts above the fold, as on zero.ox.ac.uk inner pages. */
+.page-head.page-head--image{
+  min-height:clamp(380px, 60vh, 620px);
+  padding:clamp(72px, 10vh, 120px) 0 clamp(56px, 8vh, 96px);
+  align-items:center;
+}
+/* The banner is a flex row, so without this the container shrinks to its
+   content and its auto margins push the copy towards the middle. */
+.page-head--image > .container{ width:100%; }
+.page-head--image::after{
+  background:
+    linear-gradient(0deg, rgba(4,32,21,.78) 0%, rgba(4,32,21,.45) 30%, rgba(4,32,21,0) 60%),
+    linear-gradient(100deg, rgba(4,32,21,.72) 0%, rgba(4,32,21,.42) 36%, rgba(4,32,21,0) 64%);
+}
+.page-head--image h1{
+  font-size:clamp(2rem, 3.4vw, 3.25rem);
+  line-height:1.15;
+  max-width:22ch;
+  margin:0 0 20px;
+  text-shadow:0 2px 18px rgba(0,0,0,.45);
+}
+.page-head--image .lead{
+  color:#fff;
+  font-weight:400;
+  font-size:clamp(1rem, 1.1vw, 1.125rem);
+  line-height:1.65;
+  max-width:60ch;
+  text-shadow:0 1px 12px rgba(0,0,0,.55);
+}
+.page-head--image .hero-tagline{ text-shadow:0 1px 8px rgba(0,0,0,.55); }
 
 /* Pillar positioning statement, sitting between the headline and the lead.
    Italic and gold so it reads as a stated position rather than body copy. */
@@ -576,14 +596,95 @@ p{ margin:0 0 1em; }
 }
 
 /* ---------- Hero-specific (homepage only) ---------- */
-.hero--image .hero-meta{ border-left-color:var(--rule-dark); }
-.hero--image .hero-meta-item{ border-bottom-color:var(--rule-dark); }
-.hero--image .hero-meta-value{ color:#fff; }
-.hero--image .hero-meta-key{ color:rgba(255,255,255,.66); }
-.hero--image .hero-strip{ border-top-color:var(--rule-dark); }
+/* Fill the first screen below the sticky nav; the headline block sits at the
+   foot of the frame and the strip pins to the bottom edge. */
+.hero--image{
+  display:flex;
+  flex-direction:column;
+  min-height:calc(100svh - var(--nav-h));
+  padding-top:clamp(64px, 10vh, 110px);
+}
+.hero--image > .container:first-of-type{
+  flex:1;
+  display:flex;
+  align-items:center;   /* sits mid-frame, not on the floor */
+  width:100%;
+}
+.hero--image .hero-grid{ padding-bottom:0; align-items:center; }
+/* Scale the copy down to the restrained proportions of zero.ox.ac.uk. */
+.hero--image h1{
+  font-size:clamp(2rem, 3.4vw, 3.25rem);
+  line-height:1.15;
+  max-width:22ch;
+  margin:0 0 20px;
+}
+.hero--image .lead{
+  font-size:clamp(1rem, 1.1vw, 1.125rem);
+  line-height:1.65;
+  max-width:60ch;
+  margin-bottom:28px;
+}
+.hero--image .hero-meta-value{ font-size:1.5rem; }
+.hero--image > .container:last-of-type{ width:100%; margin-bottom:clamp(20px, 4vh, 40px); }
+.hero--image .hero-grid{ width:100%; }
+
+/* Legibility: a bottom-left scrim darkens only where the copy sits, so the
+   photo stays bright across the top and right. Text shadows add a second,
+   local guarantee. */
+.hero--image::after{
+  background:
+    linear-gradient(0deg, rgba(4,32,21,.82) 0%, rgba(4,32,21,.5) 26%, rgba(4,32,21,0) 55%),
+    linear-gradient(100deg, rgba(4,32,21,.7) 0%, rgba(4,32,21,.4) 34%, rgba(4,32,21,0) 62%);
+}
+.hero--image h1{ text-shadow:0 2px 18px rgba(0,0,0,.45); }
+.hero--image .lead{
+  color:#fff;
+  font-weight:400;
+  text-shadow:0 1px 12px rgba(0,0,0,.55);
+}
+.hero--image .hero-meta{ border-left-color:rgba(255,255,255,.4); }
+.hero--image .hero-meta-item{ border-bottom-color:rgba(255,255,255,.28); }
+.hero--image .hero-meta-value{ color:#fff; text-shadow:0 1px 12px rgba(0,0,0,.5); }
+.hero--image .hero-meta-key{
+  color:#fff;
+  opacity:.92;
+  text-shadow:0 1px 8px rgba(0,0,0,.6);
+}
+.hero--image .hero-strip{ border-top-color:rgba(255,255,255,.4); }
 .hero--image .hero-strip span{
-  color:rgba(255,255,255,.66);
-  border-left-color:var(--rule-dark);
+  color:#fff;
+  font-weight:500;
+  text-shadow:0 1px 8px rgba(0,0,0,.6);
+  border-left-color:rgba(255,255,255,.28);
+}
+
+/* Living background: a slow, endless drift and push-in on the photo. Uses the
+   individual `scale` / `translate` properties so it composes with the
+   transform that carries the parallax offset and the load-in settle. */
+@keyframes hero-drift{
+  0%   { scale:1.06; translate:-1.2% 0.6%; }
+  50%  { scale:1.16; translate:1.2% -0.8%; }
+  100% { scale:1.06; translate:-1.2% 0.6%; }
+}
+.hero--image .hero-bg{
+  animation:hero-drift 32s ease-in-out infinite;
+  will-change:scale, translate;
+}
+@media (prefers-reduced-motion:reduce){
+  .hero--image .hero-bg{ animation:none; }
+}
+
+/* Slideshow: slides stack and cross-fade. The opacity transition is restated
+   with higher specificity so .hero-settled (which drops the transform
+   transition for parallax) can't remove the fade. */
+.on-image .hero-bg.hero-slide{ opacity:0; }
+.on-image .hero-bg.hero-slide.is-active{ opacity:1; }
+.on-image .hero-bg.hero-slide,
+.on-image.hero-settled .hero-bg.hero-slide{
+  transition:opacity 1.6s var(--ease-out);
+}
+.on-image:not(.hero-settled) .hero-bg.hero-slide{
+  transition:opacity 1.6s var(--ease-out), transform var(--dur-settle) var(--ease-out);
 }
 
 /* Hero entrance: headline, lead, CTA arrive in sequence rather than at once. */
@@ -730,7 +831,7 @@ p{ margin:0 0 1em; }
   grid-template-columns:64px 1fr 200px 160px;
   gap:32px;
   align-items:center;
-  padding:30px 0;
+  padding:30px clamp(20px, 3vw, 40px);   /* side padding keeps content off the hover tint edges */
   border-bottom:1px solid var(--rule);
   transition:background .2s ease;
 }
@@ -759,6 +860,55 @@ p{ margin:0 0 1em; }
 
 /* pillar variant — no client/meta column */
 .pillar-row{ grid-template-columns:64px 1fr 200px; }
+
+/* Research portfolio entry: brief on the left, link to the published
+   source on the right. Two-class selectors so the responsive .index-row
+   column rules further down don't override these. */
+.index-row.pub-row{
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:48px;
+  align-items:start;
+  /* Side padding keeps text and button off the edges of the hover tint. */
+  padding:36px clamp(20px, 3vw, 40px);
+}
+.pub-row .pub-meta{
+  font-family:var(--font-label);
+  font-size:var(--fs-mono);
+  color:var(--green-700);
+  margin:0 0 10px;
+  max-width:none;
+}
+.pub-row h2{ font-size:clamp(1.2rem, 1.6vw, 1.45rem); line-height:1.3; max-width:52ch; }
+.pub-row h2 a{ color:inherit; text-decoration:none; }
+.pub-row h2 a:hover{ color:var(--green-700); }
+.pub-row .pub-abstract{ max-width:78ch; line-height:1.65; margin-top:10px; }
+.pub-row .pub-abstract.is-clamped{
+  display:-webkit-box;
+  -webkit-line-clamp:3;
+  line-clamp:3;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.pub-toggle{
+  margin-top:10px;
+  padding:0;
+  background:none;
+  border:0;
+  font:inherit;
+  font-size:var(--fs-sm);
+  font-weight:600;
+  color:var(--green-700);
+  cursor:pointer;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+.pub-toggle:hover{ color:var(--green-800); }
+.pub-row .actions{ padding-top:28px; }
+.pub-source{ white-space:nowrap; }
+@media (max-width:900px){
+  .index-row.pub-row{ grid-template-columns:1fr; gap:18px; }
+  .pub-row .actions{ justify-self:start; padding-top:0; }
+}
 
 /* thematic tag */
 .tag{
@@ -794,7 +944,7 @@ p{ margin:0 0 1em; }
   display:grid;
   grid-template-columns:180px 1fr 140px;
   gap:40px;
-  padding:32px 0;
+  padding:32px clamp(20px, 3vw, 40px);
   border-bottom:1px solid var(--rule);
   align-items:start;
   transition:background .2s ease;
@@ -1684,6 +1834,76 @@ p{ margin:0 0 1em; }
   .site-header.is-stuck{ backdrop-filter:blur(10px) saturate(1.4); }
 }
 
+/* ---------- Transparent header over image banners ----------
+   On pages that open with a photo banner, the header sits on top of the
+   photo with a soft dark fade, white text and a white logo, then turns into
+   the solid bar with black text (.is-stuck, set on scroll by MotionEffects)
+   once the visitor scrolls. Pages without a photo banner keep the solid
+   header throughout, and the open mobile menu always shows the solid bar. */
+body:has(main > .on-image:first-child) .site-header:not(.is-stuck):not([data-nav-open]){
+  /* Fully transparent: a fade on the header itself ended in a visible edge
+     at the bar's bottom. The shading lives in the banner instead (below). */
+  background:transparent;
+  border-bottom-color:transparent;
+  box-shadow:none;
+  backdrop-filter:none;
+}
+body:has(main > .on-image:first-child) .site-header:not(.is-stuck):not([data-nav-open]) .brand img{
+  filter:brightness(0) invert(1) drop-shadow(0 1px 6px rgba(0,0,0,.35));
+}
+body:has(main > .on-image:first-child) .site-header:not(.is-stuck):not([data-nav-open]) .nav-toggle{
+  border-color:rgba(255,255,255,.55);
+}
+body:has(main > .on-image:first-child) .site-header:not(.is-stuck):not([data-nav-open]) .nav-toggle span{
+  background:#fff;
+}
+@media (min-width:901px){
+  body:has(main > .on-image:first-child) .site-header:not(.is-stuck) .nav-list > li > a:not(.nav-cta),
+  body:has(main > .on-image:first-child) .site-header:not(.is-stuck) .nav-sub-toggle{
+    color:rgba(255,255,255,.9);
+    text-shadow:0 1px 8px rgba(0,0,0,.4);
+  }
+  body:has(main > .on-image:first-child) .site-header:not(.is-stuck) .nav-list > li > a:not(.nav-cta):hover,
+  body:has(main > .on-image:first-child) .site-header:not(.is-stuck) .nav-list > li > a.active{
+    color:#fff;
+  }
+  body:has(main > .on-image:first-child) .site-header:not(.is-stuck) .nav-list > li > a.active{
+    border-bottom-color:#fff;
+  }
+}
+.brand img{ transition:filter var(--dur-micro) ease; }
+.nav-list a, .nav-sub-toggle{ transition:color var(--dur-micro) ease, border-color var(--dur-micro) ease; }
+
+/* The banner slides up under the header, so it gains the header's height
+   back as top padding and min-height. */
+main > .on-image:first-child{ margin-top:calc(-1 * var(--nav-h)); }
+/* Top shade behind the transparent header: tall and eased so it has no
+   visible edge, keeping white menu links readable over bright skies. */
+main > .on-image:first-child::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:calc(var(--nav-h) * 3);
+  z-index:-1;
+  pointer-events:none;
+  background:linear-gradient(180deg,
+    rgba(4,24,16,.55) 0%,
+    rgba(4,24,16,.38) 25%,
+    rgba(4,24,16,.18) 55%,
+    rgba(4,24,16,.06) 80%,
+    rgba(4,24,16,0) 100%);
+}
+main > .hero--image:first-child{
+  min-height:100svh;
+  padding-top:calc(var(--nav-h) + clamp(64px, 10vh, 110px));
+}
+main > .page-head.page-head--image:first-child{
+  min-height:calc(clamp(380px, 60vh, 620px) + var(--nav-h));
+  padding-top:calc(var(--nav-h) + clamp(72px, 10vh, 120px));
+}
+
 /* Mobile nav: slides down instead of snapping into place. The collapsed state
    keeps visibility:hidden so the links stay out of the tab order when shut. */
 @media (max-width:900px){
@@ -2108,11 +2328,11 @@ p{ margin:0 0 1em; }
   .index-row{
     grid-template-columns:1fr;
     gap:12px;
-    padding:26px 0;
+    padding:26px 20px;
   }
   .index-row .actions{ justify-self:start; }
   .pillar-row{ grid-template-columns:1fr; }
-  .article-row{ grid-template-columns:1fr; gap:12px; padding:26px 0; }
+  .article-row{ grid-template-columns:1fr; gap:12px; padding:26px 20px; }
   .article-row .article-meta{ line-height:1.7; }
   .article-row .article-meta .cat{ display:inline; }
   .article-row .read-time{ justify-self:start; }
@@ -2284,13 +2504,6 @@ p{ margin:0 0 1em; }
   align-items: baseline;
   justify-content: space-between;
   margin-bottom: 12px;
-}
-.artistic-pillar-num {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--gold-500);
-  opacity: 0.9;
 }
 .artistic-pillar-head h3 {
   font-size: 1.4rem;

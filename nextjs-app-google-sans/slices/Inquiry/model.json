@@ -1,0 +1,31 @@
+{
+  "id": "inquiry",
+  "type": "SharedSlice",
+  "name": "Inquiry",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "version": "",
+      "description": "Short inquiry form beside editable introduction",
+      "docURL": "",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Heading",
+            "single": "heading1,heading2"
+          }
+        },
+        "body": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Body",
+            "multi": "paragraph,heading2,heading3,strong,em,hyperlink,list-item,o-list-item"
+          }
+        }
+      }
+    }
+  ]
+}

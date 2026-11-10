@@ -2,6 +2,7 @@ import * as prismic from '@prismicio/client';
 import { PrismicRichText } from '@prismicio/react';
 import Link from 'next/link';
 import FallbackImage from '@/components/FallbackImage';
+import HeroSlideshow from '@/components/HeroSlideshow';
 import ContactForm from '@/components/forms/ContactForm';
 import InquiryForm from '@/components/forms/InquiryForm';
 import TeamSection from '@/components/team/TeamSection';
@@ -28,8 +29,50 @@ function href(field: Content, fallback = '#'): string {
   return prismic.asLink(field) || fallback;
 }
 
+/**
+ * Banner image used when a page's Prismic hero has no Background image set.
+ * Setting an image in Prismic always takes precedence.
+ */
+const DEFAULT_HERO_IMAGES: Record<string, string> = {
+  news: '/assets/hero/hero-news.jpg',
+  wash: '/assets/hero/hero-wash.jpg',
+  energy: '/assets/hero/hero-energy.jpg',
+  climate: '/assets/hero/hero-climate.jpg',
+  agriculture: '/assets/hero/hero-agriculture.jpg',
+};
+
+/**
+ * Banner images that replace whatever is set in Prismic. The team page's
+ * Prismic image (a group photo) has been retired in favour of a landscape
+ * without people; remove the entry here to hand control back to Prismic.
+ */
+const HERO_IMAGE_OVERRIDES: Record<string, string> = {
+  team: '/assets/hero/hero-team-solar.jpg',
+  portfolio: '/assets/hero/hero-portfolio-wind.jpg',
+  about: '/assets/hero/hero-about-river.jpg',
+};
+
 function imageUrl(field: Content, fallback = ''): string {
   return field?.url || fallback;
+}
+
+/**
+ * Slides for the home hero from the Prismic "Home hero slideshow" group.
+ * Prismic serves images through imgix, so editors can upload full-size
+ * originals and we request a 2560px-wide version. Falls back to the bundled
+ * defaults when no slide images are set.
+ */
+function heroSlides(items: Content[] | undefined) {
+  const slides = (items || [])
+    .map((item) => item?.image)
+    .filter((img) => img?.url)
+    .map((img) => {
+      const url = new URL(img.url);
+      url.searchParams.set('w', '2560');
+      url.searchParams.set('q', '80');
+      return { src: url.toString(), position: 'center' };
+    });
+  return slides.length ? slides : undefined;
 }
 
 function Rich({ field }: { field: Content }) {
@@ -59,9 +102,12 @@ export default async function SitePage({ doc }: { doc: Content }) {
     switch (slice.slice_type) {
       case 'hero':
         return <section key={key} className={`${p.home_style ? 'hero hero--image' : 'page-head page-head--image'} on-image`}>
-          {(p.image?.url || p.home_style) && <FallbackImage className="hero-bg" src={imageUrl(p.image, '/assets/hero/hero-home.jpg')} alt="" fetchPriority={index === 0 ? 'high' : undefined} />}
+          {p.home_style && <HeroSlideshow slides={heroSlides(p.slides)} />}
+          {!p.home_style && (() => {
+            const src = HERO_IMAGE_OVERRIDES[doc.uid] || imageUrl(p.image, DEFAULT_HERO_IMAGES[doc.uid]);
+            return src ? <FallbackImage className="hero-bg" src={src} alt="" fetchPriority={index === 0 ? 'high' : undefined} /> : null;
+          })()}
           <div className="container"><div className={p.home_style ? 'hero-grid' : undefined}><div className="hero-enter">
-            {p.eyebrow && <span className="hero-kicker">{p.eyebrow}</span>}
             <h1>{value(p.heading)}</h1>
             <div className="lead"><Rich field={p.body} /></div>
             <Action label={p.button_label} destination={p.button_link} />
@@ -120,7 +166,7 @@ export default async function SitePage({ doc }: { doc: Content }) {
           <div className="artistic-pillar-grid" data-reveal-stagger>{items.map((item, i) => <div className="artistic-pillar-card" key={i}>
             <div className="artistic-pillar-media"><FallbackImage src={imageUrl(item.image)} alt={item.image?.alt || item.title || ''} loading="lazy" />
               {item.badge && <span className="media-badge">{item.badge}</span>}{item.stat && <span className="stat-chip">{item.stat}</span>}</div>
-            <div className="artistic-pillar-body"><div className="artistic-pillar-head"><h3>{item.title}</h3><span className="artistic-pillar-num">{String(i + 1).padStart(2, '0')}</span></div>
+            <div className="artistic-pillar-body"><div className="artistic-pillar-head"><h3>{item.title}</h3></div>
               <Rich field={item.body} /><Link href={href(item.destination)} className="artistic-pillar-link">Explore Pillar →</Link></div>
           </div>)}</div>
         </div></section>;

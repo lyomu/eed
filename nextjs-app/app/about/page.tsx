@@ -20,13 +20,12 @@ export default async function AboutPage() {
       <section className="page-head page-head--image on-image">
         <FallbackImage
           className="hero-bg"
-          src="/assets/hero/hero-about.jpg"
+          src="/assets/hero/hero-about-river.jpg"
           alt=""
           fetchPriority="high"
         />
         <div className="container">
           <div className="hero-enter">
-            <span className="hero-kicker">The Institute</span>
             <h1>Bridging Science and Sustainability.</h1>
             <p className="lead">
               The EED Research Institute is dedicated to pioneering ecological breakthroughs that
@@ -94,7 +93,6 @@ export default async function AboutPage() {
               <div className="artistic-pillar-body">
                 <div className="artistic-pillar-head">
                   <h3>Water &amp; Sanitation</h3>
-                  <span className="artistic-pillar-num">01</span>
                 </div>
                 <p>
                   According to the 2026 UN SDG 6 Synthesis Report, over 961 million people gained
@@ -117,7 +115,6 @@ export default async function AboutPage() {
               <div className="artistic-pillar-body">
                 <div className="artistic-pillar-head">
                   <h3>Clean Energy</h3>
-                  <span className="artistic-pillar-num">02</span>
                 </div>
                 <p>
                   Targeting universal energy access (SDG 7), addressing the 900 million gap in
@@ -139,7 +136,6 @@ export default async function AboutPage() {
               <div className="artistic-pillar-body">
                 <div className="artistic-pillar-head">
                   <h3>Climate Resilience</h3>
-                  <span className="artistic-pillar-num">03</span>
                 </div>
                 <p>
                   Tracking climate variability impacts across vulnerable landscapes, evaluating
@@ -161,7 +157,6 @@ export default async function AboutPage() {
               <div className="artistic-pillar-body">
                 <div className="artistic-pillar-head">
                   <h3>Agriculture &amp; Food</h3>
-                  <span className="artistic-pillar-num">04</span>
                 </div>
                 <p>
                   Empowering sub-Saharan Africa&rsquo;s 33 million smallholders where 60% of the

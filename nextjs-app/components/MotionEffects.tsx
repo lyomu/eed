@@ -122,10 +122,8 @@ function initScrollFx(reduced: boolean): () => void {
     if (heroImg && hero && !reduced && wide.matches) {
       const h = hero.offsetHeight || 1;
       if (y < h) {
-        heroImg.style.setProperty('--py', `${(y * 0.08).toFixed(1)}px`);
-        heroImg.style.willChange = 'transform';
-      } else if (heroImg.style.willChange) {
-        heroImg.style.willChange = '';
+        // Set on the section so every slide inherits the same offset.
+        hero.style.setProperty('--py', `${(y * 0.08).toFixed(1)}px`);
       }
     }
 

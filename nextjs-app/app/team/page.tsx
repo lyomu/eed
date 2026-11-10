@@ -21,13 +21,12 @@ export default async function TeamPage() {
       <section className="page-head page-head--image on-image">
         <FallbackImage
           className="hero-bg"
-          src="/assets/hero/hero-team.jpg"
+          src="/assets/hero/hero-team-solar.jpg"
           alt=""
           fetchPriority="high"
         />
         <div className="container">
           <div className="hero-enter">
-            <span className="hero-kicker">Our People</span>
             <h1>The people behind the research</h1>
             <p className="lead">
               A multidisciplinary collective of researchers, scientists, and strategists dedicated

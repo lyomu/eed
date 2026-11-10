@@ -26,7 +26,6 @@ export default async function WhatWeDoPage() {
         />
         <div className="container">
           <div className="hero-enter">
-            <span className="hero-kicker">Our Work</span>
             <h1>What We Do</h1>
             <p className="lead">
               Advancing evidence-based solutions across WASH, energy, climate change, and

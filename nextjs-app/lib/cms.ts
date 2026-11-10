@@ -8,12 +8,13 @@ import type {
   PublicationSummary,
   PillarCategory,
   PostBlock,
+  PublicationCategory,
 } from './blog-types';
 
 /**
  * Content fetch layer. News uses Prismic when a repository is configured.
- * Publications retain their local content until that collection is populated
- * in Prismic. Every caller depends only on these signatures and blog-types.
+ * Publications fall back to the local portfolio list until at least one is
+ * published in Prismic. Every caller depends only on these signatures and blog-types.
  */
 
 const usePrismic = Boolean(repositoryName);
@@ -42,13 +43,16 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
 }
 
 export async function getPublications(): Promise<PublicationSummary[]> {
-  if (!usePrismic) return PUBLICATIONS.map(({ body: _body, ...summary }) => summary);
+  if (!usePrismic) return PUBLICATIONS;
 
   const client = createClient();
   const docs = await client.getAllByType('research_publication', {
-    orderings: [{ field: 'my.research_publication.publication_date', direction: 'desc' }],
+    orderings: [
+      { field: 'my.research_publication.publication_date', direction: 'desc' },
+      { field: 'document.first_publication_date', direction: 'asc' },
+    ],
   });
-  if (docs.length === 0) return PUBLICATIONS.map(({ body: _body, ...summary }) => summary);
+  if (docs.length === 0) return PUBLICATIONS;
   return docs.map(toPublicationSummary);
 }
 
@@ -211,27 +215,29 @@ function toPostBlock(slice: any): PostBlock | null {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function toPublicationSummary(doc: any): PublicationSummary {
   const data = doc.data;
+  const url = prismic.asLink(data.document) || undefined;
   return {
     slug: doc.uid,
     title: asText(data.title),
     description: asText(data.description),
-    funder: data.funder ?? '',
-    category: (data.category ?? 'energy') as PillarCategory,
-    tag: data.tag ?? '',
-    documentUrl: prismic.asLink(data.document) || undefined,
+    category: (data.category ?? 'energy') as PublicationCategory,
+    type: data.publication_type ?? '',
+    publisher: data.publisher || hostLabel(url),
+    url,
   };
+}
+
+/** "https://www.odi.org/en/..." -> "odi.org", used when no publisher is set. */
+function hostLabel(url: string | undefined): string {
+  if (!url) return '';
+  try {
+    return new URL(url).hostname.replace(/^www\./, '');
+  } catch {
+    return '';
+  }
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function toPublication(doc: any): Publication {
-  const data = doc.data;
-  const paragraphs = (data.body ?? []).filter(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (node: any) => node.type === 'paragraph' && node.text,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ).map((node: any) => node.text);
-  return {
-    ...toPublicationSummary(doc),
-    body: paragraphs,
-  };
+  return toPublicationSummary(doc);
 }
