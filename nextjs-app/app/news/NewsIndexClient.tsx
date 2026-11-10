@@ -24,6 +24,11 @@ export default function NewsIndexClient({ posts }: { posts: BlogPostSummary[] })
 
   const { activeCategory, setActiveCategory, query, setQuery, filtered } = useFilterState(items);
 
+  // Only offer tabs for categories that have posts, and skip the list
+  // entirely while there is just one post (it already shows as featured).
+  const tabs = TABS.filter((tab) => tab.value === 'all' || items.some((post) => post.category === tab.value));
+  const showList = posts.length !== 1;
+
   return (
     <>
       {featured && (
@@ -59,10 +64,10 @@ export default function NewsIndexClient({ posts }: { posts: BlogPostSummary[] })
         </section>
       )}
 
-      <section className="section-tight on-paper" data-filter-root="news">
+      {showList && <section className="section-tight on-paper" data-filter-root="news">
         <div className="container">
           <FilterBar
-            tabs={TABS}
+            tabs={tabs}
             activeCategory={activeCategory}
             onCategoryChange={setActiveCategory}
             query={query}
@@ -94,7 +99,7 @@ export default function NewsIndexClient({ posts }: { posts: BlogPostSummary[] })
             {posts.length ? 'No insights match your search.' : 'No insights have been published yet.'}
           </p>
         </div>
-      </section>
+      </section>}
     </>
   );
 }
