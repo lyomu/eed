@@ -53,7 +53,9 @@ export default function Header({ logo = '/assets/logo/eri-logo-mark.png', links 
   }
 
   return (
-    <header className="site-header">
+    // data-nav-open (not a class) so React re-renders don't drop the
+    // is-stuck class that MotionEffects toggles on scroll.
+    <header className="site-header" data-nav-open={navOpen ? 'true' : undefined}>
       <div className="nav-bar">
         <Link href="/" className="brand">
           <img src={logo} alt="EED Research Institute" />
