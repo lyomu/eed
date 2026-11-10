@@ -481,89 +481,71 @@ export const BLOG_POSTS: BlogPost[] = [
   },
 ];
 
+/**
+ * Research portfolio: work published by EED researchers in outside venues.
+ * Each entry is a short brief that links readers to the published source.
+ * Used as the fallback until these entries are published in Prismic
+ * (see scripts/migrate-publications.mjs).
+ */
 export const PUBLICATIONS: Publication[] = [
   {
-    slug: 'decentralized-microgrid-optimization',
-    title: 'Decentralized Microgrid Optimization',
+    slug: 'circular-economy-kenya-e-waste-sector',
+    title: 'Potential for Circular Economy in Developing Countries: Case Study of Kenya’s E-Waste Sector',
     description:
-      'Analyzing the socio-economic impacts of deploying adaptive microgrid architectures in rural communities to enhance grid resilience and energy access.',
-    funder: 'Ministry of Energy',
-    category: 'energy',
-    tag: 'Energy',
-    body: [
-      'This study evaluates adaptive microgrid architectures deployed across rural communities, tracking both technical performance — outage frequency, load-shedding incidence, and voltage stability — and the socio-economic outcomes that follow from more resilient local supply.',
-      'Households and small enterprises connected to adaptive microgrids reported measurably fewer productive hours lost to outages compared with matched communities on conventional rural feeders, with the largest gains concentrated among enterprises running refrigeration or milling equipment.',
-      'The research concludes with siting and tariff-design recommendations for the Ministry of Energy, aimed at prioritising future microgrid investment in communities where anchor commercial load already exists, consistent with findings from our wider energy access portfolio.',
-    ],
+      'The world produces close to 50 million tonnes of electrical and electronic waste each year. The likelihood of finding either electric or electronic waste in a typical homestead is irrefutable. In Kenya, only about 1% of the total e-waste generated is properly managed. This review sought to establish the state of Kenya’s e-waste sector landscape to inform its potential for circularity. It employed a rapid review approach of documentation on e-waste; policy, strategies, journal papers, and grey literature. Circularity in the e-waste sector is still at a nascent stage with limited players in the space. While the government is cognizant of the challenges in managing e-waste, policy frameworks and preparedness are still nascent. A framework is imperative in not only creating awareness but also establishing the necessary infrastructure to facilitate the collection and management of e-waste. Moreover, government and private sector partnerships will be essential in regulating the e-waste sector, especially with the emerging interest from sector players.',
+    category: 'circular_economy',
+    type: 'Research paper',
+    publisher: 'IJISRT',
+    url: 'https://www.ijisrt.com/assets/upload/files/IJISRT22AUG918_(1).pdf',
   },
   {
-    slug: 'urban-aquifer-recharge-systems',
-    title: 'Urban Aquifer Recharge Systems',
+    slug: 'africa-water-policy-moment',
+    title: 'Africa Water Policy Moment: Converging Programmes, Fragmented Delivery',
     description:
-      'Evaluating scalable methodologies for artificial groundwater recharge using treated municipal wastewater to mitigate urban water scarcity scenarios.',
-    funder: 'Global Water Partnership',
+      'Africa is experiencing one of its most significant water policy moments in decades. In February 2026, African leaders adopted the African Union’s (AU) Water Vision 2063 and Policy, alongside the declaration of 2026 as the Year of Water and Sanitation. This vision recognizes water and sanitation not only as a social service, but also as catalysts for economic growth, food security, and climate resilience, calling on African governments to “position water as a strategic asset for industrialization, agriculture and energy, and an indispensable enabler of primary national development objectives.”',
     category: 'wash',
-    tag: 'WASH',
-    body: [
-      'Rapid urbanisation is drawing down peri-urban aquifers faster than they recharge naturally. This research evaluates managed aquifer recharge using treated municipal wastewater as a scalable response, assessing both the treatment standards required for safe injection and the hydrogeological conditions under which recharge is viable.',
-      'Pilot recharge sites demonstrated measurable water-table recovery within eighteen months, though performance varied significantly with local soil permeability and the consistency of treated-water quality — underscoring that this is not a uniformly transferable solution across all urban settings.',
-      'The study provides the Global Water Partnership with a site-selection framework and monitoring protocol for scaling managed aquifer recharge across additional cities facing similar urban water scarcity pressure.',
-    ],
+    type: 'Blog post',
+    publisher: 'RWSN',
+    url: 'https://rwsn.blog/2026/06/22/from-declarations-to-delivery-the-case-for-integrated-implementation-systems-in-africas-2026-water-agenda/',
   },
   {
-    slug: 'carbon-sequestration-metrics',
-    title: 'Carbon Sequestration Metrics',
+    slug: 'nairobi-motorcycle-transit-comparison-dataset',
+    title: 'Nairobi Motorcycle Transit Comparison Dataset: Fuel vs. Electric Vehicle Performance Tracking (2023)',
     description:
-      'Developing standardized protocols for measuring and verifying carbon capture rates in afforestation projects across semi-arid sub-Saharan regions.',
-    funder: 'UN Environment Programme',
-    category: 'climate',
-    tag: 'Climate',
-    body: [
-      'Afforestation projects across semi-arid sub-Saharan regions have historically been measured against inconsistent carbon accounting protocols, undermining confidence in reported sequestration rates. This research develops a standardized field-measurement and verification protocol suited to semi-arid growing conditions specifically.',
-      'Applying the protocol across a set of pilot afforestation sites revealed that several previously reported sequestration estimates had not adequately accounted for soil carbon dynamics under intermittent rainfall, leading to a recommended adjustment methodology for future carbon-credit verification in comparable climates.',
-      'The resulting protocol is intended for adoption by verification bodies assessing afforestation projects in similar agro-ecological zones, in partnership with the UN Environment Programme.',
-    ],
-  },
-  {
-    slug: 'biomass-conversion-efficiency',
-    title: 'Biomass Conversion Efficiency',
-    description:
-      'A comparative lifecycle assessment of advanced pyrolysis techniques for agricultural waste conversion into sustainable biochar and syngas.',
-    funder: 'Nordic Development Fund',
+      'This dataset, titled “Nairobi Motorcycle Transit Comparison Dataset,” was compiled to document a simulated transition of motorcycle taxis (boda bodas) in Nairobi, Kenya, from internal combustion engine (ICE) to electric motorcycles. The data collection spanned two distinct phases. The baseline phase, conducted from November 13–26, 2023, involved 120 ICE motorcycles. The transition phase, occurring from December 10–21, 2023, included 110 ICE motorcycles as a control group and 9 electric motorcycles as a treatment group. Data were gathered in Nairobi, a major urban center in East Africa, providing a geographically specific context for the data collection. Recognising the limited availability of data on such transitions in African cities, including historical insights from Kenyan urban transport systems, this dataset provides a unique resource for researchers and policymakers.',
     category: 'energy',
-    tag: 'Energy',
-    body: [
-      'This lifecycle assessment compares advanced pyrolysis configurations for converting agricultural residue into biochar and syngas, evaluating energy return on investment, emissions profile, and the downstream agronomic value of the resulting biochar as a soil amendment.',
-      'Slow-pyrolysis configurations produced higher-value biochar suited to soil amendment, while fast-pyrolysis configurations favoured syngas yield for direct energy use — meaning the optimal configuration depends heavily on which output a given enterprise intends to monetise.',
-      'Funded by the Nordic Development Fund, the study provides enterprise-level guidance for selecting pyrolysis configurations aligned to local agricultural residue streams and target markets.',
-    ],
+    type: 'Research paper',
+    publisher: 'ResearchGate',
+    url: 'https://www.researchgate.net/publication/392844974_Nairobi_Motorcycle_Transit_Comparison_Dataset_Fuel_vs_Electric_Vehicle_Performance_Tracking_2023',
   },
   {
-    slug: 'sanitation-value-chains',
-    title: 'Sanitation Value Chains',
+    slug: 'kenya-electricity-overcapacity-claim',
+    title: 'Reviewing the Overcapacity Claim: Insights from Kenya’s Electricity Sector',
     description:
-      'Mapping the economic viability and public health outcomes of decentralized fecal sludge management enterprises in high-density informal settlements.',
-    funder: 'World Bank Group',
+      'Typical approaches to assessing excess generation capacity in African electricity systems have considered the nameplate capacities of existing generation plants, the planned generation capacity, and peak load. However, the omission of variables such as the condition of transmission and distribution infrastructure, the age of existing power plants, and whether generation capacity is intermittent (as in the case of wind or solar) or subject to climate impacts (as in the case of hydropower) has caused such assessments to be misleading. This can result in misguided public policy and power procurement processes that are poorly matched to the needs of evolving power systems. In this paper, we analyze the case of Kenya to show how power system planning must consider these key factors that are often ignored. Far from having excess capacity as has been repeatedly reported, the Kenyan grid has limited capacity to take up additional load at present.',
+    category: 'energy',
+    type: 'Research paper',
+    publisher: 'ScienceDirect',
+    url: 'https://www.sciencedirect.com/science/article/abs/pii/S1040619024000095',
+  },
+  {
+    slug: 'decentralized-safe-water-enterprise-kiosks',
+    title: 'Leveraging a Decentralized Entrepreneurial Approach to Safe Water Supply',
+    description:
+      'A randomized control study design was employed to understand the impact of the safe water enterprise kiosks on the community. This involved selecting an equal number of participants from both the intervention arm (consumers who obtained water from the kiosk) and the control arm (the consumers who did not obtain water from the kiosk). The six SWE kiosks evaluated in this study are equipped with different water supply set-ups and operate in different contexts and serve different clients. The SWE kiosks were implemented in partnership with different community partners and have varying governance, and or management structures. Four of the water kiosks are owned and governed by Community-Based Organizations (CBOs) now officially registered as Water User Associations (WUAs), comprising member committees while two are managed by host institution.',
     category: 'wash',
-    tag: 'WASH',
-    body: [
-      'Decentralized fecal sludge management enterprises operate at the margin of viability in many high-density informal settlements. This research maps the full value chain — collection, transport, treatment, and end-use — to identify where enterprises are financially sustainable and where they depend on continued subsidy.',
-      'Enterprises that secured an end-use market for treated sludge byproducts, such as soil conditioner or fuel briquettes, showed substantially stronger unit economics than those reliant solely on collection fees, pointing to end-use market development as the more durable sustainability lever.',
-      'The findings inform World Bank Group programming on sanitation enterprise support, recommending end-use market development be treated as core programme design rather than a secondary consideration.',
-    ],
+    type: 'Evaluation study',
+    publisher: 'Siemens Stiftung',
+    url: 'https://www.siemens-stiftung.org/wp-content/uploads/2024/03/study-onwaterkiosks-kenya-siemensstiftung.pdf',
   },
   {
-    slug: 'coastal-erosion-mitigation',
-    title: 'Coastal Erosion Mitigation',
+    slug: 'consistency-case-study-paris-agreement-rwanda',
+    title: 'Consistency Case Study: Actions Supporting Article 2.1c of the Paris Agreement in Rwanda',
     description:
-      'Investigating the effectiveness of nature-based solutions, specifically mangrove restoration, against escalating storm surges and sea-level rise.',
-    funder: 'Coastal Conservancy',
+      'Rwanda’s experience managing its climate related finances provides an important starting point for conversations around the difficult questions that low-income countries face in balancing food and energy security needs while achieving just transitions toward net-zero emissions. This report offers a blueprint for other low-income countries on how to implement low-carbon strategies that can lead to increasingly ambitious climate action, including in Rwanda’s case, an internationally supported mitigation plan that would reduce GHG emissions by up to 38% in 2030. Finally, the Paris Agreement’s Global Stocktake (GST) can benefit from this case study as a proof-of-concept for how climate finance flows can be assessed in the relatively shallow financial market that characterizes most low- and low-middle income countries.',
     category: 'climate',
-    tag: 'Climate',
-    body: [
-      'This study assesses mangrove restoration as a nature-based coastal defence against storm surge and sea-level rise, comparing wave-attenuation performance across restoration sites of varying age and planting density.',
-      'Restored mangrove stands over five years old attenuated storm-surge wave energy substantially more effectively than younger stands, indicating that restoration timelines — not just total area restored — should factor directly into coastal protection planning.',
-      'Commissioned by the Coastal Conservancy, the research recommends a phased restoration and protection strategy that maintains interim hard-engineering measures until restored mangrove stands reach effective maturity.',
-    ],
+    type: 'Case study',
+    publisher: 'ODI',
+    url: 'https://odi.org/en/publications/consistency-case-study-actions-supporting-article-21c-of-the-paris-agreement-in-rwanda/',
   },
 ];

@@ -36,16 +36,27 @@ export type BlogPost = BlogPostSummary & {
   references: Reference[];
 };
 
+export type PublicationCategory = PillarCategory | 'circular_economy';
+
+export const PUBLICATION_AREAS: Record<PublicationCategory, string> = {
+  energy: 'Energy',
+  wash: 'WASH',
+  climate: 'Climate Change',
+  agriculture: 'Agriculture',
+  circular_economy: 'Circular Economy',
+};
+
+/** A portfolio entry: a blurb that points readers to where the work is published. */
 export type PublicationSummary = {
   slug: string;
   title: string;
   description: string;
-  funder: string;
-  category: PillarCategory;
-  tag: string;
-  documentUrl?: string;
+  category: PublicationCategory;
+  /** e.g. "Research paper", "Case study" */
+  type: string;
+  /** Outlet shown on the link, e.g. "ODI". */
+  publisher: string;
+  url?: string;
 };
 
-export type Publication = PublicationSummary & {
-  body: string[];
-};
+export type Publication = PublicationSummary;
