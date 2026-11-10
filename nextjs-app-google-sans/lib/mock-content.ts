@@ -21,7 +21,9 @@ export const BLOG_POSTS: BlogPost[] = [
     featured: true,
     author: 'Abigael Okoko',
     authorRole: 'Research Fellow, EED Research Institute',
-    leadImageLabel: 'Clean cooking — Sierra Leone field research',
+    leadImageLabel: 'Charcoal stove',
+    imageUrl: '/assets/blog/clean-cooking-charcoal-stove.jpg',
+    imageAlt: 'A cooking pot on a charcoal stove outdoors',
     body: [
       {
         type: 'lead',

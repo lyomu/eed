@@ -101,9 +101,23 @@ function formatDate(isoDate: string | null): string {
   });
 }
 
+/**
+ * Lead images for posts whose Prismic "Hero image" is empty. A Prismic image
+ * always wins. The label replaces the post's lead image label, which would
+ * otherwise describe the missing original photo.
+ */
+const POST_IMAGE_FALLBACKS: Record<string, { src: string; alt: string; label: string }> = {
+  'fueling-change-sierra-leone-cooking-energy-crisis': {
+    src: '/assets/blog/clean-cooking-charcoal-stove.jpg',
+    alt: 'A cooking pot on a charcoal stove outdoors',
+    label: 'Charcoal stove',
+  },
+};
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function toSummary(doc: any): BlogPostSummary {
   const data = doc.data;
+  const fallback = data.hero_image?.url ? undefined : POST_IMAGE_FALLBACKS[doc.uid];
   return {
     slug: doc.uid,
     title: asText(data.title),
@@ -113,8 +127,8 @@ function toSummary(doc: any): BlogPostSummary {
     readTime: data.read_time ?? '',
     excerpt: asText(data.excerpt),
     featured: Boolean(data.featured),
-    imageUrl: data.hero_image?.url || undefined,
-    imageAlt: data.hero_image?.alt || asText(data.title),
+    imageUrl: data.hero_image?.url || fallback?.src,
+    imageAlt: data.hero_image?.alt || fallback?.alt || asText(data.title),
   };
 }
 
@@ -125,7 +139,8 @@ function toBlogPost(doc: any): BlogPost {
     ...toSummary(doc),
     author: data.author_name ?? '',
     authorRole: data.author_role ?? '',
-    leadImageLabel: data.lead_image_label || data.hero_image?.alt || asText(data.title),
+    leadImageLabel: (!data.hero_image?.url && POST_IMAGE_FALLBACKS[doc.uid]?.label)
+      || data.lead_image_label || data.hero_image?.alt || asText(data.title),
     body: toBody(data.body ?? []),
     keyTakeaways: (data.key_takeaways ?? [])
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

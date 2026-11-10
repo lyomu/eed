@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { preload } from 'react-dom';
+import { heroSrcSet } from '@/components/HeroImage';
 
 /** Homepage hero backgrounds, shown in order and cross-faded. */
 export const HOME_HERO_SLIDES = [
@@ -36,6 +38,12 @@ export default function HeroSlideshow({ slides = HOME_HERO_SLIDES }: { slides?: 
     return () => clearInterval(id);
   }, [slides.length, failed]);
 
+  // Start the first slide's download from <head>, at a screen-sized width.
+  const firstSrcSet = slides[0] ? heroSrcSet(slides[0].src) : undefined;
+  if (slides[0]) {
+    preload(slides[0].src, { as: 'image', fetchPriority: 'high', imageSrcSet: firstSrcSet, imageSizes: firstSrcSet ? '100vw' : undefined });
+  }
+
   return (
     <>
       {slides.map((slide, i) =>
@@ -45,6 +53,9 @@ export default function HeroSlideshow({ slides = HOME_HERO_SLIDES }: { slides?: 
             key={slide.src}
             className={`hero-bg hero-slide${i === active ? ' is-active' : ''}`}
             src={slide.src}
+            srcSet={heroSrcSet(slide.src)}
+            sizes={heroSrcSet(slide.src) ? '100vw' : undefined}
+            decoding="async"
             alt=""
             style={{ objectPosition: slide.position, animationDelay: `${i * -9}s` }}
             fetchPriority={i === 0 ? 'high' : undefined}

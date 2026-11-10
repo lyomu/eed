@@ -2,6 +2,7 @@ import * as prismic from '@prismicio/client';
 import { PrismicRichText } from '@prismicio/react';
 import Link from 'next/link';
 import FallbackImage from '@/components/FallbackImage';
+import HeroImage from '@/components/HeroImage';
 import HeroSlideshow from '@/components/HeroSlideshow';
 import ContactForm from '@/components/forms/ContactForm';
 import InquiryForm from '@/components/forms/InquiryForm';
@@ -105,7 +106,7 @@ export default async function SitePage({ doc }: { doc: Content }) {
           {p.home_style && <HeroSlideshow slides={heroSlides(p.slides)} />}
           {!p.home_style && (() => {
             const src = HERO_IMAGE_OVERRIDES[doc.uid] || imageUrl(p.image, DEFAULT_HERO_IMAGES[doc.uid]);
-            return src ? <FallbackImage className="hero-bg" src={src} alt="" fetchPriority={index === 0 ? 'high' : undefined} /> : null;
+            return src ? <HeroImage src={src} priority={index === 0} /> : null;
           })()}
           <div className="container"><div className={p.home_style ? 'hero-grid' : undefined}><div className="hero-enter">
             <h1>{value(p.heading)}</h1>
@@ -196,7 +197,7 @@ export default async function SitePage({ doc }: { doc: Content }) {
         </div></section>;
       case 'quote':
         return <section key={key} className="breaker on-image">
-          {p.image?.url && <FallbackImage className="hero-bg" src={p.image.url} alt="" loading="lazy" />}
+          {p.image?.url && <HeroImage src={p.image.url} priority={false} />}
           <div className="container"><h2 data-reveal>{value(p.heading)}</h2></div>
         </section>;
       case 'call_to_action':
