@@ -1,0 +1,32 @@
+{
+  "id": "quote",
+  "type": "SharedSlice",
+  "name": "Quote",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "version": "",
+      "description": "Full-width statement on an image",
+      "docURL": "",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Statement",
+            "single": "heading1,heading2"
+          }
+        },
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Background image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      }
+    }
+  ]
+}

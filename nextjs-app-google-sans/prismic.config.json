@@ -1,0 +1,13 @@
+{
+  "repositoryName": "eri-website-repo",
+  "routes": [
+    { "type": "blog_post", "path": "/news/:uid" },
+    { "type": "research_publication", "path": "/portfolio/:uid" },
+    { "type": "site_page", "uid": "home", "path": "/" },
+    { "type": "site_page", "uid": "wash", "path": "/what-we-do/wash" },
+    { "type": "site_page", "uid": "energy", "path": "/what-we-do/energy" },
+    { "type": "site_page", "uid": "climate", "path": "/what-we-do/climate" },
+    { "type": "site_page", "uid": "agriculture", "path": "/what-we-do/agriculture" },
+    { "type": "site_page", "path": "/:uid" }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "id": "research_publication",
+  "label": "Research Publication",
+  "format": "custom",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": { "label": "URL slug" }
+      },
+      "title": {
+        "type": "StructuredText",
+        "config": { "label": "Title", "single": "heading1" }
+      },
+      "description": {
+        "type": "StructuredText",
+        "config": { "label": "Abstract / brief", "single": "paragraph" }
+      },
+      "category": {
+        "type": "Select",
+        "config": {
+          "label": "Research area",
+          "options": ["energy", "wash", "climate", "agriculture", "circular_economy"]
+        }
+      },
+      "publication_type": {
+        "type": "Select",
+        "config": {
+          "label": "Type",
+          "options": [
+            "Research paper",
+            "Case study",
+            "Evaluation study",
+            "Dataset",
+            "Report",
+            "Policy brief",
+            "Blog post"
+          ]
+        }
+      },
+      "publisher": {
+        "type": "Text",
+        "config": { "label": "Published by / outlet", "placeholder": "e.g. ODI, ScienceDirect" }
+      },
+      "document": {
+        "type": "Link",
+        "config": { "label": "Link to published source", "allowTargetBlank": true }
+      },
+      "publication_date": {
+        "type": "Date",
+        "config": { "label": "Publication date (optional, newest first)" }
+      }
+    }
+  }
+}
