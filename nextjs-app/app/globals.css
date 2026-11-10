@@ -1841,9 +1841,9 @@ p{ margin:0 0 1em; }
    once the visitor scrolls. Pages without a photo banner keep the solid
    header throughout, and the open mobile menu always shows the solid bar. */
 body:has(main > .on-image:first-child) .site-header:not(.is-stuck):not([data-nav-open]){
-  /* A soft fade rather than nothing, so white links stay readable over
-     bright skies at the top of a photo. */
-  background:linear-gradient(180deg, rgba(4,24,16,.5) 0%, rgba(4,24,16,0) 100%);
+  /* Fully transparent: a fade on the header itself ended in a visible edge
+     at the bar's bottom. The shading lives in the banner instead (below). */
+  background:transparent;
   border-bottom-color:transparent;
   box-shadow:none;
   backdrop-filter:none;
@@ -1877,6 +1877,24 @@ body:has(main > .on-image:first-child) .site-header:not(.is-stuck):not([data-nav
 /* The banner slides up under the header, so it gains the header's height
    back as top padding and min-height. */
 main > .on-image:first-child{ margin-top:calc(-1 * var(--nav-h)); }
+/* Top shade behind the transparent header: tall and eased so it has no
+   visible edge, keeping white menu links readable over bright skies. */
+main > .on-image:first-child::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:calc(var(--nav-h) * 3);
+  z-index:-1;
+  pointer-events:none;
+  background:linear-gradient(180deg,
+    rgba(4,24,16,.55) 0%,
+    rgba(4,24,16,.38) 25%,
+    rgba(4,24,16,.18) 55%,
+    rgba(4,24,16,.06) 80%,
+    rgba(4,24,16,0) 100%);
+}
 main > .hero--image:first-child{
   min-height:100svh;
   padding-top:calc(var(--nav-h) + clamp(64px, 10vh, 110px));
