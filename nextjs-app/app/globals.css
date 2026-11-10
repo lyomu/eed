@@ -551,11 +551,12 @@ p{ margin:0 0 1em; }
 .page-head--image h1{ max-width:24ch; }
 .page-head--image .lead{ max-width:58ch; }
 
-/* Inner banners get the same treatment as the home hero: fill the first
-   screen, keep the copy legible with a scrim behind it and text shadows,
-   and use the same restrained type scale. */
+/* Inner banners share the home hero's legibility treatment (scrim, text
+   shadows, restrained type) but stay shorter than the full screen, so the
+   page content starts above the fold, as on zero.ox.ac.uk inner pages. */
 .page-head.page-head--image{
-  min-height:calc(100svh - var(--nav-h));
+  min-height:clamp(380px, 60vh, 620px);
+  padding:clamp(72px, 10vh, 120px) 0 clamp(56px, 8vh, 96px);
   align-items:center;
 }
 /* The banner is a flex row, so without this the container shrinks to its
