@@ -1137,6 +1137,18 @@ p{ margin:0 0 1em; }
   color:var(--ink);
   transition:border-color .2s ease;
 }
+/* Custom chevron so it can sit a comfortable distance from the right edge;
+   the native one is glued to it. */
+.form-row select{
+  -webkit-appearance:none;
+  appearance:none;
+  padding-right:44px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%23111a30' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 18px center;
+  background-size:12px 8px;
+  cursor:pointer;
+}
 .form-row textarea{ resize:vertical; min-height:120px; }
 .form-row input:focus,
 .form-row textarea:focus,
