@@ -2919,6 +2919,14 @@ main > .page-head.page-head--image:first-child{
   line-height: 1.6;
   margin: 0 0 18px;
 }
+/* The pillar's tag line, in the same gold italic as on its own page. */
+.pillar-panel-detail .hero-tagline {
+  color: var(--gold-400);
+  font-size: 1.2rem;
+  line-height: 1.4;
+  max-width: none;
+  margin: 0 0 22px;
+}
 .pillar-panel-detail .artistic-pillar-link {
   color: #fff;
 }

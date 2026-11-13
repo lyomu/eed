@@ -17,6 +17,7 @@ import { getBlogPosts, getPublications } from '@/lib/cms';
 import type { TeamMember } from '@/lib/team-data';
 import { linkResolver } from '@/lib/prismicio';
 import { CONTACT, CONTACT_PHONE_HREF } from '@/lib/contact-info';
+import { PILLARS, type PillarSlug } from '@/lib/pillars-data';
 import { Fragment } from 'react';
 
 // Prismic custom types are deliberately kept as JSON so editors can manage
@@ -206,7 +207,7 @@ export default async function SitePage({ doc }: { doc: Content }) {
           <div className="pillar-accordion" data-reveal>{items.map((item, i) => <Fragment key={i}>
             <input type="radio" name={`pillar-panel-${key}`} id={`pillar-panel-${key}-${i}`} className="pillar-panel-input" defaultChecked={i === 0} />
             <label htmlFor={`pillar-panel-${key}-${i}`} className="pillar-panel" style={{ backgroundImage: `url('${imageUrl(item.image)}')` }}>
-              <span className="pillar-panel-tab">{item.title}</span><div className="pillar-panel-detail"><h3>{item.title}</h3><Rich field={item.body} />
+              <span className="pillar-panel-tab">{item.title}</span><div className="pillar-panel-detail"><h3>{item.title}</h3>{PILLARS[String(item.title).toLowerCase() as PillarSlug]?.tagline ? <p className="hero-tagline">{PILLARS[String(item.title).toLowerCase() as PillarSlug].tagline}</p> : <Rich field={item.body} />}
                 <Link href={href(item.destination)} className="artistic-pillar-link">Explore Pillar →</Link></div>
             </label>
           </Fragment>)}</div>
