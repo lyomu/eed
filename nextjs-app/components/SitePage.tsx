@@ -7,6 +7,7 @@ import HeroSlideshow from '@/components/HeroSlideshow';
 import ContactForm from '@/components/forms/ContactForm';
 import InquiryForm from '@/components/forms/InquiryForm';
 import PartnersSection from '@/components/PartnersSection';
+import SocialLinks from '@/components/SocialLinks';
 import TypingHeading from '@/components/TypingHeading';
 import TeamSection from '@/components/team/TeamSection';
 import NewsIndexClient from '@/app/news/NewsIndexClient';
@@ -223,6 +224,7 @@ export default async function SitePage({ doc }: { doc: Content }) {
             <div className="office-item"><span className="lbl">Address</span><address>{CONTACT.organization}{CONTACT.addressLines.map((line) => <Fragment key={line}><br />{line}</Fragment>)}</address></div>
             <div className="office-item"><span className="lbl">Telephone</span><address><a href={`tel:${CONTACT_PHONE_HREF}`}>{CONTACT.phone}</a></address></div>
             <div className="office-item"><span className="lbl">Email</span><address><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></address></div>
+            <div className="office-item"><span className="lbl">Follow us</span><SocialLinks /></div>
           </div>
         </div></div></section>;
       case 'inquiry':

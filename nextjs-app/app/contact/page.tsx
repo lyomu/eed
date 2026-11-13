@@ -3,6 +3,7 @@ import { Fragment } from 'react';
 import ContactForm from '@/components/forms/ContactForm';
 import HeroImage from '@/components/HeroImage';
 import SitePage from '@/components/SitePage';
+import SocialLinks from '@/components/SocialLinks';
 import { getPageMetadata, getSitePage } from '@/lib/site-content';
 import { CONTACT, CONTACT_PHONE_HREF } from '@/lib/contact-info';
 
@@ -71,6 +72,10 @@ export default async function ContactPage() {
                   <address>
                     <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
                   </address>
+                </div>
+                <div className="office-item">
+                  <span className="lbl">Follow us</span>
+                  <SocialLinks />
                 </div>
               </div>
             </div>

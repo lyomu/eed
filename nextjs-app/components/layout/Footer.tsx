@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useCallback } from 'react';
 import { prefersReducedMotion } from '@/lib/useReducedMotion';
 import { PILLAR_LINKS, type NavLink } from '@/lib/nav';
+import SocialLinks from '@/components/SocialLinks';
 
 const DEFAULT_QUICK_LINKS: NavLink[] = [
   { label: 'About Us', href: '/about' },
@@ -37,6 +38,7 @@ export default function Footer({ logo = '/assets/logo/eri-logo-full.png', descri
           <div className="footer-brand">
             <img src={logo} alt="EED Research Institute" />
             <p>{description}</p>
+            <SocialLinks />
           </div>
           <div className="footer-col">
             <h3>Quick Links</h3>
