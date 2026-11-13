@@ -1725,17 +1725,17 @@ p{ margin:0 0 1em; }
   align-items:start;
 }
 .office-panel{
-  background:var(--navy-950);
+  background:var(--green-700);
   color:#fff;
   border-radius:var(--radius-md);
   padding:40px;
   margin-bottom:24px;
 }
 .office-panel h2{ color:#fff; font-size:1.6rem; margin:12px 0 14px; }
-.office-panel > p{ color:rgba(255,255,255,.72); font-size:var(--fs-sm); }
+.office-panel > p{ color:rgba(255,255,255,.92); font-size:var(--fs-sm); }
 .office-item{
   padding:20px 0;
-  border-top:1px solid var(--rule-dark);
+  border-top:1px solid rgba(255,255,255,.28);
 }
 .office-item .lbl{
   font-family:var(--font-body);
@@ -1748,7 +1748,7 @@ p{ margin:0 0 1em; }
 .office-item address{
   font-style:normal;
   font-size:var(--fs-sm);
-  color:rgba(255,255,255,.82);
+  color:rgba(255,255,255,.94);
   line-height:1.7;
 }
 .map-block{
