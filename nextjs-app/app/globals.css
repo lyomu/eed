@@ -820,14 +820,21 @@ p{ margin:0 0 1em; }
   color:#fff;
   font-size:clamp(1.8rem,3.4vw,2.9rem);
   line-height:1.16;
-  /* Holds the headline to three or so lines rather than one long ruler
-     across a 1400px container. */
-  max-width:22ch;
+  /* Runs the full width of the container, left to right. */
+  max-width:none;
   margin:0;
 }
 /* The books sit low in this frame; bias the crop down so they are not cut
    off by the short band. */
 .breaker .hero-bg{ object-position:center 55%; }
+/* The headline now crosses the whole band, including the bright panels on the
+   right, so darken the band evenly rather than only on the left. */
+.breaker.on-image::after{
+  background:
+    linear-gradient(90deg, rgba(4,32,21,.5) 0%, rgba(4,32,21,.3) 100%),
+    linear-gradient(0deg, rgba(4,32,21,.35) 0%, rgba(4,32,21,0) 60%);
+}
+.breaker h2{ text-shadow:0 2px 18px rgba(0,0,0,.5); }
 
 /* Headline wipes in from the left: a mask opens from the left edge to the full
    width while the text slides a short way into place. A mask (not clip-path)
