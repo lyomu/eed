@@ -666,12 +666,14 @@ p{ margin:0 0 1em; }
   50%  { scale:1.16; translate:1.2% -0.8%; }
   100% { scale:1.06; translate:-1.2% 0.6%; }
 }
-.hero--image .hero-bg{
+.hero--image .hero-bg,
+.page-head--image .hero-bg{
   animation:hero-drift 32s ease-in-out infinite;
   will-change:scale, translate;
 }
 @media (prefers-reduced-motion:reduce){
-  .hero--image .hero-bg{ animation:none; }
+  .hero--image .hero-bg,
+  .page-head--image .hero-bg{ animation:none; }
 }
 
 /* Slideshow: slides stack and cross-fade. The opacity transition is restated
@@ -1900,8 +1902,8 @@ main > .hero--image:first-child{
   padding-top:calc(var(--nav-h) + clamp(64px, 10vh, 110px));
 }
 main > .page-head.page-head--image:first-child{
-  min-height:calc(clamp(380px, 60vh, 620px) + var(--nav-h));
-  padding-top:calc(var(--nav-h) + clamp(72px, 10vh, 120px));
+  min-height:100svh;   /* same full-screen height as the homepage hero */
+  padding-top:calc(var(--nav-h) + clamp(64px, 10vh, 110px));
 }
 
 /* Mobile nav: slides down instead of snapping into place. The collapsed state
