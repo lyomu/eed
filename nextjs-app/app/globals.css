@@ -871,12 +871,20 @@ p{ margin:0 0 1em; }
   width:auto;
   height:auto;
   object-fit:contain;
-  filter:grayscale(1);
-  opacity:.7;
   transition:filter var(--dur-enter) var(--ease-out), opacity var(--dur-enter) var(--ease-out);
 }
 .partner-logo img.is-square{ max-height:92px; }
-.partner-logo:hover img{ filter:none; opacity:1; }
+/* Full colour at rest; the logo under the pointer greys out. */
+.partner-logo:hover img{ filter:grayscale(1); opacity:.6; }
+
+/* Entrance: logos rise and settle one after another, a slower and more
+   pronounced version of the shared stagger so the row reads as animated. */
+.js .partner-grid > .partner-logo{
+  transform:translateY(32px) scale(.9);
+  transition:opacity 700ms var(--ease-out), transform 700ms var(--ease-out);
+  transition-delay:calc(var(--i, 0) * 130ms);
+}
+.js .partner-grid.in-view > .partner-logo{ transform:none; }
 @media (max-width:900px){
   .partner-grid{ grid-template-columns:repeat(3, 1fr); }
 }
