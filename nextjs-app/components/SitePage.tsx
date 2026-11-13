@@ -58,7 +58,7 @@ const BREAKER_IMAGE_OVERRIDES: Record<string, string> = {
 
 /** Crop focus for banners where the default (35% down) puts the headline over faces. */
 const HERO_IMAGE_POSITIONS: Record<string, string> = {
-  contact: 'center 100%',
+  contact: 'center 20%',
 };
 
 const HERO_IMAGE_OVERRIDES: Record<string, string> = {
