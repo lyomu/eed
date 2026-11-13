@@ -15,7 +15,7 @@ export default function MilestonesTimeline() {
         return (
           <li key={`${item.period}-${item.title}`} className="mtl-entry">
             {showYear && (
-              <div className="mtl-year" aria-hidden="true">
+              <div className="mtl-year" aria-hidden="true" data-reveal>
                 <span>{item.group}</span>
               </div>
             )}
