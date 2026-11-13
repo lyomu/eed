@@ -102,8 +102,8 @@ function initHero(reduced: boolean): () => void {
 
 function initScrollFx(reduced: boolean): () => void {
   const header = document.querySelector<HTMLElement>('.site-header');
-  const heroImg = document.querySelector<HTMLElement>('.hero--image .hero-bg');
-  const hero = document.querySelector<HTMLElement>('.hero--image');
+  const heroImg = document.querySelector<HTMLElement>('.hero--image .hero-bg, .page-head--image .hero-bg');
+  const hero = document.querySelector<HTMLElement>('.hero--image, .page-head--image');
   const progress = document.querySelector<HTMLElement>('.read-progress');
   const article = document.querySelector<HTMLElement>('.post-body');
 

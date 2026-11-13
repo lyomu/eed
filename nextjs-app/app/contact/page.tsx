@@ -1,8 +1,11 @@
 import type { Metadata } from 'next';
+import { Fragment } from 'react';
 import ContactForm from '@/components/forms/ContactForm';
 import HeroImage from '@/components/HeroImage';
 import SitePage from '@/components/SitePage';
+import SocialLinks from '@/components/SocialLinks';
 import { getPageMetadata, getSitePage } from '@/lib/site-content';
+import { CONTACT, CONTACT_PHONE_HREF } from '@/lib/contact-info';
 
 const fallbackMetadata: Metadata = {
   title: 'Contact Us — EED Research Institute',
@@ -18,7 +21,7 @@ export default async function ContactPage() {
   return (
     <>
       <section className="page-head page-head--image on-image">
-        <HeroImage src="/assets/hero/hero-contact.jpg" />
+        <HeroImage src="/assets/hero/hero-contact.jpg" style={{ objectPosition: 'center 20%' }} />
         <div className="container">
           <div className="hero-enter">
             <h1>Let&rsquo;s build the evidence base together</h1>
@@ -47,26 +50,32 @@ export default async function ContactPage() {
                 </p>
 
                 <div className="office-item">
-                  <span className="lbl">EED Advisory Limited</span>
+                  <span className="lbl">Address</span>
                   <address>
-                    50 Hamisi Road, Kileleshwa
-                    <br />
-                    Nairobi, Kenya
-                    <br />
-                    P.O. Box 66053-00800, Nairobi
+                    {CONTACT.organization}
+                    {CONTACT.addressLines.map((line) => (
+                      <Fragment key={line}>
+                        <br />
+                        {line}
+                      </Fragment>
+                    ))}
                   </address>
                 </div>
                 <div className="office-item">
                   <span className="lbl">Telephone</span>
                   <address>
-                    <a href="tel:+254202574927">+254 (20) 2574927</a>
+                    <a href={`tel:${CONTACT_PHONE_HREF}`}>{CONTACT.phone}</a>
                   </address>
                 </div>
                 <div className="office-item">
                   <span className="lbl">Email</span>
                   <address>
-                    <a href="mailto:eri@eedadvisory.com">eri@eedadvisory.com</a>
+                    <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
                   </address>
+                </div>
+                <div className="office-item">
+                  <span className="lbl">Follow us</span>
+                  <SocialLinks />
                 </div>
               </div>
             </div>
