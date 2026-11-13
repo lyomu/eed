@@ -827,7 +827,58 @@ p{ margin:0 0 1em; }
 }
 /* The books sit low in this frame; bias the crop down so they are not cut
    off by the short band. */
-.breaker .hero-bg{ object-position:center 62%; }
+.breaker .hero-bg{ object-position:center 55%; }
+
+/* Headline wipes in from the left: a mask opens from the left edge to the full
+   width while the text slides a short way into place. A mask (not clip-path)
+   so the scroll-reveal observer still sees the element. */
+.js .breaker h2[data-reveal]{
+  opacity:1;
+  transform:translateX(-48px);
+  -webkit-mask:linear-gradient(#000,#000) left center / 0% 100% no-repeat;
+          mask:linear-gradient(#000,#000) left center / 0% 100% no-repeat;
+  transition:mask-size 1.4s var(--ease-out), -webkit-mask-size 1.4s var(--ease-out), transform 1.4s var(--ease-out);
+}
+.js .breaker h2[data-reveal].in-view{
+  transform:none;
+  -webkit-mask-size:100% 100%;
+          mask-size:100% 100%;
+}
+
+/* ---------- Partners ---------- */
+.partner-grid{
+  list-style:none;
+  margin:48px 0 0;
+  padding:0;
+  display:grid;
+  grid-template-columns:repeat(5, 1fr);
+  gap:24px 40px;
+  align-items:center;
+}
+.partner-logo{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:96px;
+}
+.partner-logo img{
+  max-width:100%;
+  max-height:72px;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  filter:grayscale(1);
+  opacity:.7;
+  transition:filter var(--dur-enter) var(--ease-out), opacity var(--dur-enter) var(--ease-out);
+}
+.partner-logo img.is-square{ max-height:92px; }
+.partner-logo:hover img{ filter:none; opacity:1; }
+@media (max-width:900px){
+  .partner-grid{ grid-template-columns:repeat(3, 1fr); }
+}
+@media (max-width:560px){
+  .partner-grid{ grid-template-columns:repeat(2, 1fr); gap:16px 24px; }
+}
 
 /* ---------- Ruled index rows (pillars, portfolio, insights) ---------- */
 .index-list{ border-top:1px solid var(--rule); }
@@ -2187,6 +2238,7 @@ main > .page-head.page-head--image:first-child{
   [data-reveal],
   [data-reveal-stagger] > *{ opacity:1; transform:none; }
   [data-rule]::before{ transform:scaleX(1); }
+  .js .breaker h2[data-reveal]{ -webkit-mask:none; mask:none; transform:none; }
   .hero-bg{ transform:none !important; }
 }
 

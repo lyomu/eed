@@ -6,6 +6,7 @@ import HeroImage from '@/components/HeroImage';
 import HeroSlideshow from '@/components/HeroSlideshow';
 import ContactForm from '@/components/forms/ContactForm';
 import InquiryForm from '@/components/forms/InquiryForm';
+import PartnersSection from '@/components/PartnersSection';
 import TeamSection from '@/components/team/TeamSection';
 import NewsIndexClient from '@/app/news/NewsIndexClient';
 import PortfolioIndexClient from '@/app/portfolio/PortfolioIndexClient';
@@ -48,6 +49,10 @@ const DEFAULT_HERO_IMAGES: Record<string, string> = {
  * Prismic image (a group photo) has been retired in favour of a landscape
  * without people; remove the entry here to hand control back to Prismic.
  */
+const BREAKER_IMAGE_OVERRIDES: Record<string, string> = {
+  home: '/assets/hero/hero-breaker.jpg',
+};
+
 const HERO_IMAGE_OVERRIDES: Record<string, string> = {
   team: '/assets/hero/hero-team.jpg',
   portfolio: '/assets/hero/hero-portfolio-wind.jpg',
@@ -194,11 +199,16 @@ export default async function SitePage({ doc }: { doc: Content }) {
             </label>
           </Fragment>)}</div>
         </div></section>;
-      case 'quote':
-        return <section key={key} className="breaker on-image">
-          {p.image?.url && <HeroImage src={p.image.url} priority={false} />}
-          <div className="container"><h2 data-reveal>{value(p.heading)}</h2></div>
-        </section>;
+      case 'quote': {
+        const breakerSrc = BREAKER_IMAGE_OVERRIDES[doc.uid] || p.image?.url;
+        return <Fragment key={key}>
+          <section className="breaker on-image">
+            {breakerSrc && <HeroImage src={breakerSrc} priority={false} />}
+            <div className="container"><h2 data-reveal>{value(p.heading)}</h2></div>
+          </section>
+          {doc.uid === 'home' && <PartnersSection />}
+        </Fragment>;
+      }
       case 'call_to_action':
         return <section key={key} className="section-tight on-paper"><div className="container"><div className="cta-band" data-reveal>
           <div><h2>{value(p.heading)}</h2><Rich field={p.body} /></div>
