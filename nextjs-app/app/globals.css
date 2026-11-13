@@ -836,21 +836,18 @@ p{ margin:0 0 1em; }
 }
 .breaker h2{ text-shadow:0 2px 18px rgba(0,0,0,.5); }
 
-/* Headline wipes in from the left: a mask opens from the left edge to the full
-   width while the text slides a short way into place. A mask (not clip-path)
-   so the scroll-reveal observer still sees the element. */
-.js .breaker h2[data-reveal]{
-  opacity:1;
-  transform:translateX(-48px);
-  -webkit-mask:linear-gradient(#000,#000) left center / 0% 100% no-repeat;
-          mask:linear-gradient(#000,#000) left center / 0% 100% no-repeat;
-  transition:mask-size 1.4s var(--ease-out), -webkit-mask-size 1.4s var(--ease-out), transform 1.4s var(--ease-out);
+/* Headline types itself in (see components/TypingHeading.tsx). The caret is a
+   zero-width box with a spread shadow, so it never shifts the text after it. */
+.typing-caret{
+  display:inline-block;
+  width:0;
+  height:1em;
+  vertical-align:-.1em;
+  box-shadow:0 0 0 .04em currentColor;
+  margin-left:.06em;
+  animation:caret-blink .8s steps(1) infinite;
 }
-.js .breaker h2[data-reveal].in-view{
-  transform:none;
-  -webkit-mask-size:100% 100%;
-          mask-size:100% 100%;
-}
+@keyframes caret-blink{ 50%{ opacity:0; } }
 
 /* ---------- Partners ---------- */
 .partner-grid{
@@ -2245,7 +2242,6 @@ main > .page-head.page-head--image:first-child{
   [data-reveal],
   [data-reveal-stagger] > *{ opacity:1; transform:none; }
   [data-rule]::before{ transform:scaleX(1); }
-  .js .breaker h2[data-reveal]{ -webkit-mask:none; mask:none; transform:none; }
   .hero-bg{ transform:none !important; }
 }
 

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import InquiryForm from '@/components/forms/InquiryForm';
 import FallbackImage from '@/components/FallbackImage';
 import PartnersSection from '@/components/PartnersSection';
+import TypingHeading from '@/components/TypingHeading';
 import HeroImage from '@/components/HeroImage';
 import HeroSlideshow from '@/components/HeroSlideshow';
 import SitePage from '@/components/SitePage';
@@ -87,10 +88,7 @@ export default async function HomePage() {
       <section className="breaker on-image">
         <HeroImage src="/assets/hero/hero-breaker.jpg" priority={false} />
         <div className="container">
-          <h2 data-reveal>
-            Transforming water, energy, climate and agriculture with rigorous, field-grounded
-            research
-          </h2>
+          <TypingHeading text="Transforming water, energy, climate and agriculture with rigorous, field-grounded research" />
         </div>
       </section>
 

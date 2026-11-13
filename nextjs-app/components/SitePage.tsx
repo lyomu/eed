@@ -7,6 +7,7 @@ import HeroSlideshow from '@/components/HeroSlideshow';
 import ContactForm from '@/components/forms/ContactForm';
 import InquiryForm from '@/components/forms/InquiryForm';
 import PartnersSection from '@/components/PartnersSection';
+import TypingHeading from '@/components/TypingHeading';
 import TeamSection from '@/components/team/TeamSection';
 import NewsIndexClient from '@/app/news/NewsIndexClient';
 import PortfolioIndexClient from '@/app/portfolio/PortfolioIndexClient';
@@ -204,7 +205,7 @@ export default async function SitePage({ doc }: { doc: Content }) {
         return <Fragment key={key}>
           <section className="breaker on-image">
             {breakerSrc && <HeroImage src={breakerSrc} priority={false} />}
-            <div className="container"><h2 data-reveal>{value(p.heading)}</h2></div>
+            <div className="container"><TypingHeading text={value(p.heading)} /></div>
           </section>
           {doc.uid === 'home' && <PartnersSection />}
         </Fragment>;
