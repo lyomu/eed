@@ -782,34 +782,34 @@ p{ margin:0 0 1em; }
 .ratio-3x4{ aspect-ratio:3/4; }
 .ratio-1x1{ aspect-ratio:1/1; }
 
-/* ---------- Impact band (the single navy moment) ---------- */
+/* ---------- Impact band (site green) ---------- */
 .impact-band{
-  background:var(--navy-950);
+  background:var(--green-700);
   color:#fff;
   padding:88px 0;
 }
 .impact-band h2{ color:#fff; }
-.impact-band p{ color:rgba(255,255,255,.72); }
+.impact-band p{ color:rgba(255,255,255,.92); }
 .stats-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
 }
 .stat{
   padding:8px 32px;
-  border-left:1px solid var(--rule-dark);
+  border-left:1px solid rgba(255,255,255,.35);
 }
 .stat:first-child{ border-left:0; padding-left:0; }
 .stat-num{
   font-family:var(--font-display);
   font-size:clamp(3rem,6vw,4.4rem);
   line-height:1;
-  color:var(--gold-400);
+  color:#fff;
   margin-bottom:14px;
 }
 .stat-label{
   font-family:var(--font-label);
   font-size:var(--fs-mono);
-  color:rgba(255,255,255,.66);
+  color:rgba(255,255,255,.9);
 }
 
 /* ---------- Breaker: full-bleed image band between sections ----------
@@ -1318,19 +1318,19 @@ p{ margin:0 0 1em; }
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:40px;
-  border-top:1px solid var(--rule-dark);
+  border-top:1px solid rgba(255,255,255,.35);
   padding-top:40px;
 }
 .timeline-item .year{
   font-family:var(--font-label);
   font-size:var(--fs-mono);
-  color:var(--gold-400);
+  color:#fff;
   display:block;
   margin-bottom:14px;
 }
 .timeline-item h3{ color:#fff; font-size:1.3rem; margin-bottom:10px; }
 .timeline-item p{
-  color:rgba(255,255,255,.66);
+  color:rgba(255,255,255,.92);
   font-size:var(--fs-sm);
   margin:0;
 }
@@ -2492,13 +2492,13 @@ main > .page-head.page-head--image:first-child{
   aspect-ratio: 3/4;
   display: block;
   text-decoration: none;
-  background: var(--navy-900);
+  background: var(--green-800);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
 }
 .fieldwork-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(10, 16, 32, 0.25);
+  box-shadow: 0 20px 40px rgba(6, 51, 33, 0.3);
 }
 .fieldwork-card img {
   width: 100%;
@@ -2512,7 +2512,7 @@ main > .page-head.page-head--image:first-child{
 .fieldwork-card .card-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(10, 16, 32, 0.92) 0%, rgba(10, 16, 32, 0.3) 50%, transparent 100%);
+  background: linear-gradient(to top, rgba(6, 51, 33, 0.92) 0%, rgba(6, 51, 33, 0.3) 50%, transparent 100%);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -2525,7 +2525,7 @@ main > .page-head.page-head--image:first-child{
   font-size: 0.75rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--gold-400);
+  color: #fff;
   margin-bottom: 6px;
   font-weight: 600;
 }
