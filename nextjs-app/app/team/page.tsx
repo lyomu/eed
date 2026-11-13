@@ -19,7 +19,7 @@ export default async function TeamPage() {
   return (
     <>
       <section className="page-head page-head--image on-image">
-        <HeroImage src="/assets/hero/hero-team-solar.jpg" />
+        <HeroImage src="/assets/hero/hero-team.jpg" />
         <div className="container">
           <div className="hero-enter">
             <h1>The people behind the research</h1>

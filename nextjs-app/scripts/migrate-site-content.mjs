@@ -228,7 +228,7 @@ const team = {
   metaTitle: 'Our Team — EED Research Institute',
   metaDescription: 'Meet the multidisciplinary team behind EED Research Institute.',
   slices: [
-    hero({ eyebrow: 'Our People', heading: 'The people behind the research', body: 'A multidisciplinary collective of researchers, scientists, and strategists dedicated to advancing sustainable ecological solutions and rigorous academic inquiry.', image: '/assets/hero/hero-team-solar.jpg' }),
+    hero({ eyebrow: 'Our People', heading: 'The people behind the research', body: 'A multidisciplinary collective of researchers, scientists, and strategists dedicated to advancing sustainable ecological solutions and rigorous academic inquiry.', image: '/assets/hero/hero-team.jpg' }),
     slice('team', {
       entries: TEAM_MEMBERS.map((member) => ({
         id: member.id, name: member.name, initials: member.initials, role: member.role,
