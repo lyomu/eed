@@ -7,6 +7,7 @@ import HeroImage from '@/components/HeroImage';
 import HeroSlideshow from '@/components/HeroSlideshow';
 import SitePage from '@/components/SitePage';
 import { getBlogPosts } from '@/lib/cms';
+import { CONTACT } from '@/lib/contact-info';
 import { getPageMetadata, getSitePage } from '@/lib/site-content';
 
 export const generateMetadata = () => getPageMetadata('home', {
@@ -249,7 +250,7 @@ export default async function HomePage() {
                 <div className="detail-item">
                   <dt>Email</dt>
                   <dd>
-                    <a href="mailto:eri@eedadvisory.com">eri@eedadvisory.com</a>
+                    <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
                   </dd>
                 </div>
                 <div className="detail-item">

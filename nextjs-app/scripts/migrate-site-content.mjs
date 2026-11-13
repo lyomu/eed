@@ -248,7 +248,7 @@ const contact = {
       heading: title('Send us a message'), office_heading: 'Find us in Nairobi',
       body: rich('Visit our offices for enquiries, consultations, support, or partnership discussions.'),
       address: 'EED Advisory Limited\n50 Hamisi Road, Kileleshwa\nNairobi, Kenya\nP.O. Box 66053-00800, Nairobi',
-      phone: '+254 (20) 2574927', email: 'eri@eedadvisory.com',
+      phone: '+254 745 033484', email: 'info@eedresearch.com',
     }),
   ],
 };

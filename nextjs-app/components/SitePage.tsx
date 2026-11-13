@@ -14,6 +14,7 @@ import PortfolioIndexClient from '@/app/portfolio/PortfolioIndexClient';
 import { getBlogPosts, getPublications } from '@/lib/cms';
 import type { TeamMember } from '@/lib/team-data';
 import { linkResolver } from '@/lib/prismicio';
+import { CONTACT, CONTACT_PHONE_HREF } from '@/lib/contact-info';
 import { Fragment } from 'react';
 
 // Prismic custom types are deliberately kept as JSON so editors can manage
@@ -219,9 +220,9 @@ export default async function SitePage({ doc }: { doc: Content }) {
         return <section key={key} className="section on-paper"><div className="container"><div className="contact-grid" data-reveal>
           <div className="form-panel"><h2 className="panel-title">{value(p.heading) || 'Send us a message'}</h2><ContactForm /></div>
           <div className="office-panel"><h2>{p.office_heading || 'Find us'}</h2><Rich field={p.body} />
-            {p.address && <div className="office-item"><span className="lbl">Address</span><address>{p.address}</address></div>}
-            {p.phone && <div className="office-item"><span className="lbl">Telephone</span><address><a href={`tel:${p.phone.replace(/[^+\d]/g, '')}`}>{p.phone}</a></address></div>}
-            {p.email && <div className="office-item"><span className="lbl">Email</span><address><a href={`mailto:${p.email}`}>{p.email}</a></address></div>}
+            <div className="office-item"><span className="lbl">Address</span><address>{CONTACT.organization}{CONTACT.addressLines.map((line) => <Fragment key={line}><br />{line}</Fragment>)}</address></div>
+            <div className="office-item"><span className="lbl">Telephone</span><address><a href={`tel:${CONTACT_PHONE_HREF}`}>{CONTACT.phone}</a></address></div>
+            <div className="office-item"><span className="lbl">Email</span><address><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></address></div>
           </div>
         </div></div></section>;
       case 'inquiry':
