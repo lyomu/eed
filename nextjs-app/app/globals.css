@@ -730,6 +730,9 @@ p{ margin:0 0 1em; }
   align-items:stretch;
 }
 .split-narrow{ grid-template-columns:.85fr 1fr; }
+/* Text-only intro: copy runs the full width of the section, no image column. */
+.text-full h2{ margin-bottom:20px; }
+.text-full p{ max-width:none; }
 .split h2{ margin-bottom:20px; }
 .split .photo-block{
   height:100%;

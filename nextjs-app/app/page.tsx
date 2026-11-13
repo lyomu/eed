@@ -61,15 +61,7 @@ export default async function HomePage() {
 
       <section className="section on-paper">
         <div className="container">
-          <div className="split split-narrow" data-reveal>
-            <div className="photo-block ratio-4x3">
-              <FallbackImage
-                src="/assets/about/field-research.jpg"
-                alt="ERI Field Research"
-                loading="lazy"
-              />
-              <span className="mark">ERI Field Research</span>
-            </div>
+          <div className="text-full" data-reveal>
             <div>
               <h2>A research institute built for interconnected challenges</h2>
               <p>

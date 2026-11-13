@@ -120,11 +120,9 @@ export default async function SitePage({ doc }: { doc: Content }) {
         </section>;
       case 'text_image':
         return <section key={key} className="section on-paper"><div className="container">
-          <div className="split split-narrow" data-reveal>
-            <div className="photo-block ratio-4x3"><FallbackImage src={imageUrl(p.image)} alt={p.image?.alt || value(p.heading)} loading="lazy" />
-              {p.image_label && <span className="mark">{p.image_label}</span>}</div>
-            <div><h2>{value(p.heading)}</h2><Rich field={p.body} />
-              <Action label={p.button_label} destination={p.button_link} className="btn btn-outline" /></div>
+          <div className="text-full" data-reveal>
+            <h2>{value(p.heading)}</h2><Rich field={p.body} />
+            <Action label={p.button_label} destination={p.button_link} className="btn btn-outline" />
           </div>
         </div></section>;
       case 'text_columns':

@@ -84,8 +84,6 @@ const home = {
         'EED Research Institute is a multidisciplinary organization founded in 2023 and committed to advancing scientific inquiry to address complex global challenges in WASH, energy, climate change, and agriculture.',
         'Its work focuses on impact- and mission-oriented research, knowledge exchange and translation, applied research and problem-solving, evidence-based policy support, technology development and innovation, standardization, certification and testing, and professional training.',
       ),
-      image: asset('/assets/about/field-research.jpg', 'ERI Field Research'),
-      image_label: 'ERI Field Research',
       button_label: 'About the Institute', button_link: internal('about'),
     }),
     slice('quote', {
