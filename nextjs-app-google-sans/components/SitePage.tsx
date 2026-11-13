@@ -6,12 +6,18 @@ import HeroImage from '@/components/HeroImage';
 import HeroSlideshow from '@/components/HeroSlideshow';
 import ContactForm from '@/components/forms/ContactForm';
 import InquiryForm from '@/components/forms/InquiryForm';
+import MilestonesTimeline from '@/components/MilestonesTimeline';
+import PartnersSection from '@/components/PartnersSection';
+import SocialLinks from '@/components/SocialLinks';
+import TypingHeading from '@/components/TypingHeading';
 import TeamSection from '@/components/team/TeamSection';
 import NewsIndexClient from '@/app/news/NewsIndexClient';
 import PortfolioIndexClient from '@/app/portfolio/PortfolioIndexClient';
 import { getBlogPosts, getPublications } from '@/lib/cms';
 import type { TeamMember } from '@/lib/team-data';
 import { linkResolver } from '@/lib/prismicio';
+import { CONTACT, CONTACT_PHONE_HREF } from '@/lib/contact-info';
+import { PILLARS, type PillarSlug } from '@/lib/pillars-data';
 import { Fragment } from 'react';
 
 // Prismic custom types are deliberately kept as JSON so editors can manage
@@ -40,6 +46,7 @@ const DEFAULT_HERO_IMAGES: Record<string, string> = {
   energy: '/assets/hero/hero-energy.jpg',
   climate: '/assets/hero/hero-climate.jpg',
   agriculture: '/assets/hero/hero-agriculture.jpg',
+  contact: '/assets/hero/hero-contact.jpg',
 };
 
 /**
@@ -47,8 +54,22 @@ const DEFAULT_HERO_IMAGES: Record<string, string> = {
  * Prismic image (a group photo) has been retired in favour of a landscape
  * without people; remove the entry here to hand control back to Prismic.
  */
+const BREAKER_IMAGE_OVERRIDES: Record<string, string> = {
+  home: '/assets/hero/hero-breaker.jpg',
+};
+
+/** Crop focus for banners where the default (35% down) puts the headline over faces. */
+const HERO_IMAGE_POSITIONS: Record<string, string> = {
+  contact: 'center 20%',
+};
+
+/** Team portraits that replace the photo stored in Prismic, keyed by member id. */
+const TEAM_PHOTO_OVERRIDES: Record<string, string> = {
+  'abigael-okoko': '/assets/team/abigael-okoko.jpg?v=4',
+};
+
 const HERO_IMAGE_OVERRIDES: Record<string, string> = {
-  team: '/assets/hero/hero-team-solar.jpg',
+  team: '/assets/hero/hero-team.jpg',
   portfolio: '/assets/hero/hero-portfolio-wind.jpg',
   about: '/assets/hero/hero-about-river.jpg',
 };
@@ -106,7 +127,7 @@ export default async function SitePage({ doc }: { doc: Content }) {
           {p.home_style && <HeroSlideshow slides={heroSlides(p.slides)} />}
           {!p.home_style && (() => {
             const src = HERO_IMAGE_OVERRIDES[doc.uid] || imageUrl(p.image, DEFAULT_HERO_IMAGES[doc.uid]);
-            return src ? <HeroImage src={src} priority={index === 0} /> : null;
+            return src ? <HeroImage src={src} priority={index === 0} style={HERO_IMAGE_POSITIONS[doc.uid] ? { objectPosition: HERO_IMAGE_POSITIONS[doc.uid] } : undefined} /> : null;
           })()}
           <div className="container"><div className={p.home_style ? 'hero-grid' : undefined}><div className="hero-enter">
             <h1>{value(p.heading)}</h1>
@@ -119,11 +140,9 @@ export default async function SitePage({ doc }: { doc: Content }) {
         </section>;
       case 'text_image':
         return <section key={key} className="section on-paper"><div className="container">
-          <div className="split split-narrow" data-reveal>
-            <div className="photo-block ratio-4x3"><FallbackImage src={imageUrl(p.image)} alt={p.image?.alt || value(p.heading)} loading="lazy" />
-              {p.image_label && <span className="mark">{p.image_label}</span>}</div>
-            <div><h2>{value(p.heading)}</h2><Rich field={p.body} />
-              <Action label={p.button_label} destination={p.button_link} className="btn btn-outline" /></div>
+          <div className="text-full" data-reveal>
+            <h2>{value(p.heading)}</h2><Rich field={p.body} />
+            <Action label={p.button_label} destination={p.button_link} className="btn btn-outline" />
           </div>
         </div></section>;
       case 'text_columns':
@@ -180,9 +199,7 @@ export default async function SitePage({ doc }: { doc: Content }) {
         </div></section>;
       case 'timeline':
         return <section key={key} className="impact-band"><div className="container"><h2 className="band-title">{value(p.heading)}</h2>
-          <div className="timeline" data-reveal-stagger>{items.map((item, i) => <div className="timeline-item" key={i}>
-            <span className="year">{item.year}</span><h3>{item.title}</h3><Rich field={item.body} />
-          </div>)}</div>
+          <MilestonesTimeline />
         </div></section>;
       case 'pillar_accordion':
         return <section key={key} className="section on-paper"><div className="container">
@@ -190,16 +207,21 @@ export default async function SitePage({ doc }: { doc: Content }) {
           <div className="pillar-accordion" data-reveal>{items.map((item, i) => <Fragment key={i}>
             <input type="radio" name={`pillar-panel-${key}`} id={`pillar-panel-${key}-${i}`} className="pillar-panel-input" defaultChecked={i === 0} />
             <label htmlFor={`pillar-panel-${key}-${i}`} className="pillar-panel" style={{ backgroundImage: `url('${imageUrl(item.image)}')` }}>
-              <span className="pillar-panel-tab">{item.title}</span><div className="pillar-panel-detail"><h3>{item.title}</h3><Rich field={item.body} />
+              <span className="pillar-panel-tab">{item.title}</span><div className="pillar-panel-detail"><h3>{item.title}</h3>{PILLARS[String(item.title).toLowerCase() as PillarSlug]?.tagline ? <p className="hero-tagline">{PILLARS[String(item.title).toLowerCase() as PillarSlug].tagline}</p> : <Rich field={item.body} />}
                 <Link href={href(item.destination)} className="artistic-pillar-link">Explore Pillar →</Link></div>
             </label>
           </Fragment>)}</div>
         </div></section>;
-      case 'quote':
-        return <section key={key} className="breaker on-image">
-          {p.image?.url && <HeroImage src={p.image.url} priority={false} />}
-          <div className="container"><h2 data-reveal>{value(p.heading)}</h2></div>
-        </section>;
+      case 'quote': {
+        const breakerSrc = BREAKER_IMAGE_OVERRIDES[doc.uid] || p.image?.url;
+        return <Fragment key={key}>
+          <section className="breaker on-image">
+            {breakerSrc && <HeroImage src={breakerSrc} priority={false} />}
+            <div className="container"><TypingHeading text={value(p.heading)} /></div>
+          </section>
+          {doc.uid === 'home' && <PartnersSection />}
+        </Fragment>;
+      }
       case 'call_to_action':
         return <section key={key} className="section-tight on-paper"><div className="container"><div className="cta-band" data-reveal>
           <div><h2>{value(p.heading)}</h2><Rich field={p.body} /></div>
@@ -209,9 +231,10 @@ export default async function SitePage({ doc }: { doc: Content }) {
         return <section key={key} className="section on-paper"><div className="container"><div className="contact-grid" data-reveal>
           <div className="form-panel"><h2 className="panel-title">{value(p.heading) || 'Send us a message'}</h2><ContactForm /></div>
           <div className="office-panel"><h2>{p.office_heading || 'Find us'}</h2><Rich field={p.body} />
-            {p.address && <div className="office-item"><span className="lbl">Address</span><address>{p.address}</address></div>}
-            {p.phone && <div className="office-item"><span className="lbl">Telephone</span><address><a href={`tel:${p.phone.replace(/[^+\d]/g, '')}`}>{p.phone}</a></address></div>}
-            {p.email && <div className="office-item"><span className="lbl">Email</span><address><a href={`mailto:${p.email}`}>{p.email}</a></address></div>}
+            <div className="office-item"><span className="lbl">Address</span><address>{CONTACT.organization}{CONTACT.addressLines.map((line) => <Fragment key={line}><br />{line}</Fragment>)}</address></div>
+            <div className="office-item"><span className="lbl">Telephone</span><address><a href={`tel:${CONTACT_PHONE_HREF}`}>{CONTACT.phone}</a></address></div>
+            <div className="office-item"><span className="lbl">Email</span><address><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></address></div>
+            <div className="office-item"><span className="lbl">Follow us</span><SocialLinks /></div>
           </div>
         </div></div></section>;
       case 'inquiry':
@@ -220,13 +243,16 @@ export default async function SitePage({ doc }: { doc: Content }) {
           <div className="form-panel"><InquiryForm /></div>
         </div></div></section>;
       case 'team': {
-        const members: TeamMember[] = items.filter((item) => item.name).map((item) => ({
-          id: item.id || item.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
+        const members: TeamMember[] = items.filter((item) => item.name).map((item) => {
+          const id = item.id || item.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+          return {
+          id,
           initials: item.initials || item.name.split(' ').map((part: string) => part[0]).join('').slice(0, 2),
-          name: item.name, role: item.role || '', photo: imageUrl(item.photo),
+          name: item.name, role: item.role || '', photo: TEAM_PHOTO_OVERRIDES[id] || imageUrl(item.photo),
           linkedin: href(item.linkedin, '') || undefined, scholar: href(item.scholar, '') || undefined,
           bio: Array.isArray(item.bio) ? item.bio.filter((node: Content) => node.type === 'paragraph').map((node: Content) => node.text) : [],
-        }));
+          };
+        });
         return <TeamSection key={key} members={members} />;
       }
       case 'news_list':
