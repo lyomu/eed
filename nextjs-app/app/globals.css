@@ -1902,7 +1902,7 @@ main > .hero--image:first-child{
   padding-top:calc(var(--nav-h) + clamp(64px, 10vh, 110px));
 }
 main > .page-head.page-head--image:first-child{
-  min-height:90svh;   /* just under the homepage hero, so the next section peeks in */
+  min-height:95svh;   /* just under the homepage hero, so the next section peeks in */
   padding-top:calc(var(--nav-h) + clamp(64px, 10vh, 110px));
 }
 
