@@ -798,14 +798,14 @@ p{ margin:0 0 1em; }
 }
 .stat:first-child{ border-left:0; padding-left:0; }
 .stat-num{
-  font-family:var(--font-display);
+  font-family:var(--font-body);
   font-size:clamp(3rem,6vw,4.4rem);
   line-height:1;
   color:#fff;
   margin-bottom:14px;
 }
 .stat-label{
-  font-family:var(--font-label);
+  font-family:var(--font-body);
   font-size:var(--fs-mono);
   color:rgba(255,255,255,.9);
 }
