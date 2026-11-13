@@ -61,7 +61,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     initials: 'AO',
     name: 'Dr. Abigael Okoko',
     role: 'Research Fellow',
-    photo: '/assets/team/abigael-okoko.jpg?v=3',
+    photo: '/assets/team/abigael-okoko.jpg?v=4',
     linkedin: 'https://www.linkedin.com/in/abigael-okoko-phd-2279ba59/',
     scholar: 'https://scholar.google.com/citations?view_op=new_articles&hl=en&imq=Abigael+Okoko',
     bio: [
