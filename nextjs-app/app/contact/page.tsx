@@ -21,7 +21,7 @@ export default async function ContactPage() {
   return (
     <>
       <section className="page-head page-head--image on-image">
-        <HeroImage src="/assets/hero/hero-contact.jpg" />
+        <HeroImage src="/assets/hero/hero-contact.jpg" style={{ objectPosition: 'center 100%' }} />
         <div className="container">
           <div className="hero-enter">
             <h1>Let&rsquo;s build the evidence base together</h1>

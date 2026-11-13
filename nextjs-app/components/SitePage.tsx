@@ -56,6 +56,11 @@ const BREAKER_IMAGE_OVERRIDES: Record<string, string> = {
   home: '/assets/hero/hero-breaker.jpg',
 };
 
+/** Crop focus for banners where the default (35% down) puts the headline over faces. */
+const HERO_IMAGE_POSITIONS: Record<string, string> = {
+  contact: 'center 100%',
+};
+
 const HERO_IMAGE_OVERRIDES: Record<string, string> = {
   team: '/assets/hero/hero-team.jpg',
   portfolio: '/assets/hero/hero-portfolio-wind.jpg',
@@ -115,7 +120,7 @@ export default async function SitePage({ doc }: { doc: Content }) {
           {p.home_style && <HeroSlideshow slides={heroSlides(p.slides)} />}
           {!p.home_style && (() => {
             const src = HERO_IMAGE_OVERRIDES[doc.uid] || imageUrl(p.image, DEFAULT_HERO_IMAGES[doc.uid]);
-            return src ? <HeroImage src={src} priority={index === 0} /> : null;
+            return src ? <HeroImage src={src} priority={index === 0} style={HERO_IMAGE_POSITIONS[doc.uid] ? { objectPosition: HERO_IMAGE_POSITIONS[doc.uid] } : undefined} /> : null;
           })()}
           <div className="container"><div className={p.home_style ? 'hero-grid' : undefined}><div className="hero-enter">
             <h1>{value(p.heading)}</h1>
