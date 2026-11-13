@@ -1450,8 +1450,8 @@ p{ margin:0 0 1em; }
   font-weight:600;
   line-height:1.2;
   color:var(--ink);
-  margin:0 0 6px;
-  padding-bottom:8px;
+  margin:0 0 2px;
+  padding-bottom:3px;
   border-bottom:2px solid transparent;
   display:inline-block;
   transition:border-color .2s ease;
@@ -1459,8 +1459,8 @@ p{ margin:0 0 1em; }
 .team-card:hover .name{ border-bottom-color:var(--green-700); }
 .team-card .role{
   font-family:var(--font-label);
-  font-size:var(--fs-mono);
-  color:var(--gold-600);
+  font-size:.875rem;
+  color:var(--green-700);
   display:block;
 }
 

@@ -61,6 +61,11 @@ const HERO_IMAGE_POSITIONS: Record<string, string> = {
   contact: 'center 20%',
 };
 
+/** Team portraits that replace the photo stored in Prismic, keyed by member id. */
+const TEAM_PHOTO_OVERRIDES: Record<string, string> = {
+  'abigael-okoko': '/assets/team/abigael-okoko.jpg?v=3',
+};
+
 const HERO_IMAGE_OVERRIDES: Record<string, string> = {
   team: '/assets/hero/hero-team.jpg',
   portfolio: '/assets/hero/hero-portfolio-wind.jpg',
@@ -238,13 +243,16 @@ export default async function SitePage({ doc }: { doc: Content }) {
           <div className="form-panel"><InquiryForm /></div>
         </div></div></section>;
       case 'team': {
-        const members: TeamMember[] = items.filter((item) => item.name).map((item) => ({
-          id: item.id || item.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
+        const members: TeamMember[] = items.filter((item) => item.name).map((item) => {
+          const id = item.id || item.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+          return {
+          id,
           initials: item.initials || item.name.split(' ').map((part: string) => part[0]).join('').slice(0, 2),
-          name: item.name, role: item.role || '', photo: imageUrl(item.photo),
+          name: item.name, role: item.role || '', photo: TEAM_PHOTO_OVERRIDES[id] || imageUrl(item.photo),
           linkedin: href(item.linkedin, '') || undefined, scholar: href(item.scholar, '') || undefined,
           bio: Array.isArray(item.bio) ? item.bio.filter((node: Content) => node.type === 'paragraph').map((node: Content) => node.text) : [],
-        }));
+          };
+        });
         return <TeamSection key={key} members={members} />;
       }
       case 'news_list':
