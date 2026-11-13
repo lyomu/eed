@@ -6,6 +6,7 @@ import HeroImage from '@/components/HeroImage';
 import HeroSlideshow from '@/components/HeroSlideshow';
 import ContactForm from '@/components/forms/ContactForm';
 import InquiryForm from '@/components/forms/InquiryForm';
+import MilestonesTimeline from '@/components/MilestonesTimeline';
 import PartnersSection from '@/components/PartnersSection';
 import SocialLinks from '@/components/SocialLinks';
 import TypingHeading from '@/components/TypingHeading';
@@ -63,7 +64,7 @@ const HERO_IMAGE_POSITIONS: Record<string, string> = {
 
 /** Team portraits that replace the photo stored in Prismic, keyed by member id. */
 const TEAM_PHOTO_OVERRIDES: Record<string, string> = {
-  'abigael-okoko': '/assets/team/abigael-okoko.jpg?v=3',
+  'abigael-okoko': '/assets/team/abigael-okoko.jpg?v=4',
 };
 
 const HERO_IMAGE_OVERRIDES: Record<string, string> = {
@@ -197,9 +198,7 @@ export default async function SitePage({ doc }: { doc: Content }) {
         </div></section>;
       case 'timeline':
         return <section key={key} className="impact-band"><div className="container"><h2 className="band-title">{value(p.heading)}</h2>
-          <div className="timeline" data-reveal-stagger>{items.map((item, i) => <div className="timeline-item" key={i}>
-            <span className="year">{item.year}</span><h3>{item.title}</h3><Rich field={item.body} />
-          </div>)}</div>
+          <MilestonesTimeline />
         </div></section>;
       case 'pillar_accordion':
         return <section key={key} className="section on-paper"><div className="container">
