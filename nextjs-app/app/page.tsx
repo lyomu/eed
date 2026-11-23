@@ -160,45 +160,45 @@ export default async function HomePage() {
       <section className="section on-sunk">
         <div className="container">
           <div className="section-head" data-rule data-reveal>
-            <h2>Recent flagship studies</h2>
+            <h2>Recent ERI projects</h2>
             <p className="lead">
-              In-depth studies driving sustainable transformation across critical sectors.
+              Applied research delivered with our partners across energy and green growth.
             </p>
           </div>
           <div className="grid-2" data-reveal-stagger>
             <article className="feature-block">
               <div className="photo-block ratio-16x10">
                 <FallbackImage
-                  src="/assets/research/water-resilience.jpg"
-                  alt="Urban Water Resilience Index 2024"
+                  src="/assets/research/rural-solar.jpg"
+                  alt="City skyline illustrating national and county energy planning"
                   loading="lazy"
                 />
-                <span className="mark">Water Infrastructure</span>
+                <span className="mark">Energy Planning</span>
               </div>
-              <h3>Urban Water Resilience Index 2024</h3>
+              <h3>Robust and Integrated Planning of Energy Systems</h3>
               <p>
-                A comprehensive analysis of water infrastructure stability in rapidly urbanizing
-                regions.
+                Supporting Kenya’s county and national energy planning with decision pathways,
+                data guidelines, and a prototype data platform.
               </p>
-              <Link href="/portfolio" className="card-link">
+              <Link href="/about" className="card-link">
                 Learn More &rarr;
               </Link>
             </article>
             <article className="feature-block">
               <div className="photo-block ratio-16x10">
                 <FallbackImage
-                  src="/assets/research/rural-solar.jpg"
-                  alt="Decentralized Solar for Rural Industry"
+                  src="/assets/research/water-resilience.jpg"
+                  alt="Solar panels illustrating green technology innovation"
                   loading="lazy"
                 />
-                <span className="mark">Off-Grid Solar</span>
+                <span className="mark">Green Technology</span>
               </div>
-              <h3>Decentralized Solar for Rural Industry</h3>
+              <h3>In Pursuit of Green Growth</h3>
               <p>
-                Evaluating the economic impact of off-grid renewable energy on local manufacturing
-                hubs.
+                Examining how Kenya can manage green technology transfer and grow local
+                innovation through policy papers and roundtables.
               </p>
-              <Link href="/portfolio" className="card-link">
+              <Link href="/about" className="card-link">
                 Learn More &rarr;
               </Link>
             </article>
