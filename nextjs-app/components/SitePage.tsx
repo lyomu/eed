@@ -156,6 +156,25 @@ export default async function SitePage({ doc }: { doc: Content }) {
           <div className="split" data-reveal><div><Rich field={p.left_body} /></div><div><Rich field={p.right_body} /></div></div>
         </div></section>;
       case 'card_grid':
+        if (doc.uid === 'home' && value(p.heading).toLowerCase() === 'recent flagship studies') {
+          return <section key={key} className="section on-sunk"><div className="container">
+            <div className="section-head" data-rule data-reveal><h2>Recent ERI projects</h2><p className="lead">Applied research delivered with our partners across energy and green growth.</p></div>
+            <div className="grid-2" data-reveal-stagger>
+              <article className="feature-block">
+                <div className="photo-block ratio-16x10"><FallbackImage src="/assets/research/rural-solar.jpg" alt="City skyline illustrating national and county energy planning" loading="lazy" /><span className="mark">Energy Planning</span></div>
+                <h3>Robust and Integrated Planning of Energy Systems</h3>
+                <p>Supporting Kenya’s county and national energy planning with decision pathways, data guidelines, and a prototype data platform.</p>
+                <Link href="/about#milestones" className="card-link">Learn More &rarr;</Link>
+              </article>
+              <article className="feature-block">
+                <div className="photo-block ratio-16x10"><FallbackImage src="/assets/research/water-resilience.jpg" alt="Solar panels illustrating green technology innovation" loading="lazy" /><span className="mark">Green Technology</span></div>
+                <h3>In Pursuit of Green Growth</h3>
+                <p>Examining how Kenya can manage green technology transfer and grow local innovation through policy papers and roundtables.</p>
+                <Link href="/about#milestones" className="card-link">Learn More &rarr;</Link>
+              </article>
+            </div>
+          </div></section>;
+        }
         return <section key={key} className={`section ${p.background === 'sunk' ? 'on-sunk' : 'on-paper'}`}><div className="container">
           <div className="section-head" data-rule data-reveal><h2>{value(p.heading)}</h2><div className="lead"><Rich field={p.intro} /></div></div>
           <div className={p.columns === 'two' ? 'grid-2' : 'grid-3'} data-reveal-stagger>
