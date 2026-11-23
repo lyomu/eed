@@ -217,6 +217,7 @@ Photo credits (all from Pexels under the [Pexels licence](https://www.pexels.com
 | `hero-team-solar.jpg` | [Expansive Solar Farm in Vietnam's Binh Thuan Province](https://www.pexels.com/photo/expansive-solar-farm-in-vietnam-s-binh-thuan-province-35105443/), Quang Nguyen Vinh |
 | `hero-portfolio-wind.jpg` | [Panoramic View of Wind Turbines in Vietnamese Countryside](https://pexels.com/photo/35105465), Quang Nguyen Vinh |
 | `hero-news.jpg` | [Dam of river between green hills](https://pexels.com/photo/6415966), Quang Nguyen Vinh |
+| `hero-news-dam.jpg` | [A large hydroelectric dam with a large water reservoir](https://www.pexels.com/photo/a-large-hydroelectric-dam-with-a-large-water-reservoir-27623570/), Donovan Kelly (Pexels). |
 | `hero-agriculture.jpg` | [View of a Rolling Landscape](https://www.pexels.com/photo/view-of-a-rolling-landscape-6872257/), Quang Nguyen Vinh |
 | `hero-wash.jpg` | [Colorful water taps](https://www.pexels.com/photo/colorful-water-taps-in-vibrant-outdoor-setting-30224434/) |
 | `hero-energy.jpg` | [Solar panels in a photovoltaic power station](https://www.pexels.com/photo/solar-panels-in-modern-photovoltaic-power-station-4320449/) |

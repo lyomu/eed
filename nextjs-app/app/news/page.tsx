@@ -20,7 +20,7 @@ export default async function NewsPage() {
   return (
     <>
       <section className="page-head page-head--image on-image">
-        <HeroImage src="/assets/hero/hero-news.jpg" />
+        <HeroImage src="/assets/hero/hero-news-dam.jpg" />
         <div className="container">
           <div className="hero-enter">
             <h1>Perspectives from the field</h1>

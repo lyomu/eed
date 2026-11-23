@@ -41,7 +41,7 @@ function href(field: Content, fallback = '#'): string {
  * Setting an image in Prismic always takes precedence.
  */
 const DEFAULT_HERO_IMAGES: Record<string, string> = {
-  news: '/assets/hero/hero-news.jpg',
+  news: '/assets/hero/hero-news-dam.jpg',
   wash: '/assets/hero/hero-wash.jpg',
   energy: '/assets/hero/hero-energy.jpg',
   climate: '/assets/hero/hero-climate.jpg',

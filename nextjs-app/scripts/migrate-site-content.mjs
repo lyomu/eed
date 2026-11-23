@@ -265,7 +265,7 @@ const news = {
   metaTitle: 'News & Insights — EED Research Institute',
   metaDescription: 'Research commentary, policy analysis, and field perspectives from EED Research Institute.',
   slices: [
-    hero({ eyebrow: 'Insights', heading: 'Perspectives from the field', body: 'Research commentary, policy analysis, and field notes from our researchers across WASH, energy, climate, and agriculture.', image: '/assets/hero/hero-news.jpg' }),
+    hero({ eyebrow: 'Insights', heading: 'Perspectives from the field', body: 'Research commentary, policy analysis, and field notes from our researchers across WASH, energy, climate, and agriculture.', image: '/assets/hero/hero-news-dam.jpg' }),
     slice('news_list'),
   ],
 };
