@@ -71,7 +71,7 @@ const TEAM_PHOTO_OVERRIDES: Record<string, string> = {
 const HERO_IMAGE_OVERRIDES: Record<string, string> = {
   team: '/assets/hero/hero-team.jpg',
   portfolio: '/assets/hero/hero-portfolio-wind.jpg',
-  about: '/assets/hero/hero-about-river.jpg',
+  about: '/assets/hero/hero-about-geothermal.jpg',
 };
 
 function imageUrl(field: Content, fallback = ''): string {

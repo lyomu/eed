@@ -18,7 +18,7 @@ export default async function AboutPage() {
   return (
     <>
       <section className="page-head page-head--image on-image">
-        <HeroImage src="/assets/hero/hero-about-river.jpg" />
+        <HeroImage src="/assets/hero/hero-about-geothermal.jpg" />
         <div className="container">
           <div className="hero-enter">
             <h1>Bridging Science and Sustainability.</h1>
