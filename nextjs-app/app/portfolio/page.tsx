@@ -21,7 +21,7 @@ export default async function PortfolioPage() {
   return (
     <>
       <section className="page-head page-head--image on-image">
-        <HeroImage src="/assets/hero/hero-portfolio-wind.jpg" />
+        <HeroImage src="/assets/hero/hero-portfolio-grid.jpg" />
         <div className="container">
           <div className="hero-enter">
             <h1>An index of our applied research</h1>

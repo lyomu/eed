@@ -226,6 +226,7 @@ Photo credits (all from Pexels under the [Pexels licence](https://www.pexels.com
 | `hero-solar-irrigation.jpg` | AI-generated illustration of a solar-powered irrigation system on a farm, used above Our Partners. |
 | `hero-about-geothermal.jpg` | AI-generated illustration of geothermal infrastructure in the Rift Valley, used on About Us. |
 | `hero-team-gold.jpg` | AI-edited version of the existing puzzle image with one gold piece, used on Our Team. |
+| `hero-portfolio-grid.jpg` | AI-generated illustration of electricity transmission and distribution infrastructure, used on Research Portfolio. |
 | `assets/blog/clean-cooking-charcoal-stove.jpg` | [Outdoor Cooking Pot on Rustic Charcoal Stove](https://www.pexels.com/photo/outdoor-cooking-pot-on-rustic-charcoal-stove-32796453/), Wedson msoni. Lead image for the Sierra Leone clean cooking article. |
 
 ## Deployment
