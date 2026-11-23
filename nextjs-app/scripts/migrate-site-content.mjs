@@ -168,6 +168,13 @@ const about = {
       entries: [
         { year: '2023', title: 'Founded', body: rich('EED Research Institute is established with a mandate to advance evidence-based research across WASH, energy, climate, and agriculture.') },
         { year: '2024', title: 'First facility grants', body: rich('First Kawisafi Technical Assistance Facility grants disbursed; 150+ ongoing research initiatives launched across the region.') },
+        { year: '2025', title: 'Measuring Progress Toward SDG 7.1.1 — Phase 2', body: rich('With the University of Oxford and Climate Compatible Growth, testing a new data collection tool for measuring electricity access in Kenya, DRC, Senegal and Sierra Leone.') },
+        { year: '2025–2026', title: 'Robust and Integrated Planning of Energy Systems (RIPpLES)', body: rich('With Loughborough University, supporting Kenya’s energy planning through decision pathways, county data guidelines and a prototype data platform.') },
+        { year: '2025–2026', title: 'Measuring Progress Toward SDG 7.1.1 — Phase 3', body: rich('Extending the Oxford and Climate Compatible Growth study to 25 more sub-Saharan African countries.') },
+        { year: '2025–2026', title: 'Tri-50 Roadmap', body: rich('With Energy Corps, studying pathways from low-energy, low-income economies to high-energy, high-income futures.') },
+        { year: '2025–2026', title: 'In Pursuit of Green Growth', body: rich('With APRI, examining green technology transfer and local innovation in Kenya through policy papers and roundtables.') },
+        { year: '2026–2027', title: 'Supporting Kenya’s Integrated National Energy Plan (RIPpLES 2)', body: rich('With Loughborough University, expanding the county energy data platform and developing handover guidelines for Kenya’s national plan.') },
+        { year: '2026–2028', title: 'The Hidden Health Costs of Climate Change', body: rich('With Amref Health Africa, Kabarak University and Community Energy Malawi, studying the health and economic costs of climate change in Kenya and Malawi.') },
         { year: '2025 — Today', title: 'Active in 47 countries', body: rich('Four key thematic pillars anchor our work, supported by a growing multidisciplinary team.') },
       ],
     }),

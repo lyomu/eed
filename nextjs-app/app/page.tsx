@@ -180,7 +180,7 @@ export default async function HomePage() {
                 Supporting Kenya’s county and national energy planning with decision pathways,
                 data guidelines, and a prototype data platform.
               </p>
-              <Link href="/about" className="card-link">
+              <Link href="/about#milestones" className="card-link">
                 Learn More &rarr;
               </Link>
             </article>
@@ -198,7 +198,7 @@ export default async function HomePage() {
                 Examining how Kenya can manage green technology transfer and grow local
                 innovation through policy papers and roundtables.
               </p>
-              <Link href="/about" className="card-link">
+              <Link href="/about#milestones" className="card-link">
                 Learn More &rarr;
               </Link>
             </article>

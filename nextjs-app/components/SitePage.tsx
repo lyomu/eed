@@ -198,7 +198,7 @@ export default async function SitePage({ doc }: { doc: Content }) {
           </div>)}</div>
         </div></section>;
       case 'timeline':
-        return <section key={key} className="impact-band"><div className="container"><h2 className="band-title">{value(p.heading)}</h2>
+        return <section key={key} className="impact-band" id="milestones"><div className="container"><h2 className="band-title">{value(p.heading)}</h2>
           <MilestonesTimeline />
         </div></section>;
       case 'pillar_accordion':
