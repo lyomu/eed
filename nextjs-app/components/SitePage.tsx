@@ -63,9 +63,14 @@ const HERO_IMAGE_POSITIONS: Record<string, string> = {
   contact: 'center 20%',
 };
 
-/** Team portraits that replace the photo stored in Prismic, keyed by member id. */
+/** Current team portraits shared by Prismic and fallback pages, keyed by member id. */
 const TEAM_PHOTO_OVERRIDES: Record<string, string> = {
-  'abigael-okoko': '/assets/team/abigael-okoko.jpg?v=4',
+  'ida-githu': '/assets/team/ida-githu-gray.jpg',
+  'elmah-odhiambo': '/assets/team/elmah-odhiambo-gray.jpg',
+  'winnie-musivo': '/assets/team/winnie-musivo-gray.jpg',
+  'abigael-okoko': '/assets/team/abigael-okoko-gray.jpg',
+  'cheikh-mbodji': '/assets/team/cheikh-mbodji-gray.jpg',
+  'carl-ngaira': '/assets/team/carl-ngaira-gray.jpg',
 };
 
 const HERO_IMAGE_OVERRIDES: Record<string, string> = {

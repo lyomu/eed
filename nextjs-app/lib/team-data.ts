@@ -17,7 +17,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     initials: 'IG',
     name: 'Dr. Ida Githu',
     role: 'Managing Director',
-    photo: '/assets/team/ida-githu.jpg?v=grey',
+    photo: '/assets/team/ida-githu-gray.jpg',
     linkedin: 'https://www.linkedin.com/in/idagithu',
     bio: [
       'Ida Githu is a researcher and policy specialist whose work bridges the critical fields of water, sanitation, and hygiene (WASH), energy access, and climate change adaptation across sub-Saharan Africa.',
@@ -31,7 +31,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     initials: 'EO',
     name: 'Elmah Odhiambo',
     role: 'Research Coordinator',
-    photo: '/assets/team/elmah-odhiambo.jpg?v=grey',
+    photo: '/assets/team/elmah-odhiambo-gray.jpg',
     linkedin: 'https://ke.linkedin.com/in/elmah-odhiambo-24969363',
     scholar: 'https://scholar.google.com/citations?user=F3PpIHAAAAAJ&hl=en',
     bio: [
@@ -46,7 +46,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     initials: 'WM',
     name: 'Dr. Winnie Musivo',
     role: 'Director (Partnerships and Strategy)',
-    photo: '/assets/team/winnie-musivo.jpg?v=grey',
+    photo: '/assets/team/winnie-musivo-gray.jpg',
     linkedin: 'https://www.linkedin.com/in/winnie-musivo-b7b346a4/',
     bio: [
       "Winnie Musivo is a lead researcher in development, climate, and energy finance in the Global South, studying public and private capital needs, flows, and use; the governance of energy transitions; and the socio-economic impacts of climate and energy interventions. At EED Research Institute, she leads research on the future of energy systems and technologies for industrialisation and development outcomes, markets and investments in emerging economies, and data-led climate transition pathways.",
@@ -61,7 +61,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     initials: 'AO',
     name: 'Dr. Abigael Okoko',
     role: 'Research Fellow',
-    photo: '/assets/team/abigael-okoko.jpg?v=4',
+    photo: '/assets/team/abigael-okoko-gray.jpg',
     linkedin: 'https://www.linkedin.com/in/abigael-okoko-phd-2279ba59/',
     scholar: 'https://scholar.google.com/citations?view_op=new_articles&hl=en&imq=Abigael+Okoko',
     bio: [
@@ -76,7 +76,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     initials: 'CM',
     name: 'Dr. Cheikh Mbodji',
     role: 'Research Fellow',
-    photo: '/assets/team/cheikh-mbodji.jpg?v=grey',
+    photo: '/assets/team/cheikh-mbodji-gray.jpg',
     linkedin: 'https://www.linkedin.com/in/cheikh-ahmadou-mbodji-phd-827967136/',
     bio: [
       "Cheikh is an accomplished renewable energy researcher with extensive experience spanning West and East Africa as well as Europe. His work has taken him to Senegal, Burkina Faso, Mali, Côte d'Ivoire, Togo, Gambia, Rwanda, Kenya, Burundi, Germany, and Austria — a geographic breadth that reflects his deep commitment to advancing sustainable energy transitions across diverse contexts.",
@@ -90,7 +90,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     initials: 'CN',
     name: 'Carl Ngaira',
     role: 'Executive Assistant',
-    photo: '/assets/team/carl-ngaira.jpg?v=grey',
+    photo: '/assets/team/carl-ngaira-gray.jpg',
     linkedin: 'https://www.linkedin.com/in/carl-ngaira-56b76215b/',
     bio: [
       'Carl Ngaira is a development finance and enterprise support professional with over five years of experience supporting businesses, investors, development partners, and funders across Sub-Saharan Africa and Asia. His work sits at the intersection of finance, energy, climate, enterprise development, and technical assistance, with a particular focus on helping high-growth businesses strengthen their models, become investment-ready, access finance, and scale their impact.',
