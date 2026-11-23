@@ -87,7 +87,7 @@ export default async function HomePage() {
       </section>
 
       <section className="breaker on-image">
-        <HeroImage src="/assets/hero/hero-breaker.jpg" priority={false} />
+        <HeroImage src="/assets/hero/hero-solar-irrigation.jpg" priority={false} />
         <div className="container">
           <TypingHeading text="Transforming water, energy, climate and agriculture with rigorous, field-grounded research" />
         </div>

@@ -824,11 +824,9 @@ p{ margin:0 0 1em; }
   max-width:none;
   margin:0;
 }
-/* The books sit low in this frame; bias the crop down so they are not cut
-   off by the short band. */
+/* Keep the irrigation channel and solar pump visible in the short band. */
 .breaker .hero-bg{ object-position:center 55%; }
-/* The headline now crosses the whole band, including the bright panels on the
-   right, so darken the band evenly rather than only on the left. */
+/* Darken the full band evenly behind the wide headline. */
 .breaker.on-image::after{
   background:
     linear-gradient(90deg, rgba(4,32,21,.5) 0%, rgba(4,32,21,.3) 100%),

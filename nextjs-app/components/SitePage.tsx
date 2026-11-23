@@ -55,7 +55,7 @@ const DEFAULT_HERO_IMAGES: Record<string, string> = {
  * without people; remove the entry here to hand control back to Prismic.
  */
 const BREAKER_IMAGE_OVERRIDES: Record<string, string> = {
-  home: '/assets/hero/hero-breaker.jpg',
+  home: '/assets/hero/hero-solar-irrigation.jpg',
 };
 
 /** Crop focus for banners where the default (35% down) puts the headline over faces. */

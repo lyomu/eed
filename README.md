@@ -223,6 +223,7 @@ Photo credits (all from Pexels under the [Pexels licence](https://www.pexels.com
 | `hero-climate.jpg` | [Cracked dry earth during drought](https://www.pexels.com/photo/cracked-dry-earth-during-severe-drought-36767372/) |
 | `hero-home-wind.jpg` | [Wind turbines over farmland](https://www.pexels.com/photo/9022671/), Rockwell Branding Agency |
 | `hero-home-solar.jpg` | Wind turbines and solar panels. This one is AI-generated; check its licence and consider replacing it with a real photo. |
+| `hero-solar-irrigation.jpg` | AI-generated illustration of a solar-powered irrigation system on a farm, used above Our Partners. |
 | `assets/blog/clean-cooking-charcoal-stove.jpg` | [Outdoor Cooking Pot on Rustic Charcoal Stove](https://www.pexels.com/photo/outdoor-cooking-pot-on-rustic-charcoal-stove-32796453/), Wedson msoni. Lead image for the Sierra Leone clean cooking article. |
 
 ## Deployment

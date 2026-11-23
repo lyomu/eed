@@ -88,7 +88,7 @@ const home = {
     }),
     slice('quote', {
       heading: title('Transforming water, energy, climate and agriculture with rigorous, field-grounded research'),
-      image: asset('/assets/hero/hero-breaker.jpg', ''),
+      image: asset('/assets/hero/hero-solar-irrigation.jpg', ''),
     }),
     slice('link_list', {
       heading: title('Core Research Pillars'),
