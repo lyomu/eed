@@ -5,6 +5,7 @@ const PARTNERS = [
   { name: 'Kabarak University', logo: 'kabarak.png', width: 224, height: 240 },
   { name: 'Amref Health Africa', logo: 'amref.png', width: 406, height: 240 },
   { name: 'EnergyCorps', logo: 'energycorps.svg', width: 692, height: 131 },
+  { name: 'University of Oxford', logo: null, width: 0, height: 0 },
 ];
 
 export default function PartnersSection() {
@@ -21,16 +22,18 @@ export default function PartnersSection() {
         <ul className="partner-grid" data-reveal-stagger>
           {PARTNERS.map((partner) => (
             <li key={partner.name} className="partner-logo">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={`/assets/partners/${partner.logo}`}
-                alt={partner.name}
-                width={partner.width}
-                height={partner.height}
-                className={partner.width / partner.height < 1.3 ? 'is-square' : undefined}
-                loading="lazy"
-                decoding="async"
-              />
+              {partner.logo ? (
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img
+                  src={`/assets/partners/${partner.logo}`}
+                  alt={partner.name}
+                  width={partner.width}
+                  height={partner.height}
+                  className={partner.width / partner.height < 1.3 ? 'is-square' : undefined}
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : <span className="partner-name">{partner.name}</span>}
             </li>
           ))}
         </ul>

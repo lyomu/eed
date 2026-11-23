@@ -853,7 +853,7 @@ p{ margin:0 0 1em; }
   margin:48px 0 0;
   padding:0;
   display:grid;
-  grid-template-columns:repeat(5, 1fr);
+  grid-template-columns:repeat(3, 1fr);
   gap:24px 40px;
   align-items:center;
 }
@@ -872,6 +872,13 @@ p{ margin:0 0 1em; }
   transition:filter var(--dur-enter) var(--ease-out), opacity var(--dur-enter) var(--ease-out);
 }
 .partner-logo img.is-square{ max-height:92px; }
+.partner-name{
+  color:var(--green-900);
+  font-family:var(--font-display);
+  font-size:clamp(1.1rem, 2vw, 1.5rem);
+  font-weight:700;
+  text-align:center;
+}
 /* Full colour at rest; the logo under the pointer greys out. */
 .partner-logo:hover img{ filter:grayscale(1); opacity:.6; }
 
