@@ -46,7 +46,7 @@ const DEFAULT_HERO_IMAGES: Record<string, string> = {
   energy: '/assets/hero/hero-energy.jpg',
   climate: '/assets/hero/hero-climate.jpg',
   agriculture: '/assets/hero/hero-agriculture.jpg',
-  contact: '/assets/hero/hero-contact.jpg',
+  contact: '/assets/hero/hero-contact-phone.jpg',
 };
 
 /**

@@ -250,7 +250,7 @@ const contact = {
   metaTitle: 'Contact Us — EED Research Institute',
   metaDescription: 'Collaborate with EED Research Institute or reach our East Africa hub in Nairobi.',
   slices: [
-    hero({ eyebrow: 'Get In Touch', heading: "Let's build the evidence base together", body: 'We welcome collaboration with academic institutions, government agencies, and private sector partners to drive evidence-based solutions for global challenges.', image: '/assets/hero/hero-contact.jpg' }),
+    hero({ eyebrow: 'Get In Touch', heading: "Let's build the evidence base together", body: 'We welcome collaboration with academic institutions, government agencies, and private sector partners to drive evidence-based solutions for global challenges.', image: '/assets/hero/hero-contact-phone.jpg' }),
     slice('contact', {
       heading: title('Send us a message'), office_heading: 'Find us in Nairobi',
       body: rich('Visit our offices for enquiries, consultations, support, or partnership discussions.'),
