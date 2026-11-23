@@ -198,7 +198,7 @@ const whatWeDo = {
         ['Agriculture', 'Smallholder productivity under climate risk, irrigation, land use, food systems and value chains.', '/assets/about/agriculture-pillar.jpg', 'agriculture'],
       ].map(([itemTitle, body, image, uid]) => ({ title: itemTitle, body: rich(body), image: asset(image, itemTitle), destination: internal(uid) })),
     }),
-    cta('Commission research with us', 'We work with governments, funders, utilities, investors and academic partners across all four pillars.'),
+    cta('Collaborate with us.', 'We work with governments, funders, utilities, investors and academic partners across all four pillars.'),
   ],
 };
 

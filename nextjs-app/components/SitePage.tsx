@@ -224,7 +224,7 @@ export default async function SitePage({ doc }: { doc: Content }) {
       }
       case 'call_to_action':
         return <section key={key} className="section-tight on-paper"><div className="container"><div className="cta-band" data-reveal>
-          <div><h2>{value(p.heading)}</h2><Rich field={p.body} /></div>
+          <div><h2>{doc.uid === 'what-we-do' && value(p.heading) === 'Commission research with us' ? 'Collaborate with us.' : value(p.heading)}</h2><Rich field={p.body} /></div>
           <Action label={p.button_label} destination={p.button_link} />
         </div></div></section>;
       case 'contact':
