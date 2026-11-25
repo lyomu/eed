@@ -5,7 +5,7 @@ const PARTNERS = [
   { name: 'Kabarak University', logo: 'kabarak.png', width: 224, height: 240 },
   { name: 'Amref Health Africa', logo: 'amref.png', width: 406, height: 240 },
   { name: 'EnergyCorps', logo: 'energycorps.svg', width: 692, height: 131 },
-  { name: 'University of Oxford', logo: null, width: 0, height: 0 },
+  { name: 'University of Oxford', logo: 'oxford.png', width: 958, height: 279 },
 ];
 
 export default function PartnersSection() {
