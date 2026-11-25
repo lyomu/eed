@@ -304,6 +304,17 @@ p{ margin:0 0 1em; }
   transition:color var(--dur-micro) ease,transform var(--dur-micro) ease;
 }
 .nav-sub-toggle svg{ width:9px; height:9px; display:block; }
+/* As a flex item the parent link is blockified, so it picks up the list's
+   taller line-height and its text rides higher than the other menu items and
+   off the chevron's centre line. Matching the other links' 18px content box
+   puts the text and the chevron on the same horizontal line. */
+@media (min-width:901px){
+  .has-sub > a{ line-height:18px; }
+  /* The other items' text sits ~2px below their box centre; match that. */
+  .has-sub{ top:2px; }
+  /* Margin on a centred flex item moves it by half: -2px lifts it 1px. */
+  .nav-sub-toggle{ margin-top:-2px; }
+}
 .has-sub:hover .nav-sub-toggle,
 .nav-sub-toggle:hover{ color:var(--ink); }
 .nav-sub-toggle[aria-expanded="true"]{ transform:rotate(180deg); color:var(--ink); }
