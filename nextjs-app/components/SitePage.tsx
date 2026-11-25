@@ -78,7 +78,7 @@ const HERO_IMAGE_OVERRIDES: Record<string, string> = {
   team: '/assets/hero/hero-team-gold.jpg',
   'what-we-do': '/assets/hero/hero-whatwedo-ecology.jpg',
   portfolio: '/assets/hero/hero-geothermal-station.jpg',
-  about: '/assets/hero/hero-about-phone.jpg',
+  about: '/assets/hero/hero-about-aerial.jpg',
   news: '/assets/hero/hero-geothermal-station.jpg',
   contact: '/assets/hero/hero-contact-phone.jpg',
 };
