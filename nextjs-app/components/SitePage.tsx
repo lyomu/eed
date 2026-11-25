@@ -17,6 +17,7 @@ import { getBlogPosts, getPublications } from '@/lib/cms';
 import type { TeamMember } from '@/lib/team-data';
 import { linkResolver } from '@/lib/prismicio';
 import { CONTACT, CONTACT_PHONE_HREF } from '@/lib/contact-info';
+import { applyCopyOverrides } from '@/lib/copy-overrides';
 import { PILLARS, type PillarSlug } from '@/lib/pillars-data';
 import { Fragment } from 'react';
 
@@ -117,7 +118,7 @@ function Action({ label, destination, className = 'btn btn-primary' }: {
 }
 
 export default async function SitePage({ doc }: { doc: Content }) {
-  const slices: Content[] = doc.data.slices || [];
+  const slices: Content[] = applyCopyOverrides(doc.uid, doc.data.slices || []);
   const needsNews = slices.some((slice) => slice.slice_type === 'news_list');
   const needsPublications = slices.some((slice) => slice.slice_type === 'publication_list');
   const [posts, publications] = await Promise.all([
