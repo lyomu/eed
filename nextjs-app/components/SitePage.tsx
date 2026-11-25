@@ -55,7 +55,7 @@ const DEFAULT_HERO_IMAGES: Record<string, string> = {
  * without people; remove the entry here to hand control back to Prismic.
  */
 const BREAKER_IMAGE_OVERRIDES: Record<string, string> = {
-  home: '/assets/hero/hero-solar-irrigation.jpg',
+  home: '/assets/hero/hero-home-solar-irrigation.jpg',
 };
 
 /** Crop focus for banners where the default (35% down) puts the headline over faces. */
@@ -75,9 +75,10 @@ const TEAM_PHOTO_OVERRIDES: Record<string, string> = {
 
 const HERO_IMAGE_OVERRIDES: Record<string, string> = {
   team: '/assets/hero/hero-team-gold.jpg',
-  portfolio: '/assets/hero/hero-portfolio-grid.jpg',
-  about: '/assets/hero/hero-about-geothermal.jpg',
-  news: '/assets/hero/hero-news-dam.jpg',
+  'what-we-do': '/assets/hero/hero-whatwedo-ecology.jpg',
+  portfolio: '/assets/hero/hero-geothermal-station.jpg',
+  about: '/assets/hero/hero-about-phone.jpg',
+  news: '/assets/hero/hero-geothermal-station.jpg',
   contact: '/assets/hero/hero-contact-phone.jpg',
 };
 
