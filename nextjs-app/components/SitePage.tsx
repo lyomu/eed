@@ -83,6 +83,11 @@ const HERO_IMAGE_OVERRIDES: Record<string, string> = {
   contact: '/assets/hero/hero-contact-phone.jpg',
 };
 
+/** Pillar slug for a card title, e.g. "Climate Change" -> climate. */
+function pillarSlug(title: string): PillarSlug {
+  return String(title).toLowerCase().replace(/ change$/, '') as PillarSlug;
+}
+
 function imageUrl(field: Content, fallback = ''): string {
   return field?.url || fallback;
 }
@@ -157,7 +162,7 @@ export default async function SitePage({ doc }: { doc: Content }) {
       case 'text_columns':
         return <section key={key} className="section on-paper"><div className="container">
           <div className="section-head" data-rule data-reveal><h2>{value(p.heading)}</h2><div className="lead"><Rich field={p.intro} /></div></div>
-          <div className="split" data-reveal><div><Rich field={p.left_body} /></div><div><Rich field={p.right_body} /></div></div>
+          {(p.left_body?.length > 0 || p.right_body?.length > 0) && <div className="split" data-reveal><div><Rich field={p.left_body} /></div><div><Rich field={p.right_body} /></div></div>}
         </div></section>;
       case 'card_grid':
         if (doc.uid === 'home' && value(p.heading).toLowerCase() === 'recent flagship studies') {
@@ -200,7 +205,7 @@ export default async function SitePage({ doc }: { doc: Content }) {
       case 'stats':
         return <section key={key} className="impact-band"><div className="container">{value(p.heading) && <h2 className="band-title">{value(p.heading)}</h2>}<div className="stats-grid" data-reveal-stagger>
           {items.map((item, i) => <div className="stat" key={i}><div className="stat-num" data-count>{item.value}</div><div className="stat-label">{item.label}</div></div>)}
-        </div></div></section>;
+        </div>{p.source && <p className="stats-source">{p.source}</p>}</div></section>;
       case 'image_link_grid':
         return <section key={key} className="section-tight on-paper"><div className="container">
           <div className="section-head" data-rule data-reveal><h2>{value(p.heading)}</h2><div className="lead"><Rich field={p.intro} /></div></div>
@@ -235,7 +240,7 @@ export default async function SitePage({ doc }: { doc: Content }) {
           <div className="pillar-accordion" data-reveal>{items.map((item, i) => <Fragment key={i}>
             <input type="radio" name={`pillar-panel-${key}`} id={`pillar-panel-${key}-${i}`} className="pillar-panel-input" defaultChecked={i === 0} />
             <label htmlFor={`pillar-panel-${key}-${i}`} className="pillar-panel" style={{ backgroundImage: `url('${imageUrl(item.image)}')` }}>
-              <span className="pillar-panel-tab">{item.title}</span><div className="pillar-panel-detail"><h3>{item.title}</h3>{PILLARS[String(item.title).toLowerCase() as PillarSlug]?.tagline ? <p className="hero-tagline">{PILLARS[String(item.title).toLowerCase() as PillarSlug].tagline}</p> : <Rich field={item.body} />}
+              <span className="pillar-panel-tab">{item.title}</span><div className="pillar-panel-detail"><h3>{item.title}</h3>{PILLARS[pillarSlug(item.title)]?.tagline ? <p className="hero-tagline">{PILLARS[pillarSlug(item.title)].tagline}</p> : <Rich field={item.body} />}
                 <Link href={href(item.destination)} className="artistic-pillar-link">Explore Pillar →</Link></div>
             </label>
           </Fragment>)}</div>

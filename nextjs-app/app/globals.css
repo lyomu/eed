@@ -3051,3 +3051,5 @@ main > .page-head.page-head--image:first-child{
     grid-template-columns: 1fr;
   }
 }
+
+.stats-source{ margin:28px 0 0; font-size:.85rem; color:rgba(255,255,255,.75); }
