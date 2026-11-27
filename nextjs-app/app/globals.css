@@ -304,6 +304,17 @@ p{ margin:0 0 1em; }
   transition:color var(--dur-micro) ease,transform var(--dur-micro) ease;
 }
 .nav-sub-toggle svg{ width:9px; height:9px; display:block; }
+/* As a flex item the parent link is blockified, so it picks up the list's
+   taller line-height and its text rides higher than the other menu items and
+   off the chevron's centre line. Matching the other links' 18px content box
+   puts the text and the chevron on the same horizontal line. */
+@media (min-width:901px){
+  .has-sub > a{ line-height:18px; }
+  /* The other items' text sits ~2px below their box centre; match that. */
+  .has-sub{ top:2px; }
+  /* Margin on a centred flex item moves it by half: -2px lifts it 1px. */
+  .nav-sub-toggle{ margin-top:-2px; }
+}
 .has-sub:hover .nav-sub-toggle,
 .nav-sub-toggle:hover{ color:var(--ink); }
 .nav-sub-toggle[aria-expanded="true"]{ transform:rotate(180deg); color:var(--ink); }
@@ -824,11 +835,9 @@ p{ margin:0 0 1em; }
   max-width:none;
   margin:0;
 }
-/* The books sit low in this frame; bias the crop down so they are not cut
-   off by the short band. */
+/* Keep the irrigation channel and solar pump visible in the short band. */
 .breaker .hero-bg{ object-position:center 55%; }
-/* The headline now crosses the whole band, including the bright panels on the
-   right, so darken the band evenly rather than only on the left. */
+/* Darken the full band evenly behind the wide headline. */
 .breaker.on-image::after{
   background:
     linear-gradient(90deg, rgba(4,32,21,.5) 0%, rgba(4,32,21,.3) 100%),
@@ -855,7 +864,7 @@ p{ margin:0 0 1em; }
   margin:48px 0 0;
   padding:0;
   display:grid;
-  grid-template-columns:repeat(5, 1fr);
+  grid-template-columns:repeat(3, 1fr);
   gap:24px 40px;
   align-items:center;
 }
@@ -874,6 +883,13 @@ p{ margin:0 0 1em; }
   transition:filter var(--dur-enter) var(--ease-out), opacity var(--dur-enter) var(--ease-out);
 }
 .partner-logo img.is-square{ max-height:92px; }
+.partner-name{
+  color:var(--green-900);
+  font-family:var(--font-display);
+  font-size:clamp(1.1rem, 2vw, 1.5rem);
+  font-weight:700;
+  text-align:center;
+}
 /* Full colour at rest; the logo under the pointer greys out. */
 .partner-logo:hover img{ filter:grayscale(1); opacity:.6; }
 
@@ -928,6 +944,7 @@ p{ margin:0 0 1em; }
 
 /* pillar variant — no client/meta column */
 .pillar-row{ grid-template-columns:64px 1fr 200px; }
+.index-row.pillar-row:not(:has(.num)){ grid-template-columns:1fr 200px; }
 
 /* Research portfolio entry: brief on the left, link to the published
    source on the right. Two-class selectors so the responsive .index-row
@@ -2627,7 +2644,7 @@ main > .page-head.page-head--image:first-child{
     padding:26px 20px;
   }
   .index-row .actions{ justify-self:start; }
-  .pillar-row{ grid-template-columns:1fr; }
+  .pillar-row, .index-row.pillar-row:not(:has(.num)){ grid-template-columns:1fr; }
   .article-row{ grid-template-columns:1fr; gap:12px; padding:26px 20px; }
   .article-row .article-meta{ line-height:1.7; }
   .article-row .article-meta .cat{ display:inline; }
@@ -3046,3 +3063,5 @@ main > .page-head.page-head--image:first-child{
     grid-template-columns: 1fr;
   }
 }
+
+.stats-source{ margin:28px 0 0; font-size:.85rem; color:rgba(255,255,255,.75); }

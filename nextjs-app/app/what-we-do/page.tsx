@@ -127,7 +127,7 @@ export default async function WhatWeDoPage() {
         <div className="container">
           <div className="cta-band" data-reveal>
             <div>
-              <h2>Commission research with us</h2>
+              <h2>Collaborate with us.</h2>
               <p>
                 We work with governments, funders, utilities, investors and academic partners
                 across all four pillars.

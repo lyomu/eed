@@ -17,6 +17,7 @@ import { getBlogPosts, getPublications } from '@/lib/cms';
 import type { TeamMember } from '@/lib/team-data';
 import { linkResolver } from '@/lib/prismicio';
 import { CONTACT, CONTACT_PHONE_HREF } from '@/lib/contact-info';
+import { applyCopyOverrides } from '@/lib/copy-overrides';
 import { PILLARS, type PillarSlug } from '@/lib/pillars-data';
 import { Fragment } from 'react';
 
@@ -41,12 +42,12 @@ function href(field: Content, fallback = '#'): string {
  * Setting an image in Prismic always takes precedence.
  */
 const DEFAULT_HERO_IMAGES: Record<string, string> = {
-  news: '/assets/hero/hero-news.jpg',
+  news: '/assets/hero/hero-news-dam.jpg',
   wash: '/assets/hero/hero-wash.jpg',
   energy: '/assets/hero/hero-energy.jpg',
   climate: '/assets/hero/hero-climate.jpg',
   agriculture: '/assets/hero/hero-agriculture.jpg',
-  contact: '/assets/hero/hero-contact.jpg',
+  contact: '/assets/hero/hero-contact-phone.jpg',
 };
 
 /**
@@ -55,7 +56,7 @@ const DEFAULT_HERO_IMAGES: Record<string, string> = {
  * without people; remove the entry here to hand control back to Prismic.
  */
 const BREAKER_IMAGE_OVERRIDES: Record<string, string> = {
-  home: '/assets/hero/hero-breaker.jpg',
+  home: '/assets/hero/hero-home-solar-irrigation.jpg',
 };
 
 /** Crop focus for banners where the default (35% down) puts the headline over faces. */
@@ -63,16 +64,29 @@ const HERO_IMAGE_POSITIONS: Record<string, string> = {
   contact: 'center 20%',
 };
 
-/** Team portraits that replace the photo stored in Prismic, keyed by member id. */
+/** Current team portraits shared by Prismic and fallback pages, keyed by member id. */
 const TEAM_PHOTO_OVERRIDES: Record<string, string> = {
-  'abigael-okoko': '/assets/team/abigael-okoko.jpg?v=4',
+  'ida-githu': '/assets/team/ida-githu-gray.jpg',
+  'elmah-odhiambo': '/assets/team/elmah-odhiambo-gray.jpg',
+  'winnie-musivo': '/assets/team/winnie-musivo-gray.jpg',
+  'abigael-okoko': '/assets/team/abigael-okoko-gray.jpg',
+  'cheikh-mbodji': '/assets/team/cheikh-mbodji-gray.jpg',
+  'carl-ngaira': '/assets/team/carl-ngaira-gray.jpg',
 };
 
 const HERO_IMAGE_OVERRIDES: Record<string, string> = {
-  team: '/assets/hero/hero-team.jpg',
-  portfolio: '/assets/hero/hero-portfolio-wind.jpg',
-  about: '/assets/hero/hero-about-river.jpg',
+  team: '/assets/hero/hero-team-gold.jpg',
+  'what-we-do': '/assets/hero/hero-whatwedo-ecology.jpg',
+  portfolio: '/assets/hero/hero-geothermal-station.jpg',
+  about: '/assets/hero/hero-about-aerial.jpg',
+  news: '/assets/hero/hero-geothermal-station.jpg',
+  contact: '/assets/hero/hero-contact-phone.jpg',
 };
+
+/** Pillar slug for a card title, e.g. "Climate Change" -> climate. */
+function pillarSlug(title: string): PillarSlug {
+  return String(title).toLowerCase().replace(/ change$/, '') as PillarSlug;
+}
 
 function imageUrl(field: Content, fallback = ''): string {
   return field?.url || fallback;
@@ -109,7 +123,7 @@ function Action({ label, destination, className = 'btn btn-primary' }: {
 }
 
 export default async function SitePage({ doc }: { doc: Content }) {
-  const slices: Content[] = doc.data.slices || [];
+  const slices: Content[] = applyCopyOverrides(doc.uid, doc.data.slices || []);
   const needsNews = slices.some((slice) => slice.slice_type === 'news_list');
   const needsPublications = slices.some((slice) => slice.slice_type === 'publication_list');
   const [posts, publications] = await Promise.all([
@@ -148,9 +162,28 @@ export default async function SitePage({ doc }: { doc: Content }) {
       case 'text_columns':
         return <section key={key} className="section on-paper"><div className="container">
           <div className="section-head" data-rule data-reveal><h2>{value(p.heading)}</h2><div className="lead"><Rich field={p.intro} /></div></div>
-          <div className="split" data-reveal><div><Rich field={p.left_body} /></div><div><Rich field={p.right_body} /></div></div>
+          {(p.left_body?.length > 0 || p.right_body?.length > 0) && <div className="split" data-reveal><div><Rich field={p.left_body} /></div><div><Rich field={p.right_body} /></div></div>}
         </div></section>;
       case 'card_grid':
+        if (doc.uid === 'home' && value(p.heading).toLowerCase() === 'recent flagship studies') {
+          return <section key={key} className="section on-sunk"><div className="container">
+            <div className="section-head" data-rule data-reveal><h2>Recent ERI projects</h2><p className="lead">Applied research delivered with our partners across energy and green growth.</p></div>
+            <div className="grid-2" data-reveal-stagger>
+              <article className="feature-block">
+                <div className="photo-block ratio-16x10"><FallbackImage src="/assets/research/rural-solar.jpg" alt="City skyline illustrating national and county energy planning" loading="lazy" /><span className="mark">Energy Planning</span></div>
+                <h3>Robust and Integrated Planning of Energy Systems</h3>
+                <p>Supporting Kenya’s county and national energy planning with decision pathways, data guidelines, and a prototype data platform.</p>
+                <Link href="/about#milestones" className="card-link">Learn More &rarr;</Link>
+              </article>
+              <article className="feature-block">
+                <div className="photo-block ratio-16x10"><FallbackImage src="/assets/research/water-resilience.jpg" alt="Solar panels illustrating green technology innovation" loading="lazy" /><span className="mark">Green Technology</span></div>
+                <h3>In Pursuit of Green Growth</h3>
+                <p>Examining how Kenya can manage green technology transfer and grow local innovation through policy papers and roundtables.</p>
+                <Link href="/about#milestones" className="card-link">Learn More &rarr;</Link>
+              </article>
+            </div>
+          </div></section>;
+        }
         return <section key={key} className={`section ${p.background === 'sunk' ? 'on-sunk' : 'on-paper'}`}><div className="container">
           <div className="section-head" data-rule data-reveal><h2>{value(p.heading)}</h2><div className="lead"><Rich field={p.intro} /></div></div>
           <div className={p.columns === 'two' ? 'grid-2' : 'grid-3'} data-reveal-stagger>
@@ -165,14 +198,14 @@ export default async function SitePage({ doc }: { doc: Content }) {
         return <section key={key} className="section on-paper"><div className="container">
           <div className="section-head" data-rule data-reveal><h2>{value(p.heading)}</h2><div className="lead"><Rich field={p.intro} /></div></div>
           <div className="index-list" data-reveal-stagger>{items.map((item, i) => <div className="index-row pillar-row" key={i}>
-            <span className="num">{String(i + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><Rich field={item.body} /></div>
+            <div><h3>{item.title}</h3><Rich field={item.body} /></div>
             <div className="actions"><Action label={item.button_label || 'Explore →'} destination={item.button_link} className="card-link" /></div>
           </div>)}</div>
         </div></section>;
       case 'stats':
         return <section key={key} className="impact-band"><div className="container">{value(p.heading) && <h2 className="band-title">{value(p.heading)}</h2>}<div className="stats-grid" data-reveal-stagger>
           {items.map((item, i) => <div className="stat" key={i}><div className="stat-num" data-count>{item.value}</div><div className="stat-label">{item.label}</div></div>)}
-        </div></div></section>;
+        </div>{p.source && <p className="stats-source">{p.source}</p>}</div></section>;
       case 'image_link_grid':
         return <section key={key} className="section-tight on-paper"><div className="container">
           <div className="section-head" data-rule data-reveal><h2>{value(p.heading)}</h2><div className="lead"><Rich field={p.intro} /></div></div>
@@ -198,7 +231,7 @@ export default async function SitePage({ doc }: { doc: Content }) {
           </div>)}</div>
         </div></section>;
       case 'timeline':
-        return <section key={key} className="impact-band"><div className="container"><h2 className="band-title">{value(p.heading)}</h2>
+        return <section key={key} className="impact-band" id="milestones"><div className="container"><h2 className="band-title">{value(p.heading)}</h2>
           <MilestonesTimeline />
         </div></section>;
       case 'pillar_accordion':
@@ -207,7 +240,7 @@ export default async function SitePage({ doc }: { doc: Content }) {
           <div className="pillar-accordion" data-reveal>{items.map((item, i) => <Fragment key={i}>
             <input type="radio" name={`pillar-panel-${key}`} id={`pillar-panel-${key}-${i}`} className="pillar-panel-input" defaultChecked={i === 0} />
             <label htmlFor={`pillar-panel-${key}-${i}`} className="pillar-panel" style={{ backgroundImage: `url('${imageUrl(item.image)}')` }}>
-              <span className="pillar-panel-tab">{item.title}</span><div className="pillar-panel-detail"><h3>{item.title}</h3>{PILLARS[String(item.title).toLowerCase() as PillarSlug]?.tagline ? <p className="hero-tagline">{PILLARS[String(item.title).toLowerCase() as PillarSlug].tagline}</p> : <Rich field={item.body} />}
+              <span className="pillar-panel-tab">{item.title}</span><div className="pillar-panel-detail"><h3>{item.title}</h3>{PILLARS[pillarSlug(item.title)]?.tagline ? <p className="hero-tagline">{PILLARS[pillarSlug(item.title)].tagline}</p> : <Rich field={item.body} />}
                 <Link href={href(item.destination)} className="artistic-pillar-link">Explore Pillar →</Link></div>
             </label>
           </Fragment>)}</div>
@@ -224,7 +257,7 @@ export default async function SitePage({ doc }: { doc: Content }) {
       }
       case 'call_to_action':
         return <section key={key} className="section-tight on-paper"><div className="container"><div className="cta-band" data-reveal>
-          <div><h2>{value(p.heading)}</h2><Rich field={p.body} /></div>
+          <div><h2>{doc.uid === 'what-we-do' && value(p.heading) === 'Commission research with us' ? 'Collaborate with us.' : value(p.heading)}</h2><Rich field={p.body} /></div>
           <Action label={p.button_label} destination={p.button_link} />
         </div></div></section>;
       case 'contact':

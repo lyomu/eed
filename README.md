@@ -217,12 +217,18 @@ Photo credits (all from Pexels under the [Pexels licence](https://www.pexels.com
 | `hero-team-solar.jpg` | [Expansive Solar Farm in Vietnam's Binh Thuan Province](https://www.pexels.com/photo/expansive-solar-farm-in-vietnam-s-binh-thuan-province-35105443/), Quang Nguyen Vinh |
 | `hero-portfolio-wind.jpg` | [Panoramic View of Wind Turbines in Vietnamese Countryside](https://pexels.com/photo/35105465), Quang Nguyen Vinh |
 | `hero-news.jpg` | [Dam of river between green hills](https://pexels.com/photo/6415966), Quang Nguyen Vinh |
+| `hero-news-dam.jpg` | [A large hydroelectric dam with a large water reservoir](https://www.pexels.com/photo/a-large-hydroelectric-dam-with-a-large-water-reservoir-27623570/), Donovan Kelly (Pexels). |
+| `hero-contact-phone.jpg` | [Cheerful woman talking on smartphone in modern office building](https://www.pexels.com/photo/cheerful-woman-talking-on-smartphone-in-modern-office-building-4173232/), Gustavo Fring (Pexels). |
 | `hero-agriculture.jpg` | [View of a Rolling Landscape](https://www.pexels.com/photo/view-of-a-rolling-landscape-6872257/), Quang Nguyen Vinh |
 | `hero-wash.jpg` | [Colorful water taps](https://www.pexels.com/photo/colorful-water-taps-in-vibrant-outdoor-setting-30224434/) |
 | `hero-energy.jpg` | [Solar panels in a photovoltaic power station](https://www.pexels.com/photo/solar-panels-in-modern-photovoltaic-power-station-4320449/) |
 | `hero-climate.jpg` | [Cracked dry earth during drought](https://www.pexels.com/photo/cracked-dry-earth-during-severe-drought-36767372/) |
 | `hero-home-wind.jpg` | [Wind turbines over farmland](https://www.pexels.com/photo/9022671/), Rockwell Branding Agency |
 | `hero-home-solar.jpg` | Wind turbines and solar panels. This one is AI-generated; check its licence and consider replacing it with a real photo. |
+| `hero-solar-irrigation.jpg` | AI-generated illustration of a solar-powered irrigation system on a farm, used above Our Partners. |
+| `hero-about-geothermal.jpg` | AI-generated illustration of geothermal infrastructure in the Rift Valley, used on About Us. |
+| `hero-team-gold.jpg` | AI-edited version of the existing puzzle image with one gold piece, used on Our Team. |
+| `hero-portfolio-grid.jpg` | AI-generated illustration of electricity transmission and distribution infrastructure, used on Research Portfolio. |
 | `assets/blog/clean-cooking-charcoal-stove.jpg` | [Outdoor Cooking Pot on Rustic Charcoal Stove](https://www.pexels.com/photo/outdoor-cooking-pot-on-rustic-charcoal-stove-32796453/), Wedson msoni. Lead image for the Sierra Leone clean cooking article. |
 
 ## Deployment

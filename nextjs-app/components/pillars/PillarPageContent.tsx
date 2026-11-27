@@ -68,7 +68,7 @@ export default function PillarPageContent({ content }: { content: PillarContent 
           <div className="index-list" data-reveal-stagger>
             {content.focusAreas.map((area, i) => (
               <div className="index-row pillar-row" key={area.title}>
-                <span className="num">{String(i + 1).padStart(2, '0')}</span>
+                
                 <div>
                   <h3>{area.title}</h3>
                   <p>{area.body}</p>
