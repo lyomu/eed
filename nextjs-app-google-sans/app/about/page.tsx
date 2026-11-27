@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import HeroImage from '@/components/HeroImage';
 import SitePage from '@/components/SitePage';
+import MilestonesTimeline from '@/components/MilestonesTimeline';
 import { getPageMetadata, getSitePage } from '@/lib/site-content';
 
 const fallbackMetadata: Metadata = {
@@ -18,7 +19,7 @@ export default async function AboutPage() {
   return (
     <>
       <section className="page-head page-head--image on-image">
-        <HeroImage src="/assets/hero/hero-about-river.jpg" />
+        <HeroImage src="/assets/hero/hero-about-aerial.jpg" />
         <div className="container">
           <div className="hero-enter">
             <h1>Bridging Science and Sustainability.</h1>
@@ -231,36 +232,10 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      <section className="impact-band">
+      <section className="impact-band" id="milestones">
         <div className="container">
           <h2 className="band-title">Institute Milestones</h2>
-          <div className="timeline" data-reveal-stagger>
-            <div className="timeline-item">
-              <span className="year">2023</span>
-              <h3>Founded</h3>
-              <p>
-                EED Research Institute is established with a mandate to advance evidence-based
-                research across WASH, energy, climate, and agriculture.
-              </p>
-            </div>
-            <div className="timeline-item">
-              <span className="year">2024</span>
-              <h3>First facility grants</h3>
-              <p>
-                First Kawisafi Technical Assistance Facility (TAF) grants disbursed; 150+ ongoing
-                research initiatives launched across the region.
-              </p>
-            </div>
-            <div className="timeline-item">
-              <span className="year">2025 &mdash; Today</span>
-              <h3>Active in 47 countries</h3>
-              <p>
-                Four key thematic pillars anchor our work across WASH, energy, climate and
-                agriculture, supported by a growing multidisciplinary team of researchers,
-                scientists, and strategists.
-              </p>
-            </div>
-          </div>
+          <MilestonesTimeline />
         </div>
       </section>
 
