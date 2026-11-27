@@ -38,6 +38,13 @@
               }
             }
           }
+        },
+        "source": {
+          "type": "Text",
+          "config": {
+            "label": "Source line",
+            "placeholder": "Figures: …"
+          }
         }
       }
     }

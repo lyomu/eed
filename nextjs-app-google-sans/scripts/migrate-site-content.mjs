@@ -88,7 +88,7 @@ const home = {
     }),
     slice('quote', {
       heading: title('Transforming water, energy, climate and agriculture with rigorous, field-grounded research'),
-      image: asset('/assets/hero/hero-breaker.jpg', ''),
+      image: asset('/assets/hero/hero-solar-irrigation.jpg', ''),
     }),
     slice('link_list', {
       heading: title('Core Research Pillars'),
@@ -101,21 +101,21 @@ const home = {
       ].map(([rowTitle, body, uid]) => ({ title: rowTitle, body: rich(body), button_label: 'Explore →', button_link: internal(uid) })),
     }),
     slice('card_grid', {
-      heading: title('Recent flagship studies'),
-      intro: rich('In-depth studies driving sustainable transformation across critical sectors.'),
+      heading: title('Recent ERI projects'),
+      intro: rich('Applied research delivered with our partners across energy and green growth.'),
       columns: 'two', background: 'sunk',
       entries: [
         {
-          title: 'Urban Water Resilience Index 2024',
-          body: rich('A comprehensive analysis of water infrastructure stability in rapidly urbanizing regions.'),
-          image: asset('/assets/research/water-resilience.jpg', 'Urban Water Resilience Index 2024'),
-          label: 'Water Infrastructure', button_label: 'Learn More →', button_link: internal('portfolio'),
+          title: 'Robust and Integrated Planning of Energy Systems',
+          body: rich('Supporting Kenya’s county and national energy planning with decision pathways, data guidelines, and a prototype data platform.'),
+          image: asset('/assets/research/rural-solar.jpg', 'City skyline illustrating national and county energy planning'),
+          label: 'Energy Planning', button_label: 'Learn More →', button_link: internal('about'),
         },
         {
-          title: 'Decentralized Solar for Rural Industry',
-          body: rich('Evaluating the economic impact of off-grid renewable energy on local manufacturing hubs.'),
-          image: asset('/assets/research/rural-solar.jpg', 'Decentralized Solar for Rural Industry'),
-          label: 'Off-Grid Solar', button_label: 'Learn More →', button_link: internal('portfolio'),
+          title: 'In Pursuit of Green Growth',
+          body: rich('Examining how Kenya can manage green technology transfer and grow local innovation through policy papers and roundtables.'),
+          image: asset('/assets/research/water-resilience.jpg', 'Solar panels illustrating green technology innovation'),
+          label: 'Green Technology', button_label: 'Learn More →', button_link: internal('about'),
         },
       ],
     }),
@@ -132,7 +132,7 @@ const about = {
   metaTitle: 'About Us — EED Research Institute',
   metaDescription: 'EED Research Institute pioneers ecological breakthroughs that inform policy and empower communities.',
   slices: [
-    hero({ eyebrow: 'The Institute', heading: 'Bridging Science and Sustainability.', body: 'The EED Research Institute is dedicated to pioneering ecological breakthroughs that inform policy and empower communities across the globe.', image: '/assets/hero/hero-about-river.jpg' }),
+    hero({ eyebrow: 'The Institute', heading: 'Bridging Science and Sustainability.', body: 'The EED Research Institute is dedicated to pioneering ecological breakthroughs that inform policy and empower communities across the globe.', image: '/assets/hero/hero-about-geothermal.jpg' }),
     slice('image_link_grid', {
       heading: title('Fieldwork across East and Sub-Saharan Africa'),
       intro: rich('Applied research grounded in the communities and institutions our findings are meant to serve.'),
@@ -168,6 +168,13 @@ const about = {
       entries: [
         { year: '2023', title: 'Founded', body: rich('EED Research Institute is established with a mandate to advance evidence-based research across WASH, energy, climate, and agriculture.') },
         { year: '2024', title: 'First facility grants', body: rich('First Kawisafi Technical Assistance Facility grants disbursed; 150+ ongoing research initiatives launched across the region.') },
+        { year: '2025', title: 'Measuring Progress Toward SDG 7.1.1 — Phase 2', body: rich('With the University of Oxford and Climate Compatible Growth, testing a new data collection tool for measuring electricity access in Kenya, DRC, Senegal and Sierra Leone.') },
+        { year: '2025–2026', title: 'Robust and Integrated Planning of Energy Systems (RIPpLES)', body: rich('With Loughborough University, supporting Kenya’s energy planning through decision pathways, county data guidelines and a prototype data platform.') },
+        { year: '2025–2026', title: 'Measuring Progress Toward SDG 7.1.1 — Phase 3', body: rich('Extending the Oxford and Climate Compatible Growth study to 25 more sub-Saharan African countries.') },
+        { year: '2025–2026', title: 'Tri-50 Roadmap', body: rich('With Energy Corps, studying pathways from low-energy, low-income economies to high-energy, high-income futures.') },
+        { year: '2025–2026', title: 'In Pursuit of Green Growth', body: rich('With APRI, examining green technology transfer and local innovation in Kenya through policy papers and roundtables.') },
+        { year: '2026–2027', title: 'Supporting Kenya’s Integrated National Energy Plan (RIPpLES 2)', body: rich('With Loughborough University, expanding the county energy data platform and developing handover guidelines for Kenya’s national plan.') },
+        { year: '2026–2028', title: 'The Hidden Health Costs of Climate Change', body: rich('With Amref Health Africa, Kabarak University and Community Energy Malawi, studying the health and economic costs of climate change in Kenya and Malawi.') },
         { year: '2025 — Today', title: 'Active in 47 countries', body: rich('Four key thematic pillars anchor our work, supported by a growing multidisciplinary team.') },
       ],
     }),
@@ -191,7 +198,7 @@ const whatWeDo = {
         ['Agriculture', 'Smallholder productivity under climate risk, irrigation, land use, food systems and value chains.', '/assets/about/agriculture-pillar.jpg', 'agriculture'],
       ].map(([itemTitle, body, image, uid]) => ({ title: itemTitle, body: rich(body), image: asset(image, itemTitle), destination: internal(uid) })),
     }),
-    cta('Commission research with us', 'We work with governments, funders, utilities, investors and academic partners across all four pillars.'),
+    cta('Collaborate with us.', 'We work with governments, funders, utilities, investors and academic partners across all four pillars.'),
   ],
 };
 
@@ -226,7 +233,7 @@ const team = {
   metaTitle: 'Our Team — EED Research Institute',
   metaDescription: 'Meet the multidisciplinary team behind EED Research Institute.',
   slices: [
-    hero({ eyebrow: 'Our People', heading: 'The people behind the research', body: 'A multidisciplinary collective of researchers, scientists, and strategists dedicated to advancing sustainable ecological solutions and rigorous academic inquiry.', image: '/assets/hero/hero-team.jpg' }),
+    hero({ eyebrow: 'Our People', heading: 'The people behind the research', body: 'A multidisciplinary collective of researchers, scientists, and strategists dedicated to advancing sustainable ecological solutions and rigorous academic inquiry.', image: '/assets/hero/hero-team-gold.jpg' }),
     slice('team', {
       entries: TEAM_MEMBERS.map((member) => ({
         id: member.id, name: member.name, initials: member.initials, role: member.role,
@@ -243,7 +250,7 @@ const contact = {
   metaTitle: 'Contact Us — EED Research Institute',
   metaDescription: 'Collaborate with EED Research Institute or reach our East Africa hub in Nairobi.',
   slices: [
-    hero({ eyebrow: 'Get In Touch', heading: "Let's build the evidence base together", body: 'We welcome collaboration with academic institutions, government agencies, and private sector partners to drive evidence-based solutions for global challenges.', image: '/assets/hero/hero-contact.jpg' }),
+    hero({ eyebrow: 'Get In Touch', heading: "Let's build the evidence base together", body: 'We welcome collaboration with academic institutions, government agencies, and private sector partners to drive evidence-based solutions for global challenges.', image: '/assets/hero/hero-contact-phone.jpg' }),
     slice('contact', {
       heading: title('Send us a message'), office_heading: 'Find us in Nairobi',
       body: rich('Visit our offices for enquiries, consultations, support, or partnership discussions.'),
@@ -258,7 +265,7 @@ const news = {
   metaTitle: 'News & Insights — EED Research Institute',
   metaDescription: 'Research commentary, policy analysis, and field perspectives from EED Research Institute.',
   slices: [
-    hero({ eyebrow: 'Insights', heading: 'Perspectives from the field', body: 'Research commentary, policy analysis, and field notes from our researchers across WASH, energy, climate, and agriculture.', image: '/assets/hero/hero-news.jpg' }),
+    hero({ eyebrow: 'Insights', heading: 'Perspectives from the field', body: 'Research commentary, policy analysis, and field notes from our researchers across WASH, energy, climate, and agriculture.', image: '/assets/hero/hero-news-dam.jpg' }),
     slice('news_list'),
   ],
 };
@@ -268,7 +275,7 @@ const portfolio = {
   metaTitle: 'Research Portfolio — EED Research Institute',
   metaDescription: 'An archive of applied research and policy interventions across WASH, energy, climate, and agriculture.',
   slices: [
-    hero({ eyebrow: 'Research Portfolio', heading: 'An index of our applied research', body: 'Systemic analyses and policy interventions across key thematic areas, designed to foster ecological stewardship and intellectual rigor.', image: '/assets/hero/hero-portfolio-wind.jpg' }),
+    hero({ eyebrow: 'Research Portfolio', heading: 'An index of our applied research', body: 'Systemic analyses and policy interventions across key thematic areas, designed to foster ecological stewardship and intellectual rigor.', image: '/assets/hero/hero-portfolio-grid.jpg' }),
     slice('publication_list'),
   ],
 };
