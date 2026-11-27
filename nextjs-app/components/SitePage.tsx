@@ -198,7 +198,7 @@ export default async function SitePage({ doc }: { doc: Content }) {
         return <section key={key} className="section on-paper"><div className="container">
           <div className="section-head" data-rule data-reveal><h2>{value(p.heading)}</h2><div className="lead"><Rich field={p.intro} /></div></div>
           <div className="index-list" data-reveal-stagger>{items.map((item, i) => <div className="index-row pillar-row" key={i}>
-            <span className="num">{String(i + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><Rich field={item.body} /></div>
+            <div><h3>{item.title}</h3><Rich field={item.body} /></div>
             <div className="actions"><Action label={item.button_label || 'Explore →'} destination={item.button_link} className="card-link" /></div>
           </div>)}</div>
         </div></section>;

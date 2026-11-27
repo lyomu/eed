@@ -944,6 +944,7 @@ p{ margin:0 0 1em; }
 
 /* pillar variant — no client/meta column */
 .pillar-row{ grid-template-columns:64px 1fr 200px; }
+.index-row.pillar-row:not(:has(.num)){ grid-template-columns:1fr 200px; }
 
 /* Research portfolio entry: brief on the left, link to the published
    source on the right. Two-class selectors so the responsive .index-row
@@ -2643,7 +2644,7 @@ main > .page-head.page-head--image:first-child{
     padding:26px 20px;
   }
   .index-row .actions{ justify-self:start; }
-  .pillar-row{ grid-template-columns:1fr; }
+  .pillar-row, .index-row.pillar-row:not(:has(.num)){ grid-template-columns:1fr; }
   .article-row{ grid-template-columns:1fr; gap:12px; padding:26px 20px; }
   .article-row .article-meta{ line-height:1.7; }
   .article-row .article-meta .cat{ display:inline; }
